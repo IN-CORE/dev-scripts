@@ -1,0 +1,426 @@
+goodness-of-fit metrics
+time granularity for analysis
+1D model
+1D-2D coupled model
+2D modeling
+accident simulation platform
+ADCIRC
+adoption/adaptation strategies
+adoption/adaptation timing
+after-action reports
+aftershock occurrence rate
+aftershocks
+Aging Infrastructure
+aleatory
+aleatory and epistemic uncertainties
+aleatory vs epistemic (model-based) uncertainties
+algorithm
+applied econometric analyses
+Arch validation studies
+asymmetrically reinforced concrete frame buildings
+baseline resiliency
+baseline resiliency impact-performance assessment
+Bayesian methods
+Beta testing
+big three infrastructure system
+bounce back
+bounce forward
+broad-based cascading event
+building functionality
+Building Inventory Fragility Functions (BIFF)
+Building Inventory Loss Estimation (BILE)
+Building Inventory Recovery Trajectory (BIRT)
+Building Inventory Response Metrics (BIRMs)
+built environment
+business disruption and failure
+business interruption
+Calibrated deterioration models
+candidate feature list
+candidate tsunami intensity measures
+capital stock
+Cascadia Subduction Zone (CSZ) hazard
+cascading hazards
+cascading social impacts
+census/administrative data
+Centerville
+CGE modeling assumptions
+Change control process
+Channel flow flooding
+civil infrastructure
+Classical methods
+classical optimization techniques
+Climate Change
+climate change models
+close-ended surveys
+coarse granularity
+coincidence analysis
+collaboration framework
+community
+community fire propagation algorithm
+community resilience modeling
+community stakeholders
+computable general equilibrium (CGE) analyses
+computational environment
+computationally intensive methods
+concurrent uncorrelated hazards
+conditional failure probabilities
+constituent components of highway and railway networks
+consumer expenditure
+correlated hazards case
+correlation structures
+COULWAVE
+coupled 2D models
+coupled effects
+Coupled Hazards
+Coupled Routing and Excess Storage and Slope-Infiltration-Distributed Equilibrium (CRESLIDE) approach
+Coupled sector validation
+coupling
+critical infrastructure
+critical public/private financing (SBA, FEMA, CDBG, etc.) streams
+CSU IRB
+damage proxy
+damage states
+data acquisition
+data curation requirements
+data lifecycle
+data management tools
+data publishing
+data retention policies
+database-type framework
+deaggregation
+debris damming
+decision frameworks
+design calculations
+deterioration mechanisms
+deterministic vs stochastic track selection
+direct and multiplier effects
+Dis-aggregation of decision framework
+discounting
+roadway discretization
+dislocation
+displacement model
+Department of Transportation (DOT)
+drones
+Drought
+earthquake
+Earthquake damage fragility curves
+earthquake-induced tsunami modeling
+earthquake-triggered tsunami cascading hazard models
+econometric strategies
+economic impact modeling strategies
+EERI
+EF intensity
+elasticities
+ellipse
+emergency response planning
+employment disruption
+endoxastic
+energy systems
+environmental stressors
+environment-related deterioration
+epistemic
+epistemic uncertainties
+EPN power flow analysis
+event tree analysis techniques
+failure modes
+far field earthquake
+feature extraction
+FEMA Rapid Visual Screening
+field kits
+Field study decision algorithm
+field study protocol
+fire hazard map
+flood-induced scour hazard
+Floodplain flooding
+flow depth
+momentum flux
+flow velocity
+flow direction
+fluid-dynamic software programs
+food security
+footprints
+forecasting
+fragilities
+fragility estimates
+fragility increment functions
+Full event hindcasting
+full-rupture CSZ event
+functionality fragilities
+General Circulation Models (GCM)
+general tsunami hazard maps
+general usage (functionality) requirements
+generic scenario events
+Genetic Algorithms
+GIS data
+Global Building Taxonomy
+Google Street View
+granularities
+ground failures
+hazard curves
+hazard input models
+hazard-related deterioration
+Hazards
+HAZUS nomenclature of “Slight, Moderate, Extensive and Complete”,
+HAZUS simplified approach
+hindcasting
+Hot Spots
+how-to scenarios
+human capital
+human subjects/ethics training
+hurricane
+hurricane categories
+hurricane wind-surge-wave modeling
+ICT
+Ignition Probability Line (IPL
+Ignition Probability of Structures
+Ims
+infrastructure interdependencies
+infrastructure risk and resilience assessment
+input multi-hazard models
+input-output models
+Intelligent Design Algorithms
+Intelligent search methods
+intensity measures (IMs)
+intensity models
+interdependencies.
+Interdependency modeling
+Interdependency modeling
+interdependency relationships
+interdependent or cascading social/behavioral/economic systems
+interface variables
+interfaces
+intergenerational transfers of risk
+inter-institutional agreements (IAA
+inundation hazard
+inventory collection methodology
+inventory levels
+inventory recovery time
+inverse analysis
+Joplin testbed
+landslides
+learning algorithm
+life-cycle
+linear programming
+linear wind speed scaling
+liquefaction
+local spatial resolution
+LODES data
+long span structures
+long-term road network recovery scheduling
+loss assessment at parcel scale
+LRM-SC
+machine learning shell
+MAE Center
+magnitude distribution
+Mainshock
+mainshock magnitude
+mainshock-aftershock fragility
+mainshock-aftershock parameterized fragility models
+mainshock-aftershock synthesized earthquake sequences utilizing source-based stochastic ground models
+management infrastructure
+mathematical optimization models
+MCNFP: topologically relevant and computationally efficient
+metadoxastic
+metaheuristics
+metamodels of spatial surge intensity
+methodology of harmonization
+metric
+migration
+mitigation based recovery
+model calibration
+modeling deterioration
+modeling solution
+momentum flux
+momentum flux-based curves
+Monte Carlo simulations
+MOU’s
+Multi hazard taxonomy
+multi-hazard cases
+multi-hazard damage
+multi-hazard fragility
+multi-hazard fragility
+multi-hazard risk and resilience assessment
+multi-hazard risk formulations.
+Multi-metric decision making framework
+multiple commodities
+multiple network performance metrics
+near source earthquakes
+network flows approaches
+network level restoration modeling
+network performance metrics
+network reliability
+network-based systems
+Next Generation Attenuation (NGA) models
+NGA updates
+NHERI
+NOAA’s ComMIT/MOST framework
+nodal and network components
+nominal classification
+nondestructive evaluation (NDE)
+non-governmental organizations (NGO)
+Nonlinear  static
+nonlinear time history analysis
+Non-stationarities
+non-stationary spatial and temporal stochastic models (discrete and continuous)
+nonstationary stochastic models
+numerical simulations
+offshore bathymetry
+open source platform
+open-ended interview guides
+operational and extreme loads
+optimal recovery trajectory
+Optimization modeling
+Optimization of investments
+parameters
+Particle Swarm Optimization
+Performance improvements
+performance matrix approaches
+performance metrics/indicators
+physical and functional limit states
+physical infrastructure
+physics-based hurricane tracking
+physics-based model
+platform integration
+population displacement/dislocation
+potential energy
+predictive model
+Pre-event seismic retrofit
+pressure deficit
+Pressure deficit model
+probabilistic bounds on forecasts
+probabilistic fire propagation model
+probabilistic framework
+problem granularity
+Propagation of uncertainties
+Propagation of Uncertainties
+Propagation uncertainties
+prospective retrofits
+prototype
+pseudo-multi-hazard analysis
+Quantifying model performance
+quasi-experimental design
+quick response research
+railroad fragility
+random occurrences of loads
+range of use cases
+real-time learning
+recovery models
+recovery outcome assessment
+Refined constituent fragility
+refined-scale traffic flow
+repair prioritization
+research drivers
+research requirements
+resilience assessment
+resilience forecasting
+resolution of tax-lot
+restoration analyses
+restoration functions
+restoration sequencing
+retrofit
+risk assessment
+risk communication tools
+risk modeling for transportation infrastructure
+risk-informed decisions
+riverine and coastal flooding
+riverine flooding hazard prediction
+road network risk mitigation
+robustness
+robustness hotspots
+rupture zone geometry
+SBE systems
+SBE-based systems
+scalability of the formulation
+scalable project data
+scale/aggregation
+Scatter Search
+scenario development
+scenario-based approach
+scenarios
+scour
+screening
+secondary impacts
+seismic fragility
+service life
+simulation
+simulation initiation point
+Single/isolated sector validations
+skewed and curved bridges
+slope
+SLOSH
+SME’s
+social accounting matrices (SAM
+social impact routines
+social institutions
+social vulnerabilities
+social-economic impact prediction
+societal impact
+socioeconomic
+soil type
+spatial CGE model
+spatial correlation
+spatial distribution
+spatial fragility assignment procedure
+spatial scale
+spatial variation
+standardized data ontology
+statistical inference
+Bayesian inference
+stochastic elements
+stochastic simulation
+storm genesis location
+storm surge
+storm track
+structural and non-structural taxonomies
+structural health monitoring (SHM)
+structure orientation
+sub-assembly repair durations
+subject-matter experts (SME’s)
+surge and wave hazards
+synergistic effects
+system requirements (related to the platform)
+systems-level models
+Tabu Search
+taxonomy
+technical and nontechnical systems
+temporal and spatial correlation analysis
+testbed community
+testbeds
+time history analysis
+time to failure
+time-dependent fragility models
+Toolbox for field study data
+tornado hazard curve
+tornado scenario
+tornadoes
+traffic loads
+training datasets
+transect-based (1D) models
+transportation infrastructure constituents
+Transportation network modeling
+transportation network reliability quantification
+tsunami
+tsunami fragility modeling
+tsunami hazard analysis
+tsunami inundation intensity measures
+tsunami-earthquake case
+Uncertainty modeling
+Uncertainty modeling
+user interface
+User Requirements and Stakeholder Alignment
+user-defined values
+USGS data
+validation
+vector
+vegetation condition
+virtual city analysis
+virtual city scenario
+vulnerability modeling
+what-if scenarios
+wiki
+wildfire urban interface
+wildland
+wildland fire propagation algorithm
+wind hazards
+wind-surge
+WUI fire-prone regions

@@ -38,3 +38,10 @@ dist
 
 # Mac files
 .DS_Store
+
+# Compiled class file
+*.class
+
+# Package Files #
+*.jar
+*.war

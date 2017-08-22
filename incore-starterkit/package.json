@@ -36,7 +36,7 @@
 	"algebra.js": "0.2.6",
 	"vis": "4.18.1",
 	"d3": "4.5.0",
-	"jstat": "1.5.3",
+	"jStat": "1.5.3",
 	"mathjs": "3.9.1",
 	"openlayers": "3.20.1",
 	"shapefile": "0.6.2",

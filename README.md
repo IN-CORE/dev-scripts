@@ -11,3 +11,6 @@ This uses the Wikidata toolkit.
 
 # metadata_extractor
 This script extracts information from ergo/incore-v1 source code files (plugin.properties, gisSchema, gisMetadata). Extracts information regarding datasets, metadata and analyses.
+
+# python-language-server
+Modification of [https://github.com/palantir/python-language-server](https://github.com/palantir/python-language-server) to work with websockets used in the online monaco editor.

@@ -1,20 +1,36 @@
-var path = require("path");
+let path = require("path");
+
+process.env.NODE_ENV = "test";
+
+let reporters = [];
+
+/*
+if(process.argv.some(isDebug)) {
+	reporters = ["mocha"];
+}
+
+function isDebug(argument) {
+	return argument === "--debug";
+}*/
 
 module.exports = function (config) {
 	config.set({
-		browsers: ["Chrome", "Firefox"], //run in Chrome
+		browsers: ["ChromeHeadless", "Firefox"],
 		singleRun: true,
 		colors: true,
 		basePath: "",
 		frameworks: ["jasmine", "sinon"],
 		preprocessors: {
-			"test/**/*.test.js": ["webpack", "sourcemap"],
+			"test/**/*.test.js": ["webpack", "sourcemap"]
 		},
 		files: [
+			"node_modules/babel-polyfill/dist/polyfill.js",
+			// {pattern: "test/resources/*.*", included: false, served: true},
+			{pattern: "./test/resources/seaside_bldg.dbf", included: false, served: true},
 			{pattern: "test/**/*.test.js"}
 		],
-		reporters: ["mocha", "coverage"], //report results in this format
-		coverageReporter: {
+		reporters: ["progress"],
+		/* coverageReporter: {
 			reporters: [
 				{
 					type: "text-summary"
@@ -24,7 +40,7 @@ module.exports = function (config) {
 					dir: "coverage"
 				}
 			]
-		},
+		}, */
 		webpack: {
 			devtool: "inline-source-map",
 			resolve: {
@@ -35,16 +51,15 @@ module.exports = function (config) {
 				rules: [
 					{
 						enforce: "pre",
-						test: /\.js$/,
-						exclude: [path.resolve("node_modules"), path.resolve("src")],
+						test: /\.jsx?$/,
+						exclude: [path.resolve("node_modules")],
 						loaders: ["babel-loader"]
 					},
 					{
 						enforce: "pre",
-						test: /\.jsx?$/,
-						exclude: path.resolve("node_modules"),
-						include: path.resolve("src"),
-						loaders: ["isparta-loader"]
+						test: /\.css$/,
+						include: [path.resolve("node_modules"), path.resolve("src")],
+						loaders: ["style-loader", "css-loader?sourceMap"]
 					}
 				]
 			},
@@ -61,12 +76,12 @@ module.exports = function (config) {
 			"karma-webpack",
 			"karma-jasmine",
 			"karma-sinon",
-			"karma-coverage",
+			// "karma-coverage",
 			"karma-sourcemap-loader",
 			"karma-chrome-launcher",
 			"karma-firefox-launcher",
 			"karma-phantomjs-launcher",
-			"karma-mocha-reporter"
+			// "karma-mocha-reporter"
 		]
 	});
 };

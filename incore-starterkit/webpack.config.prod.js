@@ -21,15 +21,12 @@ export default {
 	target: "web", // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
 	output: {
 		path: path.resolve(__dirname, "dist"),
-		publicPath: "/",
+		publicPath: "/ingestionservice/",
 		filename: "[name].[chunkhash].js"
 	},
 	plugins: [
 		// Hash the files using MD5 so that their names change when the content changes.
 		new WebpackMd5Hash(),
-
-		// Optimize the order that items are bundled. This assures the hash is deterministic.
-		new webpack.optimize.OccurrenceOrderPlugin(),
 
 		// Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
 		new webpack.DefinePlugin(GLOBALS),
@@ -40,6 +37,7 @@ export default {
 		// Generate HTML file that contains references to generated bundles. See here for how this works: https://github.com/ampedandwired/html-webpack-plugin#basic-usage
 		new HtmlWebpackPlugin({
 			template: "src/index.ejs",
+			favicon: "src/public/favicon.ico",
 			minify: {
 				removeComments: true,
 				collapseWhitespace: true,
@@ -58,21 +56,17 @@ export default {
 			trackJSToken: ""
 		}),
 
-		// Eliminate duplicate packages when generating bundle
-		new webpack.optimize.DedupePlugin(),
-
 		// Minify JS
-		new webpack.optimize.UglifyJsPlugin(),
+		new webpack.optimize.UglifyJsPlugin({sourceMap: true}),
 		new webpack.LoaderOptionsPlugin({
-			debug: true,
+			minimize: true,
+			debug: false,
 			options: {
 				sassLoader: {
 					includePaths: [path.resolve(__dirname, "src", "scss")]
 				},
 				context: "/",
-				postcss: [
-					autoprefixer(),
-				]
+				postcss: () => [autoprefixer]
 			}
 		})
 	],
@@ -80,10 +74,7 @@ export default {
 		loaders: [
 			{test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader"},
 			{test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: "url-loader?name=[name].[ext]"},
-			{
-				test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-				loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]"
-			},
+			{test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]"},
 			{
 				test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
 				loader: "url-loader?limit=10000&mimetype=application/octet-stream&name=[name].[ext]"

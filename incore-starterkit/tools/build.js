@@ -1,5 +1,6 @@
 // More info on Webpack"s Node API here: https://webpack.github.io/docs/node.js-api.html
 // Allowing console calls below since this is a build file.
+
 /* eslint-disable no-console */
 import webpack from "webpack";
 import config from "../webpack.config.prod";
@@ -17,11 +18,11 @@ webpack(config).run((error, stats) => {
 
 	const jsonStats = stats.toJson();
 
-	if (jsonStats.hasErrors) {
+	if (stats.hasErrors()) {
 		return jsonStats.errors.map(error => console.log(chalkError(error)));
 	}
 
-	if (jsonStats.hasWarnings) {
+	if (stats.hasWarnings()) {
 		console.log(chalkWarning("Webpack generated the following warnings: "));
 		jsonStats.warnings.map(warning => console.log(chalkWarning(warning)));
 	}

@@ -18,7 +18,7 @@ let wallabyPostprocessor = wallabyWebpack({
 	},
 	module: {
 		loaders: [
-			{test: /\.jsx?$/, include: path.join(__dirname, "src"), loaders: ["babel-loader"]},
+			{test: /\.jsx?$/, include: path.join(__dirname, "src"), exclude: /node_modules/,  loaders: ["babel-loader"]},
 			{test: /\.json$/, loaders: ["json-loader"]},
 			{test: /(\.css|\.scss)$/, loaders: ["style-loader", "css-loader?sourceMap", "sass-loader?sourceMap"]},
 			{test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader"},

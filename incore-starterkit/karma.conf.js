@@ -25,8 +25,7 @@ module.exports = function (config) {
 		},
 		files: [
 			"node_modules/babel-polyfill/dist/polyfill.js",
-			// {pattern: "test/resources/*.*", included: false, served: true},
-			{pattern: "./test/resources/seaside_bldg.dbf", included: false, served: true},
+			{pattern: "./test/resources/*.*", included: false, served: true},
 			{pattern: "test/**/*.test.js"}
 		],
 		reporters: ["progress"],

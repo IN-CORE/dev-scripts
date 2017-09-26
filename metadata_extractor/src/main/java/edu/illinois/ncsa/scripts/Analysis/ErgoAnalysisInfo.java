@@ -16,15 +16,21 @@ public class ErgoAnalysisInfo {
     private ArrayList<Output> outputs;
     private String analysisType;
     private List<Parameter> analysisInputs;
-    private List<Output> analyisOutputs;
+    private List<Output> analysisOutputs;
     private List<String> producedTypes;
+
+    @Override
+    public String toString() {
+        return id + "\t" + helpContext + '\t' + parameterNodes + '\t' + outputs + '\t' + analysisType + '\t' +
+            analysisInputs  + '\t'+ analysisOutputs + '\t' + producedTypes + '\t';
+    }
 
     public ErgoAnalysisInfo(String id, String helpContext, List<Parameter> analysisInputs, ArrayList<Output> outputs) {
 
         this.id = id;
         this.helpContext = helpContext;
         this.analysisInputs = analysisInputs;
-        this.analyisOutputs = outputs;
+        this.analysisOutputs = outputs;
     }
 
     public String getHelpContext() {
@@ -69,12 +75,12 @@ public class ErgoAnalysisInfo {
         this.analysisInputs = analysisInputs;
     }
 
-    public List<Output> getAnalyisOutputs() {
-        return analyisOutputs;
+    public List<Output> getAnalysisOutputs() {
+        return analysisOutputs;
     }
 
-    public void setAnalyisOutputs(List<Output> analyisOutputs) {
-        this.analyisOutputs = analyisOutputs;
+    public void setAnalysisOutputs(List<Output> analysisOutputs) {
+        this.analysisOutputs = analysisOutputs;
     }
 
     public List<String> getProducedTypes() {

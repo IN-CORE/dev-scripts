@@ -9,6 +9,7 @@ import org.w3c.dom.NodeList;
 import javax.xml.xpath.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class ErgoAnalysis extends Serializable {
@@ -148,10 +149,61 @@ public class ErgoAnalysis extends Serializable {
     }
 
     public String toTSV() {
-        return name + "\t" + description + "\t" + tag + "\t" + category + "\t" + descriptor + "\t" + id + "\t" + type;
+        return name + "\t" + description + "\t" + tag + "\t" + category + "\t" + descriptor + "\t" + id + "\t" + type + "\t" + descriptor + "\t" + analysisInfo;
     }
 
     public String toCSV() {
         return name + ", " + description + ", " + tag + ", " + category + ", " + descriptor + ", " + id + ", " + type;
+    }
+
+    public String toJson() {
+
+        String inputs = "";
+        List<Parameter> oInputs = analysisInfo.getAnalysisInputs();
+        for(int i =0; i < oInputs.size(); i++){
+            Parameter parameter = oInputs.get(i);
+            inputs += "{" +
+                    "\"name\":\"" + parameter.getFriendlyName()+ "\"," +
+                    "\"description\":\"" + parameter.getDescription()+ "\"," +
+                    "\"type\":\"" + parameter.getTypes() + "\"," +
+                    "\"required\":" + String.valueOf(!parameter.isOptional()) + "," +
+                    "\"advanced\":" + String.valueOf(parameter.isAdvanced()) + "," +
+                    "\"multiple\":" + String.valueOf(parameter.isOptional()) + "," +
+                    "\"key\":\"" + parameter.getKey() + "\","+
+                    "\"phylum\":\"" + parameter.getPhylum() + "\""+
+                    "}";
+            if(i < oInputs.size() -1) {
+                inputs += ",";
+            }
+        }
+        String outputs = "";
+        List<Output> oOutput = analysisInfo.getAnalysisOutputs();
+        for(int i = 0; i<oOutput.size(); i++) {
+            Output output = oOutput.get(i);
+            outputs += "{" +
+                    "\"name\":\"" + output.getFriendlyName() + "\"," +
+                    "\"type\":\"" + output.getKey() + "\"," +
+                    "\"phylum\":\"" + output.getPhylum()+ "\"," +
+                    "\"geom\":\"" + output.getGeom()+ "\"," +
+                    "\"guids\":\"" + output.getGuids()+ "\"" +
+                    "}";
+            if(i < oOutput.size() -1) {
+                outputs += ",";
+            }
+        }
+
+        String output = "{" +
+                "\"name\":\"" + name + "\"," +
+                "\"description\":\"" + description + "\"," +
+                "\"category\":\"" + category + "\"," +
+                "\"url\":\"" + id + "\"," +
+                "\"tag\":\"" + tag + "\"," +
+                "\"helpContext\":\"" + analysisInfo.getHelpContext() +"\"," +
+                "\"inputs\": [" + inputs + "]," +
+                "\"outputs\": [" + outputs + "]" +
+                "}";
+
+        return output;
+
     }
 }

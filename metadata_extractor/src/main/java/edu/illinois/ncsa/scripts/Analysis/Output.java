@@ -23,6 +23,18 @@ public class Output {
         this.guids = guids;
     }
 
+    @Override
+    public String toString() {
+        return "Output{" +
+                "friendlyName='" + friendlyName + '\'' +
+                ", key='" + key + '\'' +
+                ", phylum='" + phylum + '\'' +
+                ", format='" + format + '\'' +
+                ", geom='" + geom + '\'' +
+                ", guids='" + guids + '\'' +
+                '}';
+    }
+
     public String getFriendlyName() {
         return friendlyName;
     }

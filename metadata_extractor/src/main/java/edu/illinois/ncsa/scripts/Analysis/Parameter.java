@@ -37,6 +37,26 @@ public class Parameter {
         this.types = new ArrayList<>();
     }
 
+    @Override
+    public String toString() {
+        return  String.valueOf(isAdvanced()) + '\t' +
+                phylum + '\t' +
+                String.valueOf(isMultiple()) + '\t' +
+                key + '\t' +
+                friendlyName + '\t' +
+                types +'\t' +
+                description + '\t' +
+                 isOptional;
+    }
+
+    public boolean isAdvanced() {
+        return advanced.equalsIgnoreCase("true");
+    }
+
+    public boolean isMultiple() {
+        return cardinality.equalsIgnoreCase("multiple");
+    }
+
     public String getPhylum() {
         return phylum;
     }

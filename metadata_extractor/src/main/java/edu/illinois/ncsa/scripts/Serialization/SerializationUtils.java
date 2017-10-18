@@ -42,7 +42,7 @@ public class SerializationUtils {
         for (ErgoAnalysis analysis : analyses) {
             String group = analysis.getType() == ProjectType.ERGO ? "g1" : "g2";
             List<Parameter> inputs = analysis.getAnalysisInfo().getAnalysisInputs();
-            List<Output> outputs = analysis.getAnalysisInfo().getAnalyisOutputs();
+            List<Output> outputs = analysis.getAnalysisInfo().getAnalysisOutputs();
 
             inputsAndOutputs.addAll(combineAndFlatten(inputs, outputs));
 
@@ -96,7 +96,7 @@ public class SerializationUtils {
                     }
                 }
 
-                for (Output output : analysis.getAnalysisInfo().getAnalyisOutputs()) {
+                for (Output output : analysis.getAnalysisInfo().getAnalysisOutputs()) {
                     JSONObject obj = new JSONObject().put("from", analysis.getTag() + "Analysis")
                             .put("to", output.getKey() + "DatasetSchemaInfo")
                             .put("arrows", "to");

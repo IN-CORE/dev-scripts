@@ -14,3 +14,6 @@ This script extracts information from ergo/incore-v1 source code files (plugin.p
 
 # python-language-server
 Modification of [https://github.com/palantir/python-language-server](https://github.com/palantir/python-language-server) to work with websockets used in the online monaco editor.
+
+# geotools-test
+Eclipse project with Maven for testing/explore geotools library

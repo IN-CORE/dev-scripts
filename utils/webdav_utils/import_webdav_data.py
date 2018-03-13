@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+
+"""
+import data from webdav (earthquake.ncsa.illinois.edu) and
+store them to incore2 data repository
+"""
+
 import hashlib
 import os
 import shutil

@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+
+"""
+test for uploading the dataset to geoserver"
+"""
+
 from geoserver_utils import Geoserver
 from pyincore.pyincore import DataService
 

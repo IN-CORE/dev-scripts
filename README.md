@@ -17,3 +17,10 @@ Modification of [https://github.com/palantir/python-language-server](https://git
 
 # geotools-test
 Eclipse project with Maven for testing/explore geotools library
+
+# utils
+### geoserver_utils ###
+Utilities for the INCORE V2 geoserver
+
+### webdav_utils ###
+Dataset obejct and utitlies to import webdav data and store in data repository

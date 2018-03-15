@@ -17,3 +17,6 @@ Modification of [https://github.com/palantir/python-language-server](https://git
 
 # geotools-test
 Eclipse project with Maven for testing/explore geotools library
+
+# mapping-converter
+Parses existings fragility and mapping xml files and converts them to a POJO and stores them in a mongodb.

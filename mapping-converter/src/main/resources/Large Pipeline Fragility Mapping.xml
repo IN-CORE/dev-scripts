@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapping-dataset>
+  <match-filter-map>
+    <property-match>
+      <success-value>
+        <map>
+          <entry key="pgd" value="ductilePipelinePGD"/>
+          <entry key="pgv" value="ductilePipelinePGV"/>
+        </map>
+      </success-value>
+      <filter>
+        <statement>
+		  <rule>int diameter GE 3</rule>
+          <rule>java.lang.String data_type EQUALS pipe</rule>
+        </statement>
+      </filter>
+    </property-match>
+	<property-match>
+      <success-value>
+        <map>
+          <entry key="pgd" value="ductilePipelinePGD"/>
+          <entry key="pgv" value="ductilePipelinePGV"/>
+        </map>
+      </success-value>
+      <filter>
+        <statement>
+          <rule>java.lang.String data_type EQUALS valve</rule>
+        </statement>
+      </filter>
+    </property-match>
+	    <property-match>
+      <success-value>
+        <map>
+          <entry key="pgd" value="ductilePipelinePGD"/>
+          <entry key="pgv" value="ductilePipelinePGV"/>
+        </map>
+      </success-value>
+      <filter>
+        <statement>
+          <rule>java.lang.String data_type EQUALS pump</rule>
+        </statement>
+      </filter>
+    </property-match>
+  </match-filter-map>
+</mapping-dataset>

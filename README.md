@@ -20,3 +20,10 @@ Eclipse project with Maven for testing/explore geotools library
 
 # mapping-converter
 Parses existings fragility and mapping xml files and converts them to a POJO and stores them in a mongodb.
+
+# utils
+### geoserver_utils ###
+Utilities for the INCORE V2 geoserver
+
+### webdav_utils ###
+Dataset obejct and utitlies to import webdav data and store in data repository

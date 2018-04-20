@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 
 """
-import data from webdav (earthquake.ncsa.illinois.edu) and
-store them to incore2 data repository
+update dataType filed in the database by using Jong's new value mapping csv file
+written by Yong Wook Kim (ywkim@illinois.edu) Apr 20, 2018
 """
 import os, sys
 import csv
 
 from pymongo import MongoClient
-
 
 def main():
     mongo_url = "localhost"
@@ -49,7 +48,6 @@ def update_mongo_document_by_mapping(mongo_url, db_name, coll_name, field_name, 
     for i in range(len(orig_list)):
         orig_datatype = orig_list[i]
         new_datatype = new_list[i]
-        # coll.updateMany({field_name: original_datatype}, {'$set': {field_name: new_datatype}})
         result = coll.update({field_name: orig_datatype}, {'$set': {field_name: new_datatype}}, multi=True)
         print(orig_datatype, new_datatype, result)
 

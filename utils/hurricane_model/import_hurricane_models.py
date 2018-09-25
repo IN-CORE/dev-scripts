@@ -2,12 +2,12 @@ import hdf5storage as hd
 import numpy as np
 import json
 import scipy.io as spio
-import json_minify as jsonm
+#import json_minify as jsonm
 
 def parse_file(name: str):
     try:
-        path_loc = "/Users/vnarah2/incore-data/Hurricane wind field/mat-to-json/Models/"
-        # Models' mat files can be found on box: https://uofi.box.com/s/tc366nux02oeoc71y3hbpgs42ok0m2kw
+         # Models' mat files can be found on box: https://uofi.box.com/s/tc366nux02oeoc71y3hbpgs42ok0m2kw
+        path_loc = "/Users/vnarah2/incore-data/Hurricane wind field/mat-round/Models/"
         path = path_loc+"Model_" + name + ".mat"
         data = hd.loadmat(path)
         #matdata = spio.loadmat(path)
@@ -16,8 +16,8 @@ def parse_file(name: str):
         jason["times"] = times_arr
         times = len(times_arr)
         jason["Rs"] = convert_Rs(np.array(data["Rs"]).transpose(0,2,1), times)
-        jason["VTs_o"] = ilist_to_strlist(np.array(data["VTs_o"]).flatten().tolist())
-        jason["VTs_o_new"] = ilist_to_strlist(np.array(data["VTs_o_new"]).flatten().tolist())
+        jason["VTs_o"] = ilist_to_strlistNoRounding(np.array(data["VTs_o"]).flatten().tolist())
+        jason["VTs_o_new"] = ilist_to_strlistNoRounding(np.array(data["VTs_o_new"]).flatten().tolist())
 
         jason["center_lati_o"] = np.array(data["center_lati_o"]).flatten().tolist()
         jason["center_long_o"] = np.array(data["center_long_o"]).flatten().tolist()
@@ -154,9 +154,20 @@ def ilist_to_strlist(iList):
     for x in iList:
         #x = complex(x)
         if isinstance(x, complex):
-            y = complex(round(x.real, 3), round(x.imag, 3) if x.imag != 0 else x.imag)
+            y = complex(round(x.real, 6), round(x.imag, 6) if x.imag != 0 else x.imag)
         else:
-            y=round(x,3)
+            y=round(x,6)
+
+        strList.append(str(y).strip('()')) # Also replace braces?
+    return strList
+
+def ilist_to_strlistNoRounding(iList):
+    strList = []
+    for x in iList:
+        if isinstance(x, complex):
+            y = complex(x.real, x.imag if x.imag != 0 else x.imag)
+        else:
+            y=x
 
         strList.append(str(y).strip('()')) # Also replace braces?
     return strList
@@ -167,11 +178,11 @@ def round_subLists(l:list):
         r =[]
         for j in range(0, len(l[i])):
             if isinstance(l[i][j], complex):
-                y = complex(round(l[i][j].real, 3),
-                    round(l[i][j].imag, 3) if l[i][j].imag != 0 else l[i][j].imag)
+                y = complex(round(l[i][j].real, 6),
+                    round(l[i][j].imag, 6) if l[i][j].imag != 0 else l[i][j].imag)
                 y= str(y).strip('()')
             else:
-                y = round(l[i][j], 3)
+                y = round(l[i][j], 6)
 
             r.append(y)
         n.append(r)

@@ -1,18 +1,22 @@
 import os
 import fiona
 import numpy as np
+import json
+import requests
 from osgeo import gdal, osr
+
 
 def main():
     # user define variables
-    shp_folder = "c:\\Users\\ywkim\\Downloads\\"
-    shp_name = "5a284f0bc7d30d13bc081a28.shp"
-    out_file = "out_grid"
-    ncols = 100 # the number of column will be the division of 100 of total x length
+    shp_folder = "C:\\Users\\ywkim\\Documents\\NIST\\Hurricane\\test\\"
+    dataset_id = '5bdc5dec95c8b425a9300ace'
+    shp_name = "hurricane_all.shp"
+    rest_server = "http://incore2-services.ncsa.illinois.edu:8888/"
+    out_file = "out_grid" # no extension needed
+    ncols = 5  # the number of column will be the division of 100 of total x length
     # the number of rows will be decided based on the cell size calculated from above
 
     # other variables
-    rest_url = "http://incore2-services.ncsa.illinois.edu:8888/data/api/datasets/"
     shp_location = shp_folder + shp_name
     shape = fiona.open(shp_location)
     bbox = get_bbox_from_shp(shape)
@@ -29,21 +33,29 @@ def main():
     nrows = int(length_y / cell_size + 1)
 
     # create placeholder
-    grid = np.full([nrows, ncols], 0)
+    grid = np.full([nrows, ncols], -9999)
+
+    # create request header
+    headers = {"X-Credential-Username": "ywkim"}
 
     for i in range(nrows):
         for j in range(ncols):
-            x_coord = llx + (cell_size * i)
-            y_coord = lly + (cell_size * j)
-            hazard_value = i+j
-            if hazard_value > 0:
-                grid[nrows-1-i][j] = hazard_value
+            x_coord = llx + (cell_size * i) + (cell_size / 2)
+            y_coord = lly + (cell_size * j) + (cell_size / 2)
+            hazard_url = rest_server + "hazard/api/hurricaneWindfields/%s/values?point=%f,%f&demandUnits=kmph&demandType=velocity" % (dataset_id, y_coord, x_coord)
+            r = requests.get(url=hazard_url, headers = headers)
+            hazard_json = r.json()[0]
+            hazard_value = hazard_json["hazardValue"]
+            print(y_coord, x_coord, hazard_value)
+            if hazard_value != 'NaN':
+                grid[nrows - 1 - i][j] = hazard_value
 
     create_ascii(out_asc, ncols, nrows, llx, lly, cell_size, grid)
 
     create_geotiff(out_asc, out_tif)
 
     os.remove(out_asc)
+
 
 def create_geotiff(in_asc, out_tif):
     drv = gdal.GetDriverByName('GTiff')
@@ -55,9 +67,12 @@ def create_geotiff(in_asc, out_tif):
     ds_in = None
     ds_out = None
 
+
 def create_ascii(outfile, ncols, nrows, xll, yll, cell_size, grid):
-    header = "ncols %d \nnrows %d\nxllcorner %f\nyllcorner %f\ncellsize %f\nnodata_value -9999" % (int(ncols), int(nrows), xll, yll, cell_size)
+    header = "ncols %d \nnrows %d\nxllcorner %f\nyllcorner %f\ncellsize %f\nnodata_value -9999" % (
+    int(ncols), int(nrows), xll, yll, cell_size)
     np.savetxt(outfile, grid, fmt='%f', header=header, comments='', delimiter=' ', newline='\n')
+
 
 def get_bbox_from_shp(shape):
     try:
@@ -67,6 +82,7 @@ def get_bbox_from_shp(shape):
         return bbox
     except IOError as err:
         print("IO error: {0}".format(err))
+
 
 if __name__ == "__main__":
     main()

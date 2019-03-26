@@ -1,0 +1,1730 @@
+[
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet", 
+    "legacyId" : "NSDS_HAZUS_W6", 
+    "hazardType" : "earthquake", 
+    "inventoryType" : "building", 
+    "authors" : [
+        "HAZUS"
+    ], 
+    "description" : "HAZUS low-code MH", 
+    "resultType" : "Limit State", 
+    "demandType" : "sd", 
+    "demandUnits" : "in", 
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve", 
+            "periodParam2" : 0.0, 
+            "periodParam1" : 0.0, 
+            "periodParam0" : 0.0, 
+            "periodEqnType" : 1,
+            "median" : 0.96,
+            "beta" : 1.05,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 3.0,
+            "beta" : 1.07,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 6.0,
+            "beta" : 0.93,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSDS_HAZUS_W5",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code W2",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.73,
+            "beta" : 0.97,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 5.4,
+            "beta" : 0.93,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 10.8,
+            "beta" : 1.03,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSDS_HAZUS_W4",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS pre-code W1",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.01,
+            "beta" : 1.11,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 3.15,
+            "beta" : 1.11,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 6.3,
+            "beta" : 1.14,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSDS_HAZUS_W3",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS moderate-code W1",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.01,
+            "beta" : 0.91,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 3.15,
+            "beta" : 0.9,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 6.3,
+            "beta" : 1.04,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSDS_HAZUS_S2",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code S3",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.08,
+            "beta" : 1.02,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 3.38,
+            "beta" : 0.96,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 6.75,
+            "beta" : 0.99,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSDS_HAZUS_S4",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS moderate-code S2L",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.73,
+            "beta" : 0.99,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 5.4,
+            "beta" : 0.96,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 10.8,
+            "beta" : 0.92,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSAS_HAZUS_W4",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS pre-code W1",
+    "resultType" : "Limit State",
+    "demandType" : "PGA",
+    "demandUnits" : "g",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.4,
+            "beta" : 0.7,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.8,
+            "beta" : 0.67,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.6,
+            "beta" : 0.67,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSAS_HAZUS_W3",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS moderate-code W1",
+    "resultType" : "Limit State",
+    "demandType" : "PGA",
+    "demandUnits" : "g",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.5,
+            "beta" : 0.68,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.0,
+            "beta" : 0.67,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 2.0,
+            "beta" : 0.64,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSAS_HAZUS_W6",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code MH",
+    "resultType" : "Limit State",
+    "demandType" : "PGA",
+    "demandUnits" : "g",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.4,
+            "beta" : 0.67,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.8,
+            "beta" : 0.67,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.6,
+            "beta" : 0.67,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSAS_HAZUS_W5",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code W2",
+    "resultType" : "Limit State",
+    "demandType" : "PGA",
+    "demandUnits" : "g",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.4,
+            "beta" : 0.67,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.8,
+            "beta" : 0.7,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.6,
+            "beta" : 0.7,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSAS_HAZUS_S4",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS moderate-code S2L",
+    "resultType" : "Limit State",
+    "demandType" : "PGA",
+    "demandUnits" : "g",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.5,
+            "beta" : 0.66,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.0,
+            "beta" : 0.68,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 2.0,
+            "beta" : 0.68,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSAS_HAZUS_S2",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code S3",
+    "resultType" : "Limit State",
+    "demandType" : "PGA",
+    "demandUnits" : "g",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.4,
+            "beta" : 0.68,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.8,
+            "beta" : 0.68,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.6,
+            "beta" : 0.68,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSAS_HAZUS_RC3",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS moderate-code C1L",
+    "resultType" : "Limit State",
+    "demandType" : "PGA",
+    "demandUnits" : "g",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.5,
+            "beta" : 0.66,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.0,
+            "beta" : 0.66,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 2.0,
+            "beta" : 0.66,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSAS_HAZUS_RC1",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code C1L",
+    "resultType" : "Limit State",
+    "demandType" : "PGA",
+    "demandUnits" : "g",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.4,
+            "beta" : 0.68,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.8,
+            "beta" : 0.68,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.6,
+            "beta" : 0.68,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSAS_HAZUS_RC2",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code C1M",
+    "resultType" : "Limit State",
+    "demandType" : "PGA",
+    "demandUnits" : "g",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.4,
+            "beta" : 0.68,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.8,
+            "beta" : 0.68,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.6,
+            "beta" : 0.68,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "STR_HAZUS_W4",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS pre-code W1",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.0,
+            "beta" : 1.05,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 3.09,
+            "beta" : 1.07,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 7.56,
+            "beta" : 1.06,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "STR_HAZUS_W3",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS moderate-code W1",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.25,
+            "beta" : 0.86,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 3.86,
+            "beta" : 0.89,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 9.45,
+            "beta" : 1.04,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "STR_HAZUS_W6",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code MH",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.96,
+            "beta" : 1.0,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 2.88,
+            "beta" : 1.03,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 8.4,
+            "beta" : 0.92,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "STR_HAZUS_W5",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code W2",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 2.14,
+            "beta" : 0.9,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 6.62,
+            "beta" : 0.89,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 16.2,
+            "beta" : 0.99,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "STR_HAZUS_S2",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code S3",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.87,
+            "beta" : 0.99,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 2.17,
+            "beta" : 1.01,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 5.91,
+            "beta" : 0.9,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "STR_HAZUS_S4",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS moderate-code S2L",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.87,
+            "beta" : 0.92,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 5.04,
+            "beta" : 0.93,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 12.96,
+            "beta" : 0.93,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSAS_HAZUS_RM3",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS moderate-code RM1L",
+    "resultType" : "Limit State",
+    "demandType" : "PGA",
+    "demandUnits" : "g",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.5,
+            "beta" : 0.67,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.0,
+            "beta" : 0.67,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 2.0,
+            "beta" : 0.67,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSAS_HAZUS_RM1",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS pre-code RM1L",
+    "resultType" : "Limit State",
+    "demandType" : "PGA",
+    "demandUnits" : "g",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.4,
+            "beta" : 0.67,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.8,
+            "beta" : 0.66,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.6,
+            "beta" : 0.66,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSAS_HAZUS_RM2",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code RM1L",
+    "resultType" : "Limit State",
+    "demandType" : "PGA",
+    "demandUnits" : "g",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.4,
+            "beta" : 0.67,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.8,
+            "beta" : 0.64,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.6,
+            "beta" : 0.64,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSDS_HAZUS_RC3",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS moderate-code C1L",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.44,
+            "beta" : 0.96,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 4.5,
+            "beta" : 0.94,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 9.0,
+            "beta" : 0.88,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSDS_HAZUS_RC2",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code C1M",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 3.6,
+            "beta" : 0.88,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 11.25,
+            "beta" : 0.99,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 22.5,
+            "beta" : 1.06,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSDS_HAZUS_RC1",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code C1L",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.44,
+            "beta" : 0.96,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 4.5,
+            "beta" : 0.9,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 9.0,
+            "beta" : 1.01,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "STR_HAZUS_RM3",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS moderate-code RM1L",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.25,
+            "beta" : 0.99,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 3.37,
+            "beta" : 1.05,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 9.45,
+            "beta" : 0.94,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "STR_HAZUS_RM1",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS pre-code RM1L",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 0.92,
+            "beta" : 1.17,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 2.31,
+            "beta" : 1.17,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 6.3,
+            "beta" : 0.94,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "STR_HAZUS_RM2",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code RM1L",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.15,
+            "beta" : 1.1,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 2.89,
+            "beta" : 1.1,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 7.88,
+            "beta" : 0.92,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSDS_HAZUS_RM1",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS pre-code RM1L",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.44,
+            "beta" : 1.14,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 4.5,
+            "beta" : 1.03,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 9.0,
+            "beta" : 0.99,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSDS_HAZUS_RM3",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS moderate-code RM1L",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.44,
+            "beta" : 1.06,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 4.5,
+            "beta" : 1.12,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 9.0,
+            "beta" : 1.01,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "NSDS_HAZUS_RM2",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code RM1L",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.44,
+            "beta" : 1.12,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 4.5,
+            "beta" : 1.03,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 9.0,
+            "beta" : 0.99,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "STR_HAZUS_RC3",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS moderate-code C1L",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.56,
+            "beta" : 0.9,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 4.2,
+            "beta" : 0.9,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 10.8,
+            "beta" : 0.89,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "STR_HAZUS_RC1",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code C1L",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 1.44,
+            "beta" : 0.91,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 3.6,
+            "beta" : 0.85,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 9.0,
+            "beta" : 0.97,
+            "curveType" : "Normal",
+            "description" : "Complete"
+        }
+    ]
+},
+{
+    "className" : "edu.illinois.ncsa.incore.service.fragility.models.FragilitySet",
+    "legacyId" : "STR_HAZUS_RC2",
+    "hazardType" : "earthquake",
+    "inventoryType" : "building",
+    "authors" : [
+        "HAZUS"
+    ],
+    "description" : "HAZUS low-code C1M",
+    "resultType" : "Limit State",
+    "demandType" : "sd",
+    "demandUnits" : "in",
+    "fragilityCurves" : [
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 2.4,
+            "beta" : 0.74,
+            "curveType" : "Normal",
+            "description" : "Moderate"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 6.0,
+            "beta" : 0.86,
+            "curveType" : "Normal",
+            "description" : "Extensive"
+        },
+        {
+            "className" : "edu.illinois.ncsa.incore.service.fragility.models.PeriodStandardFragilityCurve",
+            "periodParam2" : 0.0,
+            "periodParam1" : 0.0,
+            "periodParam0" : 0.0,
+            "periodEqnType" : 1,
+            "median" : 15.0, 
+            "beta" : 0.98, 
+            "curveType" : "Normal", 
+            "description" : "Complete"
+        }
+    ]
+}
+]

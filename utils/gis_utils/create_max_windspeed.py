@@ -11,6 +11,8 @@ def main():
     # user define variables
     shp_folder = "C:\\Users\\ywkim\\Documents\\NIST\\Hurricane\\test\\"
     shp_name = "hurricane_all.shp"
+    spd_field_api = "hazardValue"
+    spd_field = "velocity"
     # shp_name = "5a284f0bc7d30d13bc081a28.shp"
     rest_server = "http://incore2-services.ncsa.illinois.edu:8888/"
     out_file = "out_grid" # no extension needed
@@ -50,12 +52,12 @@ def main():
             y_coord = lly + (cell_size * i) + (cell_size / 2)
 
             # get hazard value using rest api
-            # hazard_value = get_hazard_value_from_api(dataset_id, x_coord, y_coord, rest_server, headers)
+            # hazard_value = get_hazard_value_from_api(dataset_id, x_coord, y_coord, rest_server, headers, spd_field_api)
             #if hazard_value != 'NaN':
             #    grid[nrows - 1 - i][j] = hazard_value
 
             # get hazard value using shape overlay
-            hazard_value = get_hazard_value_from_bbox(x_coord, y_coord, cell_size, points)
+            hazard_value = get_hazard_value_from_bbox(x_coord, y_coord, cell_size, points, spd_field)
 
             if hazard_value > 0:
                 grid[nrows - 1 - i][j] = hazard_value
@@ -68,7 +70,7 @@ def main():
 
     os.remove(out_asc)
 
-def get_hazard_value_from_bbox(x_coord, y_coord, cell_size, points):
+def get_hazard_value_from_bbox(x_coord, y_coord, cell_size, points, spd_field):
     hazard_value = 0
     lon_coord_list = [x_coord - (cell_size / 2), x_coord + (cell_size / 2), x_coord + (cell_size / 2), x_coord - (cell_size / 2), x_coord - (cell_size / 2)]
     lat_coord_list = [y_coord - (cell_size / 2), y_coord - (cell_size / 2), y_coord + (cell_size / 2), y_coord + (cell_size / 2), y_coord - (cell_size / 2)]
@@ -77,7 +79,7 @@ def get_hazard_value_from_bbox(x_coord, y_coord, cell_size, points):
     selection = points[points.within(poly_geom)]
 
     if len(selection) > 0:
-        hazard_value = selection['velocity'].max()
+        hazard_value = selection[spd_field].max()
         # use this to save the selection and bbox as shapefile
         # selection.to_file(filename='selection.shp', driver="ESRI Shapefile")
         # # bbox_poly.to_file(filename='bbox_poly.geojson', driver='GeoJSON')
@@ -88,12 +90,12 @@ def get_hazard_value_from_bbox(x_coord, y_coord, cell_size, points):
     return hazard_value
 
 
-def get_hazard_value_from_api(dataset_id, x_coord, y_coord, rest_server, headers):
+def get_hazard_value_from_api(dataset_id, x_coord, y_coord, rest_server, headers, spd_field):
     hazard_url = rest_server + "hazard/api/hurricaneWindfields/%s/values?point=%f,%f&demandUnits=kmph&demandType=velocity" % (
     dataset_id, y_coord, x_coord)
     r = requests.get(url=hazard_url, headers=headers)
     hazard_json = r.json()[0]
-    hazard_value = hazard_json["hazardValue"]
+    hazard_value = hazard_json[spd_field]
 
     return hazard_value
 

@@ -1,0 +1,28 @@
+<fragility-set>
+      <fragility-set-properties Parameters="6" Description="High-Rise Concrete Moment Frame" DemandUnits="g" Code="Moderate-Code" DamageType="Nonstructural" GroundMotions="10 synthetic ground motion records by Rix-Fernandez: 475 return period: Uplands" TEqnType="1" LimitStates="Moderate: Extensive: Complete" FragEqnType="1" StructureType="Concrete Moment Frame" Author="Elnashai and Jeong : Steelman" DemandType="0.3 sec Sa" Stories="12" ID="NSAS_PFM_MTB_UL_475_C1_21" TEqnParam0="1.45" TEqnParam2="0" TEqnParam1="0"/>
+      <fragility-set-labels>
+        <fragility-set-label>Moderate</fragility-set-label>
+        <fragility-set-label>Extensive</fragility-set-label>
+        <fragility-set-label>Complete</fragility-set-label>
+      </fragility-set-labels>
+      <fragility-set-fragilities>
+        <fragility-curve fragility-curve-median="1.353" fragility-curve-beta="1.099" fragility-curve-type="LogNormal" curve-type="edu.illinois.ncsa.ergo.eq.fragilitycurves.PeriodStandardFragilityCurve">
+          <PeriodEqnType>1</PeriodEqnType>
+          <PeriodParam0>1.45</PeriodParam0>
+          <PeriodParam1>0.0</PeriodParam1>
+          <PeriodParam2>0.0</PeriodParam2>
+        </fragility-curve>
+        <fragility-curve fragility-curve-median="2.495" fragility-curve-beta="1.099" fragility-curve-type="LogNormal" curve-type="edu.illinois.ncsa.ergo.eq.fragilitycurves.PeriodStandardFragilityCurve">
+          <PeriodEqnType>1</PeriodEqnType>
+          <PeriodParam0>1.45</PeriodParam0>
+          <PeriodParam1>0.0</PeriodParam1>
+          <PeriodParam2>0.0</PeriodParam2>
+        </fragility-curve>
+        <fragility-curve fragility-curve-median="3.636" fragility-curve-beta="1.099" fragility-curve-type="LogNormal" curve-type="edu.illinois.ncsa.ergo.eq.fragilitycurves.PeriodStandardFragilityCurve">
+          <PeriodEqnType>1</PeriodEqnType>
+          <PeriodParam0>1.45</PeriodParam0>
+          <PeriodParam1>0.0</PeriodParam1>
+          <PeriodParam2>0.0</PeriodParam2>
+        </fragility-curve>
+      </fragility-set-fragilities>
+    </fragility-set>

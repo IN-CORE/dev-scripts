@@ -1,0 +1,42 @@
+ID
+Fragility ID Code
+Author: Authors[0]
+Structure Type: N/A
+Stories: N/A
+Description: Description
+Ground Motions: N/A
+Code: legacyId
+Damage Type: N/A
+Demand Type: demandType
+Demand Units: demandUnits
+Limit States: "Moderate: Extensive: Complete"
+T Eqn Type: ["fragilityCurves"][0]["periodEqnType"]
+T Eqn Param0: ["fragilityCurves"][0]["periodParam0"]
+T Eqn Param1: ["fragilityCurves"][0]["periodParam1"]
+T Eqn Param2: ["fragilityCurves"][0]["periodParam2"]
+Frag Eqn Type: ["fragilityCurves"][0]["periodEqnType"]
+Parameters: N/A
+Median0: ["fragilityCurves"][0]["median"]
+Beta0: ["fragilityCurves"][0]["beta"]
+Median1: ["fragilityCurves"][1]["median"]
+Beta1: ["fragilityCurves"][1]["beta"]
+Median2: ["fragilityCurves"][2]["median"]
+Beta2: ["fragilityCurves"][2]["beta"]
+FS Param0: N/A
+FS Param1: N/A
+FS Param2: N/A
+FS Param3: N/A
+FS Param4: N/A
+FS Param5: N/A
+FS Param6: N/A
+FS Param7: N/A
+FS Param8: N/A
+FS Param9: N/A
+FS Param10: N/A
+FS Param11: N/A
+FS Param12: N/A
+FS Param13: N/A
+FS Param14: N/A
+FS Param15: N/A
+FS Param16: N/A
+FS Param17: N/A

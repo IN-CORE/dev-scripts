@@ -1,19 +1,21 @@
 import os
 import fiona
 import numpy as np
-import json
+import geopandas as gpd
 import requests
 from osgeo import gdal, osr
+from shapely.geometry import Polygon, Point
 
 
 def main():
     # user define variables
     shp_folder = "C:\\Users\\ywkim\\Documents\\NIST\\Hurricane\\test\\"
-    dataset_id = '5bdc5dec95c8b425a9300ace'
     shp_name = "hurricane_all.shp"
+    # shp_name = "5a284f0bc7d30d13bc081a28.shp"
     rest_server = "http://incore2-services.ncsa.illinois.edu:8888/"
     out_file = "out_grid" # no extension needed
-    ncols = 5  # the number of column will be the division of 100 of total x length
+    headers = {"X-Credential-Username": "ywkim"} # request header
+    ncols = 50  # the number of column will be the division of 100 of total x length
     # the number of rows will be decided based on the cell size calculated from above
 
     # other variables
@@ -31,24 +33,34 @@ def main():
 
     cell_size = length_x / ncols
     nrows = int(length_y / cell_size + 1)
+    tot_cell = ncols * nrows
 
     # create placeholder
     grid = np.full([nrows, ncols], -9999)
 
-    # create request header
-    headers = {"X-Credential-Username": "ywkim"}
+    # read point shapefile using geopandas
+    points = gpd.read_file(shp_location)
 
+    k = 0
     for i in range(nrows):
         for j in range(ncols):
-            x_coord = llx + (cell_size * i) + (cell_size / 2)
-            y_coord = lly + (cell_size * j) + (cell_size / 2)
-            hazard_url = rest_server + "hazard/api/hurricaneWindfields/%s/values?point=%f,%f&demandUnits=kmph&demandType=velocity" % (dataset_id, y_coord, x_coord)
-            r = requests.get(url=hazard_url, headers = headers)
-            hazard_json = r.json()[0]
-            hazard_value = hazard_json["hazardValue"]
-            print(y_coord, x_coord, hazard_value)
-            if hazard_value != 'NaN':
+            msg = str(tot_cell - k) + " iteration left"
+            print(msg)
+            x_coord = llx + (cell_size * j) + (cell_size / 2)
+            y_coord = lly + (cell_size * i) + (cell_size / 2)
+
+            # get hazard value using rest api
+            # hazard_value = get_hazard_value_from_api(dataset_id, x_coord, y_coord, rest_server, headers)
+            #if hazard_value != 'NaN':
+            #    grid[nrows - 1 - i][j] = hazard_value
+
+            # get hazard value using shape overlay
+            hazard_value = get_hazard_value_from_bbox(x_coord, y_coord, cell_size, points)
+
+            if hazard_value > 0:
                 grid[nrows - 1 - i][j] = hazard_value
+
+            k+= 1
 
     create_ascii(out_asc, ncols, nrows, llx, lly, cell_size, grid)
 
@@ -56,6 +68,34 @@ def main():
 
     os.remove(out_asc)
 
+def get_hazard_value_from_bbox(x_coord, y_coord, cell_size, points):
+    hazard_value = 0
+    lon_coord_list = [x_coord - (cell_size / 2), x_coord + (cell_size / 2), x_coord + (cell_size / 2), x_coord - (cell_size / 2), x_coord - (cell_size / 2)]
+    lat_coord_list = [y_coord - (cell_size / 2), y_coord - (cell_size / 2), y_coord + (cell_size / 2), y_coord + (cell_size / 2), y_coord - (cell_size / 2)]
+    poly_geom = Polygon(zip(lon_coord_list, lat_coord_list))
+
+    selection = points[points.within(poly_geom)]
+
+    if len(selection) > 0:
+        hazard_value = selection['velocity'].max()
+        # use this to save the selection and bbox as shapefile
+        # selection.to_file(filename='selection.shp', driver="ESRI Shapefile")
+        # # bbox_poly.to_file(filename='bbox_poly.geojson', driver='GeoJSON')
+        # crs = {'init': 'epsg:4326'}
+        # bbox_poly = gpd.GeoDataFrame(index=[0], crs=crs, geometry=[poly_geom])
+        # bbox_poly.to_file(filename='bbox_poly.shp', driver="ESRI Shapefile")
+
+    return hazard_value
+
+
+def get_hazard_value_from_api(dataset_id, x_coord, y_coord, rest_server, headers):
+    hazard_url = rest_server + "hazard/api/hurricaneWindfields/%s/values?point=%f,%f&demandUnits=kmph&demandType=velocity" % (
+    dataset_id, y_coord, x_coord)
+    r = requests.get(url=hazard_url, headers=headers)
+    hazard_json = r.json()[0]
+    hazard_value = hazard_json["hazardValue"]
+
+    return hazard_value
 
 def create_geotiff(in_asc, out_tif):
     drv = gdal.GetDriverByName('GTiff')

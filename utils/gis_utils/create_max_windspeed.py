@@ -17,7 +17,7 @@ def main():
     rest_server = "http://incore2-services.ncsa.illinois.edu:8888/"
     out_file = "out_grid" # no extension needed
     headers = {"X-Credential-Username": "ywkim"} # request header
-    ncols = 50  # the number of column will be the division of 100 of total x length
+    ncols = 100  # the number of column will be the division of 100 of total x length
     # the number of rows will be decided based on the cell size calculated from above
 
     # other variables
@@ -43,21 +43,47 @@ def main():
     # read point shapefile using geopandas
     points = gpd.read_file(shp_location)
 
+    # separate the input points for speed up
+    # subdivide 100 for ncols and nlow that means 100 cells for cols and equivalent rows will be a single subset
+    div_factor = 20
+    nrows_buck = int(nrows / div_factor + 1)
+    ncols_buck = int(ncols / div_factor)
+    tot_cell_buck = nrows_buck * ncols_buck
+    buckets = [[0 for x in range(ncols_buck)] for y in range(nrows_buck)]
+
+    k = 0
+    for i in range(nrows_buck):
+        for j in range(ncols_buck):
+            msg = str(tot_cell_buck - k) + " iteration left for creating the bucket"
+            print(msg)
+            cell_size_buck = cell_size * div_factor
+            x_coord = llx + (cell_size_buck * j) + (cell_size_buck / 2)
+            y_coord = lly + (cell_size_buck * i) + (cell_size_buck / 2)
+
+            buckets[i][j] = create_subset_from_bbox(x_coord, y_coord, cell_size_buck, points)
+            # buckets[i][j].to_file(filename='bbox_poly.shp', driver="ESRI Shapefile")
+            k += 1
+
+    # create actual grid
     k = 0
     for i in range(nrows):
         for j in range(ncols):
             msg = str(tot_cell - k) + " iteration left"
             print(msg)
+
             x_coord = llx + (cell_size * j) + (cell_size / 2)
             y_coord = lly + (cell_size * i) + (cell_size / 2)
 
-            # get hazard value using rest api
+            ## get hazard value using rest api
             # hazard_value = get_hazard_value_from_api(dataset_id, x_coord, y_coord, rest_server, headers, spd_field_api)
             #if hazard_value != 'NaN':
             #    grid[nrows - 1 - i][j] = hazard_value
 
+            buck_row_index = int(i / div_factor)
+            buck_col_index = int(j / div_factor)
+
             # get hazard value using shape overlay
-            hazard_value = get_hazard_value_from_bbox(x_coord, y_coord, cell_size, points, spd_field)
+            hazard_value = get_hazard_value_from_bbox(x_coord, y_coord, cell_size, buckets[buck_row_index][buck_col_index], spd_field)
 
             if hazard_value > 0:
                 grid[nrows - 1 - i][j] = hazard_value
@@ -70,16 +96,25 @@ def main():
 
     os.remove(out_asc)
 
-def get_hazard_value_from_bbox(x_coord, y_coord, cell_size, points, spd_field):
-    hazard_value = 0
+def create_subset_from_bbox(x_coord, y_coord, cell_size, points):
     lon_coord_list = [x_coord - (cell_size / 2), x_coord + (cell_size / 2), x_coord + (cell_size / 2), x_coord - (cell_size / 2), x_coord - (cell_size / 2)]
     lat_coord_list = [y_coord - (cell_size / 2), y_coord - (cell_size / 2), y_coord + (cell_size / 2), y_coord + (cell_size / 2), y_coord - (cell_size / 2)]
     poly_geom = Polygon(zip(lon_coord_list, lat_coord_list))
 
-    selection = points[points.within(poly_geom)]
+    # crs = {'init': 'epsg:4326'}
+    # bbox_poly = gpd.GeoDataFrame(index=[0], crs=crs, geometry=[poly_geom])
+    # bbox_poly.to_file(filename='bbox_poly.shp', driver="ESRI Shapefile")
 
-    if len(selection) > 0:
-        hazard_value = selection[spd_field].max()
+    subset = points[points.within(poly_geom)]
+
+    return subset
+
+def get_hazard_value_from_bbox(x_coord, y_coord, cell_size, points, spd_field):
+    hazard_value = 0
+    subset = create_subset_from_bbox(x_coord, y_coord, cell_size, points)
+
+    if len(subset) > 0:
+        hazard_value = subset[spd_field].max()
         # use this to save the selection and bbox as shapefile
         # selection.to_file(filename='selection.shp', driver="ESRI Shapefile")
         # # bbox_poly.to_file(filename='bbox_poly.geojson', driver='GeoJSON')

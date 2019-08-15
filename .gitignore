@@ -45,3 +45,6 @@ dist
 # Package Files #
 *.jar
 *.war
+
+# data folder
+utils/fragility_utils/data/

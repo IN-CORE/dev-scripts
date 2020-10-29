@@ -11,7 +11,7 @@ def create_mapped_result(inventory_path: str, dmg_result_path: str, archetype_ma
         dmg_result_path: Path to the damage result output file
         archetype_mapping_path: Path to the arechetype mappings
 
-    Returns: JSON of the results ordered by cluster and category
+    Returns: JSON of the results ordered by cluster and category. Also creates a csv file with max damage state
 
     """
     buildings = pd.DataFrame(gpd.read_file("zip://" + inventory_path))
@@ -27,6 +27,8 @@ def create_mapped_result(inventory_path: str, dmg_result_path: str, archetype_ma
     dmg_concat.rename(columns={0: 'max_prob', 1: 'max_state'}, inplace=True)
     dmg_merged = pd.merge(buildings, dmg_concat, on='guid')[['guid', 'geometry', 'archetype', 'max_prob', 'max_state']]
     mapped = pd.merge(dmg_merged, arch_mapping, on='archetype')
+
+    mapped.to_csv("bldDmgMaxDamageState.csv", columns=['guid', 'max_state'], index=False)
 
     group_by = mapped.groupby(by=['max_state', 'cluster', 'category']).count().reset_index()
     group_by = group_by.loc[:, ['guid', 'max_state', 'cluster', 'category']]

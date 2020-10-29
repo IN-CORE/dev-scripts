@@ -38,7 +38,7 @@ def create_mapped_result(inventory_path: str, dmg_result_path: str, archetype_ma
     table[['category', 'cluster']] = unique_categories[['category', 'cluster']]
     result_by_cluster = pd.merge(table, pivot, how='left', on=['cluster', 'category'])
     result_by_cluster[['insignific', 'moderate', 'heavy', 'complete']] = result_by_cluster[
-        ['insignific', 'moderate', 'heavy', 'complete']].fillna(0.0).astype(int)
+        ['insignific', 'moderate', 'heavy', 'complete']].fillna(-1).astype(int)
     result_by_category = result_by_cluster.groupby(by=['category'], sort=False).sum().reset_index()
 
     cluster_records = result_by_cluster.to_json(orient="records")

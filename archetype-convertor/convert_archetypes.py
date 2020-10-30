@@ -39,7 +39,7 @@ def create_mapped_result(inventory_path: str, dmg_result_path: str, archetype_ma
     table = pd.DataFrame()
     table[['category', 'cluster']] = unique_categories[['category', 'cluster']]
     result_by_cluster = pd.merge(table, pivot, how='left', on=['cluster', 'category'])
-    result_by_category = result_by_cluster.groupby(by=['category'], sort=False).sum().reset_index()
+    result_by_category = result_by_cluster.groupby(by=['category'], sort=False).sum(min_count=1).reset_index()
 
     result_by_cluster[['insignific', 'moderate', 'heavy', 'complete']] = result_by_cluster[
         ['insignific', 'moderate', 'heavy', 'complete']].fillna(-1).astype(int)

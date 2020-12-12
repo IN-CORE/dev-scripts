@@ -8,7 +8,7 @@ from geoserver_utils import Geoserver
 from pyincore.pyincore import DataService
 
 def main():
-    service_url = ''    # dataset service url
+    service_url = 'https://incore.ncsa.illinois.edu/'    # dataset service url
     dataset_id = '' # dataset object id
     workspace_name = '' # utils workspace name
 

@@ -40,18 +40,18 @@ def main():
     # name_list, title_list = parse_name_from_wfs_getcapabilities()
     # print(len(name_list))
 
-def remove_stores(inlist):
-    total = len(inlist)
-    i = 0
-    for id in inlist:
+def remove_stores(ids):
+    total = len(ids)
+
+    for index, id in enumerate(ids):
         url = GEOSERVER_HOST + "/rest/workspaces/incore/coveragestores/" + id +"?recurse=true"
         response = requests.delete(url, auth=(GEOSERVER_USER, GEOSERVER_PW))
-        if response.status_code == 200:
-            print("Removed id of " + id)
-        else:
+        if response.status_code != 200:
+            #print("Removed id of " + id)
             print("Failed to remove id of " + id)
-        i += 1
-        print(str(total - i) + " iterations left")
+        left = total-index
+        if left % 100 == 0:
+            print(str(total - i) + " iterations left")
 
 def create_remove_store_list_using_wcs(name_list):
     remove_list = []
@@ -186,6 +186,16 @@ def mongo_sshtunnel_test():
     pprint.pprint(db.collection_names())
 
     server.stop()
+
+def test_kube_mongo():
+    # kubectl port-forward incore-mongodb-0 27017:27017
+    client = MongoClient(MONGO_BIND_HOST, 27017, username='root', password='incorerocks', authSource='admin')
+    db = client[MONGO_DB]
+    db = client[MONGO_DB]
+    # db = client.get_database()
+    print(db.name)
+    print(client.server_info())
+    # pprint,pprint(db.collection_names())
 
 
 if __name__ == '__main__':

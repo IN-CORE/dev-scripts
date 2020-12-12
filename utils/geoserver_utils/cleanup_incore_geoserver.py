@@ -52,6 +52,7 @@ def remove_stores(ids):
         left = total-index
         if left % 100 == 0:
             print(str(total - i) + " iterations left")
+    print("finished remove")
 
 def create_remove_store_list_using_wcs(name_list):
     remove_list = []

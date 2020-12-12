@@ -190,7 +190,7 @@ def mongo_sshtunnel_test():
 
 def test_kube_mongo():
     # kubectl port-forward incore-mongodb-0 27017:27017
-    client = MongoClient(MONGO_BIND_HOST, 27017, username='root', password='incorerocks', authSource='admin')
+    client = MongoClient(MONGO_BIND_HOST, 27017, username='root', password='', authSource='admin')
     db = client[MONGO_DB]
     db = client[MONGO_DB]
     # db = client.get_database()

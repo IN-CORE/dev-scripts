@@ -12,7 +12,7 @@ GEOSERVER_HOST = "https://incore-dev-kube.ncsa.illinois.edu/geoserver"
 GEOSERVER_USER = 'admin'
 GEOSERVER_PW = ''
 
-MONGO_HOST = ""
+MONGO_HOST = "incore2-mongo-dev.ncsa.illinois.edu"
 MONGO_DB = "datadb"
 MONGO_USER = "user"
 MONGO_PASS = "PASSWORD"
@@ -47,7 +47,7 @@ def main():
 
         remove_stores(remove_list, 'wfs')
 
-    #TODO currently this is not working. Needs work
+    # TODO this currently doesn't work. Need more work
     if run_wms:
         name_list, title_list = parse_name_from_wms_getcapabilities()
         print("There are" + str(len(remove_list)) + " datasets to be removed")

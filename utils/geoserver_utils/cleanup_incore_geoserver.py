@@ -14,7 +14,7 @@ GEOSERVER_PW = ''
 
 MONGO_HOST = "incore2-mongo-dev.ncsa.illinois.edu"
 MONGO_DB = "datadb"
-MONGO_USER = "user"
+MONGO_USER = ""
 MONGO_PASS = "PASSWORD"
 MONGO_KEYFILE = ""
 MONGO_BIND_HOST = "127.0.0.1"
@@ -22,8 +22,9 @@ MONGO_BIND_PORT = 27017
 
 def main():
     run_wcs = False
-    run_wfs = True
+    run_wfs = False
     run_wms = False
+    run_datastore = True
 
     # delete using wcs
     if run_wcs:
@@ -55,6 +56,19 @@ def main():
     # name_list, title_list = parse_name_from_wfs_getcapabilities()
     # print(len(name_list))
 
+    if run_datastore:
+        get_datastore_json()
+        name_list = parse_name_from_datasotre_json()
+
+        # check if it is in the dsatabase and remove datastore
+        remove_list = create_remove_store_list_using_wcs(name_list, False)
+        # name_list = parse_name_from_datasotre_json()
+        print("There are " + str(len(remove_list)) + " datasets to be removed")
+
+        remove_stores(remove_list, 'wfs')
+
+        print(name_list)
+
 def remove_stores(ids, flag):
     total = len(ids)
 
@@ -75,7 +89,7 @@ def remove_stores(ids, flag):
             print(str(left) + " iterations left")
     print("finished remove")
 
-def create_remove_store_list_using_wcs(name_list):
+def create_remove_store_list_using_wcs(name_list, is_parse=True):
     remove_list = []
     server = get_mongo_server()
     server.start()
@@ -88,8 +102,11 @@ def create_remove_store_list_using_wcs(name_list):
     i = 0
     for name in name_list:
         # split workspace and storename
-        names = name.split(':')
-        store_name = names[1]
+        if is_parse:
+            names = name.split(':')
+            store_name = names[1]
+        else:
+            store_name = name
 
         # check if dataset exists
         try:
@@ -246,6 +263,12 @@ def get_service_xml(flag):
             print("Done obtaining WMS file")
     except Exception:
         raise("There was an error obtaining list from geoserver")
+
+def get_datastore_json():
+    print("Obtaining datastore json")
+    url = GEOSERVER_HOST + "/rest/workspaces/incore/datastores.json"
+    urllib.request.urlretrieve(url, "datastores.json")
+    print("Done obtaining datastore json")
 
 if __name__ == '__main__':
 

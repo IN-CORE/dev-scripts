@@ -6,45 +6,66 @@ import pprint
 
 from sshtunnel import SSHTunnelForwarder
 from bson import ObjectId
-from pymongo import MongoClient, ASCENDING
-
-MONGO_HOST = "incore2-mongo-dev.ncsa.illinois.edu"
-MONGO_DB = "datadb"
-MONGO_USER = "ubuntu"
-MONGO_PASS = "PASSWORD"
-MONGO_KEYFILE = "C:\\Users\\ywkim\\.ssh\\nist.pem"
-MONGO_BIND_HOST = "127.0.0.1"
-MONGO_BIND_PORT = 27017
+from pymongo import MongoClient
 
 GEOSERVER_HOST = "https://incore-dev-kube.ncsa.illinois.edu/geoserver"
 GEOSERVER_USER = 'admin'
 GEOSERVER_PW = ''
 
+MONGO_HOST = ""
+MONGO_DB = "datadb"
+MONGO_USER = "user"
+MONGO_PASS = "PASSWORD"
+MONGO_KEYFILE = ""
+MONGO_BIND_HOST = "127.0.0.1"
+MONGO_BIND_PORT = 27017
+
 def main():
+    run_wcs = False
+    run_wfs = True
+    run_wms = False
+
     # delete using wcs
-    wcs_name_list, wcs_keyword_list = parse_name_from_wcs_getcapabilities()
+    if run_wcs:
+        get_service_xml("wcs")
+        wcs_name_list, wcs_keyword_list = parse_name_from_wcs_getcapabilities()
 
-    # check if it is in the database and remove datastore
-    remove_list = create_remove_store_list_using_wcs(wcs_name_list)
-    print(len(remove_list))
+        # check if it is in the database and remove datastore
+        remove_list = create_remove_store_list_using_wcs(wcs_name_list)
+        print("There are" + str(len(remove_list)) + " datasets to be removed")
 
-    remove_stores(remove_list)
+        remove_stores(remove_list, 'wcs')
 
+    if run_wfs:
+        get_service_xml("wfs")
+        wfs_name_list, wfs_title_list = parse_name_from_wfs_getcapabilities()
 
-    # name_list = parse_name_from_datasotre_json()
-    # print(len(name_list))
+        # check if it is in the dsatabase and remove datastore
+        remove_list = create_remove_store_list_using_wcs(wfs_name_list)
+        # name_list = parse_name_from_datasotre_json()
+        print("There are " + str(len(remove_list)) + " datasets to be removed")
 
-    # name_list, title_list = parse_name_from_wms_getcapabilities()
-    # print(len(name_list))
+        remove_stores(remove_list, 'wfs')
+
+    #TODO currently this is not working. Needs work
+    if run_wms:
+        name_list, title_list = parse_name_from_wms_getcapabilities()
+        print("There are" + str(len(remove_list)) + " datasets to be removed")
 
     # name_list, title_list = parse_name_from_wfs_getcapabilities()
     # print(len(name_list))
 
-def remove_stores(ids):
+def remove_stores(ids, flag):
     total = len(ids)
 
+    if flag == "wcs":
+        base_url = GEOSERVER_HOST + "/rest/workspaces/incore/coveragestores/"
+
+    if flag == "wfs":
+        base_url = GEOSERVER_HOST + "/rest/workspaces/incore/datastores/"
+
     for index, id in enumerate(ids):
-        url = GEOSERVER_HOST + "/rest/workspaces/incore/coveragestores/" + id +"?recurse=true"
+        url = base_url + id +"?recurse=true"
         response = requests.delete(url, auth=(GEOSERVER_USER, GEOSERVER_PW))
         if response.status_code != 200:
             #print("Removed id of " + id)
@@ -71,11 +92,16 @@ def create_remove_store_list_using_wcs(name_list):
         store_name = names[1]
 
         # check if dataset exists
-        is_dataset, id = check_if_dataset_exists(store_name, collection)
+        try:
+            is_dataset, id = check_if_dataset_exists(store_name, collection)
+        except Exception as e:
+            print("Failed to check " + str(store_name) + " in the database")
+            print(e)
+            is_dataset = True
         if is_dataset is False:
             remove_list.append(id)
         i += 1
-        if i > 10000:
+        if i > 1000:
             break
 
     server.stop()
@@ -198,6 +224,28 @@ def test_kube_mongo():
     print(client.server_info())
     # pprint,pprint(db.collection_names())
 
+def get_service_xml(flag):
+    try:
+        if flag == "wcs":
+            print("Obtaining WCS file")
+            url = GEOSERVER_HOST + "/incore/ows?service=WCS&version=1.0.0&request=GetCapabilities"
+            urllib.request.urlretrieve(url, "wcs-getcapabilities.xml")
+            print("Done obtaining WCS file")
+
+        if flag == "wfs":
+            print("Obtaining WFS file")
+            url = GEOSERVER_HOST + "/incore/ows?service=WFS&version=1.0.0&request=GetCapabilities"
+            # print(url)
+            urllib.request.urlretrieve(url, "wfs-getcapabilities.xml")
+            print("Done obtaining WFS file")
+
+        if flag == "wms":
+            print("Obtaining WMS file")
+            url = GEOSERVER_HOST + "/incore/ows?service=WMS&version=1.0.0&request=GetCapabilities"
+            urllib.request.urlretrieve(url, "wms-getcapabilities.xml")
+            print("Done obtaining WMS file")
+    except Exception:
+        raise("There was an error obtaining list from geoserver")
 
 if __name__ == '__main__':
 

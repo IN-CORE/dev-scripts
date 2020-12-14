@@ -1,1 +1,1 @@
-docker build -t incore_geoserver_utils .
+docker build -t geo_utils:test .

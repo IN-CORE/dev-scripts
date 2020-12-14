@@ -10,6 +10,10 @@ REPLACE_STR = '/opt/geoserver/data_dir/'
 # FIND_STR = 'http://incore2-geoserver.ncsa.illinois.edu'
 # REPLACE_STR = 'https://incore-tst.ncsa.illinois.edu'
 
+"""
+ls -l workspaces/incore data/incore | grep ^6 | sort | uniq | wc -l
+ls -l workspaces/incore data/incore | grep ^6 | sort | uniq | wc > checkme
+"""
 def main():
     # there are coveragestore.xml and datastore.xml
     search_dir = BASE_DIR + "*\\*.xml"

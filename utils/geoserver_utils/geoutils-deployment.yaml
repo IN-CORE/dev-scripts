@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geoutils-deployment
+  namespace: incore
+  labels:
+    app: geoutils
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: geoutils
+  template:
+    metadata:
+      labels:
+        app: geoutils
+    spec:
+      containers:
+      - name: geo-utils 
+        image: hub.ncsa.illinois.edu/incore/geo-utils:test
+        env:
+          - name: GEOUTILS_PORT
+            value: "8080"
+        ports:
+          - containerPort: 8080
+            name: geoutils-api
+        volumeMounts:
+          - name: incore-geoutils
+            mountPath: /opt/geoserver/data_dir
+        imagePullPolicy: Always
+      imagePullSecrets:
+      - name: regcred 
+      volumes:
+        - name: incore-geoutils
+          persistentVolumeClaim:
+            claimName: geoserver-pvc

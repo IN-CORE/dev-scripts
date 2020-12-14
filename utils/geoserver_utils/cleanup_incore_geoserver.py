@@ -21,10 +21,22 @@ MONGO_BIND_HOST = "127.0.0.1"
 MONGO_BIND_PORT = 27017
 
 def main():
+    run_datastore = False
     run_wcs = False
     run_wfs = False
-    run_wms = False
-    run_datastore = True
+    # run_wms = False
+
+    # delete using datastore
+    if run_datastore:
+        get_datastore_json()
+        name_list = parse_name_from_datasotre_json()
+
+        # check if it is in the dsatabase and remove datastore
+        remove_list = create_remove_store_list_using_wcs(name_list, False)
+        # name_list = parse_name_from_datasotre_json()
+        print("There are " + str(len(remove_list)) + " datasets to be removed")
+
+        remove_stores(remove_list, 'wfs')
 
     # delete using wcs
     if run_wcs:
@@ -48,26 +60,14 @@ def main():
 
         remove_stores(remove_list, 'wfs')
 
-    # TODO this currently doesn't work. Need more work
+    # TODO this doesn't work because the wms file getting broken when there is broken SRS
     if run_wms:
+        get_service_xml("wms")
         name_list, title_list = parse_name_from_wms_getcapabilities()
         print("There are" + str(len(remove_list)) + " datasets to be removed")
 
     # name_list, title_list = parse_name_from_wfs_getcapabilities()
     # print(len(name_list))
-
-    if run_datastore:
-        get_datastore_json()
-        name_list = parse_name_from_datasotre_json()
-
-        # check if it is in the dsatabase and remove datastore
-        remove_list = create_remove_store_list_using_wcs(name_list, False)
-        # name_list = parse_name_from_datasotre_json()
-        print("There are " + str(len(remove_list)) + " datasets to be removed")
-
-        remove_stores(remove_list, 'wfs')
-
-        print(name_list)
 
 def remove_stores(ids, flag):
     total = len(ids)

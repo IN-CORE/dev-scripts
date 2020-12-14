@@ -1,0 +1,1 @@
+docker build -t incore_geoserver_utils .

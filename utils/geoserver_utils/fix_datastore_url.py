@@ -16,7 +16,7 @@ ls -l workspaces/incore data/incore | grep ^6 | sort | uniq | wc > checkme
 """
 def main():
     # there are coveragestore.xml and datastore.xml
-    search_dir = BASE_DIR + "*\\*.xml"
+    search_dir = BASE_DIR + "*/*.xml"
     xml_files = []
     for file in glob.glob(search_dir):
         xml_files.append(file)

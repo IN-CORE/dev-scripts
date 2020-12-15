@@ -5,10 +5,10 @@ import glob
 #  https://pip.pypa.io/en/stable/installing/
 # BASE_DIR = "/opt/geoserver/data_dir/workspaces/incore/"
 BASE_DIR = "C:\\Users\\ywkim\\Downloads\\Tmp\\geoserver_test\\"
-FIND_STR = '/home/geoserver/data_dir/'
-REPLACE_STR = '/opt/geoserver/data_dir/'
-# FIND_STR = 'http://incore2-geoserver.ncsa.illinois.edu'
-# REPLACE_STR = 'https://incore-tst.ncsa.illinois.edu'
+FIND_DIR_STR = '/home/geoserver/data_dir/'
+REPLACE_DIR_STR = '/opt/geoserver/data_dir/'
+FIND_URL_STR = 'http://incore2-geoserver.ncsa.illinois.edu'
+REPLACE_URL_STR = 'https://incore-tst.ncsa.illinois.edu'
 
 """
 ls -l workspaces/incore data/incore | grep ^6 | sort | uniq | wc -l
@@ -25,7 +25,8 @@ def main():
     for index, file in enumerate(xml_files):
         in_file = open(file, "rt")
         data = in_file.read()
-        data = data.replace(FIND_STR, REPLACE_STR)
+        data = data.replace(FIND_DIR_STR, REPLACE_DIR_STR)
+        data = data.replace(FIND_URL_STR, REPLACE_URL_STR)
         in_file.close()
         in_file = open(file, "wt")
         in_file.write(data)

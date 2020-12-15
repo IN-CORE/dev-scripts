@@ -88,7 +88,9 @@ def main():
         for index, name in enumerate(remove_list):
             full_path = os.path.join(BASE_DIR, name)
             shutil.rmtree(full_path)
-            print(str(total - index) + " iterations left")
+            left = total - index
+            if left % 100 == 0:
+                print(str(left) + " iterations left")
 
         print("done removing folders")
 

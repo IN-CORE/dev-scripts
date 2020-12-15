@@ -31,7 +31,9 @@ def main():
         in_file = open(file, "wt")
         in_file.write(data)
         in_file.close()
-        print(str(total - index) + " iterations left")
+        left = total - index
+        if left % 100 == 0:
+            print(str(left) + " iterations left")
 
 
 if __name__ == '__main__':

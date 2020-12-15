@@ -1,1 +1,1 @@
-docker build -t geo_utils:test .
+docker build -t hub.ncsa.illinois.edu/incore/geo-utils:test .

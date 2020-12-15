@@ -124,6 +124,7 @@ def remove_stores(ids, flag):
 def create_remove_list(name_list, is_parse=True):
     remove_list = []
     server = get_mongo_server()
+    print("starting mongo connection")
     server.start()
 
     client = MongoClient(MONGO_BIND_HOST, server.local_bind_port)  # server.local_bind_port is assigned local port
@@ -154,7 +155,7 @@ def create_remove_list(name_list, is_parse=True):
         #     break
 
     server.stop()
-
+    print("stopped mongo connection")
     return remove_list
 
 def parse_name_from_datasotre_json():

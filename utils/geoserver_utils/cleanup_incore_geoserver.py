@@ -87,7 +87,10 @@ def main():
         print("There are " + str(total) + " folders to be removed")
         for index, name in enumerate(remove_list):
             full_path = os.path.join(BASE_DIR, name)
-            shutil.rmtree(full_path)
+            try:
+                shutil.rmtree(full_path)
+            except Exception as e:
+                print(e)
             left = total - index
             if left % 100 == 0:
                 print(str(left) + " iterations left")

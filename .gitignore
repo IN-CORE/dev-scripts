@@ -48,3 +48,6 @@ dist
 
 # data folder
 utils/fragility_utils/data/
+
+# test files
+*test*

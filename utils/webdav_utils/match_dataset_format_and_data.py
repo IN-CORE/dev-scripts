@@ -93,11 +93,12 @@ def main():
 					# need to exclude network
 					if dataset_format.lower() == "network":
 						print(str(doc_id) + " The dataset format is Network, skip")
-					if dataset_format != "shapefile":
-						print(str(doc_id) + " The file is shapefile but the dataset format is " + dataset_format)
-						if UPDATE_DB:
-							db.Dataset.update_one({'_id': doc_id}, {'$set': {"format": "shapefile"}}, upsert=False)
-							print("done updatinb " + object_id)
+					else:
+						if dataset_format != "shapefile":
+							print(str(doc_id) + " The file is shapefile but the dataset format is " + dataset_format)
+							if UPDATE_DB:
+								db.Dataset.update_one({'_id': doc_id}, {'$set': {"format": "shapefile"}}, upsert=False)
+								print("done updatinb " + object_id)
 				if is_tif:
 					if dataset_format != "geotif" and dataset_format != "geotiff":
 						print(str(doc_id) + " The file is tif but the dataset format is " + dataset_format)

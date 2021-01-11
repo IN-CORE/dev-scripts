@@ -19,9 +19,9 @@ import os
 from osgeo import gdal
 
 MONGO_DB = "datadb"
-MONGO_USER = "ubuntu"
+MONGO_USER = ""
 MONGO_PASS = "PASSWORD"
-MONGO_KEYFILE = "C:\\Users\\ywkim\\.ssh\\nist.pem"
+MONGO_KEYFILE = "path_to_your_keyfile"
 MONGO_BIND_HOST = "127.0.0.1"
 MONGO_BIND_PORT = 27017
 

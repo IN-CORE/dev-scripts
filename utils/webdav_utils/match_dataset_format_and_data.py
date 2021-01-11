@@ -90,6 +90,9 @@ def main():
 							db.Dataset.update_one({'_id': doc_id}, {'$set': {"format": "raster"}}, upsert=False)
 							print("done updatinb " + object_id)
 				if is_shapefile:
+					# need to exclude network
+					if dataset_format.lower() == "network":
+						print(str(doc_id) + " The dataset format is Network, skip")
 					if dataset_format != "shapefile":
 						print(str(doc_id) + " The file is shapefile but the dataset format is " + dataset_format)
 						if UPDATE_DB:

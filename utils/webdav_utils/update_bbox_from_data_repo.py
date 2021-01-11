@@ -1,3 +1,11 @@
+"""
+This script will update the bounding box information of the geodataset in the dataset db
+check the cluster for local, dev, and prod
+Set MONGO_USER and MONGO_KEYFILE
+If you want to use tunnel to connect mongodb make TUNNEL_NEEDED to True
+If you don't update db but just checking, make UPDATE_DB to False
+"""
+
 from sshtunnel import SSHTunnelForwarder
 from pymongo import MongoClient
 import requests
@@ -9,16 +17,15 @@ import os
 from osgeo import gdal
 
 MONGO_DB = "datadb"
-MONGO_USER = ""
+MONGO_USER = "ubuntu"
 MONGO_PASS = "PASSWORD"
-MONGO_KEYFILE = "path_to_key_file"
+MONGO_KEYFILE = "C:\\Users\\ywkim\\.ssh\\nist.pem"
 MONGO_BIND_HOST = "127.0.0.1"
 MONGO_BIND_PORT = 27017
 
-ID_TOKEN = ""
-UPDATE_DB = False
+ID_TOKEN = "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJmNDlQdWF2UjdQRDB4MUhFdUdMSWhTYWJrazU0Z3FwYWx2WEx0cU56RlJ3In0.eyJqdGkiOiI4NTE5N2YzMS05ZjU5LTQ4MTgtODk0Ni1hYTJjN2YyZDdiZGIiLCJleHAiOjE2MTA0MTc1NjAsIm5iZiI6MCwiaWF0IjoxNjEwMzgxNTYwLCJpc3MiOiJodHRwczovL2luY29yZS1kZXYta3ViZS5uY3NhLmlsbGlub2lzLmVkdS9hdXRoL3JlYWxtcy9Jbi1jb3JlIiwic3ViIjoiZDY3ZGM3OTUtN2U1Ni00ZjE0LWEwMGQtMGY0ODYwM2Q4MWE3IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoicmVhY3QtYXV0aCIsImF1dGhfdGltZSI6MCwic2Vzc2lvbl9zdGF0ZSI6ImFmZDY4YWY1LTlhMjctNDM3Ni05YzYwLTA3YTNiMTViNjlkNyIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiaW5jb3JlX3VzZXJfcm9sZSJdfSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiWW9uZyBXb29rIEtpbSIsImdyb3VwcyI6WyJpbmNvcmVfYWRtaW4iLCJpbmNvcmVfanVweXRlciIsImluY29yZV9jb2UiLCJpbmNvcmVfdXNlciJdLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ5d2tpbSIsImdpdmVuX25hbWUiOiJZb25nIFdvb2siLCJmYW1pbHlfbmFtZSI6IktpbSIsImVtYWlsIjoieXdraW1AaWxsaW5vaXMuZWR1In0.bWJp1T4UyP5S8Zl6EG5Em5U3JqFDqpe8Uptj2gcoktV7m6yRc6jbW-995r_FDGLkyTmoeu3auSEKMkaMxBcoQE-oxGT5vxA89jw2kGJYeJsqsC4QW9o_FL6CZjj0UWQyHUeT2-VJxvKnTP2toNRDTA8PaLjdH45dk5HPRkbPe97XGDxKY_exBiNmjfidt3UoDgR3KyAR7P0NxdXcmG-i-i0bBt6uz3TlM3y75Co_w34hoRbXTV129zQOBasilv5xP93xtvREiC7e_cbviOSziE143n2MOYbhinZ86l10MbE-FfRsCErw0mbFCpi2iK76KmVhTqnyYEueim9tqS7rRg"
+UPDATE_DB = True
 TUNNEL_NEEDED = True
-
 
 def main():
 	# cluster = "local"

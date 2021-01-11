@@ -5,6 +5,7 @@ import zipfile36 as zipfile
 import shutil
 import tempfile
 import fiona
+import os
 from osgeo import gdal
 
 MONGO_DB = "datadb"
@@ -88,7 +89,7 @@ def main():
 					if UPDATE_DB:
 						# create temp directory
 						tmp_data_dir = tempfile.mkdtemp()
-						down_filename = tmp_data_dir + '\\' + filename + ".zip"
+						down_filename = os.path.join(tmp_data_dir, (filename + ".zip"))
 
 						# download dataset to temp directory
 						print("Downlodaing the data for " + str(object_id))
@@ -112,7 +113,7 @@ def main():
 						# read shapefile
 						if (document["format"] == 'shapefile'):
 							try:
-								shape = fiona.open(tmp_data_dir + '\\' + filename_full)
+								shape = fiona.open(os.path.join(tmp_data_dir, filename_full))
 								bbox_col = shape.bounds
 								bbox = [bbox_col[0], bbox_col[1], bbox_col[2], bbox_col[3]]
 								shape.close()
@@ -122,7 +123,7 @@ def main():
 						if (document["format"] == 'raster'):
 							gdal.UseExceptions()
 							try:
-								ds = gdal.Open(tmp_data_dir + '\\' + filename_full)
+								ds = gdal.Open(os.path.join(tmp_data_dir, filename_full))
 								geo_trans = ds.GetGeoTransform()
 								minx = geo_trans[0]
 								maxy = geo_trans[3]

@@ -10,18 +10,19 @@ from osgeo import gdal
 MONGO_DB = "datadb"
 MONGO_USER = ""
 MONGO_PASS = "PASSWORD"
-MONGO_KEYFILE = "path_to_your_key_file"
+MONGO_KEYFILE = "path_to_key_file"
 MONGO_BIND_HOST = "127.0.0.1"
 MONGO_BIND_PORT = 27017
 
 ID_TOKEN = ""
 UPDATE_DB = False
+TUNNEL_NEEDED = True
 
 
 def main():
 	# cluster = "local"
-	# cluster = "dev"
-	cluster = "prod"
+	cluster = "dev"
+	# cluster = "prod"
 
 	mongo_host = None
 	rest_url = None
@@ -36,10 +37,14 @@ def main():
 		mongo_host = "incore2-mongo1.ncsa.illinois.edu"
 		rest_url = "https://incore.ncsa.illinois.edu/data/api/datasets/"
 
-	server = get_mongo_server(mongo_host)
-	server.start()
+	if TUNNEL_NEEDED:
+		server = get_mongo_server(mongo_host)
+		server.start()
 
-	client = MongoClient(MONGO_BIND_HOST, server.local_bind_port)  # server.local_bind_port is assigned local port
+		client = MongoClient(MONGO_BIND_HOST, server.local_bind_port)  # server.local_bind_port is assigned local port
+	else:
+		client = MongoClient(mongo_host, 27017)
+
 	db = client[MONGO_DB]
 	db.collection = db["Dataset"]
 	collection = db.collection
@@ -134,7 +139,9 @@ def main():
 											  {'$set': {"boundingBox": bbox}}, upsert=False)
 						print("done updatinb " + object_id)
 	print(error_id)
-	server.stop()
+
+	if TUNNEL_NEEDED:
+		server.stop()
 
 def get_mongo_server(mongo_host):
     server = SSHTunnelForwarder(

@@ -24,24 +24,25 @@ MONGO_BIND_HOST = "127.0.0.1"
 MONGO_BIND_PORT = 27017
 
 ID_TOKEN = ""
-UPDATE_DB = True
-TUNNEL_NEEDED = True
+
+UPDATE_DB = False
+TUNNEL_NEEDED = False
+
+#CLUSTER = "local"
+CLUSTER = "dev"
+#CLUSTER = "prod"
 
 def main():
-	# cluster = "local"
-	cluster = "dev"
-	# cluster = "prod"
-
 	mongo_host = None
 	rest_url = None
 
-	if cluster == "local":
+	if CLUSTER == "local":
 		mongo_host = "localhost"
 		rest_url = "http://localhost:8080/data/api/datasets/"
-	if cluster == "dev":
+	if CLUSTER == "dev":
 		mongo_host = "incore2-mongo-dev.ncsa.illinois.edu"
 		rest_url = "https://incore-dev-kube.ncsa.illinois.edu/data/api/datasets/"
-	if cluster == "prod":
+	if CLUSTER == "prod":
 		mongo_host = "incore2-mongo1.ncsa.illinois.edu"
 		rest_url = "https://incore.ncsa.illinois.edu/data/api/datasets/"
 
@@ -95,6 +96,7 @@ def main():
 						filename_full = filename
 
 					if UPDATE_DB:
+						is_asc = False
 						# create temp directory
 						tmp_data_dir = tempfile.mkdtemp()
 						down_filename = os.path.join(tmp_data_dir, (filename + ".zip"))
@@ -129,20 +131,21 @@ def main():
 								except IOError as err:
 									print("IO error: {0}".format(err))
 									error_id.append(object_id)
-							if (document["format"] == 'raster'):
+							if (document["format"] == 'raster' or document['format'] == 'geotiff' or document['format'] == 'geotif'):
 								gdal.UseExceptions()
-								try:
-									ds = gdal.Open(os.path.join(tmp_data_dir, filename_full))
-									geo_trans = ds.GetGeoTransform()
-									minx = geo_trans[0]
-									maxy = geo_trans[3]
-									maxx = minx + geo_trans[1] * ds.RasterXSize
-									miny = maxy + geo_trans[5] * ds.RasterYSize
-									bbox = [minx, miny, maxx, maxy]
-									ds = None
-								except RuntimeError as err:
-									print("OS error: {0}".format(err))
-									error_id.append(object_id)
+								if not is_asc:
+									try:
+										ds = gdal.Open(os.path.join(tmp_data_dir, filename_full))
+										geo_trans = ds.GetGeoTransform()
+										minx = geo_trans[0]
+										maxy = geo_trans[3]
+										maxx = minx + geo_trans[1] * ds.RasterXSize
+										miny = maxy + geo_trans[5] * ds.RasterYSize
+										bbox = [minx, miny, maxx, maxy]
+										ds = None
+									except RuntimeError as err:
+										print("OS error: {0}".format(err))
+										error_id.append(object_id)
 							if bbox is not None:
 								db.Dataset.update_one({'_id': doc_id}, {'$set': {"boundingBox": bbox}}, upsert=True)
 								print("done updating db " + object_id)

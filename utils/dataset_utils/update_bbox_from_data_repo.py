@@ -69,15 +69,16 @@ def main():
 				doc_id = document["_id"]
 				object_id = str(doc_id)
 				add_boundingbox = False
-				if ("boundingBox" in document):
-					bounding_box = document['boundingBox']
-					if bounding_box is None:
-						print("Document has no bounding box informatoin " + object_id)
+				if (document["format"] == 'shapefile' or document["format"] == 'raster'
+						or document['format'] == 'geotiff' or document['format'] == 'geotif'):
+					if ("boundingBox" in document):
+						bounding_box = document['boundingBox']
+						if bounding_box is None:
+							print("Document has no bounding box informatoin " + object_id)
+							add_boundingbox = True
+					else:
 						add_boundingbox = True
-				else:
-					if (document["format"] == 'shapefile' or document["format"] == 'raster'
-							or document['format'] == 'geotiff' or document['format'] == 'geotif'):
-						add_boundingbox = True
+
 				if add_boundingbox:
 					bbox = None
 					down_url = rest_url + object_id + "/blob"
@@ -141,15 +142,16 @@ def main():
 									ds = None
 								except RuntimeError as err:
 									print("OS error: {0}".format(err))
-
-							# remove temp folder
-							db.Dataset.update_one({'_id': doc_id},
-												  {'$set': {"boundingBox": bbox}}, upsert=False)
-							print("done updatinb " + object_id)
+									error_id.append(object_id)
+							if bbox is not None:
+								db.Dataset.update_one({'_id': doc_id}, {'$set': {"boundingBox": bbox}}, upsert=True)
+								print("done updating db " + object_id)
 						else:
 							print("Unable to download " + str(object_id))
 							print(str(response.status_code) + " " + str(response.text))
 							error_id.append(str(object_id))
+
+					# remove temp folder
 					shutil.rmtree(tmp_data_dir)
 	print(error_id)
 

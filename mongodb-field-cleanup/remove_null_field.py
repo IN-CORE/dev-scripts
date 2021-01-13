@@ -10,19 +10,13 @@ from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
 db = client['datadb']
 
-
-# In[20]:
-
-
-for collection in collections:
-    for doc in db["Dataset"].find():
-        if 'boundingBox' in doc and doc['boundingBox'] == None:
-            print(doc["_id"], doc["dataType"])
-            del doc['boundingBox'] 
-            db["Dataset"].replace_one({'_id':doc['_id']}, doc)
+for doc in db["Dataset"].find():
+    if 'boundingBox' in doc and doc['boundingBox'] == None:
+        print(doc["_id"], doc["dataType"])
+        del doc['boundingBox']
+        db["Dataset"].replace_one({'_id':doc['_id']}, doc)
 
 
-# In[ ]:
 
 
 

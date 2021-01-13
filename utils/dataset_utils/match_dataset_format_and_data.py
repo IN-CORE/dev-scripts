@@ -10,13 +10,6 @@ If you want to use tunnel to connect mongodb make TUNNEL_NEEDED to True
 
 from sshtunnel import SSHTunnelForwarder
 from pymongo import MongoClient
-import requests
-import zipfile36 as zipfile
-import shutil
-import tempfile
-import fiona
-import os
-from osgeo import gdal
 
 MONGO_DB = "datadb"
 MONGO_USER = ""
@@ -25,23 +18,22 @@ MONGO_KEYFILE = "path_to_your_keyfile"
 MONGO_BIND_HOST = "127.0.0.1"
 MONGO_BIND_PORT = 27017
 
+CLUSTER = "local"
+# CLUSTER = "dev"
+# CLUSTER = "prod"
 UPDATE_DB = False
 TUNNEL_NEEDED = False
 
 
 def main():
-	cluster = "local"
-	# cluster = "dev"
-	# cluster = "prod"
-
 	mongo_host = None
 	rest_url = None
 
-	if cluster == "local":
+	if CLUSTER == "local":
 		mongo_host = "localhost"
-	if cluster == "dev":
+	if CLUSTER == "dev":
 		mongo_host = "incore2-mongo-dev.ncsa.illinois.edu"
-	if cluster == "prod":
+	if CLUSTER == "prod":
 		mongo_host = "incore2-mongo1.ncsa.illinois.edu"
 
 	if TUNNEL_NEEDED:
@@ -91,14 +83,14 @@ def main():
 							print("done updatinb " + object_id)
 				if is_shapefile:
 					# need to exclude network
-					if dataset_format.lower() == "network":
-						print(str(doc_id) + " The dataset format is Network, skip")
-					else:
-						if dataset_format != "shapefile":
-							print(str(doc_id) + " The file is shapefile but the dataset format is " + dataset_format)
-							if UPDATE_DB:
-								db.Dataset.update_one({'_id': doc_id}, {'$set': {"format": "shapefile"}}, upsert=False)
-								print("done updatinb " + object_id)
+					# if dataset_format.lower() == "network":
+					# 	print(str(doc_id) + " The dataset format is Network, skip")
+					# else:
+					if dataset_format != "shapefile":
+						print(str(doc_id) + " The file is shapefile but the dataset format is " + dataset_format)
+						if UPDATE_DB:
+							db.Dataset.update_one({'_id': doc_id}, {'$set': {"format": "shapefile"}}, upsert=False)
+							print("done updatinb " + object_id)
 				if is_tif:
 					if dataset_format != "geotif" and dataset_format != "geotiff":
 						print(str(doc_id) + " The file is tif but the dataset format is " + dataset_format)

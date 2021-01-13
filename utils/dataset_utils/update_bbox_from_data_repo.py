@@ -94,58 +94,62 @@ def main():
 						filename_full = filename
 
 					if UPDATE_DB:
-						# create temp directory
-						tmp_data_dir = tempfile.mkdtemp()
-						down_filename = os.path.join(tmp_data_dir, (filename + ".zip"))
-
 						# download dataset to temp directory
 						print("Downlodaing the data for " + str(object_id))
 						auth_token = 'Bearer ' + str(ID_TOKEN)
 
 						response = requests.get(down_url, headers={'Authorization': auth_token}, stream=True)
-						with open(down_filename, 'wb') as f:
-							for chunk in response.iter_content(chunk_size=1024):
-								if chunk:
-									f.write(chunk)
+						if response.status_code == 200:
+							# create temp directory
+							tmp_data_dir = tempfile.mkdtemp()
+							down_filename = os.path.join(tmp_data_dir, (filename + ".zip"))
+							with open(down_filename, 'wb') as f:
+								for chunk in response.iter_content(chunk_size=1024):
+									if chunk:
+										f.write(chunk)
 
-						# unzip downloaded file
-						try:
-							zip_ref = zipfile.ZipFile(down_filename, 'r')
-							zip_ref.extractall(tmp_data_dir)
-							zip_ref.close()
-						except zipfile.BadZipfile as err:
-							error_id.append(object_id)
-							print("OS error: {0}".format(err))
-
-						# read shapefile
-						if (document["format"] == 'shapefile'):
+							# unzip downloaded file
 							try:
-								shape = fiona.open(os.path.join(tmp_data_dir, filename_full))
-								bbox_col = shape.bounds
-								bbox = [bbox_col[0], bbox_col[1], bbox_col[2], bbox_col[3]]
-								shape.close()
-							except IOError as err:
-								print("IO error: {0}".format(err))
+								zip_ref = zipfile.ZipFile(down_filename, 'r')
+								zip_ref.extractall(tmp_data_dir)
+								zip_ref.close()
+							except zipfile.BadZipfile as err:
 								error_id.append(object_id)
-						if (document["format"] == 'raster'):
-							gdal.UseExceptions()
-							try:
-								ds = gdal.Open(os.path.join(tmp_data_dir, filename_full))
-								geo_trans = ds.GetGeoTransform()
-								minx = geo_trans[0]
-								maxy = geo_trans[3]
-								maxx = minx + geo_trans[1] * ds.RasterXSize
-								miny = maxy + geo_trans[5] * ds.RasterYSize
-								bbox = [minx, miny, maxx, maxy]
-								ds = None
-							except RuntimeError as err:
 								print("OS error: {0}".format(err))
 
-						# remove temp folder
-						shutil.rmtree(tmp_data_dir)
-						db.Dataset.update_one({'_id': doc_id},
-											  {'$set': {"boundingBox": bbox}}, upsert=False)
-						print("done updatinb " + object_id)
+							# read shapefile
+							if (document["format"] == 'shapefile'):
+								try:
+									shape = fiona.open(os.path.join(tmp_data_dir, filename_full))
+									bbox_col = shape.bounds
+									bbox = [bbox_col[0], bbox_col[1], bbox_col[2], bbox_col[3]]
+									shape.close()
+								except IOError as err:
+									print("IO error: {0}".format(err))
+									error_id.append(object_id)
+							if (document["format"] == 'raster'):
+								gdal.UseExceptions()
+								try:
+									ds = gdal.Open(os.path.join(tmp_data_dir, filename_full))
+									geo_trans = ds.GetGeoTransform()
+									minx = geo_trans[0]
+									maxy = geo_trans[3]
+									maxx = minx + geo_trans[1] * ds.RasterXSize
+									miny = maxy + geo_trans[5] * ds.RasterYSize
+									bbox = [minx, miny, maxx, maxy]
+									ds = None
+								except RuntimeError as err:
+									print("OS error: {0}".format(err))
+
+							# remove temp folder
+							shutil.rmtree(tmp_data_dir)
+							db.Dataset.update_one({'_id': doc_id},
+												  {'$set': {"boundingBox": bbox}}, upsert=False)
+							print("done updatinb " + object_id)
+						else:
+							print("Unable to download " + str(object_id))
+							print(str(response.status_code) + " " + str(response.text))
+							error_id.append(str(object_id))
 	print(error_id)
 
 	if TUNNEL_NEEDED:

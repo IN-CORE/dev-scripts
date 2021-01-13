@@ -94,15 +94,16 @@ def main():
 						filename_full = filename
 
 					if UPDATE_DB:
+						# create temp directory
+						tmp_data_dir = tempfile.mkdtemp()
+						down_filename = os.path.join(tmp_data_dir, (filename + ".zip"))
+
 						# download dataset to temp directory
 						print("Downlodaing the data for " + str(object_id))
 						auth_token = 'Bearer ' + str(ID_TOKEN)
 
 						response = requests.get(down_url, headers={'Authorization': auth_token}, stream=True)
 						if response.status_code == 200:
-							# create temp directory
-							tmp_data_dir = tempfile.mkdtemp()
-							down_filename = os.path.join(tmp_data_dir, (filename + ".zip"))
 							with open(down_filename, 'wb') as f:
 								for chunk in response.iter_content(chunk_size=1024):
 									if chunk:
@@ -142,7 +143,6 @@ def main():
 									print("OS error: {0}".format(err))
 
 							# remove temp folder
-							shutil.rmtree(tmp_data_dir)
 							db.Dataset.update_one({'_id': doc_id},
 												  {'$set': {"boundingBox": bbox}}, upsert=False)
 							print("done updatinb " + object_id)
@@ -150,6 +150,7 @@ def main():
 							print("Unable to download " + str(object_id))
 							print(str(response.status_code) + " " + str(response.text))
 							error_id.append(str(object_id))
+					shutil.rmtree(tmp_data_dir)
 	print(error_id)
 
 	if TUNNEL_NEEDED:

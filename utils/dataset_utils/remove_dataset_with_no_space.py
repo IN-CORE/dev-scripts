@@ -39,10 +39,12 @@ def main():
         rest_url = "http://localhost:8080/data/api/datasets/"
     if CLUSTER == "dev":
         mongo_host = "incore2-mongo-dev.ncsa.illinois.edu"
-        orphan_space_id = "5d0811315648c40487fecf42"  # dev
+        orphan_space_id = "5d0811315648c40487fecf42"
+        rest_url = "https://incore-dev-kube.ncsa.illinois.edu/data/api/datasets/"
     if CLUSTER == "prod":
         mongo_host = "incore2-mongo1.ncsa.illinois.edu"
-        orphan_space_id ="5d081106b9219c065b4cdfc0" # prod
+        orphan_space_id ="5d081106b9219c065b4cdfc0"
+        rest_url = "https://incore.ncsa.illinois.edu/data/api/datasets/"
 
     if TUNNEL_NEEDED:
         server = get_mongo_server(mongo_host)
@@ -83,6 +85,7 @@ def main():
 
     # delete orphans
     if REMOVE_DATASET:
+        print("Starting remove process")
         error_ids = []
         for doc_id in orphan_dataset_list:
             delete_url = rest_url + str(doc_id)

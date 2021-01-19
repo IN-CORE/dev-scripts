@@ -12,9 +12,9 @@ from sshtunnel import SSHTunnelForwarder
 from pymongo import MongoClient
 
 MONGO_DB = "datadb"
-MONGO_USER = ""
+MONGO_USER = "ubuntu"
 MONGO_PASS = "PASSWORD"
-MONGO_KEYFILE = "path_to_keyfile"
+MONGO_KEYFILE = "C:\\Users\\ywkim\\.ssh\\nist.pem"
 MONGO_BIND_HOST = "127.0.0.1"
 MONGO_BIND_PORT = 27017
 
@@ -22,7 +22,7 @@ MONGO_BIND_PORT = 27017
 CLUSTER = "dev"
 #CLUSTER = "prod"
 
-REMOVE_DATASET = False
+REMOVE_DATASET = True
 TUNNEL_NEEDED = True
 
 AUTH_TOKEN = ""
@@ -34,10 +34,13 @@ def main():
 
 	if CLUSTER == "local":
 		mongo_host = "localhost"
+		rest_url = "http://localhost:8080/data/api/datasets/"
 	if CLUSTER == "dev":
 		mongo_host = "incore2-mongo-dev.ncsa.illinois.edu"
+		rest_url = "https://incore-dev-kube.ncsa.illinois.edu/data/api/datasets/"
 	if CLUSTER == "prod":
 		mongo_host = "incore2-mongo1.ncsa.illinois.edu"
+		rest_url = "https://incore.ncsa.illinois.edu/data/api/datasets/"
 
 	if TUNNEL_NEEDED:
 		server = get_mongo_server(mongo_host)
@@ -163,13 +166,13 @@ def main():
 		for doc_id in id_list:
 			delete_url = rest_url + str(doc_id)
 			auth_token = 'Bearer ' + str(AUTH_TOKEN)
-			response = requests.delete(delete_url, headers={'Authorization': auth_token})
-			if response.status_code == 200:
-				print(str(doc_id) + " deleted.")
-			else:
-				print("Failed to delete " + str(doc_id))
-				error_ids.append(doc_id)
-				pass
+			# response = requests.delete(delete_url, headers={'Authorization': auth_token})
+			# if response.status_code == 200:
+			# 	print(str(doc_id) + " deleted.")
+			# else:
+			# 	print("Failed to delete " + str(doc_id))
+			# 	error_ids.append(doc_id)
+			# 	pass
 
 		print(error_ids)
 

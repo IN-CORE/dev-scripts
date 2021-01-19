@@ -6,6 +6,7 @@ then, it should be removed.
 Set MONGO_USER and MONGO_KEYFILE
 If you want to use tunnel to connect mongodb make TUNNEL_NEEDED to True
 """
+import requests
 
 from sshtunnel import SSHTunnelForwarder
 from pymongo import MongoClient
@@ -23,6 +24,8 @@ CLUSTER = "dev"
 
 REMOVE_DATASET = False
 TUNNEL_NEEDED = True
+
+AUTH_TOKEN = ""
 
 
 def main():
@@ -153,6 +156,22 @@ def main():
 	for dataset_id, title, creator, date, reason \
 			in zip(id_list, title_list, author_list, date_list, error_reason_list):
 		print(str(dataset_id) + "," + title + "," + creator + "," + str(date) + "," + reason)
+
+	if REMOVE_DATASET:
+		print("Starting remove process")
+		error_ids = []
+		for doc_id in id_list:
+			delete_url = rest_url + str(doc_id)
+			auth_token = 'Bearer ' + str(AUTH_TOKEN)
+			response = requests.delete(delete_url, headers={'Authorization': auth_token})
+			if response.status_code == 200:
+				print(str(doc_id) + " deleted.")
+			else:
+				print("Failed to delete " + str(doc_id))
+				error_ids.append(doc_id)
+				pass
+
+		print(error_ids)
 
 	if TUNNEL_NEEDED:
 		server.stop()

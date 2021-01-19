@@ -23,7 +23,7 @@ CLUSTER = "dev"
 #CLUSTER = "prod"
 
 REMOVE_DATASET = True
-TUNNEL_NEEDED = True
+TUNNEL_NEEDED = False
 
 AUTH_TOKEN = ""
 
@@ -166,13 +166,13 @@ def main():
 		for doc_id in id_list:
 			delete_url = rest_url + str(doc_id)
 			auth_token = 'Bearer ' + str(AUTH_TOKEN)
-			# response = requests.delete(delete_url, headers={'Authorization': auth_token})
-			# if response.status_code == 200:
-			# 	print(str(doc_id) + " deleted.")
-			# else:
-			# 	print("Failed to delete " + str(doc_id))
-			# 	error_ids.append(doc_id)
-			# 	pass
+			response = requests.delete(delete_url, headers={'Authorization': auth_token})
+			if response.status_code == 200:
+				print(str(doc_id) + " deleted.")
+			else:
+				print("Failed to delete " + str(doc_id))
+				error_ids.append(doc_id)
+				pass
 
 		print(error_ids)
 

@@ -18,9 +18,10 @@ MONGO_KEYFILE = "path_to_your_keyfile"
 MONGO_BIND_HOST = "127.0.0.1"
 MONGO_BIND_PORT = 27017
 
-CLUSTER = "local"
-# CLUSTER = "dev"
-# CLUSTER = "prod"
+#CLUSTER = "local"
+CLUSTER = "dev"
+#CLUSTER = "prod"
+
 UPDATE_DB = False
 TUNNEL_NEEDED = False
 

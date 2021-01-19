@@ -21,12 +21,12 @@ MONGO_KEYFILE = "path_to_keyfile"
 MONGO_BIND_HOST = "127.0.0.1"
 MONGO_BIND_PORT = 27017
 
-UPDATE_DB = False
+DELETE_DATA = False
 TUNNEL_NEEDED = True
 
 # CLUSTER = "local"
-# CLUSTER = "dev"
-CLUSTER = "prod"
+CLUSTER = "dev"
+#CLUSTER = "prod"
 
 AUTH_TOKEN = ""
 
@@ -60,6 +60,8 @@ def main():
 	field_to_find = "title"
 	result = db.Dataset.find({field_to_find: rgx})
 
+	deletion_number = 0
+
 	for dictionary in result:
 		is_nbsr = False
 		doc = db.Dataset.find({'_id': dictionary["_id"]})
@@ -70,21 +72,27 @@ def main():
 			dataset_title = document["title"]
 			if "nbsr" in dataset_title.lower():
 				is_nbsr = True
+				print("nbsr detected")
 
 		if is_nbsr:
 			print(str(doc_id) + " is nbsr, not deleting.")
 		else:
-			print("Deleting " + str(doc_id))
-			delete_url = rest_url + str(doc_id)
-			auth_token = 'Bearer ' + str(AUTH_TOKEN)
-			response = requests.delete(delete_url, headers={'Authorization': auth_token})
-			if response.status_code == 200:
-				print(str(doc_id) + " deleted.")
-			else:
-				print("Failed to delete " + str(doc_id))
-				error_ids.append(doc_id)
+			if DELETE_DATA:
+				print("Deleting " + str(doc_id))
+				delete_url = rest_url + str(doc_id)
+				auth_token = 'Bearer ' + str(AUTH_TOKEN)
+				response = requests.delete(delete_url, headers={'Authorization': auth_token})
+				if response.status_code == 200:
+					print(str(doc_id) + " deleted.")
+					deletion_number += 1
+				else:
+					print("Failed to delete " + str(doc_id))
+					error_ids.append(doc_id)
 
-	print(error_ids)
+	if DELETE_DATA:
+		print(str(deletion_number) + " datasets removed")
+		print("Ids for failing remove")
+		print(error_ids)
 
 	if TUNNEL_NEEDED:
 		server.stop()

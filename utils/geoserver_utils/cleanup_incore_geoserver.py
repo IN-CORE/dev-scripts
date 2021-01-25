@@ -8,15 +8,15 @@ from sshtunnel import SSHTunnelForwarder
 from bson import ObjectId
 from pymongo import MongoClient
 
-GEOSERVER_HOST = "https://incore-dev-kube.ncsa.illinois.edu/geoserver"
+GEOSERVER_HOST = "https://host_url/geoserver"
 GEOSERVER_USER = 'admin'
 GEOSERVER_PW = ''
 
-MONGO_HOST = "incore2-mongo-dev.ncsa.illinois.edu"
+MONGO_HOST = "mongo.ncsa.illinois.edu"
 MONGO_DB = "datadb"
 MONGO_USER = ""
 MONGO_PASS = "PASSWORD"
-MONGO_KEYFILE = ""
+MONGO_KEYFILE = "path_to_keyfile"
 MONGO_BIND_HOST = "127.0.0.1"
 MONGO_BIND_PORT = 27017
 
@@ -24,7 +24,7 @@ def main():
     run_datastore = False
     run_wcs = False
     run_wfs = False
-    # run_wms = False
+    run_wms = False
 
     # delete using datastore
     if run_datastore:
@@ -118,8 +118,8 @@ def create_remove_store_list_using_wcs(name_list, is_parse=True):
         if is_dataset is False:
             remove_list.append(id)
         i += 1
-        if i > 1000:
-            break
+        # if i > 1000:
+        #     break
 
     server.stop()
 
@@ -233,8 +233,7 @@ def mongo_sshtunnel_test():
 
 def test_kube_mongo():
     # kubectl port-forward incore-mongodb-0 27017:27017
-    client = MongoClient(MONGO_BIND_HOST, 27017, username='root', password='', authSource='admin')
-    db = client[MONGO_DB]
+    client = MongoClient(MONGO_BIND_HOST, 27017, username='username', password='password', authSource='admin')
     db = client[MONGO_DB]
     # db = client.get_database()
     print(db.name)
@@ -271,11 +270,4 @@ def get_datastore_json():
     print("Done obtaining datastore json")
 
 if __name__ == '__main__':
-
     main()
-
-    # urllib.request.urlretrieve("https://incore-dev-kube.ncsa.illinois.edu/geoserver/incore/ows?service=WCS&version=1.0.0&request=GetCapabilities", "wcs-getcapabilities.xml")
-    # print("done")
-
-    # mongo_sshtunnel_test()
-

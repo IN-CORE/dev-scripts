@@ -3,6 +3,8 @@ import json
 import requests
 import urllib.request
 import pprint
+import os
+import shutil
 
 from sshtunnel import SSHTunnelForwarder
 from bson import ObjectId
@@ -20,11 +22,14 @@ MONGO_KEYFILE = "path_to_keyfile"
 MONGO_BIND_HOST = "127.0.0.1"
 MONGO_BIND_PORT = 27017
 
+BASE_DIR = "/opt/geoserver/data_dir/data/incore"
+
 def main():
     run_datastore = False
     run_wcs = False
     run_wfs = False
     run_wms = False
+    remove_folders = True
 
     # delete using datastore
     if run_datastore:
@@ -32,7 +37,7 @@ def main():
         name_list = parse_name_from_datasotre_json()
 
         # check if it is in the dsatabase and remove datastore
-        remove_list = create_remove_store_list_using_wcs(name_list, False)
+        remove_list = create_remove_list(name_list, False)
         # name_list = parse_name_from_datasotre_json()
         print("There are " + str(len(remove_list)) + " datasets to be removed")
 
@@ -44,7 +49,7 @@ def main():
         wcs_name_list, wcs_keyword_list = parse_name_from_wcs_getcapabilities()
 
         # check if it is in the database and remove datastore
-        remove_list = create_remove_store_list_using_wcs(wcs_name_list)
+        remove_list = create_remove_list(wcs_name_list)
         print("There are" + str(len(remove_list)) + " datasets to be removed")
 
         remove_stores(remove_list, 'wcs')
@@ -54,11 +59,43 @@ def main():
         wfs_name_list, wfs_title_list = parse_name_from_wfs_getcapabilities()
 
         # check if it is in the dsatabase and remove datastore
-        remove_list = create_remove_store_list_using_wcs(wfs_name_list)
+        remove_list = create_remove_list(wfs_name_list)
         # name_list = parse_name_from_datasotre_json()
         print("There are " + str(len(remove_list)) + " datasets to be removed")
 
         remove_stores(remove_list, 'wfs')
+
+    if remove_folders:
+        name_list = []
+        remove_list = []
+
+        # get folder list starting with 5
+        list_dir = os.listdir(BASE_DIR)
+        print("There are " + str(len(list_dir)) + " folders")
+
+        # get the elements starts with 5
+        # you don't need to do this because the mongo db checking will exculde these
+        # if it is not object id format
+        # for name in list_dir:
+        #     if name[0] == "5":
+        #         name_list.append(name)
+        # print("There are " + str(len(name_list)) + " folders to be considered")
+
+        # check forders to be removed
+        remove_list = create_remove_list(list_dir, False)
+        total = len(remove_list)
+        print("There are " + str(total) + " folders to be removed")
+        for index, name in enumerate(remove_list):
+            full_path = os.path.join(BASE_DIR, name)
+            try:
+                shutil.rmtree(full_path)
+            except Exception as e:
+                print(e)
+            left = total - index
+            if left % 100 == 0:
+                print(str(left) + " iterations left")
+
+        print("done removing folders")
 
     # TODO this doesn't work because the wms file getting broken when there is broken SRS
     if run_wms:
@@ -89,9 +126,10 @@ def remove_stores(ids, flag):
             print(str(left) + " iterations left")
     print("finished remove")
 
-def create_remove_store_list_using_wcs(name_list, is_parse=True):
+def create_remove_list(name_list, is_parse=True):
     remove_list = []
     server = get_mongo_server()
+    print("starting mongo connection")
     server.start()
 
     client = MongoClient(MONGO_BIND_HOST, server.local_bind_port)  # server.local_bind_port is assigned local port
@@ -122,7 +160,7 @@ def create_remove_store_list_using_wcs(name_list, is_parse=True):
         #     break
 
     server.stop()
-
+    print("stopped mongo connection")
     return remove_list
 
 def parse_name_from_datasotre_json():

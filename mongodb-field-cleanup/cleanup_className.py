@@ -1,18 +1,23 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[19]:
-
+"""
+This is a script for updateing the class name for hurricane windfield from hazarddb
+"""
 
 from pymongo import MongoClient
-from bson.objectid import ObjectId
 
-# client = MongoClient("localhost", 27017) # local
-# client = MongoClient("incore2-mongo1.ncsa.illinois.edu", 27017) # prod
-client = MongoClient("incore2-mongo-dev.ncsa.illinois.edu", 27017) #dev
+auth_needed = False
+mongo_username = ""
+mongo_password = ""
 
+host = "localhost"  #local
+# host = "incore2-mongo1" # prod
+# host = "incore2-mongo-dev"  # dev
+port = "27017"
 
-# In[20]:
+if auth_needed:
+    client = MongoClient('mongodb://%s:%s@%s:%s' % (mongo_username, mongo_password, host, port))
+else:
+    client = MongoClient('mongodb://%s:%s' % (host, port))
+
 
 
 collections = [
@@ -49,8 +54,6 @@ collections = [
 ]               
 
 
-# In[21]:
-
 
 for collection in collections:
     for document in collection["collection"].find():
@@ -64,10 +67,3 @@ for collection in collections:
             collection["collection"].replace_one({'_id':document['_id']}, document)
         else:
             pass
-
-
-# In[ ]:
-
-
-
-

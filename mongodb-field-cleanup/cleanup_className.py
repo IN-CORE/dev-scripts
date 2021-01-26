@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[13]:
+# In[19]:
 
 
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
-client = MongoClient("localhost", 27017) # local
+# client = MongoClient("localhost", 27017) # local
 # client = MongoClient("incore2-mongo1.ncsa.illinois.edu", 27017) # prod
-# client = MongoClient("incore2-mongo-dev.ncsa.illinois.edu", 27017) #dev
+client = MongoClient("incore2-mongo-dev.ncsa.illinois.edu", 27017) #dev
 
 
-# In[14]:
+# In[20]:
 
 
 collections = [
@@ -49,7 +49,7 @@ collections = [
 ]               
 
 
-# In[15]:
+# In[21]:
 
 
 for collection in collections:
@@ -57,11 +57,13 @@ for collection in collections:
         if "className" not in document:
             print(document['_id'], "missing className")
             document["className"] = collection["className"]
+            collection["collection"].replace_one({'_id':document['_id']}, document)
         elif document["className"] != collection["className"]:
             print(document['_id'], document["className"])
             document["className"] = collection["className"]
-            
-        collection["collection"].replace_one({'_id':document['_id']}, document)
+            collection["collection"].replace_one({'_id':document['_id']}, document)
+        else:
+            pass
 
 
 # In[ ]:

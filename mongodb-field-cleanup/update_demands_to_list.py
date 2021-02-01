@@ -20,7 +20,8 @@ for doc in db["FragilitySet"].find():
         print(doc)
         print("bad data - every doc should be having demand type")
 
-# Hack so that demand types and units are next to each other in the mongo document.
+# Hack so that demand types and units are next to each other in the mongo document. Not needed, just a minor
+# convenience for developers
 db["FragilitySet"].update_many({}, {"$rename": {"demandType": "demandTypes", "units": "demandUnits"}})
 
 

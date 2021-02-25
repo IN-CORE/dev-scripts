@@ -5,17 +5,20 @@ INCORE V2
 ## Utilities for geoserver ##
 
 ## set up working envirnment
-use pip -r requirements.txt <br>
-it could be easier to have anaconda to install all the necessary library<br>
-[GDAL](https://pypi.python.org/pypi/GDAL)<br>
-[gsconfig](https://pypi.python.org/pypi/gsconfig-py3)<br>
-[rasterio](https://pypi.python.org/pypi/rasterio/1.0a12)<br>
-[fiona](https://pypi.python.org/pypi/Fiona/1.7.11.post1)<br>
-[shapely](https://pypi.python.org/pypi/Shapely/1.6.4.post1)<br>
+use pip -r requirements.txt
+
+it could be easier to have anaconda to install all the necessary library
+
+[GDAL](https://pypi.python.org/pypi/GDAL) 
+[gsconfig](https://pypi.python.org/pypi/gsconfig-py3) 
+[rasterio](https://pypi.python.org/pypi/rasterio/1.0a12) 
+[fiona](https://pypi.python.org/pypi/Fiona/1.7.11.post1) 
+[shapely](https://pypi.python.org/pypi/Shapely/1.6.4.post1) 
 
 ## Clean up process
-When there are some datasets exist in Geoserver but those dataset ids are not in the database, those dataset in the geoserver should be removed.<br>
-There are script to do that by comparing the dataset ids in database and geoserver. If the dataset id in geoserver does not exist in the database, the dataset will be removed. <br>
+When there are some datasets exist in Geoserver but those dataset ids are not in the database, those dataset in the geoserver should be removed.
+
+There are script to do that by comparing the dataset ids in database and geoserver. If the dataset id in geoserver does not exist in the database, the dataset will be removed. 
 
 Perform cleanup_incore_geoserver.py then perform fix_datastore_url.py
 
@@ -37,7 +40,7 @@ MONGO_BIND_PORT: mongodb port, usually, 27017
 
 BASE_DIR: the path that geoserver files are located, usually, "/opt/geoserver/data_dir/data/incore"
 ```
-if you are not using the sshtunnel, you don't need to use mongo keyfile <br>
+if you are not using the sshtunnel, you don't need to use mongo keyfile
 
 The other important setting is located at the top part of main()
 ```
@@ -47,11 +50,13 @@ The other important setting is located at the top part of main()
     run_wms = False
     remove_folders = True
 ```
-Those are options for using what kind of information to use for removal. Suggest to make everything to True, except run_wms, since run_wms is problematic.<br>
+Those are options for using what kind of information to use for removal. Suggest to make everything to True, except run_wms, since run_wms is problematic.
+
 Boolean remove_folders is little different that it removes the actual data files, whereas the others are removing the only entries in the configuration.
 
 ### fix_datastore_url.py
-This file is to change the file path recorded in the configuration xml file. <br>
+This file is to change the file path recorded in the configuration xml file.
+
 The configuration is located at the top of the code.
 ```
 BASE_DIR: directory that files are located, usually "/opt/geoserver/data_dir/workspaces/incore/"

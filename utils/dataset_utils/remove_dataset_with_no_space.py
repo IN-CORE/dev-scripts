@@ -15,17 +15,17 @@ from bson.objectid import ObjectId
 MONGO_DB = "datadb"
 MONGO_USER = ""
 MONGO_PASS = "PASSWORD"
-MONGO_KEYFILE = ""
+MONGO_KEYFILE = "path_to_keyfile"
 MONGO_BIND_HOST = "127.0.0.1"
 MONGO_BIND_PORT = 27017
 
 #CLUSTER = "local"
-CLUSTER = "dev"
-#CLUSTER = "prod"
+# CLUSTER = "dev"
+CLUSTER = "prod"
 
-UPDATE_DB = False
-REMOVE_DATASET = False
-TUNNEL_NEEDED = True
+UPDATE_DB = True
+REMOVE_DATASET = True
+TUNNEL_NEEDED = False
 
 AUTH_TOKEN = ""
 
@@ -37,14 +37,28 @@ def main():
         mongo_host = "localhost"
         orphan_space_id = "5d0811315648c40487fecf42"
         rest_url = "http://localhost:8080/data/api/datasets/"
-    if CLUSTER == "dev":
-        mongo_host = "incore2-mongo-dev.ncsa.illinois.edu"
+    if CLUSTER == "tst":
         orphan_space_id = "5d0811315648c40487fecf42"
         rest_url = "https://incore-dev-kube.ncsa.illinois.edu/data/api/datasets/"
+        mongo_host = "127.0.0.1"  # when using kube forwarder
+        mongo_port = 27017
+        mongo_user = ''
+        mongo_password = ''
+    if CLUSTER == "dev":
+        orphan_space_id = "5d0811315648c40487fecf42"
+        rest_url = "https://incore-dev.ncsa.illinois.edu/data/api/datasets/"
+        mongo_host = "127.0.0.1"    # when using kube forwarder
+        mongo_port = 27017
+        mongo_user = ''
+        mongo_password = ''
     if CLUSTER == "prod":
-        mongo_host = "incore2-mongo1.ncsa.illinois.edu"
+        # mongo_host = "incore2-mongo1.ncsa.illinois.edu"
+        mongo_host = "127.0.0.1"    # when using kube forwarder
         orphan_space_id ="5d081106b9219c065b4cdfc0"
         rest_url = "https://incore.ncsa.illinois.edu/data/api/datasets/"
+        mongo_port = 27017
+        mongo_user = ''
+        mongo_password = ''
 
     if TUNNEL_NEEDED:
         server = get_mongo_server(mongo_host)
@@ -52,7 +66,9 @@ def main():
 
         client = MongoClient(MONGO_BIND_HOST, server.local_bind_port)  # server.local_bind_port is assigned local port
     else:
-        client = MongoClient(mongo_host, 27017)
+        # client = MongoClient(mongo_host, mongo_port)
+        client = MongoClient(mongo_host, mongo_port, username=mongo_user, password=mongo_password, authSource='admin')
+        print(client.server_info())
 
     datadb = client['datadb']
     spacedb = client['spacedb']

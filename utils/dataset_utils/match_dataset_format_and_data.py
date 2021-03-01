@@ -19,10 +19,10 @@ MONGO_BIND_HOST = "127.0.0.1"
 MONGO_BIND_PORT = 27017
 
 #CLUSTER = "local"
-CLUSTER = "dev"
-#CLUSTER = "prod"
+# CLUSTER = "dev"
+CLUSTER = "prod"
 
-UPDATE_DB = False
+UPDATE_DB = True
 TUNNEL_NEEDED = False
 
 
@@ -35,7 +35,10 @@ def main():
 	if CLUSTER == "dev":
 		mongo_host = "incore2-mongo-dev.ncsa.illinois.edu"
 	if CLUSTER == "prod":
-		mongo_host = "incore2-mongo1.ncsa.illinois.edu"
+		mongo_host = "127.0.0.1"
+		mongo_port = 27017
+		mongo_user = ''
+		mongo_password = ''
 
 	if TUNNEL_NEEDED:
 		server = get_mongo_server(mongo_host)
@@ -43,8 +46,8 @@ def main():
 
 		client = MongoClient(MONGO_BIND_HOST, server.local_bind_port)  # server.local_bind_port is assigned local port
 	else:
-		client = MongoClient(mongo_host, 27017)
-
+		# client = MongoClient(mongo_host, 27017)
+		client = MongoClient(mongo_host, mongo_port, username=mongo_user, password=mongo_password, authSource='admin')
 	db = client[MONGO_DB]
 	db.collection = db["Dataset"]
 
@@ -85,6 +88,8 @@ def main():
 				if is_shapefile:
 					# need to exclude network
 					if dataset_format.lower() == "network":
+						print(str(doc_id) + " The dataset format is Network, skip")
+					if dataset_format.lower() == "shp-network":
 						print(str(doc_id) + " The dataset format is Network, skip")
 					else:
 						if dataset_format != "shapefile":

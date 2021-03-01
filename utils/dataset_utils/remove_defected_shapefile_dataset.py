@@ -14,15 +14,15 @@ from pymongo import MongoClient
 MONGO_DB = "datadb"
 MONGO_USER = ""
 MONGO_PASS = "PASSWORD"
-MONGO_KEYFILE = "path_to_your_keyfile"
+MONGO_KEYFILE = "path_to_keyfile"
 MONGO_BIND_HOST = "127.0.0.1"
 MONGO_BIND_PORT = 27017
 
 #CLUSTER = "local"
-CLUSTER = "dev"
-#CLUSTER = "prod"
+# CLUSTER = "dev"
+CLUSTER = "prod"
 
-REMOVE_DATASET = True
+REMOVE_DATASET = False
 TUNNEL_NEEDED = False
 
 AUTH_TOKEN = ""
@@ -36,11 +36,17 @@ def main():
 		mongo_host = "localhost"
 		rest_url = "http://localhost:8080/data/api/datasets/"
 	if CLUSTER == "dev":
-		mongo_host = "incore2-mongo-dev.ncsa.illinois.edu"
-		rest_url = "https://incore-dev-kube.ncsa.illinois.edu/data/api/datasets/"
+		rest_url = "https://incore-dev.ncsa.illinois.edu/data/api/datasets/"
+		mongo_host = '127.0.0.1'
+		mongo_port = 27017
+		mongo_user = ''
+		mongo_password = ''
 	if CLUSTER == "prod":
-		mongo_host = "incore2-mongo1.ncsa.illinois.edu"
 		rest_url = "https://incore.ncsa.illinois.edu/data/api/datasets/"
+		mongo_host = '127.0.0.1'
+		mongo_port = 27017
+		mongo_user = ''
+		mongo_password = ''
 
 	if TUNNEL_NEEDED:
 		server = get_mongo_server(mongo_host)
@@ -48,7 +54,9 @@ def main():
 
 		client = MongoClient(MONGO_BIND_HOST, server.local_bind_port)  # server.local_bind_port is assigned local port
 	else:
-		client = MongoClient(mongo_host, 27017)
+		# client = MongoClient(mongo_host, 27017)
+		client = MongoClient(mongo_host, mongo_port, username=mongo_user, password=mongo_password, authSource='admin')
+		print(client.server_info())
 
 	db = client[MONGO_DB]
 	db.collection = db["Dataset"]

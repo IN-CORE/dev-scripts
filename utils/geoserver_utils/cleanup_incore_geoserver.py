@@ -10,14 +10,14 @@ from sshtunnel import SSHTunnelForwarder
 from bson import ObjectId
 from pymongo import MongoClient
 
-GEOSERVER_HOST = "https://host_url/geoserver"
-GEOSERVER_USER = 'admin'
+GEOSERVER_HOST = "https://url/geoserver"
+GEOSERVER_USER = ''
 GEOSERVER_PW = ''
 
 MONGO_HOST = "mongo.ncsa.illinois.edu"
 MONGO_DB = "datadb"
 MONGO_USER = ""
-MONGO_PASS = "PASSWORD"
+MONGO_PASS = ""
 MONGO_KEYFILE = "path_to_keyfile"
 MONGO_BIND_HOST = "127.0.0.1"
 MONGO_BIND_PORT = 27017
@@ -25,11 +25,27 @@ MONGO_BIND_PORT = 27017
 BASE_DIR = "/opt/geoserver/data_dir/data/incore"
 
 def main():
+    # ToDo this should be checked up little more to see if it delete *.tif datastore.
+    #  That shouldn't be happend
+    #run_coveragestore = False
+    #################################
     run_datastore = False
     run_wcs = False
     run_wfs = False
     run_wms = False
-    remove_folders = True
+    remove_folders = False
+
+    # delete using datastore
+    if run_coveragestore:
+        get_coveragestore_json()
+        name_list = parse_name_from_coveragesotre_json()
+
+        # check if it is in the dsatabase and remove datastore
+        remove_list = create_remove_list(name_list, False)
+        # name_list = parse_name_from_datasotre_json()
+        print("There are " + str(len(remove_list)) + " datasets to be removed")
+
+        remove_stores(remove_list, 'wcs')
 
     # delete using datastore
     if run_datastore:
@@ -133,6 +149,10 @@ def create_remove_list(name_list, is_parse=True):
     server.start()
 
     client = MongoClient(MONGO_BIND_HOST, server.local_bind_port)  # server.local_bind_port is assigned local port
+
+    # if you use kube forwarder use follow line and commment out server = get_mongo_server(), server.start() and server.stop()
+    # client = MongoClient(MONGO_BIND_HOST, 27019, username='', password='', authSource='admin')
+
     db = client[MONGO_DB]
     db.collection = db["Dataset"]
     collection = db.collection
@@ -156,7 +176,7 @@ def create_remove_list(name_list, is_parse=True):
         if is_dataset is False:
             remove_list.append(id)
         i += 1
-        # if i > 1000:
+        # if i > 10000:
         #     break
 
     server.stop()
@@ -178,6 +198,24 @@ def parse_name_from_datasotre_json():
     datastores = data['dataStores']['dataStore']
     for datastore in datastores:
         name_list.append(datastore['name'])
+
+    return name_list
+
+def parse_name_from_coveragesotre_json():
+    # https://incore-dev-kube.ncsa.illinois.edu/geoserver/rest/workspaces/incore/datastores.json
+    # Opening JSON file
+    f = open('coveragestores.json', )
+
+    # returns JSON object as
+    # a dictionary
+    data = json.load(f)
+
+    f.close()
+
+    name_list = []
+    coveragestores = data['coverageStores']['coverageStore']
+    for coveragestore in coveragestores:
+        name_list.append(coveragestore['name'])
 
     return name_list
 
@@ -271,7 +309,7 @@ def mongo_sshtunnel_test():
 
 def test_kube_mongo():
     # kubectl port-forward incore-mongodb-0 27017:27017
-    client = MongoClient(MONGO_BIND_HOST, 27017, username='username', password='password', authSource='admin')
+    client = MongoClient(MONGO_BIND_HOST, 27020, username='username', password='password', authSource='admin')
     db = client[MONGO_DB]
     # db = client.get_database()
     print(db.name)
@@ -306,6 +344,12 @@ def get_datastore_json():
     url = GEOSERVER_HOST + "/rest/workspaces/incore/datastores.json"
     urllib.request.urlretrieve(url, "datastores.json")
     print("Done obtaining datastore json")
+
+def get_coveragestore_json():
+    print("Obtaining coveragestore json")
+    url = GEOSERVER_HOST + "/rest/workspaces/incore/coveragestores.json"
+    urllib.request.urlretrieve(url, "coveragestores.json")
+    print("Done obtaining coveragestore json")
 
 if __name__ == '__main__':
     main()

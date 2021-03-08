@@ -19,7 +19,7 @@ from pymongo import MongoClient
 
 from commonutil import CommonUtil as util
 
-GEOSERVER_HOST = "https://incore-tst.ncsa.illinois.edu/geoserver"
+GEOSERVER_HOST = "https://incore/geoserver"
 GEOSERVER_USER = ''
 GEOSERVER_PW = ''
 GEOSERVER_WORKSPACE = 'infore'
@@ -33,6 +33,7 @@ MONGO_KEYFILE = "path_to_keyfile"
 # CLUSTER = "dev"
 CLUSTER = "tst"
 #CLUSTER = "prod"
+
 
 TUNNEL_NEEDED = False
 
@@ -52,7 +53,7 @@ def main():
     if CLUSTER == "tst":
         rest_url = "https://incore-tst.ncsa.illinois.edu/data/api/datasets/"
         mongo_host = '127.0.0.1'
-        mongo_port = 27018
+        mongo_port = 27017
     if CLUSTER == "prod":
         rest_url = "https://incore.ncsa.illinois.edu/data/api/datasets/"
         mongo_host = '127.0.0.1'

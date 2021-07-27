@@ -5,6 +5,8 @@ import re
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from num2words import num2words
+import traceback
+import logging
 
 
 def convert_standard_fragility_set(curve_set):
@@ -264,8 +266,54 @@ def convert_conditional_standard_fragility_set(curve_set):
 
 
 def convert_custom_expression_fragility_curve(curve_set):
-    print("custom expression fragility curve: " + str(curve_set["_id"]) + " needs mannual conversion!")
-    return curve_set
+    new_curve_set = {}
+    if 'inventoryType' in curve_set and curve_set["inventoryType"] == "buried_pipeline":
+        new_curve_set = curve_set.copy()
+
+        demand_name, fullName = _convert_demand_type_w_space(curve_set["demandTypes"][0])
+        new_curve_set["fragilityCurveParameters"] = [{
+            "name": demand_name,
+            "unit": curve_set["demandUnits"][0],
+            "description": fullName + " value from hazard service",
+        }]
+
+        if fullName is not None:
+            new_curve_set["fragilityCurveParameters"][0]["fullName"] = fullName
+
+        new_curve_set["fragilityCurves"] = []
+        for i, curve in enumerate(curve_set["fragilityCurves"]):
+            new_curve = {}
+            new_curve["description"] = "legacy - CustomExpressionFragilityCurve - " + curve["description"]
+            new_curve["className"] = curve["className"].replace("CustomExpressionFragilityCurve",
+                                                                "FragilityCurveRefactored")
+            new_curve["returnType"] = {"type": "Repair Rate",
+                                       "unit": curve["description"],
+                                       "description": _ls_renaming(i)}
+
+            new_curve["rules"] = [{
+                    "condition": [_add_demandtype_condition(demand_name)],
+                    "expression": curve["expression"]
+                        .replace('x', demand_name)
+                        .replace('LogTen', 'math.log10')
+                        .replace('[', '(')
+                        .replace(']', ')')
+                        .replace('^', '**')
+            }]
+
+            if 'y' in curve["expression"]:
+                new_curve["rules"][0]["expression"] = new_curve["rules"][0]["expression"].replace('y', 'diameter')
+                new_curve_set["fragilityCurveParameters"].append({
+                    "name": "diameter",
+                    "unit": "ft",
+                    "description": "diameter of the pipeline",
+                    "expression": 6
+                })
+
+            new_curve_set["fragilityCurves"].append(new_curve)
+    else:
+        print("custom expression fragility curve: " + str(curve_set["_id"]) + " needs manual conversion!")
+
+    return new_curve_set
 
 
 def convert_parametric_fragility_curve(curve_set):
@@ -416,89 +464,94 @@ def convert_fragility_sets(fragility_collection, fragility_ids: list, save_exp=T
 
     refactored_fragility_ids = []
     for fragility_id in fragility_ids:
-        new_curve_set = dict()
-        doc = fragility_collection.find_one({"_id": ObjectId(fragility_id)})
-        if doc["fragilityCurves"][0]["className"].endswith(".StandardFragilityCurve"):
-            new_curve_set = convert_standard_fragility_set(doc)
-            counts["StandardFragilityCurve"] += 1
+        try:
+            new_curve_set = dict()
+            doc = fragility_collection.find_one({"_id": ObjectId(fragility_id)})
+            if doc["fragilityCurves"][0]["className"].endswith(".StandardFragilityCurve"):
+                new_curve_set = convert_standard_fragility_set(doc)
+                counts["StandardFragilityCurve"] += 1
 
-        elif doc["fragilityCurves"][0]["className"].endswith(".PeriodStandardFragilityCurve"):
-            new_curve_set = convert_period_standard_fragility_set(doc)
-            counts["PeriodStandardFragilityCurve"] += 1
+            elif doc["fragilityCurves"][0]["className"].endswith(".PeriodStandardFragilityCurve"):
+                new_curve_set = convert_period_standard_fragility_set(doc)
+                counts["PeriodStandardFragilityCurve"] += 1
 
-        elif doc["fragilityCurves"][0]["className"].endswith(".ConditionalStandardFragilityCurve"):
-            new_curve_set = convert_conditional_standard_fragility_set(doc)
-            counts["ConditionalStandardFragilityCurve"] += 1
+            elif doc["fragilityCurves"][0]["className"].endswith(".ConditionalStandardFragilityCurve"):
+                new_curve_set = convert_conditional_standard_fragility_set(doc)
+                counts["ConditionalStandardFragilityCurve"] += 1
 
-        elif doc["fragilityCurves"][0]["className"].endswith(".CustomExpressionFragilityCurve"):
-            new_curve_set = convert_custom_expression_fragility_curve(doc)
-            counts["CustomExpressionFragilityCurve"] += 1
+            elif doc["fragilityCurves"][0]["className"].endswith(".CustomExpressionFragilityCurve"):
+                new_curve_set = convert_custom_expression_fragility_curve(doc)
+                counts["CustomExpressionFragilityCurve"] += 1
 
-        elif doc["fragilityCurves"][0]["className"].endswith(".ParametricFragilityCurve"):
-            new_curve_set = convert_parametric_fragility_curve(doc)
-            counts["ParametricFragilityCurve"] += 1
+            elif doc["fragilityCurves"][0]["className"].endswith(".ParametricFragilityCurve"):
+                new_curve_set = convert_parametric_fragility_curve(doc)
+                counts["ParametricFragilityCurve"] += 1
 
-        elif doc["fragilityCurves"][0]["className"].endswith(".PeriodBuildingFragilityCurve"):
-            new_curve_set = convert_period_building_fragility_curve(doc)
-            counts["PeriodBuildingFragilityCurve"] += 1
+            elif doc["fragilityCurves"][0]["className"].endswith(".PeriodBuildingFragilityCurve"):
+                new_curve_set = convert_period_building_fragility_curve(doc)
+                counts["PeriodBuildingFragilityCurve"] += 1
 
-        elif doc["fragilityCurves"][0]["className"].endswith(".FragilityCurveRefactored"):
-            counts["FragilityCurveRefactored"] += 1
-            pass
-        else:
-            counts["others"] += 1
-            print("cannot convert this fragility curve set: " + str(doc["_id"]))
+            elif doc["fragilityCurves"][0]["className"].endswith(".FragilityCurveRefactored"):
+                counts["FragilityCurveRefactored"] += 1
+                pass
+            else:
+                counts["others"] += 1
+                print("cannot convert this fragility curve set: " + str(doc["_id"]))
 
-        # uncomment to save and update database
-        # save one example for comparison
-        if save_exp:
-            _save_comparison(fragility_id, doc, new_curve_set)
-            refactored_fragility_ids.append(fragility_id)
+            # uncomment to save and update database
+            # save one example for comparison
+            if save_exp:
+                _save_comparison(fragility_id, doc, new_curve_set)
+                refactored_fragility_ids.append(fragility_id)
 
-        # update the database (replace)
-        if replace and new_curve_set != {}:
-            fragility_collection.replace_one({'_id': doc['_id']}, new_curve_set)
-            print("update:", doc['_id'])
-            refactored_fragility_ids.append(doc['_id'])
+            # update the database (replace)
+            if replace and new_curve_set != {}:
+                fragility_collection.replace_one({'_id': doc['_id']}, new_curve_set)
+                print("update:", doc['_id'])
+                refactored_fragility_ids.append(doc['_id'])
 
-        # update the database (post new)
-        if insert_new:
-            del new_curve_set["_id"]
-            refactored_fragility_id = fragility_collection.insert_one(new_curve_set).inserted_id
-            print("insert:", refactored_fragility_id)
-            refactored_fragility_ids.append(refactored_fragility_id)
+            # update the database (post new)
+            if insert_new:
+                del new_curve_set["_id"]
+                refactored_fragility_id = fragility_collection.insert_one(new_curve_set).inserted_id
+                print("insert:", refactored_fragility_id)
+                refactored_fragility_ids.append(refactored_fragility_id)
+        # catch failed cases so we can debug
+        except:
+            print("failed fragility curve:", fragility_id)
+            print(traceback.format_exc())
 
     return counts, refactored_fragility_ids
 
 
 if __name__ == "__main__":
-    # dev/prod/local
-    # uri="mongodb://root:incorerocks@localhost:27019/?connectTimeoutMS=10000&authSource=admin&authMechanism=SCRAM-SHA-256"
-    # uri = "mongodb://root:incorerocks@localhost:27019/?connectTimeoutMS=10000&authSource=admin&authMechanism=SCRAM-SHA-256"
-    # uri = "mongodb://root:incorerocks@localhost:27018/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000&authSource=admin&authMechanism=SCRAM-SHA-256"
-    uri = "mongodb://localhost:27017/?connectTimeoutMS=10000"
+    # dev/test/local
+    uri = "mongodb://root:incorerocks@localhost:27019/?connectTimeoutMS=10000&authSource=admin&authMechanism=SCRAM-SHA-256"
+    # uri = "mongodb://root:incorerocks@localhost:27018/?connectTimeoutMS=10000&authSource=admin&authMechanism=SCRAM-SHA-256"
+    # uri = "mongodb://localhost:27017/?connectTimeoutMS=10000"
     client = MongoClient(uri)
 
     db = client['dfr3db']
     space_db = client['spacedb']
     fragility_collection = db['FragilitySet']
 
-    # only ids in "allowed spaces" can be refactored automatically
-    space_collection = space_db['Space']
-    allowed_spaces = ["ergo", "incore", "coe"]
-
-    allowed_id_list = []
-    for space_doc in space_collection.find({"metadata.name" : { "$in" : allowed_spaces}}):
-        for allowed_id in space_doc["members"]:
-            if allowed_id not in allowed_id_list:
-                allowed_id_list.append(allowed_id)
+    # # only ids in "allowed spaces" can be refactored automatically
+    # space_collection = space_db['Space']
+    # allowed_spaces = ["ergo", "incore", "coe"]
+    #
+    # allowed_id_list = []
+    # for space_doc in space_collection.find({"metadata.name" : { "$in" : allowed_spaces}}):
+    #     for allowed_id in space_doc["members"]:
+    #         if allowed_id not in allowed_id_list:
+    #             allowed_id_list.append(allowed_id)
 
     # get all fragilties and cross compare with allowed ids
     fragility_ids = []
     for doc in fragility_collection.find():
         fragility_id = str(doc["_id"])
-        if fragility_id in allowed_id_list:
-            fragility_ids.append(fragility_id)
+        # if fragility_id in allowed_id_list:
+        #     fragility_ids.append(fragility_id)
+        fragility_ids.append(fragility_id)
 
     # # local examples
     # fragility_ids = [
@@ -510,7 +563,7 @@ if __name__ == "__main__":
     #     "5ed6bfc35b6166000155d0d9",  # parametric
     # ]
 
-    stats, new_ids = convert_fragility_sets(fragility_collection, fragility_ids, save_exp=False, replace=False,
+    stats, new_ids = convert_fragility_sets(fragility_collection, fragility_ids, save_exp=False, replace=True,
                                      insert_new=False)
     print(stats)
 

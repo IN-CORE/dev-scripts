@@ -1,3 +1,12 @@
+""""
+This scripts adds the each users data/hazard/dfr3 usage status to space
+The scripts directly access the all the databases instead of using usage endpoint api,
+since the usage endpoint api doesn't have an ability to generate all the user id,
+unless when the proper auth token for each user is provide, which is not possible.
+
+To run this script for each cluster, not local,
+you HAVE TO DO PORT FORWARDING that points to the mongodb of the cluster.
+"""
 from pymongo import MongoClient
 
 DATA_TYPE_HAZARD = ["ergo:probabilisticEarthquakeRaster", "ergo:deterministicEarthquakeRaster",
@@ -11,9 +20,8 @@ DATA_TYPE_HAZARD = ["ergo:probabilisticEarthquakeRaster", "ergo:deterministicEar
 def update_space_base_allocation_information():
     # set parameters
     auth_needed = False
-    mongo_username = ""
+    mongo_username = "admin"
     mongo_password = ""
-
     host = "localhost"
     port = "27017"
 
@@ -24,9 +32,9 @@ def update_space_base_allocation_information():
         client = MongoClient('mongodb://%s:%s' % (host, port))
 
     # database
-    db_data = client["datadb_prod"]
-    db_dfr3 = client["dfr3_prod"]
-    db_hazard = client["hazarddb_prod"]
+    db_data = client["datadb"]
+    db_dfr3 = client["dfr3"]
+    db_hazard = client["hazarddb"]
     db_space = client["spacedb"]
 
     # data collections

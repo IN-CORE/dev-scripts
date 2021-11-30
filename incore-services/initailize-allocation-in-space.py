@@ -33,7 +33,7 @@ def update_space_base_allocation_information():
 
     # database
     db_data = client["datadb"]
-    db_dfr3 = client["dfr3"]
+    db_dfr3 = client["dfr3db"]
     db_hazard = client["hazarddb"]
     db_space = client["spacedb"]
 
@@ -116,8 +116,8 @@ def update_group_data(doc_id, doc):
 
 
 def update_usage_info(doc_id, collection, user_name, num_dataset, num_hazard_dataset, num_hazard, num_dfr3, file_size, hazard_file_size):
-    usage_json = {"datasets": num_dataset, "hazard_datasets": num_hazard_dataset, "hazards": num_hazard,
-                  "DFR3": num_dfr3, "dataset_size": file_size, "hazard_dataset_size": hazard_file_size}
+    usage_json = {"datasets": num_dataset, "hazardDatasets": num_hazard_dataset, "hazards": num_hazard,
+                  "dfr3": num_dfr3, "datasetSize": file_size, "hazardDatasetSize": hazard_file_size}
 
     collection.update(
         {"_id": doc_id},

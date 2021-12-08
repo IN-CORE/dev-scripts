@@ -116,7 +116,7 @@ def update_group_data(doc_id, doc):
 
 
 def update_usage_info(doc_id, collection, user_name, num_dataset, num_hazard_dataset, num_hazard, num_dfr3, file_size, hazard_file_size):
-    usage_json = {"className" : "edu.illinois.ncsa.incore.common.models.Allocation",
+    usage_json = {"className" : "edu.illinois.ncsa.incore.common.models.SpaceUsage",
                   "datasets": num_dataset, "hazardDatasets": num_hazard_dataset, "hazards": num_hazard,
                   "dfr3": num_dfr3, "datasetSize": file_size, "hazardDatasetSize": hazard_file_size}
 

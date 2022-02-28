@@ -32,9 +32,9 @@ def update_space_base_allocation_information():
         client = MongoClient('mongodb://%s:%s' % (host, port))
 
     # database
-    db_data = client["datadb"]
-    db_dfr3 = client["dfr3db"]
-    db_hazard = client["hazarddb"]
+    db_data = client["datadb_prod"]
+    db_dfr3 = client["dfr3db_prod"]
+    db_hazard = client["hazarddb_prod"]
     db_space = client["spacedb"]
 
     # data collections
@@ -59,6 +59,7 @@ def update_space_base_allocation_information():
 
     # space collections
     coll_space = db_space["Space"]
+    coll_user_allocation = db_space["UserAllocations"]
 
     #
     db_space_docs = coll_space.find({})
@@ -80,7 +81,8 @@ def update_space_base_allocation_information():
                 num_hazard = query_hazard_count(user_name, coll_ed, coll_em, coll_fd, coll_hd, coll_hw, coll_se,
                                                 coll_st, coll_td, coll_tm, coll_tsd)
                 num_dfr3 = query_dfr3_count(user_name, coll_f, coll_m, coll_r)
-                update_usage_info(doc_id, coll_space, user_name, num_dataset, num_hazard_dataset,
+
+                update_usage_info(doc_id, coll_user_allocation, user_name, num_dataset, num_hazard_dataset,
                                   num_hazard, num_dfr3, file_size, hazard_file_size)
                 # print(user_name, num_dataset, num_hazard_dataset, num_hazard, num_dfr3, file_size, hazard_file_size)
 
@@ -120,11 +122,24 @@ def update_usage_info(doc_id, collection, user_name, num_dataset, num_hazard_dat
                   "datasets": num_dataset, "hazardDatasets": num_hazard_dataset, "hazards": num_hazard,
                   "dfr3": num_dfr3, "datasetSize": file_size, "hazardDatasetSize": hazard_file_size}
 
-    collection.update(
-        {"_id": doc_id},
-        {"$set": {"usage": usage_json}}
-    )
-    print("Update usage for ", user_name)
+    # update if the user name is in there or create a new document
+    is_user_exist = False
+    query_list = list(collection.find({'username': user_name}))
+
+    if len(query_list) > 0:
+        print("Update usage for ", user_name)
+        collection.update(
+            {"username": user_name},
+            {"$set": {"usage": usage_json}}
+        )
+    else:
+        print("Create new usage document for ", user_name)
+        # create a new document
+        injson = {
+            "username" : user_name,
+            "usage" : usage_json
+        }
+        insersion = collection.insert_one(injson)
 
 
 def query_dfr3_count(username, coll_f, coll_m, coll_r):

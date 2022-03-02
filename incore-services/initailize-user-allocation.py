@@ -118,8 +118,7 @@ def update_group_data(doc_id, doc):
 
 
 def update_usage_info(doc_id, collection, user_name, num_dataset, num_hazard_dataset, num_hazard, num_dfr3, file_size, hazard_file_size):
-    usage_json = {"className" : "edu.illinois.ncsa.incore.common.models.SpaceUsage",
-                  "datasets": num_dataset, "hazardDatasets": num_hazard_dataset, "hazards": num_hazard,
+    usage_json = {"datasets": num_dataset, "hazardDatasets": num_hazard_dataset, "hazards": num_hazard,
                   "dfr3": num_dfr3, "datasetSize": file_size, "hazardDatasetSize": hazard_file_size}
 
     # update if the user name is in there or create a new document
@@ -130,14 +129,16 @@ def update_usage_info(doc_id, collection, user_name, num_dataset, num_hazard_dat
         print("Update usage for ", user_name)
         collection.update(
             {"username": user_name},
-            {"$set": {"usage": usage_json}}
+            {"$set": {"className": "edu.illinois.ncsa.incore.common.models.UserAllocations",
+             "usage": usage_json}}
         )
     else:
         print("Create new usage document for ", user_name)
         # create a new document
         injson = {
-            "username" : user_name,
-            "usage" : usage_json
+            "username": user_name,
+            "className": "edu.illinois.ncsa.incore.common.models.UserAllocations",
+            "usage": usage_json
         }
         insersion = collection.insert_one(injson)
 

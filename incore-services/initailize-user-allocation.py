@@ -32,9 +32,9 @@ def update_space_base_allocation_information():
         client = MongoClient('mongodb://%s:%s' % (host, port))
 
     # database
-    db_data = client["datadb_prod"]
-    db_dfr3 = client["dfr3db_prod"]
-    db_hazard = client["hazarddb_prod"]
+    db_data = client["datadb"]
+    db_dfr3 = client["dfr3db"]
+    db_hazard = client["hazarddb"]
     db_space = client["spacedb"]
 
     # data collections

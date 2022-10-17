@@ -20,7 +20,7 @@ DATA_TYPE_HAZARD = ["ergo:probabilisticEarthquakeRaster", "ergo:deterministicEar
 def update_space_base_allocation_information():
     # set parameters
     auth_needed = False
-    mongo_username = "admin"
+    mongo_username = "root"
     mongo_password = ""
     host = "localhost"
     port = "27017"

@@ -26,11 +26,11 @@ def main(arg):
     # create list of each shapefile entry
     shape_property_list = []
     schema = infile.schema.copy()
-    schema['properties']['uuid'] = 'str:30'
+    schema['properties']['guid'] = 'str:30'
     for in_feature in infile:
         # build shape feature
         tmp_feature = copy.deepcopy(in_feature)
-        tmp_feature['properties']['uuid'] = str(uuid.uuid4())
+        tmp_feature['properties']['guid'] = str(uuid.uuid4())
         shape_property_list.append(tmp_feature)
 
     with fiona.open(outfilename, 'w', 'ESRI Shapefile', schema) as output:

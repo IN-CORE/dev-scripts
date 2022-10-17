@@ -1,0 +1,3 @@
+gdal>=3.4.2
+rasterio>=1.2.10
+fiona>=1.8.21

@@ -1,3 +1,6 @@
 gdal>=3.4.2
 rasterio>=1.2.10
 fiona>=1.8.21
+geopandas>=0.10.2
+SQLAlchemy>=1.4.42
+GeoAlchemy2==0.12.5

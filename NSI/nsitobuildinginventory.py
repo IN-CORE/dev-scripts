@@ -2,6 +2,10 @@ import fiona
 import uuid
 import copy
 import geopandas as gpd
+import sqlalchemy
+
+from sqlalchemy import create_engine
+from config import Config as cfg
 
 # download NSI dataset
 
@@ -11,12 +15,71 @@ import geopandas as gpd
 #  the saving to geopackage output has a crs error due to the fiona problem
 
 def read_nsi_data(infile, outfile):
-    gpkgname = ""
+    # read geopackage
+    gpkgpd = read_geopkg_to_gdf(infile)
+
+    # add guid
+    gpkgpd = add_guid_to_geopkg(gpkgpd)
+
+    # upload geopackage to database
+    upload_postgres_gdf(gpkgpd)
+
+def read_geopkg_to_gdf(infile):
+    print("read GeoPackage")
     gpkgpd = None
     for layername in fiona.listlayers(infile):
         gpkgpd = gpd.read_file(infile, layer=layername, crs='EPSG:4326')
-        gpkgname = layername
-    gpkgpd.to_file(outfile, layer=layername, driver="GPKG")
+
+    return gpkgpd
+
+# add guid to geodataframe
+def add_guid_to_geopkg(gpkgpd):
+    print("create guid column")
+    for i, row in gpkgpd.iterrows():
+        guid_val = str(uuid.uuid4())
+        gpkgpd.at[i, 'guid'] = guid_val
+
+    return gpkgpd
+
+# save new geopackage
+def df_to_geopkg(in_gdf):
+    print("create output geopackage")
+    in_gdf.to_file(outfile, driver="GPKG")
+
+# upload file to postgres
+def upload_postgres(infile):
+    # read in the data
+    gpkgpd = None
+    for layername in fiona.listlayers(infile):
+        gpkgpd = gpd.read_file(infile, layer=layername, crs='EPSG:4326')
+
+    upload_postgres_gdf(gpkgpd)
+
+# upload geodataframe to postgres
+def upload_postgres_gdf(in_gdf):
+    try:
+        # create the sqlalchemy connection engine
+        db_connection_url = "postgresql://%s:%s@%s:%s/%s" % \
+                            (cfg.DB_USERNAME, cfg.DB_PASSWORD, cfg.DB_URL, cfg.DB_PORT, cfg.DB_NAME)
+        con = create_engine(db_connection_url)
+
+        # Drop nulls in the geometry column
+        print('Dropping ' + str(in_gdf.geometry.isna().sum()) + ' nulls.')
+        in_gdf = in_gdf.dropna(subset=['geometry'])
+
+        # Push the geodataframe to postgresql
+        print('uploading GeoPackage to database')
+        in_gdf.to_postgis("nsi_raw", con, index=False, if_exists='replace')
+
+        con.dispose()
+
+        return True
+
+    except sqlalchemy.exc.OperationalError:
+        print("Error in connecting database server")
+
+        return False
+
 
 # def read_nsi_data(infile, outfile):
 #     infile = fiona.open(infile)
@@ -30,7 +93,7 @@ def read_nsi_data(infile, outfile):
 #     # create list of each shapefile entry
 #     shape_property_list = []
 #     schema = infile.schema.copy()
-#     schema['properties']['uuid'] = 'str:30'
+#     schema['properties']['guid'] = 'str:30'
 #     for in_feature in infile:
 #         # build shape feature
 #         tmp_feature = copy.deepcopy(in_feature)
@@ -60,3 +123,4 @@ if __name__ == '__main__':
     infile = "C:\\Users\\ywkim\\Documents\\NIST\\NSI\\joplin.gpkg"
     outfile = "C:\\Users\\ywkim\\Documents\\NIST\\NSI\\test.gpkg"
     read_nsi_data(infile, outfile)
+    # upload_postgres(infile)

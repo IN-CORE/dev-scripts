@@ -24,5 +24,7 @@ class Config:
     DB_PASSWORD = os.getenv('DB_PASSWORD')
 
     #NSI parameters
-    NSI_URL = os.getenv('NSI_URL', 'https://nsi.sec.usace.army.mil/downloads/nsi_2022/')
-    NSI_PREFIX = os.getenv('NSI_PREFIX', 'nsi_2022_')
+    NSI_URL_STATE = os.getenv('NSI_URL_STATE')
+    NSI_PREFIX = os.getenv('NSI_PREFIX')
+    NSI_URL_FIPS = os.getenv('NSI_URL_FIPS')
+    NSI_URL_FIPS_INTERNAL = os.getenv('NSI_URL_FIPS_INTERNAL')

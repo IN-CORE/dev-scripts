@@ -5,3 +5,5 @@ geopandas>=0.10.2
 SQLAlchemy>=1.4.42
 GeoAlchemy2==0.12.5
 requests>=2.20.0
+Shapely>=1.8.2
+geojson>=2.5.0

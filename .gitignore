@@ -53,8 +53,8 @@ utils/fragility_utils/data/
 *test*
 
 # env files
-*.env
-NSI/.env
+*.env*
+*NSI/.env*
 
 # build files
 *pycache*

@@ -1,8 +1,9 @@
 import fiona
 import uuid
-import copy
+import os
 import geopandas as gpd
 import sqlalchemy
+import requests
 
 from sqlalchemy import create_engine
 from config import Config as cfg
@@ -14,7 +15,7 @@ from config import Config as cfg
 #  However, even though this method has more advantage,
 #  the saving to geopackage output has a crs error due to the fiona problem
 
-def read_nsi_data(infile, outfile):
+def main(infile, outfile):
     # read geopackage
     gpkgpd = read_geopkg_to_gdf(infile)
 
@@ -23,6 +24,21 @@ def read_nsi_data(infile, outfile):
 
     # upload geopackage to database
     upload_postgres_gdf(gpkgpd)
+
+def download_nsi_data(state_fips):
+    file_name = cfg.NSI_PREFIX + str(state_fips) + ".gpkg.zip"
+    file_url = "%s/%s" % (cfg.NSI_URL, file_name)
+    print("Dowloading NSI data for the state: " + str(state_fips))
+    r = requests.get(file_url, stream = True)
+    # r = requests.get(file_url)
+    download_filename = os.path.join("data", file_name)
+
+    with open(download_filename,"wb") as zipfile:
+        for chunk in r.iter_content(chunk_size=1024):
+            # writing one chunk at a time to pdf file
+            if chunk:
+                zipfile.write(chunk)
+        # zipfile.write(r.content)
 
 def read_geopkg_to_gdf(infile):
     print("read GeoPackage")
@@ -47,7 +63,7 @@ def df_to_geopkg(in_gdf):
     in_gdf.to_file(outfile, driver="GPKG")
 
 # upload file to postgres
-def upload_postgres(infile):
+def upload_postgres_from_gpk(infile):
     # read in the data
     gpkgpd = None
     for layername in fiona.listlayers(infile):
@@ -72,6 +88,8 @@ def upload_postgres_gdf(in_gdf):
         in_gdf.to_postgis("nsi_raw", con, index=False, if_exists='replace')
 
         con.dispose()
+
+        print('uploading to database has finished.')
 
         return True
 
@@ -122,5 +140,8 @@ if __name__ == '__main__':
     # sp.ExportToWkt()
     infile = "C:\\Users\\ywkim\\Documents\\NIST\\NSI\\joplin.gpkg"
     outfile = "C:\\Users\\ywkim\\Documents\\NIST\\NSI\\test.gpkg"
-    read_nsi_data(infile, outfile)
+    # read_nsi_data(infile, outfile)
     # upload_postgres(infile)
+    # download_nsi_data(44)
+    gdf = read_geopkg_to_gdf(infile)
+    upload_postgres_gdf(gdf)

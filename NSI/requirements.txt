@@ -4,3 +4,4 @@ fiona>=1.8.21
 geopandas>=0.10.2
 SQLAlchemy>=1.4.42
 GeoAlchemy2==0.12.5
+requests>=2.20.0

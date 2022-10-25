@@ -25,4 +25,4 @@ class Config:
 
     #NSI parameters
     NSI_URL = os.getenv('NSI_URL', 'https://nsi.sec.usace.army.mil/downloads/nsi_2022/')
-    NSI_PREFIX = os.getend('NSI_PREFIX', 'nsi_2022_')
+    NSI_PREFIX = os.getenv('NSI_PREFIX', 'nsi_2022_')

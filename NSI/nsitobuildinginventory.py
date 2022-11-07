@@ -4,7 +4,7 @@ from nsiutils import NsiUtils
 
 
 def main():
-    infile = "C:\\Users\\ywkim\\Documents\\NIST\\NSI\\joplin.gpkg"
+    infile = ""
     in_fips_file = "data\\us_county_fips_2018.csv"
 
     # create fips list from fips file

@@ -15,6 +15,7 @@ class NsiUtils():
     # this will download feature collection json by using county fips
     # fips: 15005
     def get_features_by_fips(state_county_fips):
+        print("request data for " + str(state_county_fips) + " from NSI endpoint")
         json_url = cfg.NSI_URL_FIPS + str(state_county_fips)
         result = requests.get(json_url)
         result.raise_for_status()

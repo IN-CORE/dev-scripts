@@ -17,8 +17,11 @@ def main():
         # get feature collection from NIS api
         gdf = NsiUtils.get_features_by_fips(fips)
 
-        # save gdf to geopackage
-        NsiUtils.df_to_geopkg(gdf, outfile)
+        # upload geodataframe to database
+        NsiUtils.upload_postgres_gdf(gdf)
+
+        # # save gdf to geopackage
+        # NsiUtils.df_to_geopkg(gdf, outfile)
 
 
 def create_county_fips_from_file(infile):

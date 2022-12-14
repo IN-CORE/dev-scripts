@@ -171,7 +171,7 @@ if __name__ == "__main__":
             "testbed": "joplin",
             "url": "https://incore-dev.ncsa.illinois.edu/maestro/joplin",
             "group_name": "incore_joplin_user",
-            "group_id": "2b691eaf-22ff-41ea-b8f5-d835a4a9e35a"  # get this informatio from keycloak
+            "group_id": "2b691eaf-22ff-41ea-b8f5-d835a4a9e35a"  # get this information from keycloak
         },
     ]
 

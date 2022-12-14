@@ -165,7 +165,7 @@ if __name__ == "__main__":
             "testbed": "galveston",
             "url": "https://incore-dev.ncsa.illinois.edu/maestro/galveston",
             "group_name": "incore_galveston_user",
-            "group_id": "c098e80e-64a0-43b0-91b2-66a79dadb225"  # get this informatio from keycloak
+            "group_id": "c098e80e-64a0-43b0-91b2-66a79dadb225"  # get this information from keycloak
         },
         {
             "testbed": "joplin",

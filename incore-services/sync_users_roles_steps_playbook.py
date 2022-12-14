@@ -159,7 +159,7 @@ if __name__ == "__main__":
             "testbed": "slc",
             "url": "https://incore-dev.ncsa.illinois.edu/maestro/slc",
             "group_name": "incore_slc_user",
-            "group_id": "18ec08f4-86ae-4ec3-bb57-54c19e5398cf"  # get this informatio from keycloak
+            "group_id": "18ec08f4-86ae-4ec3-bb57-54c19e5398cf"  # get this information from keycloak
         },
         {
             "testbed": "galveston",

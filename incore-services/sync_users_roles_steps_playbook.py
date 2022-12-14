@@ -111,7 +111,7 @@ def get_userinfo_from_keycloak(username_list, keycloak_base_url, admin_username,
     return userinfo_list
 
 
-def get_userinfo_from_keycloa_group(group_id, keycloak_base_url, admin_username, admin_password):
+def get_userinfo_from_keycloak_group(group_id, keycloak_base_url, admin_username, admin_password):
     """
     given list of usernames get their userinfo from keycloak?
     :param group_id:

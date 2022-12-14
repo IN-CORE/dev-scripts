@@ -1,6 +1,6 @@
 import json
 import requests
-
+import os
 
 def create_roles(base_url, headers):
     """
@@ -80,7 +80,7 @@ def create_user(base_url, headers, userinfo_list):
         print(response.text)
 
 
-def get_userinfo_from_keycloak(username_list, keycloak_base_url, admin_username, admin_password):
+def get_userinfo_from_keycloak(username_list, keycloak_base_url, admin_username, admin_password, realm="In-core"):
     """
     given list of usernames get their userinfo from keycloak?
     :param username_list:
@@ -96,7 +96,7 @@ def get_userinfo_from_keycloak(username_list, keycloak_base_url, admin_username,
     })
     token = token_response.json()["access_token"]
 
-    userinfo_url = keycloak_base_url + "/admin/realms/In-core/users?exact=true"
+    userinfo_url = keycloak_base_url + "/admin/realms/{0}/users?exact=true".format(realm)
     userinfo_list = []
     for username in username_list:
         querystring = {"username": username}
@@ -111,7 +111,7 @@ def get_userinfo_from_keycloak(username_list, keycloak_base_url, admin_username,
     return userinfo_list
 
 
-def get_userinfo_from_keycloak_group(group_id, keycloak_base_url, admin_username, admin_password):
+def get_userinfo_from_keycloak_group(group_id, keycloak_base_url, admin_username, admin_password, realm="In-core"):
     """
     given list of usernames get their userinfo from keycloak?
     :param group_id:
@@ -127,7 +127,7 @@ def get_userinfo_from_keycloak_group(group_id, keycloak_base_url, admin_username
     })
     token = token_response.json()["access_token"]
 
-    userinfo_url = keycloak_base_url + "/admin/realms/In-core/groups/{0}/members".format(group_id)
+    userinfo_url = keycloak_base_url + "/admin/realms/{0}/groups/{1}/members".format(realm, group_id)
     response = requests.request("GET", userinfo_url, headers={
         'Content-Type': "application/x-www-form-urlencoded",
         'cache-control': "no-cache",
@@ -143,33 +143,35 @@ def assign_roles(base_url):
 
 
 if __name__ == "__main__":
-    auth_token = ""
+    realm = os.getenv("REALM")
+    auth_token = os.getenv("AUTH_TOKEN")
+    server_base_url = os.getenv("SERVER_BASE_URL")
+    admin_username = os.getenv("ADMIN_USERNAME")
+    admin_password = os.getenv("ADMIN_PASSWORD")
+
     headers = {
         'Authorization': auth_token,
         'Content-Type': "application/json",
         'cache-control': "no-cache"
     }
-
-    keycloak_base_url = "https://incore-dev.ncsa.illinois.edu/auth"
-    admin_username = ""
-    admin_password = ""
+    keycloak_base_url = server_base_url + "/auth"
 
     config = [
         {
             "testbed": "slc",
-            "url": "https://incore-dev.ncsa.illinois.edu/maestro/slc",
+            "url": server_base_url + "/maestro/slc",
             "group_name": "incore_slc_user",
             "group_id": "18ec08f4-86ae-4ec3-bb57-54c19e5398cf"  # get this information from keycloak
         },
         {
             "testbed": "galveston",
-            "url": "https://incore-dev.ncsa.illinois.edu/maestro/galveston",
+            "url": server_base_url + "/maestro/galveston",
             "group_name": "incore_galveston_user",
             "group_id": "c098e80e-64a0-43b0-91b2-66a79dadb225"  # get this information from keycloak
         },
         {
             "testbed": "joplin",
-            "url": "https://incore-dev.ncsa.illinois.edu/maestro/joplin",
+            "url": server_base_url + "/maestro/joplin",
             "group_name": "incore_joplin_user",
             "group_id": "2b691eaf-22ff-41ea-b8f5-d835a4a9e35a"  # get this information from keycloak
         },
@@ -180,8 +182,6 @@ if __name__ == "__main__":
         create_roles(item["url"], headers)
         create_steps(item["url"], headers)
 
-        userinfo_list = get_userinfo_from_keycloa_group(item["group_id"],
-                                                        keycloak_base_url,
-                                                        admin_username,
-                                                        admin_password)
+        userinfo_list = get_userinfo_from_keycloak_group(item["group_id"], keycloak_base_url, admin_username,
+                                                         admin_password,realm=realm)
         create_user(item["url"], headers, userinfo_list)

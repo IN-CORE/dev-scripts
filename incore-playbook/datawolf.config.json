@@ -1,0 +1,3617 @@
+{
+  "title": "joplin-community-wf-v1",
+  "description": "2022-02-08 full workflow v1",
+  "wfTitle": "joplin-community-wf-v1",
+  "wfId": "05e5ac18-c202-4a8b-973d-01afcae20b14",
+  "creatorId": "d39e1679-4dcc-4158-9655-a604801871a7",
+  "inputs": {
+    "parameters": [
+      {
+        "title": "Result Name",
+        "description": "Result name",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "103b5143-8059-4052-bb9c-10fb6b956471",
+            "parameters": {
+              "step": "Bldg-Max-Dmg-State",
+              "title": "Result Name"
+            }
+          },
+          {
+            "paramId": "ee60ca46-8b07-4940-8744-4530d258d7b1",
+            "parameters": {
+              "step": "Pole-Max-Dmg-State",
+              "title": "Result Name"
+            }
+          },
+          {
+            "paramId": "bb421a94-e990-483d-d08f-7b67961eb2b2",
+            "parameters": {
+              "step": "Sub-Max-Dmg-State",
+              "title": "Result Name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Analysis",
+        "description": "Analysis",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "pyincore.analyses.buildingfunctionality.buildingfunctionality:BuildingFunctionality",
+        "parametersMap": [
+          {
+            "paramId": "9c22465e-b965-4b6f-963a-de3ddf14b0da",
+            "parameters": {
+              "step": "BuildingFunctionality",
+              "title": "Analysis"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "6a22d9f4-dee0-4fae-e594-bb1c0e0f9b66",
+            "parameters": {
+              "step": "BuildingFunctionality",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "result_name",
+        "description": "result_name",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "331c5a65-b39e-4f62-8668-7ef31b1cd9d4",
+            "parameters": {
+              "step": "BuildingFunctionality",
+              "title": "result_name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "interdependency_dictionary",
+        "description": "interdependency_dictionary",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "18f68644-5601-4214-bbb4-92bce2092a47",
+            "parameters": {
+              "step": "BuildingFunctionality",
+              "title": "interdependency_dictionary"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Analysis",
+        "description": "Analysis",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "pyincore.analyses.montecarlofailureprobability.montecarlofailureprobability:MonteCarloFailureProbability",
+        "parametersMap": [
+          {
+            "paramId": "a83b9c43-c4b2-4597-e876-99741eca7912",
+            "parameters": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "Analysis"
+            }
+          },
+          {
+            "paramId": "2687baeb-6c3d-4f88-d213-690da64fdfb7",
+            "parameters": {
+              "step": "Poles-MonteCarloFailureProbability",
+              "title": "Analysis"
+            }
+          },
+          {
+            "paramId": "fa44c177-6fc7-4bd1-c084-b3c9a64feb17",
+            "parameters": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "Analysis"
+            }
+          }
+        ]
+      },
+      {
+        "title": "result_name",
+        "description": "result_name",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "db1d7f2b-be47-41f1-87f6-d4624e0c8de9",
+            "parameters": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "result_name"
+            }
+          },
+          {
+            "paramId": "9abe8136-f0b4-454b-affd-9f390ad64ea2",
+            "parameters": {
+              "step": "Poles-MonteCarloFailureProbability",
+              "title": "result_name"
+            }
+          },
+          {
+            "paramId": "ecc1d35f-3a34-46d9-e306-dc8bc5738eed",
+            "parameters": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "result_name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "num_cpu",
+        "description": "num_cpu",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "72d2212a-9aa6-4511-c0b8-6990e5f51667",
+            "parameters": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "num_cpu"
+            }
+          },
+          {
+            "paramId": "73f64797-0a63-490a-fddd-992b19343912",
+            "parameters": {
+              "step": "Poles-MonteCarloFailureProbability",
+              "title": "num_cpu"
+            }
+          },
+          {
+            "paramId": "145a7b7c-19f3-40cb-9d7f-3131d8d39d1b",
+            "parameters": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "num_cpu"
+            }
+          }
+        ]
+      },
+      {
+        "title": "damage_interval_keys",
+        "description": "damage_interval_keys",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "d1b0b142-b755-4ad7-8959-ba1ffe9b2864",
+            "parameters": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "damage_interval_keys"
+            }
+          },
+          {
+            "paramId": "1c6b33a8-5cdd-407a-c27e-81be014bb8b7",
+            "parameters": {
+              "step": "Poles-MonteCarloFailureProbability",
+              "title": "damage_interval_keys"
+            }
+          },
+          {
+            "paramId": "2d42149f-dee4-4888-d26c-f4150bfd62c3",
+            "parameters": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "damage_interval_keys"
+            }
+          }
+        ]
+      },
+      {
+        "title": "failure_state_keys",
+        "description": "failure_state_keys",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "f94aea0f-4276-48e6-8f1e-dd6b1eb3ce78",
+            "parameters": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "failure_state_keys"
+            }
+          },
+          {
+            "paramId": "e3ef2a1d-38a6-468c-8c96-49c61736af97",
+            "parameters": {
+              "step": "Poles-MonteCarloFailureProbability",
+              "title": "failure_state_keys"
+            }
+          },
+          {
+            "paramId": "433418a3-10b6-42e7-e947-bc2a4a9f7334",
+            "parameters": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "failure_state_keys"
+            }
+          }
+        ]
+      },
+      {
+        "title": "seed",
+        "description": "seed",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "85105a63-8cba-408d-de57-57d57f7742e4",
+            "parameters": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "seed"
+            }
+          },
+          {
+            "paramId": "4fcef96f-c810-4ef4-ed69-abaeef288e5a",
+            "parameters": {
+              "step": "Poles-MonteCarloFailureProbability",
+              "title": "seed"
+            }
+          },
+          {
+            "paramId": "03d4fe6f-d9d6-4bfb-900d-5c17c6a91b49",
+            "parameters": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "seed"
+            }
+          }
+        ]
+      },
+      {
+        "title": "num_samples",
+        "description": "num_samples",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "a45d5c3a-dd94-4780-a366-adda08b7c9a4",
+            "parameters": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "num_samples"
+            }
+          },
+          {
+            "paramId": "9012f01d-5c76-4689-934e-4bd76a9e3fc9",
+            "parameters": {
+              "step": "Poles-MonteCarloFailureProbability",
+              "title": "num_samples"
+            }
+          },
+          {
+            "paramId": "1fa63fcb-7093-4737-b3a8-0e1fd6c00cac",
+            "parameters": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "num_samples"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "5a299c82-de5a-425e-c614-4131f832bfb2",
+            "parameters": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "IN-CORE Service"
+            }
+          },
+          {
+            "paramId": "ff288535-08e9-4faa-da8f-691f7642e641",
+            "parameters": {
+              "step": "Poles-MonteCarloFailureProbability",
+              "title": "IN-CORE Service"
+            }
+          },
+          {
+            "paramId": "62a70e86-ae79-42cd-f5a5-58c9cabb2b05",
+            "parameters": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Analysis",
+        "description": "Analysis",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "pyincore.analyses.epfdamage.epfdamage:EpfDamage",
+        "parametersMap": [
+          {
+            "paramId": "c1b1ef7f-11e2-4072-f9af-b8a42e2c66c9",
+            "parameters": {
+              "step": "Sub-EpfDamage",
+              "title": "Analysis"
+            }
+          },
+          {
+            "paramId": "4025182e-c358-402f-87fe-5b2d90c89b27",
+            "parameters": {
+              "step": "Poles-EpfDamage",
+              "title": "Analysis"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "b9ef16f4-c7ad-4102-d655-3e003d07e19a",
+            "parameters": {
+              "step": "Sub-EpfDamage",
+              "title": "IN-CORE Service"
+            }
+          },
+          {
+            "paramId": "6e9d5ffd-422d-4d0e-9d96-9fd2d79b339e",
+            "parameters": {
+              "step": "Poles-EpfDamage",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "result_name",
+        "description": "result_name",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "ffca1ace-2264-4dbe-e7c8-ecedc2dc748b",
+            "parameters": {
+              "step": "Sub-EpfDamage",
+              "title": "result_name"
+            }
+          },
+          {
+            "paramId": "622f0897-2e7a-40c1-dc37-654f5ebe2e8b",
+            "parameters": {
+              "step": "Poles-EpfDamage",
+              "title": "result_name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "hazard_type",
+        "description": "hazard_type",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "706184d5-85da-4245-c28e-98fde1bf3150",
+            "parameters": {
+              "step": "Sub-EpfDamage",
+              "title": "hazard_type"
+            }
+          },
+          {
+            "paramId": "02ca9666-1091-487b-ab3c-2641eb372c0f",
+            "parameters": {
+              "step": "Poles-EpfDamage",
+              "title": "hazard_type"
+            }
+          }
+        ]
+      },
+      {
+        "title": "hazard_id",
+        "description": "hazard_id",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "69a4732f-c914-40ca-c2ac-f61242bf2190",
+            "parameters": {
+              "step": "Sub-EpfDamage",
+              "title": "hazard_id"
+            }
+          },
+          {
+            "paramId": "c477df17-8028-4179-829a-5bba7a4c13ed",
+            "parameters": {
+              "step": "Poles-EpfDamage",
+              "title": "hazard_id"
+            }
+          }
+        ]
+      },
+      {
+        "title": "fragility_key",
+        "description": "fragility_key",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "43c0d905-d219-40c1-a95a-aabbc164f59c",
+            "parameters": {
+              "step": "Sub-EpfDamage",
+              "title": "fragility_key"
+            }
+          },
+          {
+            "paramId": "ae6ead2f-4897-4a3a-e1d6-ca020bceb35d",
+            "parameters": {
+              "step": "Poles-EpfDamage",
+              "title": "fragility_key"
+            }
+          }
+        ]
+      },
+      {
+        "title": "liquefaction_fragility_key",
+        "description": "liquefaction_fragility_key",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "a0c5a39b-ff11-4898-a2dc-dd5ca139c732",
+            "parameters": {
+              "step": "Sub-EpfDamage",
+              "title": "liquefaction_fragility_key"
+            }
+          },
+          {
+            "paramId": "fa910dbe-8d26-491e-a6ee-01fcff1eb99a",
+            "parameters": {
+              "step": "Poles-EpfDamage",
+              "title": "liquefaction_fragility_key"
+            }
+          }
+        ]
+      },
+      {
+        "title": "use_liquefaction",
+        "description": "use_liquefaction",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "80231a18-429b-43fa-de34-c8ab054b417e",
+            "parameters": {
+              "step": "Sub-EpfDamage",
+              "title": "use_liquefaction"
+            }
+          },
+          {
+            "paramId": "343d182b-7970-467e-d997-a8e5e1f28aa4",
+            "parameters": {
+              "step": "Poles-EpfDamage",
+              "title": "use_liquefaction"
+            }
+          }
+        ]
+      },
+      {
+        "title": "liquefaction_geology_dataset_id",
+        "description": "liquefaction_geology_dataset_id",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "e0a8a11f-ed36-49b4-a6e8-a3c92c939bb6",
+            "parameters": {
+              "step": "Sub-EpfDamage",
+              "title": "liquefaction_geology_dataset_id"
+            }
+          },
+          {
+            "paramId": "a7575753-ccd0-4086-987a-fc4713317bf0",
+            "parameters": {
+              "step": "Poles-EpfDamage",
+              "title": "liquefaction_geology_dataset_id"
+            }
+          }
+        ]
+      },
+      {
+        "title": "use_hazard_uncertainty",
+        "description": "use_hazard_uncertainty",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "2cf39637-68c6-4dfb-f953-3494363483cd",
+            "parameters": {
+              "step": "Sub-EpfDamage",
+              "title": "use_hazard_uncertainty"
+            }
+          },
+          {
+            "paramId": "e4b6cd26-bcdd-4831-8ca8-a90be49fdc95",
+            "parameters": {
+              "step": "Poles-EpfDamage",
+              "title": "use_hazard_uncertainty"
+            }
+          }
+        ]
+      },
+      {
+        "title": "num_cpu",
+        "description": "num_cpu",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "9eefb251-7b32-4101-823e-1da5f3bfcda5",
+            "parameters": {
+              "step": "Sub-EpfDamage",
+              "title": "num_cpu"
+            }
+          },
+          {
+            "paramId": "3c6a334a-c0af-4768-a183-f89ae0b3edeb",
+            "parameters": {
+              "step": "Poles-EpfDamage",
+              "title": "num_cpu"
+            }
+          }
+        ]
+      },
+      {
+        "title": "epfs",
+        "description": "epfs",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "03bf9f80-8544-464d-c867-d7c0c0c495b4",
+            "parameters": {
+              "step": "Sub-EpfDamage",
+              "title": "epfs"
+            }
+          },
+          {
+            "paramId": "44ebd2e5-100a-48af-d7c7-8e98bf9bcf7b",
+            "parameters": {
+              "step": "Poles-EpfDamage",
+              "title": "epfs"
+            }
+          }
+        ]
+      },
+      {
+        "title": "dfr3_mapping_set",
+        "description": "dfr3_mapping_set",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "6cf1350a-b5d8-4921-fed0-35acd1b2ab12",
+            "parameters": {
+              "step": "Sub-EpfDamage",
+              "title": "dfr3_mapping_set"
+            }
+          },
+          {
+            "paramId": "5b7dbe15-888a-4b7f-a4c2-df504ddeadeb",
+            "parameters": {
+              "step": "Poles-EpfDamage",
+              "title": "dfr3_mapping_set"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Analysis",
+        "description": "Analysis",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "pyincore.analyses.joplincge.joplincge:JoplinCGEModel",
+        "parametersMap": [
+          {
+            "paramId": "b9826753-b3bd-4e7f-f174-68c515fc3ceb",
+            "parameters": {
+              "step": "JoplinCGEModel",
+              "title": "Analysis"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "7fbf0a0b-3a5b-4088-aa51-a6a96ae98516",
+            "parameters": {
+              "step": "JoplinCGEModel",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "model_iterations",
+        "description": "model_iterations",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "39abfe94-14b2-4b93-b24d-3ca26a1adb38",
+            "parameters": {
+              "step": "JoplinCGEModel",
+              "title": "model_iterations"
+            }
+          }
+        ]
+      },
+      {
+        "title": "solver_path",
+        "description": "solver_path",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "7a208fa7-0d73-4cc0-fb8b-95d8ec3467d0",
+            "parameters": {
+              "step": "JoplinCGEModel",
+              "title": "solver_path"
+            }
+          }
+        ]
+      },
+      {
+        "title": "SAM",
+        "description": "SAM",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "675571d3-389e-4995-9f92-8d94db69386f",
+            "parameters": {
+              "step": "JoplinCGEModel",
+              "title": "SAM"
+            }
+          }
+        ]
+      },
+      {
+        "title": "BB",
+        "description": "BB",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "f4f58f3d-a452-467b-dafd-9637cb7a0ef5",
+            "parameters": {
+              "step": "JoplinCGEModel",
+              "title": "BB"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IOUT",
+        "description": "IOUT",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "5d5a229a-e840-44e5-b77b-9f2ac866fcb6",
+            "parameters": {
+              "step": "JoplinCGEModel",
+              "title": "IOUT"
+            }
+          }
+        ]
+      },
+      {
+        "title": "MISC",
+        "description": "MISC",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "0dea4685-f7e0-4ed0-bc46-60a73032678d",
+            "parameters": {
+              "step": "JoplinCGEModel",
+              "title": "MISC"
+            }
+          }
+        ]
+      },
+      {
+        "title": "MISCH",
+        "description": "MISCH",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "ccf99aba-1875-4ff6-ae63-e6f74d1b3f35",
+            "parameters": {
+              "step": "JoplinCGEModel",
+              "title": "MISCH"
+            }
+          }
+        ]
+      },
+      {
+        "title": "LANDCAP",
+        "description": "LANDCAP",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "68034c2d-6849-478f-abb5-16c35828298c",
+            "parameters": {
+              "step": "JoplinCGEModel",
+              "title": "LANDCAP"
+            }
+          }
+        ]
+      },
+      {
+        "title": "EMPLOY",
+        "description": "EMPLOY",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "5b076579-2a34-444e-ee25-f08b9a76a513",
+            "parameters": {
+              "step": "JoplinCGEModel",
+              "title": "EMPLOY"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IGTD",
+        "description": "IGTD",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "abe45db7-5779-400a-a32a-958a7f1c0ba1",
+            "parameters": {
+              "step": "JoplinCGEModel",
+              "title": "IGTD"
+            }
+          }
+        ]
+      },
+      {
+        "title": "TAUFF",
+        "description": "TAUFF",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "9b22df95-761b-4117-8274-7a5e9003b52c",
+            "parameters": {
+              "step": "JoplinCGEModel",
+              "title": "TAUFF"
+            }
+          }
+        ]
+      },
+      {
+        "title": "JOBCR",
+        "description": "JOBCR",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "e8aff2a3-41a3-4b50-8af5-0fe8aceef671",
+            "parameters": {
+              "step": "JoplinCGEModel",
+              "title": "JOBCR"
+            }
+          }
+        ]
+      },
+      {
+        "title": "OUTCR",
+        "description": "OUTCR",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "d7dd88c2-2e53-4468-94ac-c8dbefae4ac2",
+            "parameters": {
+              "step": "JoplinCGEModel",
+              "title": "OUTCR"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Analysis",
+        "description": "Analysis",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "pyincore.analyses.capitalshocks.capitalshocks:CapitalShocks",
+        "parametersMap": [
+          {
+            "paramId": "7e0e69d0-3898-4cc1-d1f9-328f1b93d788",
+            "parameters": {
+              "step": "CapitalShocks",
+              "title": "Analysis"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "3576723f-5ec5-4ed9-960f-e75cf7c61bb8",
+            "parameters": {
+              "step": "CapitalShocks",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "result_name",
+        "description": "result_name",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "fa0d6d5e-5ffa-4059-d02a-a94d5e42c72b",
+            "parameters": {
+              "step": "CapitalShocks",
+              "title": "result_name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "buildings",
+        "description": "buildings",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "95ec7301-e030-4e05-a203-b807882a7f0f",
+            "parameters": {
+              "step": "CapitalShocks",
+              "title": "buildings"
+            }
+          }
+        ]
+      },
+      {
+        "title": "buildings_to_sectors",
+        "description": "buildings_to_sectors",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "3894afc2-b039-4b86-8e17-644c0f09d8b5",
+            "parameters": {
+              "step": "CapitalShocks",
+              "title": "buildings_to_sectors"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Result Name",
+        "description": "Result name",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "d97dfb84-ce8a-4320-d151-43ce37177467",
+            "parameters": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Result Name"
+            }
+          },
+          {
+            "paramId": "10c701be-1497-4206-ff25-e6610ce53e3b",
+            "parameters": {
+              "step": "Pole-Max-Store Result",
+              "title": "Result Name"
+            }
+          },
+          {
+            "paramId": "ba4bee68-42a4-4b1a-bd0c-b809e949a34b",
+            "parameters": {
+              "step": "Sub-Max-Store Result",
+              "title": "Result Name"
+            }
+          },
+          {
+            "paramId": "5118208c-40ed-4837-9334-6c82d447e0f4",
+            "parameters": {
+              "step": "Bldg-Func-Store Result",
+              "title": "Result Name"
+            }
+          },
+          {
+            "paramId": "e225d26f-7fe1-4058-f400-a0f8c321e70c",
+            "parameters": {
+              "step": "HeatMap-Store Result",
+              "title": "Result Name"
+            }
+          },
+          {
+            "paramId": "53d37c17-3a96-4177-8d55-fe657f7abb5d",
+            "parameters": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Result Name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Source ID",
+        "description": "parent id",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "1a38efe9-0b6e-4be7-e816-043c94a724bb",
+            "parameters": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Source ID"
+            }
+          },
+          {
+            "paramId": "9d212cd0-12f0-4399-bdaf-345dfb193398",
+            "parameters": {
+              "step": "Pole-Max-Store Result",
+              "title": "Source ID"
+            }
+          },
+          {
+            "paramId": "7f0b9603-908b-49bf-be57-fca4c26463df",
+            "parameters": {
+              "step": "Sub-Max-Store Result",
+              "title": "Source ID"
+            }
+          },
+          {
+            "paramId": "90169332-180e-41c2-f483-18e25e7618f7",
+            "parameters": {
+              "step": "Bldg-Func-Store Result",
+              "title": "Source ID"
+            }
+          },
+          {
+            "paramId": "a7392299-a2e4-4154-b9fa-f08d5c6f643d",
+            "parameters": {
+              "step": "HeatMap-Store Result",
+              "title": "Source ID"
+            }
+          },
+          {
+            "paramId": "88f4b631-ef6f-44db-ef1b-2fbb553a3dad",
+            "parameters": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Source ID"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE service",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "b668dedd-66ec-4fa0-e450-42e181accd7d",
+            "parameters": {
+              "step": "Bldg-Max-Store Result",
+              "title": "IN-CORE Service"
+            }
+          },
+          {
+            "paramId": "48105838-ae85-4773-ba6a-7805abac1dbd",
+            "parameters": {
+              "step": "Pole-Max-Store Result",
+              "title": "IN-CORE Service"
+            }
+          },
+          {
+            "paramId": "93f51c98-ab21-4276-f62f-6766e8f29607",
+            "parameters": {
+              "step": "Sub-Max-Store Result",
+              "title": "IN-CORE Service"
+            }
+          },
+          {
+            "paramId": "3213ed04-9a3c-4ecc-b9da-3d42946e5fba",
+            "parameters": {
+              "step": "Bldg-Func-Store Result",
+              "title": "IN-CORE Service"
+            }
+          },
+          {
+            "paramId": "bec1abd5-2cd2-42e3-c2c5-cd57c37f6e95",
+            "parameters": {
+              "step": "HeatMap-Store Result",
+              "title": "IN-CORE Service"
+            }
+          },
+          {
+            "paramId": "e812b780-a5a5-47fa-aea7-1d29e4577444",
+            "parameters": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Output Type",
+        "description": "Output type",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "9ef34ba3-41cb-4702-962b-28e074d01ef0",
+            "parameters": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Output Type"
+            }
+          },
+          {
+            "paramId": "c3035bce-c326-4f42-a725-57d8615f4c62",
+            "parameters": {
+              "step": "Pole-Max-Store Result",
+              "title": "Output Type"
+            }
+          },
+          {
+            "paramId": "571838aa-f243-48cb-9989-e6da5cb556e8",
+            "parameters": {
+              "step": "Sub-Max-Store Result",
+              "title": "Output Type"
+            }
+          },
+          {
+            "paramId": "0e1d8b7e-9623-4fc6-986b-15d041d6e026",
+            "parameters": {
+              "step": "Bldg-Func-Store Result",
+              "title": "Output Type"
+            }
+          },
+          {
+            "paramId": "f8fd5daa-fdff-4534-c65c-29f4589e8620",
+            "parameters": {
+              "step": "HeatMap-Store Result",
+              "title": "Output Type"
+            }
+          },
+          {
+            "paramId": "552a9c15-c1bc-49f9-e7e7-f068acf0876a",
+            "parameters": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Output Type"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Output format",
+        "description": "Output format",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "d899d952-6838-45ae-96b4-b2e75a35adb1",
+            "parameters": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Output format"
+            }
+          },
+          {
+            "paramId": "ef418794-5608-4420-8c2d-578ec216f443",
+            "parameters": {
+              "step": "Pole-Max-Store Result",
+              "title": "Output format"
+            }
+          },
+          {
+            "paramId": "b625bf13-a5dd-446d-8a90-4322fb9f1a33",
+            "parameters": {
+              "step": "Sub-Max-Store Result",
+              "title": "Output format"
+            }
+          },
+          {
+            "paramId": "0f63677f-9e4f-4905-9367-cdb7037f88e8",
+            "parameters": {
+              "step": "Bldg-Func-Store Result",
+              "title": "Output format"
+            }
+          },
+          {
+            "paramId": "408c402e-f45f-4015-c09e-c766311f64f1",
+            "parameters": {
+              "step": "HeatMap-Store Result",
+              "title": "Output format"
+            }
+          },
+          {
+            "paramId": "cb5ef2bc-d53f-4cc1-c927-aea9d427bf27",
+            "parameters": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Output format"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Result Name",
+        "description": "Result Name",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "b2ed3ad7-8209-49e5-f25e-bb85527a7bd4",
+            "parameters": {
+              "step": "HHRSOutputProcess",
+              "title": "Result Name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Time Steps",
+        "description": "Time Steps",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "8739d850-605d-466f-aa1f-7d6069f80932",
+            "parameters": {
+              "step": "HHRSOutputProcess",
+              "title": "Time Steps"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Analysis",
+        "description": "Analysis",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "pyincore.analyses.socialvulnerability.socialvulnerability:SocialVulnerability",
+        "parametersMap": [
+          {
+            "paramId": "d26190e7-5d86-49e4-86fe-c499fdcd6461",
+            "parameters": {
+              "step": "SocialVulnerability",
+              "title": "Analysis"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "90deb257-9323-47b1-ebb1-08d369a3bf50",
+            "parameters": {
+              "step": "SocialVulnerability",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "result_name",
+        "description": "result_name",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "35ddf87b-7eb4-4b5f-d606-b0d73fb904cc",
+            "parameters": {
+              "step": "SocialVulnerability",
+              "title": "result_name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "national_vulnerability_feature_averages",
+        "description": "national_vulnerability_feature_averages",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "23ce8682-cdfa-4fcd-a335-219a40332e6b",
+            "parameters": {
+              "step": "SocialVulnerability",
+              "title": "national_vulnerability_feature_averages"
+            }
+          }
+        ]
+      },
+      {
+        "title": "social_vulnerability_demographic_factors",
+        "description": "social_vulnerability_demographic_factors",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "1eb72116-ce74-4e66-fab5-495995fd084e",
+            "parameters": {
+              "step": "SocialVulnerability",
+              "title": "social_vulnerability_demographic_factors"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Analysis",
+        "description": "Analysis",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "pyincore.analyses.populationdislocation.populationdislocation:PopulationDislocation",
+        "parametersMap": [
+          {
+            "paramId": "fa9c2533-1013-46cc-ad66-46bed23b96c2",
+            "parameters": {
+              "step": "PopulationDislocation",
+              "title": "Analysis"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "35be8a30-a623-447b-9f2a-cd90155d1638",
+            "parameters": {
+              "step": "PopulationDislocation",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "result_name",
+        "description": "result_name",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "15e42c27-cec2-471e-a231-0938a461c9ea",
+            "parameters": {
+              "step": "PopulationDislocation",
+              "title": "result_name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "seed",
+        "description": "seed",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "19ee09f2-57dc-4652-9bff-8e5db6758820",
+            "parameters": {
+              "step": "PopulationDislocation",
+              "title": "seed"
+            }
+          }
+        ]
+      },
+      {
+        "title": "housing_unit_allocation",
+        "description": "housing_unit_allocation",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "1c865a6c-4668-420f-974e-e238acfc5a5d",
+            "parameters": {
+              "step": "PopulationDislocation",
+              "title": "housing_unit_allocation"
+            }
+          }
+        ]
+      },
+      {
+        "title": "block_group_data",
+        "description": "block_group_data",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "fb769d18-b846-4cc3-c7e4-93955dfc3d84",
+            "parameters": {
+              "step": "PopulationDislocation",
+              "title": "block_group_data"
+            }
+          }
+        ]
+      },
+      {
+        "title": "value_loss_param",
+        "description": "value_loss_param",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "e2536b2c-a6fe-4d21-fb73-e68b46841344",
+            "parameters": {
+              "step": "PopulationDislocation",
+              "title": "value_loss_param"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Result Name",
+        "description": "Result Name",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "ab39eb9c-7110-4d62-90a5-0cdbf23c07de",
+            "parameters": {
+              "step": "CGE-Output-Process",
+              "title": "Result Name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Regions",
+        "description": "Regions",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "46509d68-7f9e-447f-eb76-de5a884cf3b0",
+            "parameters": {
+              "step": "CGE-Output-Process",
+              "title": "Regions"
+            }
+          }
+        ]
+      },
+      {
+        "title": "HH Categories",
+        "description": "Household categories",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "HH1,HH2,HH3,HH4,HH5",
+        "parametersMap": [
+          {
+            "paramId": "fc7b149e-61be-4b34-a884-1234af9e98b0",
+            "parameters": {
+              "step": "CGE-Output-Process",
+              "title": "HH Categories"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Demand Categories",
+        "description": "Demand Categories",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "GOODS,TRADE,OTHER",
+        "parametersMap": [
+          {
+            "paramId": "e838c579-15d3-43e7-dada-0f8345e15b21",
+            "parameters": {
+              "step": "CGE-Output-Process",
+              "title": "Demand Categories"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Supply Categories",
+        "description": "Supply Categories",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "Goods,Trade,Other,HS1,HS2,HS3 ",
+        "parametersMap": [
+          {
+            "paramId": "7c88cdbf-3801-4371-e709-50be083c7f75",
+            "parameters": {
+              "step": "CGE-Output-Process",
+              "title": "Supply Categories"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Result Name",
+        "description": "Result Name",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "f0387d6d-1e3e-426e-89b5-6351f84eaef6",
+            "parameters": {
+              "step": "Building-Func-Cluster",
+              "title": "Result Name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "ff748e6c-3410-4751-bad4-ff98a7594026",
+            "parameters": {
+              "step": "Building-Func-Cluster",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Buildings",
+        "description": "Building Inventory",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "37cf203f-36c8-4ff7-c2a2-3e67cfca42ec",
+            "parameters": {
+              "step": "Building-Func-Cluster",
+              "title": "Buildings"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Archetype Mapping",
+        "description": "Building archetype mapping",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "560c01da-6df8-4602-80b1-d321e4fac114",
+            "parameters": {
+              "step": "Building-Func-Cluster",
+              "title": "Archetype Mapping"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Cluster Column",
+        "description": "Column to cluster on",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "archetype",
+        "parametersMap": [
+          {
+            "paramId": "fa7e3420-a267-4196-d09b-5dca688a37ed",
+            "parameters": {
+              "step": "Building-Func-Cluster",
+              "title": "Cluster Column"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Result Name",
+        "description": "Result Name",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "c68e32f3-06fc-4a61-e701-4abb3e8f5281",
+            "parameters": {
+              "step": "Building-Failure-Cluster",
+              "title": "Result Name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "91b27c64-7508-4414-decb-a44f53f2ff97",
+            "parameters": {
+              "step": "Building-Failure-Cluster",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Buildings",
+        "description": "Building inventory",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "3f8b0db0-c24b-4cc5-85fc-e9b06b9db485",
+            "parameters": {
+              "step": "Building-Failure-Cluster",
+              "title": "Buildings"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Archetype Mapping",
+        "description": "Archetype Mapping",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "d1451c74-4b6e-4cba-ef7f-defec6f1384d",
+            "parameters": {
+              "step": "Building-Failure-Cluster",
+              "title": "Archetype Mapping"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Cluster Column",
+        "description": "Column to cluster on",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "archetype",
+        "parametersMap": [
+          {
+            "paramId": "157d4d89-7a8b-49d6-d5ce-bbdd97b1a401",
+            "parameters": {
+              "step": "Building-Failure-Cluster",
+              "title": "Cluster Column"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Result Name",
+        "description": "Result name",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "1c7a6d9c-3d5c-4020-b1ba-c7feee3f4ef6",
+            "parameters": {
+              "step": "Building-Dmg-Summary",
+              "title": "Result Name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "38a0ecc3-6a49-4629-d75d-324d2b7cf79a",
+            "parameters": {
+              "step": "Building-Dmg-Summary",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Buildings",
+        "description": "Building Inventory",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "0d453ac8-fa91-4517-8727-9921ad17c3d1",
+            "parameters": {
+              "step": "Building-Dmg-Summary",
+              "title": "Buildings"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Archetype Mapping",
+        "description": "Archetype Mapping",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "631955b9-06df-45d4-8136-b56c78193b22",
+            "parameters": {
+              "step": "Building-Dmg-Summary",
+              "title": "Archetype Mapping"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Group Column",
+        "description": "Column to create groups",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "max_state",
+        "parametersMap": [
+          {
+            "paramId": "d4b8ddb0-fa3f-4f93-d48b-7b3993c07500",
+            "parameters": {
+              "step": "Building-Dmg-Summary",
+              "title": "Group Column"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Cluster Column",
+        "description": "Column to cluster on",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "archetype",
+        "parametersMap": [
+          {
+            "paramId": "7e765d1a-a945-4008-d0d6-468c705b308a",
+            "parameters": {
+              "step": "Building-Dmg-Summary",
+              "title": "Cluster Column"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Analysis",
+        "description": "Analysis",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "pyincore.analyses.housingrecoverysequential.housingrecoverysequential:HousingRecoverySequential",
+        "parametersMap": [
+          {
+            "paramId": "3d55fb27-fc5f-4ec9-baf7-e6d2c95d6e16",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "Analysis"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "c415e0db-553c-4120-899e-1316e4814589",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "result_name",
+        "description": "result_name",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "05894bef-2750-4ecc-9fcc-9ec18d11fd2e",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "result_name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "t_delta",
+        "description": "t_delta",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "995a5335-fc2e-4336-d295-ca9650504a69",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "t_delta"
+            }
+          }
+        ]
+      },
+      {
+        "title": "t_final",
+        "description": "t_final",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "10744777-d35a-4d9c-9cf0-6db31f36e7de",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "t_final"
+            }
+          }
+        ]
+      },
+      {
+        "title": "seed",
+        "description": "seed",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "1fff9fff-82d2-486c-afec-551e61b6fbdd",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "seed"
+            }
+          }
+        ]
+      },
+      {
+        "title": "tpm",
+        "description": "tpm",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "d0619a7b-e5f6-4b79-8830-8935c30463dc",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "tpm"
+            }
+          }
+        ]
+      },
+      {
+        "title": "initial_stage_probabilities",
+        "description": "initial_stage_probabilities",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "599cd8f2-e8c9-4512-80b8-8ddd3d89ae61",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "initial_stage_probabilities"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Analysis",
+        "description": "Analysis",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "pyincore.analyses.buildingdamage.buildingdamage:BuildingDamage",
+        "parametersMap": [
+          {
+            "paramId": "4c12824b-ca83-49f4-9814-58b5ce5ddced",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "Analysis"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "ad3f373b-83a4-4a64-9a52-286989e8fae1",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "result_name",
+        "description": "result_name",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "be9266c0-6fc5-4861-9844-9c31d7bf2c78",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "result_name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "hazard_type",
+        "description": "hazard_type",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "a385ac10-a8c4-44e0-8293-75d77d4c3793",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "hazard_type"
+            }
+          }
+        ]
+      },
+      {
+        "title": "hazard_id",
+        "description": "hazard_id",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "71e714b0-fa46-4e39-923c-7c5087665f86",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "hazard_id"
+            }
+          }
+        ]
+      },
+      {
+        "title": "fragility_key",
+        "description": "fragility_key",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "28e71889-26b7-4178-b3c3-55b71b18d6bc",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "fragility_key"
+            }
+          }
+        ]
+      },
+      {
+        "title": "use_liquefaction",
+        "description": "use_liquefaction",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "4f2cfa0a-9e3c-4117-c3e1-37eef6d924d1",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "use_liquefaction"
+            }
+          }
+        ]
+      },
+      {
+        "title": "use_hazard_uncertainty",
+        "description": "use_hazard_uncertainty",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "5f2b59eb-6041-4389-c13a-fe2d6c5d51ee",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "use_hazard_uncertainty"
+            }
+          }
+        ]
+      },
+      {
+        "title": "num_cpu",
+        "description": "num_cpu",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "937224ee-0e6c-40d7-dd2e-6a40018c1a02",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "num_cpu"
+            }
+          }
+        ]
+      },
+      {
+        "title": "seed",
+        "description": "seed",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "d109c67d-c547-4d86-da41-12d2b4d389bb",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "seed"
+            }
+          }
+        ]
+      },
+      {
+        "title": "liquefaction_geology_dataset_id",
+        "description": "liquefaction_geology_dataset_id",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "dad935c9-0369-4ca3-ab93-aacaa43885f6",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "liquefaction_geology_dataset_id"
+            }
+          }
+        ]
+      },
+      {
+        "title": "buildings",
+        "description": "buildings",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "7a831e75-2a5c-4be9-c792-c4dd8d9fc64d",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "buildings"
+            }
+          }
+        ]
+      },
+      {
+        "title": "dfr3_mapping_set",
+        "description": "dfr3_mapping_set",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "590311bd-4ba7-414f-e249-7a3d5524bef0",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "dfr3_mapping_set"
+            }
+          }
+        ]
+      },
+      {
+        "title": "retrofit_strategy",
+        "description": "retrofit_strategy",
+        "variableName": "",
+        "widget": null,
+        "hidden": false,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "3091cc60-86cf-44ce-9dcf-2ef2b227aab4",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "retrofit_strategy"
+            }
+          }
+        ]
+      }
+    ],
+    "datasets": [
+      {
+        "title": "Dislocation Output",
+        "description": "Population dislocation output",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "27147921-dc89-4693-f0f2-5d63b1b5a3cc",
+            "datasets": {
+              "step": "Disl-Post-Process",
+              "title": "Dislocation Output"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Damage Output",
+        "description": "Damage Output",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "4e4aa0c6-59fe-4d4a-cb34-f9a0f6a7ea28",
+            "datasets": {
+              "step": "Bldg-Max-Dmg-State",
+              "title": "Damage Output"
+            }
+          },
+          {
+            "datasetId": "18231004-f8ca-421c-ae04-ff46ab514262",
+            "datasets": {
+              "step": "Pole-Max-Dmg-State",
+              "title": "Damage Output"
+            }
+          },
+          {
+            "datasetId": "0c2c6744-1097-4bca-e479-6158c6e396e8",
+            "datasets": {
+              "step": "Sub-Max-Dmg-State",
+              "title": "Damage Output"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Token",
+        "description": "IN-CORE Service Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "29033059-cc41-4a8a-ca4e-222686cf55d7",
+            "datasets": {
+              "step": "BuildingFunctionality",
+              "title": "Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "building_damage_mcs_samples",
+        "description": "building damage samples",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "c6d5e0b3-7416-4f73-eda5-089f9dc94ed2",
+            "datasets": {
+              "step": "BuildingFunctionality",
+              "title": "building_damage_mcs_samples"
+            }
+          }
+        ]
+      },
+      {
+        "title": "substations_damage_mcs_samples",
+        "description": "substations damage samples",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "600c009b-057b-479d-ef02-453f37c37dab",
+            "datasets": {
+              "step": "BuildingFunctionality",
+              "title": "substations_damage_mcs_samples"
+            }
+          }
+        ]
+      },
+      {
+        "title": "poles_damage_mcs_samples",
+        "description": "poles damage samples",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "01237b9d-d1ba-4c84-934b-19b0755bafbf",
+            "datasets": {
+              "step": "BuildingFunctionality",
+              "title": "poles_damage_mcs_samples"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Token",
+        "description": "IN-CORE Service Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "c484e0b1-dff2-412f-efe8-2e0e5321d667",
+            "datasets": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "Token"
+            }
+          },
+          {
+            "datasetId": "f21ed941-fc20-4a5a-ad24-fd29d97997ba",
+            "datasets": {
+              "step": "Poles-MonteCarloFailureProbability",
+              "title": "Token"
+            }
+          },
+          {
+            "datasetId": "97a3ce6f-5b5f-40c0-8a0c-e26ceb92635c",
+            "datasets": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "damage",
+        "description": "damage result that has damage intervals in it",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "4e4aa0c6-59fe-4d4a-cb34-f9a0f6a7ea28",
+            "datasets": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "damage"
+            }
+          },
+          {
+            "datasetId": "18231004-f8ca-421c-ae04-ff46ab514262",
+            "datasets": {
+              "step": "Poles-MonteCarloFailureProbability",
+              "title": "damage"
+            }
+          },
+          {
+            "datasetId": "0c2c6744-1097-4bca-e479-6158c6e396e8",
+            "datasets": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "damage"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Token",
+        "description": "IN-CORE Service Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "c9ab0651-864f-4b6b-c1c1-fc64d1f58de3",
+            "datasets": {
+              "step": "Sub-EpfDamage",
+              "title": "Token"
+            }
+          },
+          {
+            "datasetId": "a5f7a1ac-3cda-4b5c-ddfd-5991c30cb287",
+            "datasets": {
+              "step": "Poles-EpfDamage",
+              "title": "Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Token",
+        "description": "IN-CORE Service Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "8beaca31-23e7-4776-e4bd-d60894cd9dfe",
+            "datasets": {
+              "step": "JoplinCGEModel",
+              "title": "Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "sector_shocks",
+        "description": "Aggregation of building functionality states to capital shocks per sector",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "3704bb0d-3cc3-4a49-b33a-7b0574842c2f",
+            "datasets": {
+              "step": "JoplinCGEModel",
+              "title": "sector_shocks"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Token",
+        "description": "IN-CORE Service Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "6ac994a1-d852-454b-dc8e-266720fce459",
+            "datasets": {
+              "step": "CapitalShocks",
+              "title": "Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "failure_probability",
+        "description": "Failure probability of buildings.",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "4a7456d5-3153-4074-ac04-988d52a867e7",
+            "datasets": {
+              "step": "CapitalShocks",
+              "title": "failure_probability"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Token",
+        "description": "IN-CORE service token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "1d0bdeb9-27bc-43eb-b8ee-fe987aea711c",
+            "datasets": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Token"
+            }
+          },
+          {
+            "datasetId": "fd4a1927-b512-4265-b642-c3b8a28ff334",
+            "datasets": {
+              "step": "Pole-Max-Store Result",
+              "title": "Token"
+            }
+          },
+          {
+            "datasetId": "e2a1f76e-4d77-4898-aaa6-0477f6c96176",
+            "datasets": {
+              "step": "Sub-Max-Store Result",
+              "title": "Token"
+            }
+          },
+          {
+            "datasetId": "43ff6004-3928-4b9c-d9c1-3765eccd3431",
+            "datasets": {
+              "step": "Bldg-Func-Store Result",
+              "title": "Token"
+            }
+          },
+          {
+            "datasetId": "f20fdecb-58e7-488a-fa78-c442ef83422c",
+            "datasets": {
+              "step": "HeatMap-Store Result",
+              "title": "Token"
+            }
+          },
+          {
+            "datasetId": "39124a24-8326-417e-dcfc-ae58db6b724a",
+            "datasets": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Output dataset",
+        "description": "Output dataset",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "d982934b-0314-4197-dcc8-2f65ebc19b88",
+            "datasets": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Output dataset"
+            }
+          },
+          {
+            "datasetId": "60648e1a-17e8-4dcf-e13d-7f991a35d46b",
+            "datasets": {
+              "step": "Pole-Max-Store Result",
+              "title": "Output dataset"
+            }
+          },
+          {
+            "datasetId": "80585cd1-486e-4d0e-9597-d0d71b7b6d7c",
+            "datasets": {
+              "step": "Sub-Max-Store Result",
+              "title": "Output dataset"
+            }
+          },
+          {
+            "datasetId": "ef929631-dcfb-4421-90d8-33e03caaaa9b",
+            "datasets": {
+              "step": "Bldg-Func-Store Result",
+              "title": "Output dataset"
+            }
+          },
+          {
+            "datasetId": "0a5c4805-828d-43e5-f3a6-707d6400d6e9",
+            "datasets": {
+              "step": "HeatMap-Store Result",
+              "title": "Output dataset"
+            }
+          },
+          {
+            "datasetId": "4a7456d5-3153-4074-ac04-988d52a867e7",
+            "datasets": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Output dataset"
+            }
+          }
+        ]
+      },
+      {
+        "title": "HHR Output",
+        "description": "Housing recovery sequential output",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "f2a6685f-a531-48bd-f09d-14873b1af4be",
+            "datasets": {
+              "step": "HHRSOutputProcess",
+              "title": "HHR Output"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Token",
+        "description": "IN-CORE Service Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "3f95a3fe-f1f7-4b4f-84af-30fe38d9c241",
+            "datasets": {
+              "step": "SocialVulnerability",
+              "title": "Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Token",
+        "description": "IN-CORE Service Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "0e7373df-c450-4455-d10b-d16f5113f177",
+            "datasets": {
+              "step": "PopulationDislocation",
+              "title": "Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "building_dmg",
+        "description": "Building damage results CSV file",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "4e4aa0c6-59fe-4d4a-cb34-f9a0f6a7ea28",
+            "datasets": {
+              "step": "PopulationDislocation",
+              "title": "building_dmg"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Household Count",
+        "description": "Household Count",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "40ffa91d-fcf6-4055-fca3-01e23322e117",
+            "datasets": {
+              "step": "CGE-Output-Process",
+              "title": "Household Count"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Domestic supply",
+        "description": "Domestic supply",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "8ff59e9b-6c00-4765-a548-5ab61a2ed08d",
+            "datasets": {
+              "step": "CGE-Output-Process",
+              "title": "Domestic supply"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Gross Income",
+        "description": "Gross Income",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "667a59fd-cec7-458a-8f99-445a26ae61c7",
+            "datasets": {
+              "step": "CGE-Output-Process",
+              "title": "Gross Income"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Pre-Demand",
+        "description": "Pre disaster factor demand",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "52c69fbe-7688-4792-8e43-b9dd34654fd1",
+            "datasets": {
+              "step": "CGE-Output-Process",
+              "title": "Pre-Demand"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Post Demand",
+        "description": "Post disaster factor demand",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "017a20f2-890c-4cb4-ec53-5fe4e6bb653a",
+            "datasets": {
+              "step": "CGE-Output-Process",
+              "title": "Post Demand"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Token",
+        "description": "IN-CORE Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "f12247ba-854d-4b8e-e081-c4441fd537cc",
+            "datasets": {
+              "step": "Building-Func-Cluster",
+              "title": "IN-CORE Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Functionality Probability",
+        "description": "Building functionality probability",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "ef929631-dcfb-4421-90d8-33e03caaaa9b",
+            "datasets": {
+              "step": "Building-Func-Cluster",
+              "title": "Functionality Probability"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Token",
+        "description": "IN-CORE Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "edf2d5e6-0ac3-4c73-add5-3e11552884c5",
+            "datasets": {
+              "step": "Building-Failure-Cluster",
+              "title": "IN-CORE Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Building Failure Probability",
+        "description": "MCS Building Failure probability",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "4a7456d5-3153-4074-ac04-988d52a867e7",
+            "datasets": {
+              "step": "Building-Failure-Cluster",
+              "title": "Building Failure Probability"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Token",
+        "description": "IN-CORE Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "f8749e24-e188-4b27-838b-daa025e7a53c",
+            "datasets": {
+              "step": "Building-Dmg-Summary",
+              "title": "IN-CORE Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Max Damage State",
+        "description": "Max Damage State",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "d982934b-0314-4197-dcc8-2f65ebc19b88",
+            "datasets": {
+              "step": "Building-Dmg-Summary",
+              "title": "Max Damage State"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Token",
+        "description": "IN-CORE Service Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "b2832956-6cb9-4bc4-d5f0-b554ce80944f",
+            "datasets": {
+              "step": "HousingRecoverySequential",
+              "title": "Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "population_dislocation_block",
+        "description": "A csv file with population dislocation result aggregated to the block group level",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "27147921-dc89-4693-f0f2-5d63b1b5a3cc",
+            "datasets": {
+              "step": "HousingRecoverySequential",
+              "title": "population_dislocation_block"
+            }
+          }
+        ]
+      },
+      {
+        "title": "sv_result",
+        "description": "A csv file with zones containing demographic factorsqualified by a social vulnerability score",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "43ecaf12-7949-443b-8338-06fd3e31dcde",
+            "datasets": {
+              "step": "HousingRecoverySequential",
+              "title": "sv_result"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Token",
+        "description": "IN-CORE Service Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "b7c3e9d1-9697-4ebd-d79a-9daaf66b4fc1",
+            "datasets": {
+              "step": "BuildingDamage",
+              "title": "Token"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "outputs": {
+    "datasets": [
+      {
+        "title": "",
+        "description": "",
+        "datasetsMap": [
+          {
+            "datasetId": "4eebb9b8-43f3-45cb-800c-d717d07d5d30",
+            "datasets": {
+              "step": "Disl-Post-Process",
+              "title": "stdout",
+              "variableName": "Disl-Post-Processstdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "f0f34461-2bc2-4b2a-c396-8ea576b725fa",
+            "datasets": {
+              "step": "Disl-Post-Process",
+              "title": "Dislocation by Race",
+              "variableName": "Disl-Post-ProcessDislocationbyRace",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "9f8b3020-b39e-4e76-9cee-341f2cf675b1",
+            "datasets": {
+              "step": "Disl-Post-Process",
+              "title": "Dislocation by Income",
+              "variableName": "Disl-Post-ProcessDislocationbyIncome",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "7812c343-e12a-4eca-b041-26e56e6c2bd3",
+            "datasets": {
+              "step": "Disl-Post-Process",
+              "title": "Dislocation by Tenure",
+              "variableName": "Disl-Post-ProcessDislocationbyTenure",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "0814b499-9937-453b-b143-19244795d008",
+            "datasets": {
+              "step": "Disl-Post-Process",
+              "title": "Dislocation by Housing Type",
+              "variableName": "Disl-Post-ProcessDislocationbyHousingType",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "c7dd6a3e-1625-4ce2-f41a-491ec221a09b",
+            "datasets": {
+              "step": "Disl-Post-Process",
+              "title": "Total Dislocation",
+              "variableName": "Disl-Post-ProcessTotalDislocation",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "af45fc57-c1d7-465b-c03f-a7a8b7ae79f1",
+            "datasets": {
+              "step": "Disl-Post-Process",
+              "title": "Dislocation by Disability",
+              "variableName": "Disl-Post-ProcessDislocationbyDisability",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "0a5c4805-828d-43e5-f3a6-707d6400d6e9",
+            "datasets": {
+              "step": "Disl-Post-Process",
+              "title": "Dislocation Heatmap",
+              "variableName": "Disl-Post-ProcessDislocationHeatmap",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "622be383-df51-42a4-f4bf-84e8d24f11f2",
+            "datasets": {
+              "step": "Bldg-Max-Dmg-State",
+              "title": "stdout",
+              "variableName": "Bldg-Max-Dmg-Statestdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "d982934b-0314-4197-dcc8-2f65ebc19b88",
+            "datasets": {
+              "step": "Bldg-Max-Dmg-State",
+              "title": "Max Damage State",
+              "variableName": "Bldg-Max-Dmg-StateMaxDamageState",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "96ee0749-dec4-48ee-adf0-9e7d8e4adde0",
+            "datasets": {
+              "step": "BuildingFunctionality",
+              "title": "stdout",
+              "variableName": "BuildingFunctionalitystdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "37536451-fe85-4fcf-8677-6c2aa6242a87",
+            "datasets": {
+              "step": "BuildingFunctionality",
+              "title": "functionality_samples",
+              "variableName": "BuildingFunctionalityfunctionality_samples",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "ef929631-dcfb-4421-90d8-33e03caaaa9b",
+            "datasets": {
+              "step": "BuildingFunctionality",
+              "title": "functionality_probability",
+              "variableName": "BuildingFunctionalityfunctionality_probability",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "9b349e27-baa7-4a41-e9e4-d3290286a0a5",
+            "datasets": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "stdout",
+              "variableName": "Bldg-MonteCarloFailureProbabilitystdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "4a7456d5-3153-4074-ac04-988d52a867e7",
+            "datasets": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "failure_probability",
+              "variableName": "Bldg-MonteCarloFailureProbabilityfailure_probability",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "c6d5e0b3-7416-4f73-eda5-089f9dc94ed2",
+            "datasets": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "sample_failure_state",
+              "variableName": "Bldg-MonteCarloFailureProbabilitysample_failure_state",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "8d344a47-4744-49a1-cdd9-05b895ea1ef5",
+            "datasets": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "sample_damage_states",
+              "variableName": "Bldg-MonteCarloFailureProbabilitysample_damage_states",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "fbc7824b-0253-4e71-a4ca-e5f2d47a4dec",
+            "datasets": {
+              "step": "Poles-MonteCarloFailureProbability",
+              "title": "stdout",
+              "variableName": "Poles-MonteCarloFailureProbabilitystdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "0105b539-d201-4eae-f66e-be3fb05d7683",
+            "datasets": {
+              "step": "Poles-MonteCarloFailureProbability",
+              "title": "failure_probability",
+              "variableName": "Poles-MonteCarloFailureProbabilityfailure_probability",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "01237b9d-d1ba-4c84-934b-19b0755bafbf",
+            "datasets": {
+              "step": "Poles-MonteCarloFailureProbability",
+              "title": "sample_failure_state",
+              "variableName": "Poles-MonteCarloFailureProbabilitysample_failure_state",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "59711ee9-cb88-44ec-d509-d22042df4553",
+            "datasets": {
+              "step": "Poles-MonteCarloFailureProbability",
+              "title": "sample_damage_states",
+              "variableName": "Poles-MonteCarloFailureProbabilitysample_damage_states",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "180d1ee1-d74a-4046-c2d5-2694435c2a3e",
+            "datasets": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "stdout",
+              "variableName": "Sub-MonteCarloFailureProbabilitystdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "a1eddb50-15c3-4513-d03b-12624ff35b84",
+            "datasets": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "failure_probability",
+              "variableName": "Sub-MonteCarloFailureProbabilityfailure_probability",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "600c009b-057b-479d-ef02-453f37c37dab",
+            "datasets": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "sample_failure_state",
+              "variableName": "Sub-MonteCarloFailureProbabilitysample_failure_state",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "04843bb2-821e-4ccc-949a-a79358d9d254",
+            "datasets": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "sample_damage_states",
+              "variableName": "Sub-MonteCarloFailureProbabilitysample_damage_states",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "81650d08-7afb-4d03-b19d-3cab35ea9033",
+            "datasets": {
+              "step": "Sub-EpfDamage",
+              "title": "stdout",
+              "variableName": "Sub-EpfDamagestdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "0c2c6744-1097-4bca-e479-6158c6e396e8",
+            "datasets": {
+              "step": "Sub-EpfDamage",
+              "title": "result",
+              "variableName": "Sub-EpfDamageresult",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "a799f97d-6639-40b5-8da9-4ae21a958863",
+            "datasets": {
+              "step": "Sub-EpfDamage",
+              "title": "metadata",
+              "variableName": "Sub-EpfDamagemetadata",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "439e46bb-6ea0-4d0e-b188-5adc71e4ec2c",
+            "datasets": {
+              "step": "Poles-EpfDamage",
+              "title": "stdout",
+              "variableName": "Poles-EpfDamagestdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "18231004-f8ca-421c-ae04-ff46ab514262",
+            "datasets": {
+              "step": "Poles-EpfDamage",
+              "title": "result",
+              "variableName": "Poles-EpfDamageresult",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "3a252dfa-dbde-4c84-a898-7b7e2bc65b57",
+            "datasets": {
+              "step": "Poles-EpfDamage",
+              "title": "metadata",
+              "variableName": "Poles-EpfDamagemetadata",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "067c9db0-84ab-4a9c-b6bc-9d0fffb32134",
+            "datasets": {
+              "step": "JoplinCGEModel",
+              "title": "stdout",
+              "variableName": "JoplinCGEModelstdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "8ff59e9b-6c00-4765-a548-5ab61a2ed08d",
+            "datasets": {
+              "step": "JoplinCGEModel",
+              "title": "domestic-supply",
+              "variableName": "JoplinCGEModeldomestic-supply",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "667a59fd-cec7-458a-8f99-445a26ae61c7",
+            "datasets": {
+              "step": "JoplinCGEModel",
+              "title": "gross-income",
+              "variableName": "JoplinCGEModelgross-income",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "52c69fbe-7688-4792-8e43-b9dd34654fd1",
+            "datasets": {
+              "step": "JoplinCGEModel",
+              "title": "pre-disaster-factor-demand",
+              "variableName": "JoplinCGEModelpre-disaster-factor-demand",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "017a20f2-890c-4cb4-ec53-5fe4e6bb653a",
+            "datasets": {
+              "step": "JoplinCGEModel",
+              "title": "post-disaster-factor-demand",
+              "variableName": "JoplinCGEModelpost-disaster-factor-demand",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "40ffa91d-fcf6-4055-fca3-01e23322e117",
+            "datasets": {
+              "step": "JoplinCGEModel",
+              "title": "household-count",
+              "variableName": "JoplinCGEModelhousehold-count",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "09bf8dd2-1250-462e-b0cd-819ab216e363",
+            "datasets": {
+              "step": "CapitalShocks",
+              "title": "stdout",
+              "variableName": "CapitalShocksstdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "3704bb0d-3cc3-4a49-b33a-7b0574842c2f",
+            "datasets": {
+              "step": "CapitalShocks",
+              "title": "sector_shocks",
+              "variableName": "CapitalShockssector_shocks",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "6bbd145c-1842-459b-fc65-56b0ec0745ee",
+            "datasets": {
+              "step": "Pole-Max-Dmg-State",
+              "title": "stdout",
+              "variableName": "Pole-Max-Dmg-Statestdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "60648e1a-17e8-4dcf-e13d-7f991a35d46b",
+            "datasets": {
+              "step": "Pole-Max-Dmg-State",
+              "title": "Max Damage State",
+              "variableName": "Pole-Max-Dmg-StateMaxDamageState",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "b4019522-2d8c-4ca3-e919-d2023a13b40e",
+            "datasets": {
+              "step": "Sub-Max-Dmg-State",
+              "title": "stdout",
+              "variableName": "Sub-Max-Dmg-Statestdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "80585cd1-486e-4d0e-9597-d0d71b7b6d7c",
+            "datasets": {
+              "step": "Sub-Max-Dmg-State",
+              "title": "Max Damage State",
+              "variableName": "Sub-Max-Dmg-StateMaxDamageState",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "67131668-d47e-4cfa-d4c0-e7ce61324e1e",
+            "datasets": {
+              "step": "Bldg-Max-Store Result",
+              "title": "stdout",
+              "variableName": "Bldg-Max-StoreResultstdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "7cdf1ea9-4863-4194-d343-a06e4989fb60",
+            "datasets": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Dataset ID",
+              "variableName": "Bldg-Max-StoreResultDatasetID",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "164ad7ba-3a91-4651-9772-c4d55f27e19f",
+            "datasets": {
+              "step": "Pole-Max-Store Result",
+              "title": "stdout",
+              "variableName": "Pole-Max-StoreResultstdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "b9e08789-8730-49b8-8f21-be76889db2d6",
+            "datasets": {
+              "step": "Pole-Max-Store Result",
+              "title": "Dataset ID",
+              "variableName": "Pole-Max-StoreResultDatasetID",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "2c82c853-1ace-4528-b271-74dfe50e4611",
+            "datasets": {
+              "step": "Sub-Max-Store Result",
+              "title": "stdout",
+              "variableName": "Sub-Max-StoreResultstdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "81941b03-44fb-4a58-8fde-e02fbac68bae",
+            "datasets": {
+              "step": "Sub-Max-Store Result",
+              "title": "Dataset ID",
+              "variableName": "Sub-Max-StoreResultDatasetID",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "6d2e78ec-a2db-4876-8f99-ff2e4b848cb0",
+            "datasets": {
+              "step": "Bldg-Func-Store Result",
+              "title": "stdout",
+              "variableName": "Bldg-Func-StoreResultstdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "294f7edb-2bc0-4152-df4f-5144c6dd3649",
+            "datasets": {
+              "step": "Bldg-Func-Store Result",
+              "title": "Dataset ID",
+              "variableName": "Bldg-Func-StoreResultDatasetID",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "d5e99bb2-17f4-4455-ab7e-510db8a691db",
+            "datasets": {
+              "step": "HeatMap-Store Result",
+              "title": "stdout",
+              "variableName": "HeatMap-StoreResultstdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "b502fc43-c3b1-4332-a632-db88061c18df",
+            "datasets": {
+              "step": "HeatMap-Store Result",
+              "title": "Dataset ID",
+              "variableName": "HeatMap-StoreResultDatasetID",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "f7c4252e-59ee-4185-897c-57361e114cec",
+            "datasets": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "stdout",
+              "variableName": "Bldg-FailProb-StoreResultstdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "3bcc9377-5ec3-46d6-8f40-bdc939c22d43",
+            "datasets": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Dataset ID",
+              "variableName": "Bldg-FailProb-StoreResultDatasetID",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "dee3c1df-66b9-402a-a5ad-ca6d23a4662d",
+            "datasets": {
+              "step": "HHRSOutputProcess",
+              "title": "stdout",
+              "variableName": "HHRSOutputProcessstdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "fbf3842d-e2be-48ad-d421-5bcf5ab22811",
+            "datasets": {
+              "step": "HHRSOutputProcess",
+              "title": "Housing Recovery",
+              "variableName": "HHRSOutputProcessHousingRecovery",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "4f9a7142-d382-4913-8894-7549ef77e50d",
+            "datasets": {
+              "step": "SocialVulnerability",
+              "title": "stdout",
+              "variableName": "SocialVulnerabilitystdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "43ecaf12-7949-443b-8338-06fd3e31dcde",
+            "datasets": {
+              "step": "SocialVulnerability",
+              "title": "sv_result",
+              "variableName": "SocialVulnerabilitysv_result",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "6f0a8e45-eca2-40b4-8ea5-a964d582de4a",
+            "datasets": {
+              "step": "PopulationDislocation",
+              "title": "stdout",
+              "variableName": "PopulationDislocationstdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "27147921-dc89-4693-f0f2-5d63b1b5a3cc",
+            "datasets": {
+              "step": "PopulationDislocation",
+              "title": "result",
+              "variableName": "PopulationDislocationresult",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "e2867e0d-b637-4bea-dd14-b6beb03a0335",
+            "datasets": {
+              "step": "CGE-Output-Process",
+              "title": "stdout",
+              "variableName": "CGE-Output-Processstdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "dad9c184-f8f4-4b2f-b36f-bf01ed03e5ab",
+            "datasets": {
+              "step": "CGE-Output-Process",
+              "title": "Household Count",
+              "variableName": "CGE-Output-ProcessHouseholdCount",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "168b5193-c8aa-42b4-c64c-0b9b31914428",
+            "datasets": {
+              "step": "CGE-Output-Process",
+              "title": "Domestic Supply ",
+              "variableName": "CGE-Output-ProcessDomesticSupply",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "6c00efe4-9c49-403c-93cd-851780f57c16",
+            "datasets": {
+              "step": "CGE-Output-Process",
+              "title": "Total Household Income",
+              "variableName": "CGE-Output-ProcessTotalHouseholdIncome",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "c3d7751a-487c-4179-eea2-451cd872ea2f",
+            "datasets": {
+              "step": "CGE-Output-Process",
+              "title": "Employment",
+              "variableName": "CGE-Output-ProcessEmployment",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "7b82b481-32ae-4c3b-8e32-21f6c46c3a97",
+            "datasets": {
+              "step": "Building-Func-Cluster",
+              "title": "stdout",
+              "variableName": "Building-Func-Clusterstdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "6da16a29-ed5c-434a-90c9-7c233670d143",
+            "datasets": {
+              "step": "Building-Func-Cluster",
+              "title": "Functionality Cluster",
+              "variableName": "Building-Func-ClusterFunctionalityCluster",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "3f32f287-cd46-4e5f-e3cd-50dff7de3b73",
+            "datasets": {
+              "step": "Building-Failure-Cluster",
+              "title": "stdout",
+              "variableName": "Building-Failure-Clusterstdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "33d9246e-917e-4518-84da-c913639098da",
+            "datasets": {
+              "step": "Building-Failure-Cluster",
+              "title": "Failure Cluster table",
+              "variableName": "Building-Failure-ClusterFailureClustertable",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "2e4668bb-03b4-40e1-8c59-688a94b45b64",
+            "datasets": {
+              "step": "Building-Failure-Cluster",
+              "title": "Failure Cluster json",
+              "variableName": "Building-Failure-ClusterFailureClusterjson",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "733108d3-6343-4a91-f657-98b36a5647bb",
+            "datasets": {
+              "step": "Building-Dmg-Summary",
+              "title": "stdout",
+              "variableName": "Building-Dmg-Summarystdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "95b65dc8-1129-40ee-c3d3-f880ebdb6bdc",
+            "datasets": {
+              "step": "Building-Dmg-Summary",
+              "title": "Building Dmg Summary",
+              "variableName": "Building-Dmg-SummaryBuildingDmgSummary",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "fd22cd60-66be-4e0c-dcb2-751e59a3d1ec",
+            "datasets": {
+              "step": "HousingRecoverySequential",
+              "title": "stdout",
+              "variableName": "HousingRecoverySequentialstdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "f2a6685f-a531-48bd-f09d-14873b1af4be",
+            "datasets": {
+              "step": "HousingRecoverySequential",
+              "title": "ds_result",
+              "variableName": "HousingRecoverySequentialds_result",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "3b71fa25-a661-4c7a-a981-907b1867d6d4",
+            "datasets": {
+              "step": "BuildingDamage",
+              "title": "stdout",
+              "variableName": "BuildingDamagestdout",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "4e4aa0c6-59fe-4d4a-cb34-f9a0f6a7ea28",
+            "datasets": {
+              "step": "BuildingDamage",
+              "title": "ds_result",
+              "variableName": "BuildingDamageds_result",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "b20ddc8d-5f79-4a1c-9cb8-435cbf76d51c",
+            "datasets": {
+              "step": "BuildingDamage",
+              "title": "damage_result",
+              "variableName": "BuildingDamagedamage_result",
+              "widget": ""
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": []
+}

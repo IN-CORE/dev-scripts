@@ -57,3 +57,5 @@ utils/fragility_utils/data/
 
 # build files
 *pycache*
+
+.ipynb_checkpoints

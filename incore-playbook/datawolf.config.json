@@ -1,8 +1,8 @@
 {
-  "title": "joplin-community-wf-v1",
-  "description": "2022-02-08 full workflow v1",
-  "wfTitle": "joplin-community-wf-v1",
-  "wfId": "05e5ac18-c202-4a8b-973d-01afcae20b14",
+  "title": "slc-community-wf-v2",
+  "description": "2023-03-07 full workflow v2",
+  "wfTitle": "slc-community-wf-v2",
+  "wfId": "c81ab517-77a3-472a-a1a6-db08d1fadb35",
   "creatorId": "d39e1679-4dcc-4158-9655-a604801871a7",
   "inputs": {
     "parameters": [
@@ -11,20 +11,13 @@
         "description": "Result name",
         "variableName": "",
         "widget": null,
-        "hidden": false,
-        "defaultValue": "",
+        "hidden": true,
+        "defaultValue": "SLC",
         "parametersMap": [
           {
             "paramId": "103b5143-8059-4052-bb9c-10fb6b956471",
             "parameters": {
               "step": "Bldg-Max-Dmg-State",
-              "title": "Result Name"
-            }
-          },
-          {
-            "paramId": "ee60ca46-8b07-4940-8744-4530d258d7b1",
-            "parameters": {
-              "step": "Pole-Max-Dmg-State",
               "title": "Result Name"
             }
           },
@@ -42,88 +35,13 @@
         "description": "Analysis",
         "variableName": "",
         "widget": null,
-        "hidden": false,
-        "defaultValue": "pyincore.analyses.buildingfunctionality.buildingfunctionality:BuildingFunctionality",
-        "parametersMap": [
-          {
-            "paramId": "9c22465e-b965-4b6f-963a-de3ddf14b0da",
-            "parameters": {
-              "step": "BuildingFunctionality",
-              "title": "Analysis"
-            }
-          }
-        ]
-      },
-      {
-        "title": "IN-CORE Service",
-        "description": "IN-CORE Service",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "6a22d9f4-dee0-4fae-e594-bb1c0e0f9b66",
-            "parameters": {
-              "step": "BuildingFunctionality",
-              "title": "IN-CORE Service"
-            }
-          }
-        ]
-      },
-      {
-        "title": "result_name",
-        "description": "result_name",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "331c5a65-b39e-4f62-8668-7ef31b1cd9d4",
-            "parameters": {
-              "step": "BuildingFunctionality",
-              "title": "result_name"
-            }
-          }
-        ]
-      },
-      {
-        "title": "interdependency_dictionary",
-        "description": "interdependency_dictionary",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "18f68644-5601-4214-bbb4-92bce2092a47",
-            "parameters": {
-              "step": "BuildingFunctionality",
-              "title": "interdependency_dictionary"
-            }
-          }
-        ]
-      },
-      {
-        "title": "Analysis",
-        "description": "Analysis",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "pyincore.analyses.montecarlofailureprobability.montecarlofailureprobability:MonteCarloFailureProbability",
         "parametersMap": [
           {
             "paramId": "a83b9c43-c4b2-4597-e876-99741eca7912",
             "parameters": {
               "step": "Bldg-MonteCarloFailureProbability",
-              "title": "Analysis"
-            }
-          },
-          {
-            "paramId": "2687baeb-6c3d-4f88-d213-690da64fdfb7",
-            "parameters": {
-              "step": "Poles-MonteCarloFailureProbability",
               "title": "Analysis"
             }
           },
@@ -137,86 +55,17 @@
         ]
       },
       {
-        "title": "result_name",
-        "description": "result_name",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "db1d7f2b-be47-41f1-87f6-d4624e0c8de9",
-            "parameters": {
-              "step": "Bldg-MonteCarloFailureProbability",
-              "title": "result_name"
-            }
-          },
-          {
-            "paramId": "9abe8136-f0b4-454b-affd-9f390ad64ea2",
-            "parameters": {
-              "step": "Poles-MonteCarloFailureProbability",
-              "title": "result_name"
-            }
-          },
-          {
-            "paramId": "ecc1d35f-3a34-46d9-e306-dc8bc5738eed",
-            "parameters": {
-              "step": "Sub-MonteCarloFailureProbability",
-              "title": "result_name"
-            }
-          }
-        ]
-      },
-      {
-        "title": "num_cpu",
-        "description": "num_cpu",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "72d2212a-9aa6-4511-c0b8-6990e5f51667",
-            "parameters": {
-              "step": "Bldg-MonteCarloFailureProbability",
-              "title": "num_cpu"
-            }
-          },
-          {
-            "paramId": "73f64797-0a63-490a-fddd-992b19343912",
-            "parameters": {
-              "step": "Poles-MonteCarloFailureProbability",
-              "title": "num_cpu"
-            }
-          },
-          {
-            "paramId": "145a7b7c-19f3-40cb-9d7f-3131d8d39d1b",
-            "parameters": {
-              "step": "Sub-MonteCarloFailureProbability",
-              "title": "num_cpu"
-            }
-          }
-        ]
-      },
-      {
         "title": "damage_interval_keys",
         "description": "damage_interval_keys",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
             "paramId": "d1b0b142-b755-4ad7-8959-ba1ffe9b2864",
             "parameters": {
               "step": "Bldg-MonteCarloFailureProbability",
-              "title": "damage_interval_keys"
-            }
-          },
-          {
-            "paramId": "1c6b33a8-5cdd-407a-c27e-81be014bb8b7",
-            "parameters": {
-              "step": "Poles-MonteCarloFailureProbability",
               "title": "damage_interval_keys"
             }
           },
@@ -234,20 +83,13 @@
         "description": "failure_state_keys",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
             "paramId": "f94aea0f-4276-48e6-8f1e-dd6b1eb3ce78",
             "parameters": {
               "step": "Bldg-MonteCarloFailureProbability",
-              "title": "failure_state_keys"
-            }
-          },
-          {
-            "paramId": "e3ef2a1d-38a6-468c-8c96-49c61736af97",
-            "parameters": {
-              "step": "Poles-MonteCarloFailureProbability",
               "title": "failure_state_keys"
             }
           },
@@ -265,20 +107,13 @@
         "description": "seed",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
             "paramId": "85105a63-8cba-408d-de57-57d57f7742e4",
             "parameters": {
               "step": "Bldg-MonteCarloFailureProbability",
-              "title": "seed"
-            }
-          },
-          {
-            "paramId": "4fcef96f-c810-4ef4-ed69-abaeef288e5a",
-            "parameters": {
-              "step": "Poles-MonteCarloFailureProbability",
               "title": "seed"
             }
           },
@@ -296,20 +131,13 @@
         "description": "num_samples",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
             "paramId": "a45d5c3a-dd94-4780-a366-adda08b7c9a4",
             "parameters": {
               "step": "Bldg-MonteCarloFailureProbability",
-              "title": "num_samples"
-            }
-          },
-          {
-            "paramId": "9012f01d-5c76-4689-934e-4bd76a9e3fc9",
-            "parameters": {
-              "step": "Poles-MonteCarloFailureProbability",
               "title": "num_samples"
             }
           },
@@ -323,24 +151,65 @@
         ]
       },
       {
+        "title": "result_name",
+        "description": "result_name",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "SLC",
+        "parametersMap": [
+          {
+            "paramId": "db1d7f2b-be47-41f1-87f6-d4624e0c8de9",
+            "parameters": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "result_name"
+            }
+          },
+          {
+            "paramId": "ecc1d35f-3a34-46d9-e306-dc8bc5738eed",
+            "parameters": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "result_name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "num_cpu",
+        "description": "num_cpu",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "4",
+        "parametersMap": [
+          {
+            "paramId": "72d2212a-9aa6-4511-c0b8-6990e5f51667",
+            "parameters": {
+              "step": "Bldg-MonteCarloFailureProbability",
+              "title": "num_cpu"
+            }
+          },
+          {
+            "paramId": "145a7b7c-19f3-40cb-9d7f-3131d8d39d1b",
+            "parameters": {
+              "step": "Sub-MonteCarloFailureProbability",
+              "title": "num_cpu"
+            }
+          }
+        ]
+      },
+      {
         "title": "IN-CORE Service",
         "description": "IN-CORE Service",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
             "paramId": "5a299c82-de5a-425e-c614-4131f832bfb2",
             "parameters": {
               "step": "Bldg-MonteCarloFailureProbability",
-              "title": "IN-CORE Service"
-            }
-          },
-          {
-            "paramId": "ff288535-08e9-4faa-da8f-691f7642e641",
-            "parameters": {
-              "step": "Poles-MonteCarloFailureProbability",
               "title": "IN-CORE Service"
             }
           },
@@ -358,20 +227,13 @@
         "description": "Analysis",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "pyincore.analyses.epfdamage.epfdamage:EpfDamage",
         "parametersMap": [
           {
             "paramId": "c1b1ef7f-11e2-4072-f9af-b8a42e2c66c9",
             "parameters": {
               "step": "Sub-EpfDamage",
-              "title": "Analysis"
-            }
-          },
-          {
-            "paramId": "4025182e-c358-402f-87fe-5b2d90c89b27",
-            "parameters": {
-              "step": "Poles-EpfDamage",
               "title": "Analysis"
             }
           }
@@ -382,7 +244,7 @@
         "description": "IN-CORE Service",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -390,37 +252,6 @@
             "parameters": {
               "step": "Sub-EpfDamage",
               "title": "IN-CORE Service"
-            }
-          },
-          {
-            "paramId": "6e9d5ffd-422d-4d0e-9d96-9fd2d79b339e",
-            "parameters": {
-              "step": "Poles-EpfDamage",
-              "title": "IN-CORE Service"
-            }
-          }
-        ]
-      },
-      {
-        "title": "result_name",
-        "description": "result_name",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "ffca1ace-2264-4dbe-e7c8-ecedc2dc748b",
-            "parameters": {
-              "step": "Sub-EpfDamage",
-              "title": "result_name"
-            }
-          },
-          {
-            "paramId": "622f0897-2e7a-40c1-dc37-654f5ebe2e8b",
-            "parameters": {
-              "step": "Poles-EpfDamage",
-              "title": "result_name"
             }
           }
         ]
@@ -430,20 +261,13 @@
         "description": "hazard_type",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
             "paramId": "706184d5-85da-4245-c28e-98fde1bf3150",
             "parameters": {
               "step": "Sub-EpfDamage",
-              "title": "hazard_type"
-            }
-          },
-          {
-            "paramId": "02ca9666-1091-487b-ab3c-2641eb372c0f",
-            "parameters": {
-              "step": "Poles-EpfDamage",
               "title": "hazard_type"
             }
           }
@@ -454,20 +278,13 @@
         "description": "hazard_id",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
             "paramId": "69a4732f-c914-40ca-c2ac-f61242bf2190",
             "parameters": {
               "step": "Sub-EpfDamage",
-              "title": "hazard_id"
-            }
-          },
-          {
-            "paramId": "c477df17-8028-4179-829a-5bba7a4c13ed",
-            "parameters": {
-              "step": "Poles-EpfDamage",
               "title": "hazard_id"
             }
           }
@@ -478,20 +295,13 @@
         "description": "fragility_key",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
             "paramId": "43c0d905-d219-40c1-a95a-aabbc164f59c",
             "parameters": {
               "step": "Sub-EpfDamage",
-              "title": "fragility_key"
-            }
-          },
-          {
-            "paramId": "ae6ead2f-4897-4a3a-e1d6-ca020bceb35d",
-            "parameters": {
-              "step": "Poles-EpfDamage",
               "title": "fragility_key"
             }
           }
@@ -502,20 +312,13 @@
         "description": "liquefaction_fragility_key",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
             "paramId": "a0c5a39b-ff11-4898-a2dc-dd5ca139c732",
             "parameters": {
               "step": "Sub-EpfDamage",
-              "title": "liquefaction_fragility_key"
-            }
-          },
-          {
-            "paramId": "fa910dbe-8d26-491e-a6ee-01fcff1eb99a",
-            "parameters": {
-              "step": "Poles-EpfDamage",
               "title": "liquefaction_fragility_key"
             }
           }
@@ -526,20 +329,13 @@
         "description": "use_liquefaction",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
             "paramId": "80231a18-429b-43fa-de34-c8ab054b417e",
             "parameters": {
               "step": "Sub-EpfDamage",
-              "title": "use_liquefaction"
-            }
-          },
-          {
-            "paramId": "343d182b-7970-467e-d997-a8e5e1f28aa4",
-            "parameters": {
-              "step": "Poles-EpfDamage",
               "title": "use_liquefaction"
             }
           }
@@ -550,20 +346,13 @@
         "description": "liquefaction_geology_dataset_id",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
             "paramId": "e0a8a11f-ed36-49b4-a6e8-a3c92c939bb6",
             "parameters": {
               "step": "Sub-EpfDamage",
-              "title": "liquefaction_geology_dataset_id"
-            }
-          },
-          {
-            "paramId": "a7575753-ccd0-4086-987a-fc4713317bf0",
-            "parameters": {
-              "step": "Poles-EpfDamage",
               "title": "liquefaction_geology_dataset_id"
             }
           }
@@ -574,7 +363,7 @@
         "description": "use_hazard_uncertainty",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -582,37 +371,6 @@
             "parameters": {
               "step": "Sub-EpfDamage",
               "title": "use_hazard_uncertainty"
-            }
-          },
-          {
-            "paramId": "e4b6cd26-bcdd-4831-8ca8-a90be49fdc95",
-            "parameters": {
-              "step": "Poles-EpfDamage",
-              "title": "use_hazard_uncertainty"
-            }
-          }
-        ]
-      },
-      {
-        "title": "num_cpu",
-        "description": "num_cpu",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "9eefb251-7b32-4101-823e-1da5f3bfcda5",
-            "parameters": {
-              "step": "Sub-EpfDamage",
-              "title": "num_cpu"
-            }
-          },
-          {
-            "paramId": "3c6a334a-c0af-4768-a183-f89ae0b3edeb",
-            "parameters": {
-              "step": "Poles-EpfDamage",
-              "title": "num_cpu"
             }
           }
         ]
@@ -622,20 +380,13 @@
         "description": "epfs",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
             "paramId": "03bf9f80-8544-464d-c867-d7c0c0c495b4",
             "parameters": {
               "step": "Sub-EpfDamage",
-              "title": "epfs"
-            }
-          },
-          {
-            "paramId": "44ebd2e5-100a-48af-d7c7-8e98bf9bcf7b",
-            "parameters": {
-              "step": "Poles-EpfDamage",
               "title": "epfs"
             }
           }
@@ -646,7 +397,7 @@
         "description": "dfr3_mapping_set",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -654,302 +405,6 @@
             "parameters": {
               "step": "Sub-EpfDamage",
               "title": "dfr3_mapping_set"
-            }
-          },
-          {
-            "paramId": "5b7dbe15-888a-4b7f-a4c2-df504ddeadeb",
-            "parameters": {
-              "step": "Poles-EpfDamage",
-              "title": "dfr3_mapping_set"
-            }
-          }
-        ]
-      },
-      {
-        "title": "Analysis",
-        "description": "Analysis",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "pyincore.analyses.joplincge.joplincge:JoplinCGEModel",
-        "parametersMap": [
-          {
-            "paramId": "b9826753-b3bd-4e7f-f174-68c515fc3ceb",
-            "parameters": {
-              "step": "JoplinCGEModel",
-              "title": "Analysis"
-            }
-          }
-        ]
-      },
-      {
-        "title": "IN-CORE Service",
-        "description": "IN-CORE Service",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "7fbf0a0b-3a5b-4088-aa51-a6a96ae98516",
-            "parameters": {
-              "step": "JoplinCGEModel",
-              "title": "IN-CORE Service"
-            }
-          }
-        ]
-      },
-      {
-        "title": "model_iterations",
-        "description": "model_iterations",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "39abfe94-14b2-4b93-b24d-3ca26a1adb38",
-            "parameters": {
-              "step": "JoplinCGEModel",
-              "title": "model_iterations"
-            }
-          }
-        ]
-      },
-      {
-        "title": "solver_path",
-        "description": "solver_path",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "7a208fa7-0d73-4cc0-fb8b-95d8ec3467d0",
-            "parameters": {
-              "step": "JoplinCGEModel",
-              "title": "solver_path"
-            }
-          }
-        ]
-      },
-      {
-        "title": "SAM",
-        "description": "SAM",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "675571d3-389e-4995-9f92-8d94db69386f",
-            "parameters": {
-              "step": "JoplinCGEModel",
-              "title": "SAM"
-            }
-          }
-        ]
-      },
-      {
-        "title": "BB",
-        "description": "BB",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "f4f58f3d-a452-467b-dafd-9637cb7a0ef5",
-            "parameters": {
-              "step": "JoplinCGEModel",
-              "title": "BB"
-            }
-          }
-        ]
-      },
-      {
-        "title": "IOUT",
-        "description": "IOUT",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "5d5a229a-e840-44e5-b77b-9f2ac866fcb6",
-            "parameters": {
-              "step": "JoplinCGEModel",
-              "title": "IOUT"
-            }
-          }
-        ]
-      },
-      {
-        "title": "MISC",
-        "description": "MISC",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "0dea4685-f7e0-4ed0-bc46-60a73032678d",
-            "parameters": {
-              "step": "JoplinCGEModel",
-              "title": "MISC"
-            }
-          }
-        ]
-      },
-      {
-        "title": "MISCH",
-        "description": "MISCH",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "ccf99aba-1875-4ff6-ae63-e6f74d1b3f35",
-            "parameters": {
-              "step": "JoplinCGEModel",
-              "title": "MISCH"
-            }
-          }
-        ]
-      },
-      {
-        "title": "LANDCAP",
-        "description": "LANDCAP",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "68034c2d-6849-478f-abb5-16c35828298c",
-            "parameters": {
-              "step": "JoplinCGEModel",
-              "title": "LANDCAP"
-            }
-          }
-        ]
-      },
-      {
-        "title": "EMPLOY",
-        "description": "EMPLOY",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "5b076579-2a34-444e-ee25-f08b9a76a513",
-            "parameters": {
-              "step": "JoplinCGEModel",
-              "title": "EMPLOY"
-            }
-          }
-        ]
-      },
-      {
-        "title": "IGTD",
-        "description": "IGTD",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "abe45db7-5779-400a-a32a-958a7f1c0ba1",
-            "parameters": {
-              "step": "JoplinCGEModel",
-              "title": "IGTD"
-            }
-          }
-        ]
-      },
-      {
-        "title": "TAUFF",
-        "description": "TAUFF",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "9b22df95-761b-4117-8274-7a5e9003b52c",
-            "parameters": {
-              "step": "JoplinCGEModel",
-              "title": "TAUFF"
-            }
-          }
-        ]
-      },
-      {
-        "title": "JOBCR",
-        "description": "JOBCR",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "e8aff2a3-41a3-4b50-8af5-0fe8aceef671",
-            "parameters": {
-              "step": "JoplinCGEModel",
-              "title": "JOBCR"
-            }
-          }
-        ]
-      },
-      {
-        "title": "OUTCR",
-        "description": "OUTCR",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "d7dd88c2-2e53-4468-94ac-c8dbefae4ac2",
-            "parameters": {
-              "step": "JoplinCGEModel",
-              "title": "OUTCR"
-            }
-          }
-        ]
-      },
-      {
-        "title": "Analysis",
-        "description": "Analysis",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "pyincore.analyses.capitalshocks.capitalshocks:CapitalShocks",
-        "parametersMap": [
-          {
-            "paramId": "7e0e69d0-3898-4cc1-d1f9-328f1b93d788",
-            "parameters": {
-              "step": "CapitalShocks",
-              "title": "Analysis"
-            }
-          }
-        ]
-      },
-      {
-        "title": "IN-CORE Service",
-        "description": "IN-CORE Service",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "3576723f-5ec5-4ed9-960f-e75cf7c61bb8",
-            "parameters": {
-              "step": "CapitalShocks",
-              "title": "IN-CORE Service"
             }
           }
         ]
@@ -959,325 +414,31 @@
         "description": "result_name",
         "variableName": "",
         "widget": null,
-        "hidden": false,
-        "defaultValue": "",
+        "hidden": true,
+        "defaultValue": "SLC",
         "parametersMap": [
           {
-            "paramId": "fa0d6d5e-5ffa-4059-d02a-a94d5e42c72b",
+            "paramId": "ffca1ace-2264-4dbe-e7c8-ecedc2dc748b",
             "parameters": {
-              "step": "CapitalShocks",
+              "step": "Sub-EpfDamage",
               "title": "result_name"
             }
           }
         ]
       },
       {
-        "title": "buildings",
-        "description": "buildings",
+        "title": "num_cpu",
+        "description": "num_cpu",
         "variableName": "",
         "widget": null,
-        "hidden": false,
-        "defaultValue": "",
+        "hidden": true,
+        "defaultValue": "4",
         "parametersMap": [
           {
-            "paramId": "95ec7301-e030-4e05-a203-b807882a7f0f",
+            "paramId": "9eefb251-7b32-4101-823e-1da5f3bfcda5",
             "parameters": {
-              "step": "CapitalShocks",
-              "title": "buildings"
-            }
-          }
-        ]
-      },
-      {
-        "title": "buildings_to_sectors",
-        "description": "buildings_to_sectors",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "3894afc2-b039-4b86-8e17-644c0f09d8b5",
-            "parameters": {
-              "step": "CapitalShocks",
-              "title": "buildings_to_sectors"
-            }
-          }
-        ]
-      },
-      {
-        "title": "Result Name",
-        "description": "Result name",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "d97dfb84-ce8a-4320-d151-43ce37177467",
-            "parameters": {
-              "step": "Bldg-Max-Store Result",
-              "title": "Result Name"
-            }
-          },
-          {
-            "paramId": "10c701be-1497-4206-ff25-e6610ce53e3b",
-            "parameters": {
-              "step": "Pole-Max-Store Result",
-              "title": "Result Name"
-            }
-          },
-          {
-            "paramId": "ba4bee68-42a4-4b1a-bd0c-b809e949a34b",
-            "parameters": {
-              "step": "Sub-Max-Store Result",
-              "title": "Result Name"
-            }
-          },
-          {
-            "paramId": "5118208c-40ed-4837-9334-6c82d447e0f4",
-            "parameters": {
-              "step": "Bldg-Func-Store Result",
-              "title": "Result Name"
-            }
-          },
-          {
-            "paramId": "e225d26f-7fe1-4058-f400-a0f8c321e70c",
-            "parameters": {
-              "step": "HeatMap-Store Result",
-              "title": "Result Name"
-            }
-          },
-          {
-            "paramId": "53d37c17-3a96-4177-8d55-fe657f7abb5d",
-            "parameters": {
-              "step": "Bldg-FailProb-Store Result",
-              "title": "Result Name"
-            }
-          }
-        ]
-      },
-      {
-        "title": "Source ID",
-        "description": "parent id",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "1a38efe9-0b6e-4be7-e816-043c94a724bb",
-            "parameters": {
-              "step": "Bldg-Max-Store Result",
-              "title": "Source ID"
-            }
-          },
-          {
-            "paramId": "9d212cd0-12f0-4399-bdaf-345dfb193398",
-            "parameters": {
-              "step": "Pole-Max-Store Result",
-              "title": "Source ID"
-            }
-          },
-          {
-            "paramId": "7f0b9603-908b-49bf-be57-fca4c26463df",
-            "parameters": {
-              "step": "Sub-Max-Store Result",
-              "title": "Source ID"
-            }
-          },
-          {
-            "paramId": "90169332-180e-41c2-f483-18e25e7618f7",
-            "parameters": {
-              "step": "Bldg-Func-Store Result",
-              "title": "Source ID"
-            }
-          },
-          {
-            "paramId": "a7392299-a2e4-4154-b9fa-f08d5c6f643d",
-            "parameters": {
-              "step": "HeatMap-Store Result",
-              "title": "Source ID"
-            }
-          },
-          {
-            "paramId": "88f4b631-ef6f-44db-ef1b-2fbb553a3dad",
-            "parameters": {
-              "step": "Bldg-FailProb-Store Result",
-              "title": "Source ID"
-            }
-          }
-        ]
-      },
-      {
-        "title": "IN-CORE Service",
-        "description": "IN-CORE service",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "b668dedd-66ec-4fa0-e450-42e181accd7d",
-            "parameters": {
-              "step": "Bldg-Max-Store Result",
-              "title": "IN-CORE Service"
-            }
-          },
-          {
-            "paramId": "48105838-ae85-4773-ba6a-7805abac1dbd",
-            "parameters": {
-              "step": "Pole-Max-Store Result",
-              "title": "IN-CORE Service"
-            }
-          },
-          {
-            "paramId": "93f51c98-ab21-4276-f62f-6766e8f29607",
-            "parameters": {
-              "step": "Sub-Max-Store Result",
-              "title": "IN-CORE Service"
-            }
-          },
-          {
-            "paramId": "3213ed04-9a3c-4ecc-b9da-3d42946e5fba",
-            "parameters": {
-              "step": "Bldg-Func-Store Result",
-              "title": "IN-CORE Service"
-            }
-          },
-          {
-            "paramId": "bec1abd5-2cd2-42e3-c2c5-cd57c37f6e95",
-            "parameters": {
-              "step": "HeatMap-Store Result",
-              "title": "IN-CORE Service"
-            }
-          },
-          {
-            "paramId": "e812b780-a5a5-47fa-aea7-1d29e4577444",
-            "parameters": {
-              "step": "Bldg-FailProb-Store Result",
-              "title": "IN-CORE Service"
-            }
-          }
-        ]
-      },
-      {
-        "title": "Output Type",
-        "description": "Output type",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "9ef34ba3-41cb-4702-962b-28e074d01ef0",
-            "parameters": {
-              "step": "Bldg-Max-Store Result",
-              "title": "Output Type"
-            }
-          },
-          {
-            "paramId": "c3035bce-c326-4f42-a725-57d8615f4c62",
-            "parameters": {
-              "step": "Pole-Max-Store Result",
-              "title": "Output Type"
-            }
-          },
-          {
-            "paramId": "571838aa-f243-48cb-9989-e6da5cb556e8",
-            "parameters": {
-              "step": "Sub-Max-Store Result",
-              "title": "Output Type"
-            }
-          },
-          {
-            "paramId": "0e1d8b7e-9623-4fc6-986b-15d041d6e026",
-            "parameters": {
-              "step": "Bldg-Func-Store Result",
-              "title": "Output Type"
-            }
-          },
-          {
-            "paramId": "f8fd5daa-fdff-4534-c65c-29f4589e8620",
-            "parameters": {
-              "step": "HeatMap-Store Result",
-              "title": "Output Type"
-            }
-          },
-          {
-            "paramId": "552a9c15-c1bc-49f9-e7e7-f068acf0876a",
-            "parameters": {
-              "step": "Bldg-FailProb-Store Result",
-              "title": "Output Type"
-            }
-          }
-        ]
-      },
-      {
-        "title": "Output format",
-        "description": "Output format",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "d899d952-6838-45ae-96b4-b2e75a35adb1",
-            "parameters": {
-              "step": "Bldg-Max-Store Result",
-              "title": "Output format"
-            }
-          },
-          {
-            "paramId": "ef418794-5608-4420-8c2d-578ec216f443",
-            "parameters": {
-              "step": "Pole-Max-Store Result",
-              "title": "Output format"
-            }
-          },
-          {
-            "paramId": "b625bf13-a5dd-446d-8a90-4322fb9f1a33",
-            "parameters": {
-              "step": "Sub-Max-Store Result",
-              "title": "Output format"
-            }
-          },
-          {
-            "paramId": "0f63677f-9e4f-4905-9367-cdb7037f88e8",
-            "parameters": {
-              "step": "Bldg-Func-Store Result",
-              "title": "Output format"
-            }
-          },
-          {
-            "paramId": "408c402e-f45f-4015-c09e-c766311f64f1",
-            "parameters": {
-              "step": "HeatMap-Store Result",
-              "title": "Output format"
-            }
-          },
-          {
-            "paramId": "cb5ef2bc-d53f-4cc1-c927-aea9d427bf27",
-            "parameters": {
-              "step": "Bldg-FailProb-Store Result",
-              "title": "Output format"
-            }
-          }
-        ]
-      },
-      {
-        "title": "Result Name",
-        "description": "Result Name",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "b2ed3ad7-8209-49e5-f25e-bb85527a7bd4",
-            "parameters": {
-              "step": "HHRSOutputProcess",
-              "title": "Result Name"
+              "step": "Sub-EpfDamage",
+              "title": "num_cpu"
             }
           }
         ]
@@ -1287,7 +448,7 @@
         "description": "Time Steps",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1300,11 +461,28 @@
         ]
       },
       {
+        "title": "Result Name",
+        "description": "Result Name",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "SLC",
+        "parametersMap": [
+          {
+            "paramId": "b2ed3ad7-8209-49e5-f25e-bb85527a7bd4",
+            "parameters": {
+              "step": "HHRSOutputProcess",
+              "title": "Result Name"
+            }
+          }
+        ]
+      },
+      {
         "title": "Analysis",
         "description": "Analysis",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "pyincore.analyses.socialvulnerability.socialvulnerability:SocialVulnerability",
         "parametersMap": [
           {
@@ -1321,7 +499,7 @@
         "description": "IN-CORE Service",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1334,28 +512,11 @@
         ]
       },
       {
-        "title": "result_name",
-        "description": "result_name",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "35ddf87b-7eb4-4b5f-d606-b0d73fb904cc",
-            "parameters": {
-              "step": "SocialVulnerability",
-              "title": "result_name"
-            }
-          }
-        ]
-      },
-      {
         "title": "national_vulnerability_feature_averages",
         "description": "national_vulnerability_feature_averages",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1372,7 +533,7 @@
         "description": "social_vulnerability_demographic_factors",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1385,11 +546,28 @@
         ]
       },
       {
+        "title": "result_name",
+        "description": "result_name",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "SLC",
+        "parametersMap": [
+          {
+            "paramId": "35ddf87b-7eb4-4b5f-d606-b0d73fb904cc",
+            "parameters": {
+              "step": "SocialVulnerability",
+              "title": "result_name"
+            }
+          }
+        ]
+      },
+      {
         "title": "Analysis",
         "description": "Analysis",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "pyincore.analyses.populationdislocation.populationdislocation:PopulationDislocation",
         "parametersMap": [
           {
@@ -1406,7 +584,7 @@
         "description": "IN-CORE Service",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1419,28 +597,11 @@
         ]
       },
       {
-        "title": "result_name",
-        "description": "result_name",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "15e42c27-cec2-471e-a231-0938a461c9ea",
-            "parameters": {
-              "step": "PopulationDislocation",
-              "title": "result_name"
-            }
-          }
-        ]
-      },
-      {
         "title": "seed",
         "description": "seed",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1457,7 +618,7 @@
         "description": "housing_unit_allocation",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1474,7 +635,7 @@
         "description": "block_group_data",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1491,7 +652,7 @@
         "description": "value_loss_param",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1504,18 +665,18 @@
         ]
       },
       {
-        "title": "Result Name",
-        "description": "Result Name",
+        "title": "result_name",
+        "description": "result_name",
         "variableName": "",
         "widget": null,
-        "hidden": false,
-        "defaultValue": "",
+        "hidden": true,
+        "defaultValue": "SLC",
         "parametersMap": [
           {
-            "paramId": "ab39eb9c-7110-4d62-90a5-0cdbf23c07de",
+            "paramId": "15e42c27-cec2-471e-a231-0938a461c9ea",
             "parameters": {
-              "step": "CGE-Output-Process",
-              "title": "Result Name"
+              "step": "PopulationDislocation",
+              "title": "result_name"
             }
           }
         ]
@@ -1525,7 +686,7 @@
         "description": "Regions",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1542,7 +703,7 @@
         "description": "Household categories",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "HH1,HH2,HH3,HH4,HH5",
         "parametersMap": [
           {
@@ -1559,7 +720,7 @@
         "description": "Demand Categories",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "GOODS,TRADE,OTHER",
         "parametersMap": [
           {
@@ -1576,7 +737,7 @@
         "description": "Supply Categories",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "Goods,Trade,Other,HS1,HS2,HS3 ",
         "parametersMap": [
           {
@@ -1593,13 +754,13 @@
         "description": "Result Name",
         "variableName": "",
         "widget": null,
-        "hidden": false,
-        "defaultValue": "",
+        "hidden": true,
+        "defaultValue": "SLC",
         "parametersMap": [
           {
-            "paramId": "f0387d6d-1e3e-426e-89b5-6351f84eaef6",
+            "paramId": "ab39eb9c-7110-4d62-90a5-0cdbf23c07de",
             "parameters": {
-              "step": "Building-Func-Cluster",
+              "step": "CGE-Output-Process",
               "title": "Result Name"
             }
           }
@@ -1610,7 +771,7 @@
         "description": "IN-CORE Service",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1627,7 +788,7 @@
         "description": "Building Inventory",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1644,7 +805,7 @@
         "description": "Building archetype mapping",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1661,7 +822,7 @@
         "description": "Column to cluster on",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "archetype",
         "parametersMap": [
           {
@@ -1678,13 +839,13 @@
         "description": "Result Name",
         "variableName": "",
         "widget": null,
-        "hidden": false,
-        "defaultValue": "",
+        "hidden": true,
+        "defaultValue": "SLC",
         "parametersMap": [
           {
-            "paramId": "c68e32f3-06fc-4a61-e701-4abb3e8f5281",
+            "paramId": "f0387d6d-1e3e-426e-89b5-6351f84eaef6",
             "parameters": {
-              "step": "Building-Failure-Cluster",
+              "step": "Building-Func-Cluster",
               "title": "Result Name"
             }
           }
@@ -1695,7 +856,7 @@
         "description": "IN-CORE Service",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1712,7 +873,7 @@
         "description": "Building inventory",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1729,7 +890,7 @@
         "description": "Archetype Mapping",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1746,7 +907,7 @@
         "description": "Column to cluster on",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "archetype",
         "parametersMap": [
           {
@@ -1760,16 +921,16 @@
       },
       {
         "title": "Result Name",
-        "description": "Result name",
+        "description": "Result Name",
         "variableName": "",
         "widget": null,
-        "hidden": false,
-        "defaultValue": "",
+        "hidden": true,
+        "defaultValue": "SLC",
         "parametersMap": [
           {
-            "paramId": "1c7a6d9c-3d5c-4020-b1ba-c7feee3f4ef6",
+            "paramId": "c68e32f3-06fc-4a61-e701-4abb3e8f5281",
             "parameters": {
-              "step": "Building-Dmg-Summary",
+              "step": "Building-Failure-Cluster",
               "title": "Result Name"
             }
           }
@@ -1780,7 +941,7 @@
         "description": "IN-CORE Service",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1797,7 +958,7 @@
         "description": "Building Inventory",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1814,7 +975,7 @@
         "description": "Archetype Mapping",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -1831,7 +992,7 @@
         "description": "Column to create groups",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "max_state",
         "parametersMap": [
           {
@@ -1848,7 +1009,7 @@
         "description": "Column to cluster on",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "archetype",
         "parametersMap": [
           {
@@ -1861,137 +1022,18 @@
         ]
       },
       {
-        "title": "Analysis",
-        "description": "Analysis",
+        "title": "Result Name",
+        "description": "Result name",
         "variableName": "",
         "widget": null,
-        "hidden": false,
-        "defaultValue": "pyincore.analyses.housingrecoverysequential.housingrecoverysequential:HousingRecoverySequential",
+        "hidden": true,
+        "defaultValue": "SLC",
         "parametersMap": [
           {
-            "paramId": "3d55fb27-fc5f-4ec9-baf7-e6d2c95d6e16",
+            "paramId": "1c7a6d9c-3d5c-4020-b1ba-c7feee3f4ef6",
             "parameters": {
-              "step": "HousingRecoverySequential",
-              "title": "Analysis"
-            }
-          }
-        ]
-      },
-      {
-        "title": "IN-CORE Service",
-        "description": "IN-CORE Service",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "c415e0db-553c-4120-899e-1316e4814589",
-            "parameters": {
-              "step": "HousingRecoverySequential",
-              "title": "IN-CORE Service"
-            }
-          }
-        ]
-      },
-      {
-        "title": "result_name",
-        "description": "result_name",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "05894bef-2750-4ecc-9fcc-9ec18d11fd2e",
-            "parameters": {
-              "step": "HousingRecoverySequential",
-              "title": "result_name"
-            }
-          }
-        ]
-      },
-      {
-        "title": "t_delta",
-        "description": "t_delta",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "995a5335-fc2e-4336-d295-ca9650504a69",
-            "parameters": {
-              "step": "HousingRecoverySequential",
-              "title": "t_delta"
-            }
-          }
-        ]
-      },
-      {
-        "title": "t_final",
-        "description": "t_final",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "10744777-d35a-4d9c-9cf0-6db31f36e7de",
-            "parameters": {
-              "step": "HousingRecoverySequential",
-              "title": "t_final"
-            }
-          }
-        ]
-      },
-      {
-        "title": "seed",
-        "description": "seed",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "1fff9fff-82d2-486c-afec-551e61b6fbdd",
-            "parameters": {
-              "step": "HousingRecoverySequential",
-              "title": "seed"
-            }
-          }
-        ]
-      },
-      {
-        "title": "tpm",
-        "description": "tpm",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "d0619a7b-e5f6-4b79-8830-8935c30463dc",
-            "parameters": {
-              "step": "HousingRecoverySequential",
-              "title": "tpm"
-            }
-          }
-        ]
-      },
-      {
-        "title": "initial_stage_probabilities",
-        "description": "initial_stage_probabilities",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "599cd8f2-e8c9-4512-80b8-8ddd3d89ae61",
-            "parameters": {
-              "step": "HousingRecoverySequential",
-              "title": "initial_stage_probabilities"
+              "step": "Building-Dmg-Summary",
+              "title": "Result Name"
             }
           }
         ]
@@ -2001,7 +1043,7 @@
         "description": "Analysis",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "pyincore.analyses.buildingdamage.buildingdamage:BuildingDamage",
         "parametersMap": [
           {
@@ -2018,7 +1060,7 @@
         "description": "IN-CORE Service",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -2031,28 +1073,11 @@
         ]
       },
       {
-        "title": "result_name",
-        "description": "result_name",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "be9266c0-6fc5-4861-9844-9c31d7bf2c78",
-            "parameters": {
-              "step": "BuildingDamage",
-              "title": "result_name"
-            }
-          }
-        ]
-      },
-      {
         "title": "hazard_type",
         "description": "hazard_type",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -2069,7 +1094,7 @@
         "description": "hazard_id",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -2086,7 +1111,7 @@
         "description": "fragility_key",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -2103,7 +1128,7 @@
         "description": "use_liquefaction",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -2120,7 +1145,7 @@
         "description": "use_hazard_uncertainty",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -2133,28 +1158,11 @@
         ]
       },
       {
-        "title": "num_cpu",
-        "description": "num_cpu",
-        "variableName": "",
-        "widget": null,
-        "hidden": false,
-        "defaultValue": "",
-        "parametersMap": [
-          {
-            "paramId": "937224ee-0e6c-40d7-dd2e-6a40018c1a02",
-            "parameters": {
-              "step": "BuildingDamage",
-              "title": "num_cpu"
-            }
-          }
-        ]
-      },
-      {
         "title": "seed",
         "description": "seed",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -2171,7 +1179,7 @@
         "description": "liquefaction_geology_dataset_id",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -2188,7 +1196,7 @@
         "description": "buildings",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -2205,7 +1213,7 @@
         "description": "dfr3_mapping_set",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -2222,7 +1230,7 @@
         "description": "retrofit_strategy",
         "variableName": "",
         "widget": null,
-        "hidden": false,
+        "hidden": true,
         "defaultValue": "",
         "parametersMap": [
           {
@@ -2230,6 +1238,837 @@
             "parameters": {
               "step": "BuildingDamage",
               "title": "retrofit_strategy"
+            }
+          }
+        ]
+      },
+      {
+        "title": "result_name",
+        "description": "result_name",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "SLC",
+        "parametersMap": [
+          {
+            "paramId": "be9266c0-6fc5-4861-9844-9c31d7bf2c78",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "result_name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "num_cpu",
+        "description": "num_cpu",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "14",
+        "parametersMap": [
+          {
+            "paramId": "937224ee-0e6c-40d7-dd2e-6a40018c1a02",
+            "parameters": {
+              "step": "BuildingDamage",
+              "title": "num_cpu"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Analysis",
+        "description": "Analysis",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "pyincore.analyses.buildingfunctionality.buildingfunctionality:BuildingFunctionality",
+        "parametersMap": [
+          {
+            "paramId": "d769a516-b26c-42aa-80e5-50d84b8c1f28",
+            "parameters": {
+              "step": "BuildingFunctionality-sub-only",
+              "title": "Analysis"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "7c86cc07-37d6-48cb-f75f-8c90d9512023",
+            "parameters": {
+              "step": "BuildingFunctionality-sub-only",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "poles_damage_mcs_samples",
+        "description": "poles_damage_mcs_samples",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "2c478590-c6bc-4ea2-9598-595a91a749b9",
+            "parameters": {
+              "step": "BuildingFunctionality-sub-only",
+              "title": "poles_damage_mcs_samples"
+            }
+          }
+        ]
+      },
+      {
+        "title": "interdependency_dictionary",
+        "description": "interdependency_dictionary",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "273dac0a-662c-4791-f8d7-803595ee1b33",
+            "parameters": {
+              "step": "BuildingFunctionality-sub-only",
+              "title": "interdependency_dictionary"
+            }
+          }
+        ]
+      },
+      {
+        "title": "result_name",
+        "description": "result_name",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "SLC",
+        "parametersMap": [
+          {
+            "paramId": "df9ccac3-5480-4053-a342-2c4a0bc29f9d",
+            "parameters": {
+              "step": "BuildingFunctionality-sub-only",
+              "title": "result_name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Analysis",
+        "description": "Analysis",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "pyincore.analyses.capitalshocks.capitalshocks:CapitalShocks",
+        "parametersMap": [
+          {
+            "paramId": "e4f75122-bd92-4c48-ccb7-de27684866ab",
+            "parameters": {
+              "step": "CapitalShocks",
+              "title": "Analysis"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "e58893b5-d7a0-428a-ec04-0965c6b0af0e",
+            "parameters": {
+              "step": "CapitalShocks",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "buildings",
+        "description": "buildings",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "34d5e043-f0b9-4ace-d3a3-276429954516",
+            "parameters": {
+              "step": "CapitalShocks",
+              "title": "buildings"
+            }
+          }
+        ]
+      },
+      {
+        "title": "buildings_to_sectors",
+        "description": "buildings_to_sectors",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "13b87f69-109f-452d-a0fe-4b4c10692950",
+            "parameters": {
+              "step": "CapitalShocks",
+              "title": "buildings_to_sectors"
+            }
+          }
+        ]
+      },
+      {
+        "title": "result_name",
+        "description": "result_name",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "SLC",
+        "parametersMap": [
+          {
+            "paramId": "59b0b59b-db87-408f-9d40-2103af92d74b",
+            "parameters": {
+              "step": "CapitalShocks",
+              "title": "result_name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Analysis",
+        "description": "Analysis",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "pyincore.analyses.saltlakecge.saltlakecge:SaltLakeCGEModel",
+        "parametersMap": [
+          {
+            "paramId": "5ac9eeec-e3b2-4518-8fcb-36031cc55b9f",
+            "parameters": {
+              "step": "SaltLakeCGEModel",
+              "title": "Analysis"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "efd1f25b-9379-4002-81c4-9b3a87981a21",
+            "parameters": {
+              "step": "SaltLakeCGEModel",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "model_iterations",
+        "description": "model_iterations",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "1",
+        "parametersMap": [
+          {
+            "paramId": "879e94d0-a95a-4820-e71a-c13120277ca9",
+            "parameters": {
+              "step": "SaltLakeCGEModel",
+              "title": "model_iterations"
+            }
+          }
+        ]
+      },
+      {
+        "title": "solver_path",
+        "description": "solver_path",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "0a2086a4-ce3e-45c0-82b6-4ba4af1836b4",
+            "parameters": {
+              "step": "SaltLakeCGEModel",
+              "title": "solver_path"
+            }
+          }
+        ]
+      },
+      {
+        "title": "SAM",
+        "description": "SAM",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "2032accf-0ef0-440c-d4b7-1cff6f9bbd5f",
+            "parameters": {
+              "step": "SaltLakeCGEModel",
+              "title": "SAM"
+            }
+          }
+        ]
+      },
+      {
+        "title": "BB",
+        "description": "BB",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "d4568d6d-32eb-4035-ccbd-8239e5699e01",
+            "parameters": {
+              "step": "SaltLakeCGEModel",
+              "title": "BB"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IOUT",
+        "description": "IOUT",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "ce885abb-ab3c-43e8-89c2-c1ca3b3ff727",
+            "parameters": {
+              "step": "SaltLakeCGEModel",
+              "title": "IOUT"
+            }
+          }
+        ]
+      },
+      {
+        "title": "MISC",
+        "description": "MISC",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "6785c9c4-ba9b-4f99-b1c0-7e69f9ba0a02",
+            "parameters": {
+              "step": "SaltLakeCGEModel",
+              "title": "MISC"
+            }
+          }
+        ]
+      },
+      {
+        "title": "MISCH",
+        "description": "MISCH",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "5e8af984-79d2-463b-8ca4-fc946a1c0b4c",
+            "parameters": {
+              "step": "SaltLakeCGEModel",
+              "title": "MISCH"
+            }
+          }
+        ]
+      },
+      {
+        "title": "EMPLOY",
+        "description": "EMPLOY",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "3e7ed836-2114-4dea-ef3d-91074d6b821d",
+            "parameters": {
+              "step": "SaltLakeCGEModel",
+              "title": "EMPLOY"
+            }
+          }
+        ]
+      },
+      {
+        "title": "JOBCR",
+        "description": "JOBCR",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "80b43ed6-a66f-4891-fb46-194ee94d009c",
+            "parameters": {
+              "step": "SaltLakeCGEModel",
+              "title": "JOBCR"
+            }
+          }
+        ]
+      },
+      {
+        "title": "OUTCR",
+        "description": "OUTCR",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "e9b22eb0-bb25-4e60-a0c7-ceb111770e28",
+            "parameters": {
+              "step": "SaltLakeCGEModel",
+              "title": "OUTCR"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Analysis",
+        "description": "Analysis",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "pyincore.analyses.housingrecoverysequential.housingrecoverysequential:HousingRecoverySequential",
+        "parametersMap": [
+          {
+            "paramId": "77e39e1d-0dc5-48ea-d676-f68abb4958ad",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "Analysis"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE Service",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "667febc2-6d3b-4c67-bd52-5a678dfa4418",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "result_name",
+        "description": "result_name",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "SLC",
+        "parametersMap": [
+          {
+            "paramId": "419c1e2c-3e8e-4354-e883-e0f4d49576c5",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "result_name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "t_delta",
+        "description": "t_delta",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "3909cd82-5256-4925-9e10-a63d9adb865f",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "t_delta"
+            }
+          }
+        ]
+      },
+      {
+        "title": "t_final",
+        "description": "t_final",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "c02f86bb-8c65-418f-e836-2ee1b8791a2d",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "t_final"
+            }
+          }
+        ]
+      },
+      {
+        "title": "seed",
+        "description": "seed",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "8ecae30f-8a44-4ea2-a62b-e2129559f562",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "seed"
+            }
+          }
+        ]
+      },
+      {
+        "title": "num_cpu",
+        "description": "num_cpu",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "4",
+        "parametersMap": [
+          {
+            "paramId": "fa432b67-adb9-47cb-bd0e-aa7197aada15",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "num_cpu"
+            }
+          }
+        ]
+      },
+      {
+        "title": "tpm",
+        "description": "tpm",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "6cf56dec-68b9-4be9-e532-f9c422f7d57e",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "tpm"
+            }
+          }
+        ]
+      },
+      {
+        "title": "initial_stage_probabilities",
+        "description": "initial_stage_probabilities",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "34fff30f-d199-4545-b7f6-138c4e5d0c24",
+            "parameters": {
+              "step": "HousingRecoverySequential",
+              "title": "initial_stage_probabilities"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Result Name",
+        "description": "Result name",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "SLC",
+        "parametersMap": [
+          {
+            "paramId": "971cc30c-79db-4045-9cc1-0c89bc2b66b3",
+            "parameters": {
+              "step": "Bldg-Func-Store Result",
+              "title": "Result Name"
+            }
+          },
+          {
+            "paramId": "f0028ea0-f38d-45f2-ca9c-3962a676e5ce",
+            "parameters": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Result Name"
+            }
+          },
+          {
+            "paramId": "8edb0d54-c402-481b-e5a9-874bd04b0f8e",
+            "parameters": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Result Name"
+            }
+          },
+          {
+            "paramId": "a3cc1a27-a80a-45c5-a955-76a318507824",
+            "parameters": {
+              "step": "HeatMap-Store Result",
+              "title": "Result Name"
+            }
+          },
+          {
+            "paramId": "d6a9b9c3-6c10-41a1-84b7-81c554d0e956",
+            "parameters": {
+              "step": "Sub-Max-Store Result",
+              "title": "Result Name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Source ID",
+        "description": "parent id",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "02319e5d-65ac-45b0-a9a5-b033cbbe029a",
+            "parameters": {
+              "step": "Bldg-Func-Store Result",
+              "title": "Source ID"
+            }
+          },
+          {
+            "paramId": "ade43ab3-8591-47d6-ac39-548fc7749728",
+            "parameters": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Source ID"
+            }
+          },
+          {
+            "paramId": "0118354a-ef49-4e44-cd07-d73b81180550",
+            "parameters": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Source ID"
+            }
+          },
+          {
+            "paramId": "905dd2c1-e0bd-412f-fb3b-99533fd1bc70",
+            "parameters": {
+              "step": "HeatMap-Store Result",
+              "title": "Source ID"
+            }
+          },
+          {
+            "paramId": "9c9956ee-cff1-4f94-8e48-cafad3f898e8",
+            "parameters": {
+              "step": "Sub-Max-Store Result",
+              "title": "Source ID"
+            }
+          }
+        ]
+      },
+      {
+        "title": "IN-CORE Service",
+        "description": "IN-CORE service",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "c4cdeae6-da88-4317-b08b-720d5cf77dd2",
+            "parameters": {
+              "step": "Bldg-Func-Store Result",
+              "title": "IN-CORE Service"
+            }
+          },
+          {
+            "paramId": "2dd45c06-bc4a-4829-b4a5-84486329e528",
+            "parameters": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "IN-CORE Service"
+            }
+          },
+          {
+            "paramId": "ae37b54d-a49b-4810-85bc-531ef4425bff",
+            "parameters": {
+              "step": "Bldg-Max-Store Result",
+              "title": "IN-CORE Service"
+            }
+          },
+          {
+            "paramId": "cc1b9842-a4d9-4479-a232-6bccf2fcdabc",
+            "parameters": {
+              "step": "HeatMap-Store Result",
+              "title": "IN-CORE Service"
+            }
+          },
+          {
+            "paramId": "35afa396-03c6-4b47-e3b0-de80120f48a1",
+            "parameters": {
+              "step": "Sub-Max-Store Result",
+              "title": "IN-CORE Service"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Output Type",
+        "description": "Output Type",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "9b2f055d-e708-42f5-bd92-c0479431e952",
+            "parameters": {
+              "step": "Bldg-Func-Store Result",
+              "title": "Output Type"
+            }
+          },
+          {
+            "paramId": "d923c37c-4b7e-41f1-e404-21003738d3c6",
+            "parameters": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Output Type"
+            }
+          },
+          {
+            "paramId": "bb24e40b-03a4-48ca-f943-ffe72103a4cd",
+            "parameters": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Output Type"
+            }
+          },
+          {
+            "paramId": "b2ada272-85f5-452a-f467-c5ef6ccd2262",
+            "parameters": {
+              "step": "HeatMap-Store Result",
+              "title": "Output Type"
+            }
+          },
+          {
+            "paramId": "e97632f0-ff75-4f82-fab5-1d9fccc07c33",
+            "parameters": {
+              "step": "Sub-Max-Store Result",
+              "title": "Output Type"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Output format",
+        "description": "Output format",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "",
+        "parametersMap": [
+          {
+            "paramId": "30ef6df8-bdfe-4a36-f686-4157fdaf5fe8",
+            "parameters": {
+              "step": "Bldg-Func-Store Result",
+              "title": "Output format"
+            }
+          },
+          {
+            "paramId": "90b01539-1cb6-459b-abc9-a9d8fab0c664",
+            "parameters": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Output format"
+            }
+          },
+          {
+            "paramId": "a644b3c8-8a01-4f49-ce10-827e48936ebf",
+            "parameters": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Output format"
+            }
+          },
+          {
+            "paramId": "0cfeaeb6-6a13-4eff-cf38-cbee21f56715",
+            "parameters": {
+              "step": "HeatMap-Store Result",
+              "title": "Output format"
+            }
+          },
+          {
+            "paramId": "18d0b09b-b180-487b-fa2c-e7436edd8add",
+            "parameters": {
+              "step": "Sub-Max-Store Result",
+              "title": "Output format"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Spaces",
+        "description": "IN-CORE space or spaces to add the dataset to",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "defaultValue": "commresilienceslc",
+        "parametersMap": [
+          {
+            "paramId": "c528ca2d-f572-45b0-b038-2954415b4b09",
+            "parameters": {
+              "step": "Bldg-Func-Store Result",
+              "title": "Spaces"
+            }
+          },
+          {
+            "paramId": "464e2963-c527-47ab-acfe-46e58727e99e",
+            "parameters": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Spaces"
+            }
+          },
+          {
+            "paramId": "d405acb0-b2dc-4f88-b806-e7c749897712",
+            "parameters": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Spaces"
+            }
+          },
+          {
+            "paramId": "e27dd10c-4d57-48e6-9a2e-6affeabf0c4d",
+            "parameters": {
+              "step": "HeatMap-Store Result",
+              "title": "Spaces"
+            }
+          },
+          {
+            "paramId": "0f6c26c1-4d99-4e2b-bd36-12b1f6a22f9f",
+            "parameters": {
+              "step": "Sub-Max-Store Result",
+              "title": "Spaces"
             }
           }
         ]
@@ -2267,13 +2106,6 @@
             }
           },
           {
-            "datasetId": "18231004-f8ca-421c-ae04-ff46ab514262",
-            "datasets": {
-              "step": "Pole-Max-Dmg-State",
-              "title": "Damage Output"
-            }
-          },
-          {
             "datasetId": "0c2c6744-1097-4bca-e479-6158c6e396e8",
             "datasets": {
               "step": "Sub-Max-Dmg-State",
@@ -2290,80 +2122,9 @@
         "hidden": true,
         "datasetsMap": [
           {
-            "datasetId": "29033059-cc41-4a8a-ca4e-222686cf55d7",
-            "datasets": {
-              "step": "BuildingFunctionality",
-              "title": "Token"
-            }
-          }
-        ]
-      },
-      {
-        "title": "building_damage_mcs_samples",
-        "description": "building damage samples",
-        "variableName": "",
-        "widget": null,
-        "hidden": true,
-        "datasetsMap": [
-          {
-            "datasetId": "c6d5e0b3-7416-4f73-eda5-089f9dc94ed2",
-            "datasets": {
-              "step": "BuildingFunctionality",
-              "title": "building_damage_mcs_samples"
-            }
-          }
-        ]
-      },
-      {
-        "title": "substations_damage_mcs_samples",
-        "description": "substations damage samples",
-        "variableName": "",
-        "widget": null,
-        "hidden": true,
-        "datasetsMap": [
-          {
-            "datasetId": "600c009b-057b-479d-ef02-453f37c37dab",
-            "datasets": {
-              "step": "BuildingFunctionality",
-              "title": "substations_damage_mcs_samples"
-            }
-          }
-        ]
-      },
-      {
-        "title": "poles_damage_mcs_samples",
-        "description": "poles damage samples",
-        "variableName": "",
-        "widget": null,
-        "hidden": true,
-        "datasetsMap": [
-          {
-            "datasetId": "01237b9d-d1ba-4c84-934b-19b0755bafbf",
-            "datasets": {
-              "step": "BuildingFunctionality",
-              "title": "poles_damage_mcs_samples"
-            }
-          }
-        ]
-      },
-      {
-        "title": "Token",
-        "description": "IN-CORE Service Token",
-        "variableName": "",
-        "widget": null,
-        "hidden": true,
-        "datasetsMap": [
-          {
             "datasetId": "c484e0b1-dff2-412f-efe8-2e0e5321d667",
             "datasets": {
               "step": "Bldg-MonteCarloFailureProbability",
-              "title": "Token"
-            }
-          },
-          {
-            "datasetId": "f21ed941-fc20-4a5a-ad24-fd29d97997ba",
-            "datasets": {
-              "step": "Poles-MonteCarloFailureProbability",
               "title": "Token"
             }
           },
@@ -2391,13 +2152,6 @@
             }
           },
           {
-            "datasetId": "18231004-f8ca-421c-ae04-ff46ab514262",
-            "datasets": {
-              "step": "Poles-MonteCarloFailureProbability",
-              "title": "damage"
-            }
-          },
-          {
             "datasetId": "0c2c6744-1097-4bca-e479-6158c6e396e8",
             "datasets": {
               "step": "Sub-MonteCarloFailureProbability",
@@ -2419,179 +2173,6 @@
               "step": "Sub-EpfDamage",
               "title": "Token"
             }
-          },
-          {
-            "datasetId": "a5f7a1ac-3cda-4b5c-ddfd-5991c30cb287",
-            "datasets": {
-              "step": "Poles-EpfDamage",
-              "title": "Token"
-            }
-          }
-        ]
-      },
-      {
-        "title": "Token",
-        "description": "IN-CORE Service Token",
-        "variableName": "",
-        "widget": null,
-        "hidden": true,
-        "datasetsMap": [
-          {
-            "datasetId": "8beaca31-23e7-4776-e4bd-d60894cd9dfe",
-            "datasets": {
-              "step": "JoplinCGEModel",
-              "title": "Token"
-            }
-          }
-        ]
-      },
-      {
-        "title": "sector_shocks",
-        "description": "Aggregation of building functionality states to capital shocks per sector",
-        "variableName": "",
-        "widget": null,
-        "hidden": true,
-        "datasetsMap": [
-          {
-            "datasetId": "3704bb0d-3cc3-4a49-b33a-7b0574842c2f",
-            "datasets": {
-              "step": "JoplinCGEModel",
-              "title": "sector_shocks"
-            }
-          }
-        ]
-      },
-      {
-        "title": "Token",
-        "description": "IN-CORE Service Token",
-        "variableName": "",
-        "widget": null,
-        "hidden": true,
-        "datasetsMap": [
-          {
-            "datasetId": "6ac994a1-d852-454b-dc8e-266720fce459",
-            "datasets": {
-              "step": "CapitalShocks",
-              "title": "Token"
-            }
-          }
-        ]
-      },
-      {
-        "title": "failure_probability",
-        "description": "Failure probability of buildings.",
-        "variableName": "",
-        "widget": null,
-        "hidden": true,
-        "datasetsMap": [
-          {
-            "datasetId": "4a7456d5-3153-4074-ac04-988d52a867e7",
-            "datasets": {
-              "step": "CapitalShocks",
-              "title": "failure_probability"
-            }
-          }
-        ]
-      },
-      {
-        "title": "Token",
-        "description": "IN-CORE service token",
-        "variableName": "",
-        "widget": null,
-        "hidden": true,
-        "datasetsMap": [
-          {
-            "datasetId": "1d0bdeb9-27bc-43eb-b8ee-fe987aea711c",
-            "datasets": {
-              "step": "Bldg-Max-Store Result",
-              "title": "Token"
-            }
-          },
-          {
-            "datasetId": "fd4a1927-b512-4265-b642-c3b8a28ff334",
-            "datasets": {
-              "step": "Pole-Max-Store Result",
-              "title": "Token"
-            }
-          },
-          {
-            "datasetId": "e2a1f76e-4d77-4898-aaa6-0477f6c96176",
-            "datasets": {
-              "step": "Sub-Max-Store Result",
-              "title": "Token"
-            }
-          },
-          {
-            "datasetId": "43ff6004-3928-4b9c-d9c1-3765eccd3431",
-            "datasets": {
-              "step": "Bldg-Func-Store Result",
-              "title": "Token"
-            }
-          },
-          {
-            "datasetId": "f20fdecb-58e7-488a-fa78-c442ef83422c",
-            "datasets": {
-              "step": "HeatMap-Store Result",
-              "title": "Token"
-            }
-          },
-          {
-            "datasetId": "39124a24-8326-417e-dcfc-ae58db6b724a",
-            "datasets": {
-              "step": "Bldg-FailProb-Store Result",
-              "title": "Token"
-            }
-          }
-        ]
-      },
-      {
-        "title": "Output dataset",
-        "description": "Output dataset",
-        "variableName": "",
-        "widget": null,
-        "hidden": true,
-        "datasetsMap": [
-          {
-            "datasetId": "d982934b-0314-4197-dcc8-2f65ebc19b88",
-            "datasets": {
-              "step": "Bldg-Max-Store Result",
-              "title": "Output dataset"
-            }
-          },
-          {
-            "datasetId": "60648e1a-17e8-4dcf-e13d-7f991a35d46b",
-            "datasets": {
-              "step": "Pole-Max-Store Result",
-              "title": "Output dataset"
-            }
-          },
-          {
-            "datasetId": "80585cd1-486e-4d0e-9597-d0d71b7b6d7c",
-            "datasets": {
-              "step": "Sub-Max-Store Result",
-              "title": "Output dataset"
-            }
-          },
-          {
-            "datasetId": "ef929631-dcfb-4421-90d8-33e03caaaa9b",
-            "datasets": {
-              "step": "Bldg-Func-Store Result",
-              "title": "Output dataset"
-            }
-          },
-          {
-            "datasetId": "0a5c4805-828d-43e5-f3a6-707d6400d6e9",
-            "datasets": {
-              "step": "HeatMap-Store Result",
-              "title": "Output dataset"
-            }
-          },
-          {
-            "datasetId": "4a7456d5-3153-4074-ac04-988d52a867e7",
-            "datasets": {
-              "step": "Bldg-FailProb-Store Result",
-              "title": "Output dataset"
-            }
           }
         ]
       },
@@ -2603,7 +2184,7 @@
         "hidden": true,
         "datasetsMap": [
           {
-            "datasetId": "f2a6685f-a531-48bd-f09d-14873b1af4be",
+            "datasetId": "45173a06-901f-4101-c8eb-5e15429d7e55",
             "datasets": {
               "step": "HHRSOutputProcess",
               "title": "HHR Output"
@@ -2667,7 +2248,7 @@
         "hidden": true,
         "datasetsMap": [
           {
-            "datasetId": "40ffa91d-fcf6-4055-fca3-01e23322e117",
+            "datasetId": "deb4c450-659a-490d-ed27-b6dd161ee77d",
             "datasets": {
               "step": "CGE-Output-Process",
               "title": "Household Count"
@@ -2683,7 +2264,7 @@
         "hidden": true,
         "datasetsMap": [
           {
-            "datasetId": "8ff59e9b-6c00-4765-a548-5ab61a2ed08d",
+            "datasetId": "03488efa-bd41-42d5-d621-0ac9a2fb4a8f",
             "datasets": {
               "step": "CGE-Output-Process",
               "title": "Domestic supply"
@@ -2699,7 +2280,7 @@
         "hidden": true,
         "datasetsMap": [
           {
-            "datasetId": "667a59fd-cec7-458a-8f99-445a26ae61c7",
+            "datasetId": "795a1e3a-c363-4839-c060-ef449ac6205f",
             "datasets": {
               "step": "CGE-Output-Process",
               "title": "Gross Income"
@@ -2715,7 +2296,7 @@
         "hidden": true,
         "datasetsMap": [
           {
-            "datasetId": "52c69fbe-7688-4792-8e43-b9dd34654fd1",
+            "datasetId": "4335c8c8-2382-44b3-829e-5c0169082062",
             "datasets": {
               "step": "CGE-Output-Process",
               "title": "Pre-Demand"
@@ -2731,7 +2312,7 @@
         "hidden": true,
         "datasetsMap": [
           {
-            "datasetId": "017a20f2-890c-4cb4-ec53-5fe4e6bb653a",
+            "datasetId": "198cf559-5e83-481f-8df6-b63befc84072",
             "datasets": {
               "step": "CGE-Output-Process",
               "title": "Post Demand"
@@ -2763,7 +2344,7 @@
         "hidden": true,
         "datasetsMap": [
           {
-            "datasetId": "ef929631-dcfb-4421-90d8-33e03caaaa9b",
+            "datasetId": "04c0b274-841f-4e8a-dd67-b97a8a5fc235",
             "datasets": {
               "step": "Building-Func-Cluster",
               "title": "Functionality Probability"
@@ -2843,7 +2424,135 @@
         "hidden": true,
         "datasetsMap": [
           {
-            "datasetId": "b2832956-6cb9-4bc4-d5f0-b554ce80944f",
+            "datasetId": "b7c3e9d1-9697-4ebd-d79a-9daaf66b4fc1",
+            "datasets": {
+              "step": "BuildingDamage",
+              "title": "Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Token",
+        "description": "IN-CORE Service Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "7e031d84-c5ac-422c-fde4-7c2c5c0eed06",
+            "datasets": {
+              "step": "BuildingFunctionality-sub-only",
+              "title": "Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "building_damage_mcs_samples",
+        "description": "building damage samples",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "c6d5e0b3-7416-4f73-eda5-089f9dc94ed2",
+            "datasets": {
+              "step": "BuildingFunctionality-sub-only",
+              "title": "building_damage_mcs_samples"
+            }
+          }
+        ]
+      },
+      {
+        "title": "substations_damage_mcs_samples",
+        "description": "substations damage samples",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "600c009b-057b-479d-ef02-453f37c37dab",
+            "datasets": {
+              "step": "BuildingFunctionality-sub-only",
+              "title": "substations_damage_mcs_samples"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Token",
+        "description": "IN-CORE Service Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "1fb15ca5-55db-4066-dbb6-a6f75d49aeb6",
+            "datasets": {
+              "step": "CapitalShocks",
+              "title": "Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "failure_probability",
+        "description": "Failure probability of buildings.",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "4a7456d5-3153-4074-ac04-988d52a867e7",
+            "datasets": {
+              "step": "CapitalShocks",
+              "title": "failure_probability"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Token",
+        "description": "IN-CORE Service Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "60986703-1f86-4f8a-87a1-6e360a185f2e",
+            "datasets": {
+              "step": "SaltLakeCGEModel",
+              "title": "Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "sector_shocks",
+        "description": "Aggregation of building functionality states to capital shocks per sector",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "e4c0d8f0-54a0-4256-995d-8566fe5d8cb6",
+            "datasets": {
+              "step": "SaltLakeCGEModel",
+              "title": "sector_shocks"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Token",
+        "description": "IN-CORE Service Token",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "d92df4b0-48ba-46dd-9975-d04d90f82f2e",
             "datasets": {
               "step": "HousingRecoverySequential",
               "title": "Token"
@@ -2885,16 +2594,88 @@
       },
       {
         "title": "Token",
-        "description": "IN-CORE Service Token",
+        "description": "IN-CORE service token",
         "variableName": "",
         "widget": null,
         "hidden": true,
         "datasetsMap": [
           {
-            "datasetId": "b7c3e9d1-9697-4ebd-d79a-9daaf66b4fc1",
+            "datasetId": "8460ca93-836c-4d48-f1e2-c9c031edca9c",
             "datasets": {
-              "step": "BuildingDamage",
+              "step": "Bldg-Func-Store Result",
               "title": "Token"
+            }
+          },
+          {
+            "datasetId": "0dff57fb-8f6c-4847-d00e-45a9d79dc8dc",
+            "datasets": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Token"
+            }
+          },
+          {
+            "datasetId": "f6806415-26e3-43bf-9585-62dc49080000",
+            "datasets": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Token"
+            }
+          },
+          {
+            "datasetId": "4208a3ee-2010-4f36-c8c4-4c90e7b11bfd",
+            "datasets": {
+              "step": "HeatMap-Store Result",
+              "title": "Token"
+            }
+          },
+          {
+            "datasetId": "a201283a-e5bb-43ed-9f0f-06716ff1ef96",
+            "datasets": {
+              "step": "Sub-Max-Store Result",
+              "title": "Token"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Output dataset",
+        "description": "Output dataset",
+        "variableName": "",
+        "widget": null,
+        "hidden": true,
+        "datasetsMap": [
+          {
+            "datasetId": "04c0b274-841f-4e8a-dd67-b97a8a5fc235",
+            "datasets": {
+              "step": "Bldg-Func-Store Result",
+              "title": "Output dataset"
+            }
+          },
+          {
+            "datasetId": "4a7456d5-3153-4074-ac04-988d52a867e7",
+            "datasets": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Output dataset"
+            }
+          },
+          {
+            "datasetId": "d982934b-0314-4197-dcc8-2f65ebc19b88",
+            "datasets": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Output dataset"
+            }
+          },
+          {
+            "datasetId": "0a5c4805-828d-43e5-f3a6-707d6400d6e9",
+            "datasets": {
+              "step": "HeatMap-Store Result",
+              "title": "Output dataset"
+            }
+          },
+          {
+            "datasetId": "80585cd1-486e-4d0e-9597-d0d71b7b6d7c",
+            "datasets": {
+              "step": "Sub-Max-Store Result",
+              "title": "Output dataset"
             }
           }
         ]
@@ -2911,8 +2692,8 @@
             "datasetId": "4eebb9b8-43f3-45cb-800c-d717d07d5d30",
             "datasets": {
               "step": "Disl-Post-Process",
-              "title": "stdout",
-              "variableName": "Disl-Post-Processstdout",
+              "title": "Disl-Post-Process",
+              "variableName": "DislPostProcessLog",
               "widget": "Log"
             }
           },
@@ -2921,7 +2702,7 @@
             "datasets": {
               "step": "Disl-Post-Process",
               "title": "Dislocation by Race",
-              "variableName": "Disl-Post-ProcessDislocationbyRace",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -2930,7 +2711,7 @@
             "datasets": {
               "step": "Disl-Post-Process",
               "title": "Dislocation by Income",
-              "variableName": "Disl-Post-ProcessDislocationbyIncome",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -2939,7 +2720,7 @@
             "datasets": {
               "step": "Disl-Post-Process",
               "title": "Dislocation by Tenure",
-              "variableName": "Disl-Post-ProcessDislocationbyTenure",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -2948,7 +2729,7 @@
             "datasets": {
               "step": "Disl-Post-Process",
               "title": "Dislocation by Housing Type",
-              "variableName": "Disl-Post-ProcessDislocationbyHousingType",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -2957,7 +2738,7 @@
             "datasets": {
               "step": "Disl-Post-Process",
               "title": "Total Dislocation",
-              "variableName": "Disl-Post-ProcessTotalDislocation",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -2966,7 +2747,7 @@
             "datasets": {
               "step": "Disl-Post-Process",
               "title": "Dislocation by Disability",
-              "variableName": "Disl-Post-ProcessDislocationbyDisability",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -2975,7 +2756,7 @@
             "datasets": {
               "step": "Disl-Post-Process",
               "title": "Dislocation Heatmap",
-              "variableName": "Disl-Post-ProcessDislocationHeatmap",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -2983,8 +2764,8 @@
             "datasetId": "622be383-df51-42a4-f4bf-84e8d24f11f2",
             "datasets": {
               "step": "Bldg-Max-Dmg-State",
-              "title": "stdout",
-              "variableName": "Bldg-Max-Dmg-Statestdout",
+              "title": "Bldg-Max-Dmg-State",
+              "variableName": "BldgMaxDmgStateLog",
               "widget": "Log"
             }
           },
@@ -2993,34 +2774,7 @@
             "datasets": {
               "step": "Bldg-Max-Dmg-State",
               "title": "Max Damage State",
-              "variableName": "Bldg-Max-Dmg-StateMaxDamageState",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "96ee0749-dec4-48ee-adf0-9e7d8e4adde0",
-            "datasets": {
-              "step": "BuildingFunctionality",
-              "title": "stdout",
-              "variableName": "BuildingFunctionalitystdout",
-              "widget": "Log"
-            }
-          },
-          {
-            "datasetId": "37536451-fe85-4fcf-8677-6c2aa6242a87",
-            "datasets": {
-              "step": "BuildingFunctionality",
-              "title": "functionality_samples",
-              "variableName": "BuildingFunctionalityfunctionality_samples",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "ef929631-dcfb-4421-90d8-33e03caaaa9b",
-            "datasets": {
-              "step": "BuildingFunctionality",
-              "title": "functionality_probability",
-              "variableName": "BuildingFunctionalityfunctionality_probability",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3028,8 +2782,8 @@
             "datasetId": "9b349e27-baa7-4a41-e9e4-d3290286a0a5",
             "datasets": {
               "step": "Bldg-MonteCarloFailureProbability",
-              "title": "stdout",
-              "variableName": "Bldg-MonteCarloFailureProbabilitystdout",
+              "title": "Bldg-MonteCarloFailureProbability",
+              "variableName": "BldgMonteCarloFailureProbabilityLog",
               "widget": "Log"
             }
           },
@@ -3038,7 +2792,7 @@
             "datasets": {
               "step": "Bldg-MonteCarloFailureProbability",
               "title": "failure_probability",
-              "variableName": "Bldg-MonteCarloFailureProbabilityfailure_probability",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3047,7 +2801,7 @@
             "datasets": {
               "step": "Bldg-MonteCarloFailureProbability",
               "title": "sample_failure_state",
-              "variableName": "Bldg-MonteCarloFailureProbabilitysample_failure_state",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3056,43 +2810,7 @@
             "datasets": {
               "step": "Bldg-MonteCarloFailureProbability",
               "title": "sample_damage_states",
-              "variableName": "Bldg-MonteCarloFailureProbabilitysample_damage_states",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "fbc7824b-0253-4e71-a4ca-e5f2d47a4dec",
-            "datasets": {
-              "step": "Poles-MonteCarloFailureProbability",
-              "title": "stdout",
-              "variableName": "Poles-MonteCarloFailureProbabilitystdout",
-              "widget": "Log"
-            }
-          },
-          {
-            "datasetId": "0105b539-d201-4eae-f66e-be3fb05d7683",
-            "datasets": {
-              "step": "Poles-MonteCarloFailureProbability",
-              "title": "failure_probability",
-              "variableName": "Poles-MonteCarloFailureProbabilityfailure_probability",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "01237b9d-d1ba-4c84-934b-19b0755bafbf",
-            "datasets": {
-              "step": "Poles-MonteCarloFailureProbability",
-              "title": "sample_failure_state",
-              "variableName": "Poles-MonteCarloFailureProbabilitysample_failure_state",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "59711ee9-cb88-44ec-d509-d22042df4553",
-            "datasets": {
-              "step": "Poles-MonteCarloFailureProbability",
-              "title": "sample_damage_states",
-              "variableName": "Poles-MonteCarloFailureProbabilitysample_damage_states",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3100,8 +2818,8 @@
             "datasetId": "180d1ee1-d74a-4046-c2d5-2694435c2a3e",
             "datasets": {
               "step": "Sub-MonteCarloFailureProbability",
-              "title": "stdout",
-              "variableName": "Sub-MonteCarloFailureProbabilitystdout",
+              "title": "Sub-MonteCarloFailureProbability",
+              "variableName": "SubMonteCarloFailureProbabilityLog",
               "widget": "Log"
             }
           },
@@ -3110,7 +2828,7 @@
             "datasets": {
               "step": "Sub-MonteCarloFailureProbability",
               "title": "failure_probability",
-              "variableName": "Sub-MonteCarloFailureProbabilityfailure_probability",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3119,7 +2837,7 @@
             "datasets": {
               "step": "Sub-MonteCarloFailureProbability",
               "title": "sample_failure_state",
-              "variableName": "Sub-MonteCarloFailureProbabilitysample_failure_state",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3128,7 +2846,7 @@
             "datasets": {
               "step": "Sub-MonteCarloFailureProbability",
               "title": "sample_damage_states",
-              "variableName": "Sub-MonteCarloFailureProbabilitysample_damage_states",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3136,8 +2854,8 @@
             "datasetId": "81650d08-7afb-4d03-b19d-3cab35ea9033",
             "datasets": {
               "step": "Sub-EpfDamage",
-              "title": "stdout",
-              "variableName": "Sub-EpfDamagestdout",
+              "title": "Sub-EpfDamage",
+              "variableName": "SubEpfDamageLog",
               "widget": "Log"
             }
           },
@@ -3146,7 +2864,7 @@
             "datasets": {
               "step": "Sub-EpfDamage",
               "title": "result",
-              "variableName": "Sub-EpfDamageresult",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3155,124 +2873,7 @@
             "datasets": {
               "step": "Sub-EpfDamage",
               "title": "metadata",
-              "variableName": "Sub-EpfDamagemetadata",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "439e46bb-6ea0-4d0e-b188-5adc71e4ec2c",
-            "datasets": {
-              "step": "Poles-EpfDamage",
-              "title": "stdout",
-              "variableName": "Poles-EpfDamagestdout",
-              "widget": "Log"
-            }
-          },
-          {
-            "datasetId": "18231004-f8ca-421c-ae04-ff46ab514262",
-            "datasets": {
-              "step": "Poles-EpfDamage",
-              "title": "result",
-              "variableName": "Poles-EpfDamageresult",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "3a252dfa-dbde-4c84-a898-7b7e2bc65b57",
-            "datasets": {
-              "step": "Poles-EpfDamage",
-              "title": "metadata",
-              "variableName": "Poles-EpfDamagemetadata",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "067c9db0-84ab-4a9c-b6bc-9d0fffb32134",
-            "datasets": {
-              "step": "JoplinCGEModel",
-              "title": "stdout",
-              "variableName": "JoplinCGEModelstdout",
-              "widget": "Log"
-            }
-          },
-          {
-            "datasetId": "8ff59e9b-6c00-4765-a548-5ab61a2ed08d",
-            "datasets": {
-              "step": "JoplinCGEModel",
-              "title": "domestic-supply",
-              "variableName": "JoplinCGEModeldomestic-supply",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "667a59fd-cec7-458a-8f99-445a26ae61c7",
-            "datasets": {
-              "step": "JoplinCGEModel",
-              "title": "gross-income",
-              "variableName": "JoplinCGEModelgross-income",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "52c69fbe-7688-4792-8e43-b9dd34654fd1",
-            "datasets": {
-              "step": "JoplinCGEModel",
-              "title": "pre-disaster-factor-demand",
-              "variableName": "JoplinCGEModelpre-disaster-factor-demand",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "017a20f2-890c-4cb4-ec53-5fe4e6bb653a",
-            "datasets": {
-              "step": "JoplinCGEModel",
-              "title": "post-disaster-factor-demand",
-              "variableName": "JoplinCGEModelpost-disaster-factor-demand",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "40ffa91d-fcf6-4055-fca3-01e23322e117",
-            "datasets": {
-              "step": "JoplinCGEModel",
-              "title": "household-count",
-              "variableName": "JoplinCGEModelhousehold-count",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "09bf8dd2-1250-462e-b0cd-819ab216e363",
-            "datasets": {
-              "step": "CapitalShocks",
-              "title": "stdout",
-              "variableName": "CapitalShocksstdout",
-              "widget": "Log"
-            }
-          },
-          {
-            "datasetId": "3704bb0d-3cc3-4a49-b33a-7b0574842c2f",
-            "datasets": {
-              "step": "CapitalShocks",
-              "title": "sector_shocks",
-              "variableName": "CapitalShockssector_shocks",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "6bbd145c-1842-459b-fc65-56b0ec0745ee",
-            "datasets": {
-              "step": "Pole-Max-Dmg-State",
-              "title": "stdout",
-              "variableName": "Pole-Max-Dmg-Statestdout",
-              "widget": "Log"
-            }
-          },
-          {
-            "datasetId": "60648e1a-17e8-4dcf-e13d-7f991a35d46b",
-            "datasets": {
-              "step": "Pole-Max-Dmg-State",
-              "title": "Max Damage State",
-              "variableName": "Pole-Max-Dmg-StateMaxDamageState",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3280,8 +2881,8 @@
             "datasetId": "b4019522-2d8c-4ca3-e919-d2023a13b40e",
             "datasets": {
               "step": "Sub-Max-Dmg-State",
-              "title": "stdout",
-              "variableName": "Sub-Max-Dmg-Statestdout",
+              "title": "Sub-Max-Dmg-State",
+              "variableName": "SubMaxDmgStateLog",
               "widget": "Log"
             }
           },
@@ -3290,115 +2891,7 @@
             "datasets": {
               "step": "Sub-Max-Dmg-State",
               "title": "Max Damage State",
-              "variableName": "Sub-Max-Dmg-StateMaxDamageState",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "67131668-d47e-4cfa-d4c0-e7ce61324e1e",
-            "datasets": {
-              "step": "Bldg-Max-Store Result",
-              "title": "stdout",
-              "variableName": "Bldg-Max-StoreResultstdout",
-              "widget": "Log"
-            }
-          },
-          {
-            "datasetId": "7cdf1ea9-4863-4194-d343-a06e4989fb60",
-            "datasets": {
-              "step": "Bldg-Max-Store Result",
-              "title": "Dataset ID",
-              "variableName": "Bldg-Max-StoreResultDatasetID",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "164ad7ba-3a91-4651-9772-c4d55f27e19f",
-            "datasets": {
-              "step": "Pole-Max-Store Result",
-              "title": "stdout",
-              "variableName": "Pole-Max-StoreResultstdout",
-              "widget": "Log"
-            }
-          },
-          {
-            "datasetId": "b9e08789-8730-49b8-8f21-be76889db2d6",
-            "datasets": {
-              "step": "Pole-Max-Store Result",
-              "title": "Dataset ID",
-              "variableName": "Pole-Max-StoreResultDatasetID",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "2c82c853-1ace-4528-b271-74dfe50e4611",
-            "datasets": {
-              "step": "Sub-Max-Store Result",
-              "title": "stdout",
-              "variableName": "Sub-Max-StoreResultstdout",
-              "widget": "Log"
-            }
-          },
-          {
-            "datasetId": "81941b03-44fb-4a58-8fde-e02fbac68bae",
-            "datasets": {
-              "step": "Sub-Max-Store Result",
-              "title": "Dataset ID",
-              "variableName": "Sub-Max-StoreResultDatasetID",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "6d2e78ec-a2db-4876-8f99-ff2e4b848cb0",
-            "datasets": {
-              "step": "Bldg-Func-Store Result",
-              "title": "stdout",
-              "variableName": "Bldg-Func-StoreResultstdout",
-              "widget": "Log"
-            }
-          },
-          {
-            "datasetId": "294f7edb-2bc0-4152-df4f-5144c6dd3649",
-            "datasets": {
-              "step": "Bldg-Func-Store Result",
-              "title": "Dataset ID",
-              "variableName": "Bldg-Func-StoreResultDatasetID",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "d5e99bb2-17f4-4455-ab7e-510db8a691db",
-            "datasets": {
-              "step": "HeatMap-Store Result",
-              "title": "stdout",
-              "variableName": "HeatMap-StoreResultstdout",
-              "widget": "Log"
-            }
-          },
-          {
-            "datasetId": "b502fc43-c3b1-4332-a632-db88061c18df",
-            "datasets": {
-              "step": "HeatMap-Store Result",
-              "title": "Dataset ID",
-              "variableName": "HeatMap-StoreResultDatasetID",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "f7c4252e-59ee-4185-897c-57361e114cec",
-            "datasets": {
-              "step": "Bldg-FailProb-Store Result",
-              "title": "stdout",
-              "variableName": "Bldg-FailProb-StoreResultstdout",
-              "widget": "Log"
-            }
-          },
-          {
-            "datasetId": "3bcc9377-5ec3-46d6-8f40-bdc939c22d43",
-            "datasets": {
-              "step": "Bldg-FailProb-Store Result",
-              "title": "Dataset ID",
-              "variableName": "Bldg-FailProb-StoreResultDatasetID",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3406,8 +2899,8 @@
             "datasetId": "dee3c1df-66b9-402a-a5ad-ca6d23a4662d",
             "datasets": {
               "step": "HHRSOutputProcess",
-              "title": "stdout",
-              "variableName": "HHRSOutputProcessstdout",
+              "title": "HHRSOutputProcess",
+              "variableName": "HHRSOutputProcessLog",
               "widget": "Log"
             }
           },
@@ -3416,7 +2909,7 @@
             "datasets": {
               "step": "HHRSOutputProcess",
               "title": "Housing Recovery",
-              "variableName": "HHRSOutputProcessHousingRecovery",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3424,8 +2917,8 @@
             "datasetId": "4f9a7142-d382-4913-8894-7549ef77e50d",
             "datasets": {
               "step": "SocialVulnerability",
-              "title": "stdout",
-              "variableName": "SocialVulnerabilitystdout",
+              "title": "SocialVulnerability",
+              "variableName": "SocialVulnerabilityLog",
               "widget": "Log"
             }
           },
@@ -3434,7 +2927,7 @@
             "datasets": {
               "step": "SocialVulnerability",
               "title": "sv_result",
-              "variableName": "SocialVulnerabilitysv_result",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3442,8 +2935,8 @@
             "datasetId": "6f0a8e45-eca2-40b4-8ea5-a964d582de4a",
             "datasets": {
               "step": "PopulationDislocation",
-              "title": "stdout",
-              "variableName": "PopulationDislocationstdout",
+              "title": "PopulationDislocation",
+              "variableName": "PopulationDislocationLog",
               "widget": "Log"
             }
           },
@@ -3452,7 +2945,7 @@
             "datasets": {
               "step": "PopulationDislocation",
               "title": "result",
-              "variableName": "PopulationDislocationresult",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3460,8 +2953,8 @@
             "datasetId": "e2867e0d-b637-4bea-dd14-b6beb03a0335",
             "datasets": {
               "step": "CGE-Output-Process",
-              "title": "stdout",
-              "variableName": "CGE-Output-Processstdout",
+              "title": "CGE-Output-Process",
+              "variableName": "CGEOutputProcessLog",
               "widget": "Log"
             }
           },
@@ -3470,7 +2963,7 @@
             "datasets": {
               "step": "CGE-Output-Process",
               "title": "Household Count",
-              "variableName": "CGE-Output-ProcessHouseholdCount",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3479,7 +2972,7 @@
             "datasets": {
               "step": "CGE-Output-Process",
               "title": "Domestic Supply ",
-              "variableName": "CGE-Output-ProcessDomesticSupply",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3488,7 +2981,7 @@
             "datasets": {
               "step": "CGE-Output-Process",
               "title": "Total Household Income",
-              "variableName": "CGE-Output-ProcessTotalHouseholdIncome",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3497,7 +2990,7 @@
             "datasets": {
               "step": "CGE-Output-Process",
               "title": "Employment",
-              "variableName": "CGE-Output-ProcessEmployment",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3505,8 +2998,8 @@
             "datasetId": "7b82b481-32ae-4c3b-8e32-21f6c46c3a97",
             "datasets": {
               "step": "Building-Func-Cluster",
-              "title": "stdout",
-              "variableName": "Building-Func-Clusterstdout",
+              "title": "Building-Func-Cluster",
+              "variableName": "BuildingFuncClusterLog",
               "widget": "Log"
             }
           },
@@ -3515,7 +3008,7 @@
             "datasets": {
               "step": "Building-Func-Cluster",
               "title": "Functionality Cluster",
-              "variableName": "Building-Func-ClusterFunctionalityCluster",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3523,8 +3016,8 @@
             "datasetId": "3f32f287-cd46-4e5f-e3cd-50dff7de3b73",
             "datasets": {
               "step": "Building-Failure-Cluster",
-              "title": "stdout",
-              "variableName": "Building-Failure-Clusterstdout",
+              "title": "Building-Failure-Cluster",
+              "variableName": "BuildingFailureClusterLog",
               "widget": "Log"
             }
           },
@@ -3533,7 +3026,7 @@
             "datasets": {
               "step": "Building-Failure-Cluster",
               "title": "Failure Cluster table",
-              "variableName": "Building-Failure-ClusterFailureClustertable",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3542,7 +3035,7 @@
             "datasets": {
               "step": "Building-Failure-Cluster",
               "title": "Failure Cluster json",
-              "variableName": "Building-Failure-ClusterFailureClusterjson",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3550,8 +3043,8 @@
             "datasetId": "733108d3-6343-4a91-f657-98b36a5647bb",
             "datasets": {
               "step": "Building-Dmg-Summary",
-              "title": "stdout",
-              "variableName": "Building-Dmg-Summarystdout",
+              "title": "Building-Dmg-Summary",
+              "variableName": "BuildingDmgSummaryLog",
               "widget": "Log"
             }
           },
@@ -3560,25 +3053,7 @@
             "datasets": {
               "step": "Building-Dmg-Summary",
               "title": "Building Dmg Summary",
-              "variableName": "Building-Dmg-SummaryBuildingDmgSummary",
-              "widget": ""
-            }
-          },
-          {
-            "datasetId": "fd22cd60-66be-4e0c-dcb2-751e59a3d1ec",
-            "datasets": {
-              "step": "HousingRecoverySequential",
-              "title": "stdout",
-              "variableName": "HousingRecoverySequentialstdout",
-              "widget": "Log"
-            }
-          },
-          {
-            "datasetId": "f2a6685f-a531-48bd-f09d-14873b1af4be",
-            "datasets": {
-              "step": "HousingRecoverySequential",
-              "title": "ds_result",
-              "variableName": "HousingRecoverySequentialds_result",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3586,8 +3061,8 @@
             "datasetId": "3b71fa25-a661-4c7a-a981-907b1867d6d4",
             "datasets": {
               "step": "BuildingDamage",
-              "title": "stdout",
-              "variableName": "BuildingDamagestdout",
+              "title": "BuildingDamage",
+              "variableName": "BuildingDamageLog",
               "widget": "Log"
             }
           },
@@ -3596,7 +3071,7 @@
             "datasets": {
               "step": "BuildingDamage",
               "title": "ds_result",
-              "variableName": "BuildingDamageds_result",
+              "variableName": "",
               "widget": ""
             }
           },
@@ -3605,7 +3080,214 @@
             "datasets": {
               "step": "BuildingDamage",
               "title": "damage_result",
-              "variableName": "BuildingDamagedamage_result",
+              "variableName": "",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "b3ed7b36-1782-424b-b2a5-3b355bf4ef0c",
+            "datasets": {
+              "step": "BuildingFunctionality-sub-only",
+              "title": "BuildingFunctionality-sub-only",
+              "variableName": "BuildingFunctionalitysubonlyLog",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "72b58545-e67e-48c6-f9cc-592358b41a77",
+            "datasets": {
+              "step": "BuildingFunctionality-sub-only",
+              "title": "functionality_samples",
+              "variableName": "",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "04c0b274-841f-4e8a-dd67-b97a8a5fc235",
+            "datasets": {
+              "step": "BuildingFunctionality-sub-only",
+              "title": "functionality_probability",
+              "variableName": "",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "6fa73a0f-414c-4a92-8004-825863bace39",
+            "datasets": {
+              "step": "CapitalShocks",
+              "title": "CapitalShocks",
+              "variableName": "CapitalShocksLog",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "e4c0d8f0-54a0-4256-995d-8566fe5d8cb6",
+            "datasets": {
+              "step": "CapitalShocks",
+              "title": "sector_shocks",
+              "variableName": "",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "eba2e2ae-4b3f-4ce0-d4fe-152973b810f6",
+            "datasets": {
+              "step": "SaltLakeCGEModel",
+              "title": "SaltLakeCGEModel",
+              "variableName": "SaltLakeCGEModelLog",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "03488efa-bd41-42d5-d621-0ac9a2fb4a8f",
+            "datasets": {
+              "step": "SaltLakeCGEModel",
+              "title": "domestic-supply",
+              "variableName": "",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "795a1e3a-c363-4839-c060-ef449ac6205f",
+            "datasets": {
+              "step": "SaltLakeCGEModel",
+              "title": "gross-income",
+              "variableName": "",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "4335c8c8-2382-44b3-829e-5c0169082062",
+            "datasets": {
+              "step": "SaltLakeCGEModel",
+              "title": "pre-disaster-factor-demand",
+              "variableName": "",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "198cf559-5e83-481f-8df6-b63befc84072",
+            "datasets": {
+              "step": "SaltLakeCGEModel",
+              "title": "post-disaster-factor-demand",
+              "variableName": "",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "deb4c450-659a-490d-ed27-b6dd161ee77d",
+            "datasets": {
+              "step": "SaltLakeCGEModel",
+              "title": "household-count",
+              "variableName": "",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "07b2567f-aca6-4d45-ec5d-4475f9cf16e5",
+            "datasets": {
+              "step": "HousingRecoverySequential",
+              "title": "HousingRecoverySequential",
+              "variableName": "HousingRecoverySequentialLog",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "45173a06-901f-4101-c8eb-5e15429d7e55",
+            "datasets": {
+              "step": "HousingRecoverySequential",
+              "title": "ds_result",
+              "variableName": "",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "959a0818-6da4-4a0c-b119-3251916848c1",
+            "datasets": {
+              "step": "Bldg-Func-Store Result",
+              "title": "Bldg-Func-Store Result",
+              "variableName": "BldgFuncStoreResultLog",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "105bba1c-a47d-4e86-b80a-d3a34d29bf24",
+            "datasets": {
+              "step": "Bldg-Func-Store Result",
+              "title": "Dataset ID",
+              "variableName": "",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "2f1252f1-3665-425c-ad5e-18a6bc72a898",
+            "datasets": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Bldg-FailProb-Store Result",
+              "variableName": "BldgFailProbStoreResultLog",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "4159c722-1f23-44d7-ba89-3668c7a9fb4c",
+            "datasets": {
+              "step": "Bldg-FailProb-Store Result",
+              "title": "Dataset ID",
+              "variableName": "",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "8b054078-1e73-468a-8641-e1cceb22731a",
+            "datasets": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Bldg-Max-Store Result",
+              "variableName": "BldgMaxStoreResultLog",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "c6801803-f96c-4f63-e4f3-e0b6d70c91a5",
+            "datasets": {
+              "step": "Bldg-Max-Store Result",
+              "title": "Dataset ID",
+              "variableName": "",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "c48c4288-0fa7-4eba-9dc9-09ebcc07976d",
+            "datasets": {
+              "step": "HeatMap-Store Result",
+              "title": "HeatMap-Store Result",
+              "variableName": "HeatMapStoreResultLog",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "cbbb09d5-7a6c-4d27-e10f-b8ca723163dd",
+            "datasets": {
+              "step": "HeatMap-Store Result",
+              "title": "Dataset ID",
+              "variableName": "",
+              "widget": ""
+            }
+          },
+          {
+            "datasetId": "ac671bc7-ccdc-488d-8bb8-30edd9a97884",
+            "datasets": {
+              "step": "Sub-Max-Store Result",
+              "title": "Sub-Max-Store Result",
+              "variableName": "SubMaxStoreResultLog",
+              "widget": "Log"
+            }
+          },
+          {
+            "datasetId": "7ec7d80e-e95a-4c5f-e148-8f60376bb3ae",
+            "datasets": {
+              "step": "Sub-Max-Store Result",
+              "title": "Dataset ID",
+              "variableName": "",
               "widget": ""
             }
           }

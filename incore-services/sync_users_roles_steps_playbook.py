@@ -161,27 +161,28 @@ if __name__ == "__main__":
             "testbed": "slc",
             "url": server_base_url + "/maestro/slc",
             "group_name": "incore_slc_user",
-            "group_id": "18ec08f4-86ae-4ec3-bb57-54c19e5398cf"  # get this information from keycloak
+            "group_id": os.getenv("SLC_GROUP_ID")  # get this information from keycloak
         },
-        {
-            "testbed": "galveston",
-            "url": server_base_url + "/maestro/galveston",
-            "group_name": "incore_galveston_user",
-            "group_id": "c098e80e-64a0-43b0-91b2-66a79dadb225"  # get this information from keycloak
-        },
-        {
-            "testbed": "joplin",
-            "url": server_base_url + "/maestro/joplin",
-            "group_name": "incore_joplin_user",
-            "group_id": "2b691eaf-22ff-41ea-b8f5-d835a4a9e35a"  # get this information from keycloak
-        },
+        # {
+        #     "testbed": "galveston",
+        #     "url": server_base_url + "/maestro/galveston",
+        #     "group_name": "incore_galveston_user",
+        #     "group_id":  os.getenv("JOPLIN_GROUP_ID")
+        # },
+        # {
+        #     "testbed": "joplin",
+        #     "url": server_base_url + "/maestro/joplin",
+        #     "group_name": "incore_joplin_user",
+        #     "group_id": os.getenv("GALVESTON_GROUP_ID")  # get this information from keycloak
+        # },
     ]
 
     for item in config:
+        userinfo_list = get_userinfo_from_keycloak_group(item["group_id"], keycloak_base_url, admin_username,
+                                                         admin_password,realm=realm)
+        create_user(item["url"], headers, userinfo_list)
 
         create_roles(item["url"], headers)
         create_steps(item["url"], headers)
 
-        userinfo_list = get_userinfo_from_keycloak_group(item["group_id"], keycloak_base_url, admin_username,
-                                                         admin_password,realm=realm)
-        create_user(item["url"], headers, userinfo_list)
+

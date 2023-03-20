@@ -161,7 +161,7 @@ def assign_roles(base_url):
     # asign them to member role if they don't already have a role
     if role_id:
         for user in users:
-            if "role" not in user and "name" not in user["role"]:
+            if "role" not in user.keys() or user["role"] is None or "name" not in user["role"].keys():
                 response = requests.request("POST", base_url + "/users/" + str(user["id"]) + "/roles/" + role_id,
                                             headers=headers)
                 print(response.text)

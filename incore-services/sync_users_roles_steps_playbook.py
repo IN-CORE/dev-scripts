@@ -139,7 +139,23 @@ def get_userinfo_from_keycloak_group(group_id, keycloak_base_url, admin_username
 
 # attach roles
 def assign_roles(base_url):
-    pass
+    # get list of users
+    response = requests.request("GET", base_url + "/users", headers=headers)
+    users = response.json()
+
+    # get list of roles
+    response = requests.request("GET", base_url + "/roles", headers=headers)
+    roles = response.json()
+    role_id = None
+    for role in roles:
+        if role["name"] == "member":
+            role_id = role["id"]
+
+    # asign them to member role
+    if role_id:
+        for user in users:
+            response = requests.request("POST", base_url + "/users/" + user["id"] + "/roles/" + role_id, headers=headers)
+            print(response.text)
 
 
 if __name__ == "__main__":
@@ -178,11 +194,13 @@ if __name__ == "__main__":
     ]
 
     for item in config:
-        userinfo_list = get_userinfo_from_keycloak_group(item["group_id"], keycloak_base_url, admin_username,
-                                                         admin_password,realm=realm)
-        create_user(item["url"], headers, userinfo_list)
+        # userinfo_list = get_userinfo_from_keycloak_group(item["group_id"], keycloak_base_url, admin_username,
+        #                                                  admin_password,realm=realm)
+        # create_user(item["url"], headers, userinfo_list)
+        #
+        # create_roles(item["url"], headers)
+        # create_steps(item["url"], headers)
 
-        create_roles(item["url"], headers)
-        create_steps(item["url"], headers)
+        assign_roles(item["url"])
 
 

@@ -149,16 +149,18 @@ def assign_roles(base_url):
     role_id = None
     for role in roles:
         if role["name"] == "member":
-            role_id = role["id"]
+            role_id = str(role["id"])
 
     # asign them to member role
     if role_id:
         for user in users:
-            response = requests.request("POST", base_url + "/users/" + user["id"] + "/roles/" + role_id, headers=headers)
+            response = requests.request("POST", base_url + "/users/" + str(user["id"]) + "/roles/" + role_id,
+                                        headers=headers)
             print(response.text)
 
 
 if __name__ == "__main__":
+    first_run = os.getenv("FIRST_RUN")
     realm = os.getenv("REALM")
     auth_token = os.getenv("AUTH_TOKEN")
     server_base_url = os.getenv("SERVER_BASE_URL")
@@ -179,28 +181,27 @@ if __name__ == "__main__":
             "group_name": "incore_slc_user",
             "group_id": os.getenv("SLC_GROUP_ID")  # get this information from keycloak
         },
-        {
-            "testbed": "galveston",
-            "url": server_base_url + "/maestro/galveston",
-            "group_name": "incore_galveston_user",
-            "group_id":  os.getenv("JOPLIN_GROUP_ID")
-        },
-        {
-            "testbed": "joplin",
-            "url": server_base_url + "/maestro/joplin",
-            "group_name": "incore_joplin_user",
-            "group_id": os.getenv("GALVESTON_GROUP_ID")  # get this information from keycloak
-        },
+        # {
+        #     "testbed": "galveston",
+        #     "url": server_base_url + "/maestro/galveston",
+        #     "group_name": "incore_galveston_user",
+        #     "group_id":  os.getenv("JOPLIN_GROUP_ID")
+        # },
+        # {
+        #     "testbed": "joplin",
+        #     "url": server_base_url + "/maestro/joplin",
+        #     "group_name": "incore_joplin_user",
+        #     "group_id": os.getenv("GALVESTON_GROUP_ID")  # get this information from keycloak
+        # },
     ]
 
     for item in config:
-        # userinfo_list = get_userinfo_from_keycloak_group(item["group_id"], keycloak_base_url, admin_username,
-        #                                                  admin_password,realm=realm)
-        # create_user(item["url"], headers, userinfo_list)
-        #
-        # create_roles(item["url"], headers)
-        # create_steps(item["url"], headers)
+        userinfo_list = get_userinfo_from_keycloak_group(item["group_id"], keycloak_base_url, admin_username,
+                                                         admin_password,realm=realm)
+        create_user(item["url"], headers, userinfo_list)
+
+        if first_run:
+            create_roles(item["url"], headers)
+            create_steps(item["url"], headers)
 
         assign_roles(item["url"])
-
-

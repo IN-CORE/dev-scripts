@@ -167,6 +167,23 @@ def assign_roles(base_url):
                 print(response.text)
 
 
+def delete_ncsa_developers(base_url, developer_username_list):
+    # get list of users
+    response = requests.request("GET", base_url + "/users", headers=headers)
+    users = response.json()
+
+    # filter out NCSA developers
+    for user in users:
+        if user["username"] in developer_username_list:
+            delete_users(base_url, user["id"])
+
+
+def delete_users(base_url,user_id):
+    # get list of users
+    response = requests.request("DELETE", base_url + "/users/" + str(user_id), headers=headers)
+    print(response.text)
+
+
 if __name__ == "__main__":
     first_run = os.getenv("FIRST_RUN")
     realm = os.getenv("REALM")
@@ -189,18 +206,18 @@ if __name__ == "__main__":
             "group_name": "incore_slc_user",
             "group_id": os.getenv("SLC_GROUP_ID")  # get this information from keycloak
         },
-        # {
-        #     "testbed": "galveston",
-        #     "url": server_base_url + "/maestro/galveston",
-        #     "group_name": "incore_galveston_user",
-        #     "group_id":  os.getenv("JOPLIN_GROUP_ID")
-        # },
-        # {
-        #     "testbed": "joplin",
-        #     "url": server_base_url + "/maestro/joplin",
-        #     "group_name": "incore_joplin_user",
-        #     "group_id": os.getenv("GALVESTON_GROUP_ID")  # get this information from keycloak
-        # },
+        {
+            "testbed": "galveston",
+            "url": server_base_url + "/maestro/galveston",
+            "group_name": "incore_galveston_user",
+            "group_id":  os.getenv("JOPLIN_GROUP_ID")
+        },
+        {
+            "testbed": "joplin",
+            "url": server_base_url + "/maestro/joplin",
+            "group_name": "incore_joplin_user",
+            "group_id": os.getenv("GALVESTON_GROUP_ID")  # get this information from keycloak
+        },
     ]
 
     for item in config:
@@ -213,3 +230,13 @@ if __name__ == "__main__":
             create_steps(item["url"], headers)
 
         assign_roles(item["url"])
+
+        delete_ncsa_developers(item["url"], developer_username_list=[
+            "ywkim",
+            "kooper",
+            "jonglee",
+            "mohanar2",
+            "cnavarro",
+            "rmp6",
+            "cwang138"
+        ])

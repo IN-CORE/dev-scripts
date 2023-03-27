@@ -210,13 +210,13 @@ if __name__ == "__main__":
             "testbed": "galveston",
             "url": server_base_url + "/maestro/galveston",
             "group_name": "incore_galveston_user",
-            "group_id":  os.getenv("JOPLIN_GROUP_ID")
+            "group_id":  os.getenv("GALVESTON_GROUP_ID")
         },
         {
             "testbed": "joplin",
             "url": server_base_url + "/maestro/joplin",
             "group_name": "incore_joplin_user",
-            "group_id": os.getenv("GALVESTON_GROUP_ID")  # get this information from keycloak
+            "group_id": os.getenv("JOPLIN_GROUP_ID")  # get this information from keycloak
         },
     ]
 

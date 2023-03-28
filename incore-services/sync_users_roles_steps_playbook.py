@@ -191,6 +191,8 @@ if __name__ == "__main__":
     server_base_url = os.getenv("SERVER_BASE_URL")
     admin_username = os.getenv("ADMIN_USERNAME")
     admin_password = os.getenv("ADMIN_PASSWORD")
+    ncsa_developer_lists = os.getenv("NCSA_DEVELOPER_LIST").split(",")
+    exclude_ncsa_developer = True
 
     headers = {
         'Authorization': auth_token,
@@ -223,21 +225,12 @@ if __name__ == "__main__":
     for item in config:
         userinfo_list = get_userinfo_from_keycloak_group(item["group_id"], keycloak_base_url, admin_username,
                                                          admin_password,realm=realm)
-        create_user(item["url"], headers, userinfo_list)
 
-        if first_run:
-            create_roles(item["url"], headers)
-            create_steps(item["url"], headers)
+        if exclude_ncsa_developer:
+            create_user(item["url"], headers,  [usr["username"] not in ncsa_developer_lists for usr in userinfo_list])
 
-        assign_roles(item["url"])
-
-        delete_ncsa_developers(item["url"], developer_username_list=[
-            "ywkim",
-            "kooper",
-            "jonglee",
-            "mohanar2",
-            "cnavarro",
-            "rmp6",
-            "cwang138",
-            "ylyang"
-        ])
+        # if first_run:
+        #     create_roles(item["url"], headers)
+        #     create_steps(item["url"], headers)
+        #
+        # assign_roles(item["url"])

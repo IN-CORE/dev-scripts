@@ -227,7 +227,7 @@ if __name__ == "__main__":
                                                          admin_password,realm=realm)
 
         if exclude_ncsa_developer:
-            create_user(item["url"], headers,  [usr["username"] not in ncsa_developer_lists for usr in userinfo_list])
+            create_user(item["url"], headers,  [usr for usr in userinfo_list if usr["username"] not in ncsa_developer_lists])
 
         # if first_run:
         #     create_roles(item["url"], headers)

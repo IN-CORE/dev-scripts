@@ -184,15 +184,38 @@ def delete_users(base_url,user_id):
     print(response.text)
 
 
+def get_access_token(server_base_url, token_url, token_username, token_password):
+    request_url = server_base_url + token_url
+    headers = {
+        'Content-Type': "application/x-www-form-urlencoded"
+    }
+
+    payload = {
+        'grant_type': 'password',
+        'client_id': 'react-auth',
+        'username': token_username,
+        'password': token_password
+    }
+
+    response = requests.post(request_url, headers=headers, data=payload)
+    response_json = json.loads(response.text)
+
+    return(response_json["access_token"])
+
+
 if __name__ == "__main__":
     first_run = os.getenv("FIRST_RUN")
     realm = os.getenv("REALM")
-    auth_token = os.getenv("AUTH_TOKEN")
+    token_username = os.getenv("TOKEN_USERNAME")
+    token_password = os.getenv("TOKEN_PASSWORD")
     server_base_url = os.getenv("SERVER_BASE_URL")
+    token_url = os.getend("TOKEN_URL")
     admin_username = os.getenv("ADMIN_USERNAME")
     admin_password = os.getenv("ADMIN_PASSWORD")
     ncsa_developer_lists = os.getenv("NCSA_DEVELOPER_LIST").split(",")
     exclude_ncsa_developer = True
+
+    auth_token = "bearer " + get_access_token(server_base_url, token_username, token_password)
 
     headers = {
         'Authorization': auth_token,

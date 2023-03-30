@@ -26,9 +26,9 @@
 # ergo: 5a284f09c7d30d13bc0819a3
 # incore: 5df8fd18b9219c068fb0257f
 
-
 import pyincore
 from pyincore import DataService, IncoreClient, FragilityService, HazardService, RepairService, RestorationService
+
 
 def main():
     client = IncoreClient()
@@ -37,6 +37,11 @@ def main():
     datasets_incore= datasvc.get_datasets(space="incore", limit=100000)
     datasets_ergo= datasvc.get_datasets(space="ergo", limit=100000)
     tot_dataset = get_union(datasets_ergo, datasets_incore)
+
+    # this is for calculating the hazard in the dataset but hazard is being hidden from it according to Jong Lee
+    # hazard_ergo = check_hazard_dataset(datasets_ergo)
+    # hazard_incore = check_hazard_dataset(datasets_incore)
+    # tot_hazard = get_union(hazard_incore, hazard_ergo)
     print(len(datasets_ergo), len(datasets_incore), tot_dataset)
 
     unique_datatype = []
@@ -107,6 +112,24 @@ def main():
     print("• " + str(tot_tornado) + " tornado hazards")
     print("• " + str(tot_hurr) + " hurricane wave/surge hazards")
 
+
+def check_hazard_dataset(datasets):
+    hazard_datatypes= ["ergo:probabilisticEarthquakeRaster", "ergo:deterministicEarthquakeRaster",
+                      "incore:probabilisticTsunamiRaster", "incore:deterministicTsunamiRaster",
+                      "incore:probabilisticHurricaneRaster", "incore:deterministicHurricaneRaster",
+                      "incore:hurricaneGridSnapshot", "incore:tornadoWindfield", "incore:deterministicFloodRaster",
+                      "incore:probabilisticFloodRaster"]
+
+    hazard_dataset = []
+    for dataset in datasets:
+        datatype = dataset["dataType"]
+        print(datatype)
+        if (datatype.lower() in (hazard_type.lower() for hazard_type in hazard_datatypes)):
+            hazard_dataset.append(dataset)
+
+    return hazard_dataset
+
+
 def get_union(list1, list2):
     union_items = []
     for item1 in list1:
@@ -117,6 +140,7 @@ def get_union(list1, list2):
             union_items.append(item2["id"])
 
     return len(union_items)
+
 
 if __name__ == "__main__":
     main()

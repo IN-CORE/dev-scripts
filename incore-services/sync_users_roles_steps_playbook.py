@@ -231,7 +231,7 @@ if __name__ == "__main__":
         else:
             create_user(item["url"], headers,  ncsa_developer_lists)
 
-        if first_run:
+        if int(first_run):
             create_roles(item["url"], headers)
             create_steps(item["url"], headers)
 

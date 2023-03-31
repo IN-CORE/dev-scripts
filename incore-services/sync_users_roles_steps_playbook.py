@@ -209,7 +209,7 @@ if __name__ == "__main__":
     token_username = os.getenv("TOKEN_USERNAME")
     token_password = os.getenv("TOKEN_PASSWORD")
     server_base_url = os.getenv("SERVER_BASE_URL")
-    token_url = os.getend("TOKEN_URL")
+    token_url = os.getenv("TOKEN_URL")
     admin_username = os.getenv("ADMIN_USERNAME")
     admin_password = os.getenv("ADMIN_PASSWORD")
     ncsa_developer_lists = os.getenv("NCSA_DEVELOPER_LIST").split(",")

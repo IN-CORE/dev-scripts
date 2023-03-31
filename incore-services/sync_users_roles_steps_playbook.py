@@ -215,7 +215,7 @@ if __name__ == "__main__":
     ncsa_developer_lists = os.getenv("NCSA_DEVELOPER_LIST").split(",")
     exclude_ncsa_developer = True
 
-    auth_token = "bearer " + get_access_token(server_base_url, token_username, token_password)
+    auth_token = "bearer " + get_access_token(server_base_url, token_url, token_username, token_password)
 
     headers = {
         'Authorization': auth_token,

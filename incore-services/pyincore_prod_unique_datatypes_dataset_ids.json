@@ -1,0 +1,1796 @@
+{
+    "ergo:buildingInventoryVer5": [
+        {
+            "id": "5a284f1fc7d30d13bc081a7e",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f1ec7d30d13bc081a64",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f0bc7d30d13bc081a46",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f0bc7d30d13bc081a28",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "62747a8304ce841cbeb4b7ef",
+            "creator": "omarnofal",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "625f311e2ae00f7fba95228a",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "625f2ca4e6c010337c99e8e3",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "603e5e1034f29a7fa4282a8f",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "603e5d5f34f29a7fa428293d",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "603d667534f29a7fa4249f2f",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "603d664d34f29a7fa4249d93",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "603d663034f29a7fa4249c8c",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "603d661a34f29a7fa4249b85",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5f21ec1653587c306ee39d9a",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5f21e0fd53587c306ee39cc2",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5f21e09833b2700c110c4dbe",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5f1ef1c32fab4d660a9c32b2",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5df40388b9219c06cf8b0c80",
+            "creator": "cnavarro",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5d927ab2b9219c06ae8d313c",
+            "creator": "sanderdy",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5bcf2fcbf242fe047ce79dad",
+            "creator": "cnavarro",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5a284f0bc7d30d13bc081a46",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "incore"
+        }
+    ],
+    "ergo:buildingInventoryVer6": [
+        {
+            "id": "613ba5ef5d3b1d6461e8c415",
+            "creator": "sanderdy",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5fc6a8e1d2066956f49e79ff",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5dbc8478b9219c06dd242c0d",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        }
+    ],
+    "ergo:buildingInventoryVer7": [
+        {
+            "id": "649361d8e435fd233fbbd1b3",
+            "creator": "malihafez",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "63ff6b135c35c0353d5ed3ac",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "63053ddaf5438e1f8c517fed",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "62ab7dcbf328861e25ffea9e",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "6036c2a9e379f22e1658d451",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60354b6c123b4036e6837ef7",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        }
+    ],
+    "incore:buildingsToSectors": [
+        {
+            "id": "640200da475d895dfc2de1bd",
+            "creator": "cnavarro",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "63ff6f9d5c35c0353d5edee4",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "63daaea166818b21b82a07a5",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5f5fd8e2980a301080a03996",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5f202d674620b643d787a5e7",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:failureProbability": [
+        {
+            "id": "5f20347933b2700c110a3dd2",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:capitalShocks": [
+        {
+            "id": "643adeb634810d74880e7bd5",
+            "creator": "mohanar2",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "640a203218fd3853fb31efd7",
+            "creator": "cnavarro",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5f5fdbc1b7745919a9e2482d",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5f21d40d4620b643d78bb4c2",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dd84292b9219c06d4da8c93",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "ergo:buildingInventoryVer4": [
+        {
+            "id": "5a284f4ac7d30d13bc08226a",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f4ac7d30d13bc082250",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f49c7d30d13bc082232",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f45c7d30d13bc082214",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f44c7d30d13bc0821f6",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f43c7d30d13bc0821d8",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f42c7d30d13bc0821ba",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f37c7d30d13bc08219c",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f36c7d30d13bc08217e",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        }
+    ],
+    "incore:sampleDamageState": [
+        {
+            "id": "612e4038cf04e0131fb6156c",
+            "creator": "vnarah2",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "60fb42c6ead5743e47863b01",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:socioDemograhicData": [
+        {
+            "id": "60fb4241544e944c3cedb507",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:householdFinancialResources": [
+        {
+            "id": "60fb411060b3f4124301f95a",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:buildingRecoveryFactors": [
+        {
+            "id": "60fb433cd3c92a78c89d21cc",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:buildingRecovery": [
+        {
+            "id": "60fb433cd3c92a78c89d21cc",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:epnNetwork": [
+        {
+            "id": "64adbc47c36a346b1f3969f0",
+            "creator": "cwang138",
+            "format": "shp-network",
+            "space": "incore"
+        },
+        {
+            "id": "631f48ccb4f2e17eff72d33d",
+            "creator": "snunez",
+            "format": "shp-network",
+            "space": "incore"
+        },
+        {
+            "id": "62d85b399701070dbf8c65fe",
+            "creator": "cwang138",
+            "format": "shp-network",
+            "space": "incore"
+        },
+        {
+            "id": "5f454c6fef0df52132b65b0b",
+            "creator": "ywkim",
+            "format": "shp-network",
+            "space": "incore"
+        }
+    ],
+    "incore:buildingInterdependencyDict": [
+        {
+            "id": "63e5af0262d82d2f5a1058ea",
+            "creator": "cwang138",
+            "format": "json",
+            "space": "incore"
+        },
+        {
+            "id": "63d7fe6fa011a9746c94ffb1",
+            "creator": "cwang138",
+            "format": "json",
+            "space": "incore"
+        },
+        {
+            "id": "5dcf4a34b9219ca5e4118312",
+            "creator": "lisawang",
+            "format": "json",
+            "space": "incore"
+        }
+    ],
+    "ergo:buildingInventory": [
+        {
+            "id": "5a284f4ac7d30d13bc08226a",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f4ac7d30d13bc082250",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f49c7d30d13bc082232",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f45c7d30d13bc082214",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f44c7d30d13bc0821f6",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f43c7d30d13bc0821d8",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f42c7d30d13bc0821ba",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f37c7d30d13bc08219c",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f36c7d30d13bc08217e",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f1fc7d30d13bc081a7e",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f1ec7d30d13bc081a64",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f0bc7d30d13bc081a46",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f0bc7d30d13bc081a28",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "649361d8e435fd233fbbd1b3",
+            "creator": "malihafez",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "63ff6b135c35c0353d5ed3ac",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "63053ddaf5438e1f8c517fed",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "62ab7dcbf328861e25ffea9e",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "62747a8304ce841cbeb4b7ef",
+            "creator": "omarnofal",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "625f311e2ae00f7fba95228a",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "625f2ca4e6c010337c99e8e3",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "613ba5ef5d3b1d6461e8c415",
+            "creator": "sanderdy",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "603e5e1034f29a7fa4282a8f",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "603e5d5f34f29a7fa428293d",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "603d667534f29a7fa4249f2f",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "603d664d34f29a7fa4249d93",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "603d663034f29a7fa4249c8c",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "603d661a34f29a7fa4249b85",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "6036c2a9e379f22e1658d451",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60354b6c123b4036e6837ef7",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5fca860f3602476614ce5f7a",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5fc6a8e1d2066956f49e79ff",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5f21ec1653587c306ee39d9a",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5f21e0fd53587c306ee39cc2",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5f21e09833b2700c110c4dbe",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5f1ef1c32fab4d660a9c32b2",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5df40388b9219c06cf8b0c80",
+            "creator": "cnavarro",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5dbc8478b9219c06dd242c0d",
+            "creator": "mondrejc",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5dbc7a13b9219c06dd242aac",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dbc781db9219c06dd2429ca",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5d927ab2b9219c06ae8d313c",
+            "creator": "sanderdy",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5d5433edb9219c0689b98344",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5bcf2fcbf242fe047ce79dad",
+            "creator": "cnavarro",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5a284f0bc7d30d13bc081a46",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "incore"
+        }
+    ],
+    "incore:buildingOccupancyMultiplier": [
+        {
+            "id": "61f3fce38486b5517284c6a8",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "61f3fcaf3ed7dd5c873bf9e8",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "61f3fc7e8486b5517284c6a7",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "61f3fc2f3ed7dd5c873bf9e7",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "ergo:buriedPipelineTopology": [
+        {
+            "id": "5a284f28c7d30d13bc081d32",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f28c7d30d13bc081d14",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "6480a1d9c1a69260b196d9c6",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60e72f9fd3c92a78c89636c7",
+            "creator": "sanderdy",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5d2666b5b9219c3c5595ee65",
+            "creator": "skamesh",
+            "format": "shapefile",
+            "space": "incore"
+        }
+    ],
+    "incore:epf": [
+        {
+            "id": "64adc019e1b74b4e1582110d",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "6483354b41181d20004efbd7",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "63daade962b9d001e6a16a0d",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "631f932d61fe1122867c00d3",
+            "creator": "snunez",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "62fc000f88470b319561b58d",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "6267094704ce841cbeb35a97",
+            "creator": "cnavarro",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5dcf2aa8b9219ca5e40e06cf",
+            "creator": "lisawang",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5d923daab9219c06ae84afb0",
+            "creator": "lisawang",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5d92355bb9219c06ae7e386a",
+            "creator": "lisawang",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5d263f08b9219cf93c056c68",
+            "creator": "skamesh",
+            "format": "shapefile",
+            "space": "incore"
+        }
+    ],
+    "incore:epfVer2": [
+        {
+            "id": "62fc000f88470b319561b58d",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        }
+    ],
+    "ergo:buildingDamageVer4": [
+        {
+            "id": "5a284f2ec7d30d13bc0820a4",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5c5c96f6c5c0e488fcf9190f",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5c5c9686c5c0e488fcf91903",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5a29782fc7d30d4af537ace5",
+            "creator": "cnavarro",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:multiobjectiveBuildingRelatedData": [
+        {
+            "id": "6193ef5b6bee8c1fac5c915e",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:multiobjectiveStrategyCosts": [
+        {
+            "id": "6193efa69340a2170d51f495",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:socialVulnerabilityFeatureAverages": [
+        {
+            "id": "63d178c2a011a9746c948115",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "6242011d09b9bd46b433beb1",
+            "creator": "ywkim",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:socialVulnerabilityDemFactors": [
+        {
+            "id": "63d17e81a011a9746c94811b",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "63d17dbd66818b21b8293758",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "63d17d89c4b5713b9c0bb8c1",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "6242017c5b9e61751de8e530",
+            "creator": "ywkim",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:housingUnitAllocation": [
+        {
+            "id": "63ff8e895367c2261b4cb2ef",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "63ee615d62b9d001e6a2b660",
+            "creator": "natrose",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "6328a9b873b4ed0eefbacad6",
+            "creator": "cnavarro",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "617319654746910107c77f88",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dc206f6b9219c06dd2f53e4",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dc1c196b9219c06dd2e3f0b",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5d543b06b9219c0689b987af",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:blockGroupData": [
+        {
+            "id": "60b18cb04bed6e6c318b1c9b",
+            "creator": "omarnofal",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "603545f2dcda03378087e708",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5d542bd8b9219c0689b90408",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5d4c9545b9219c0689b2358a",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:valuLossParam": [
+        {
+            "id": "60354810e379f22e16560dbd",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dfd1069fc33d500081555d8",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:popDislocation": [
+        {
+            "id": "60f5ea5d544e944c3cec66dd",
+            "creator": "snunez",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "ergo:roadLinkTopo": [
+        {
+            "id": "5a284f2bc7d30d13bc081eb6",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "60ba6340aed73f24c5c5eaca",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5f15d04f33b2700c11fc9c4e",
+            "creator": "ywkim",
+            "format": "shapefile",
+            "space": "incore"
+        }
+    ],
+    "incore:roads": [
+        {
+            "id": "60e5e5cd544e944c3ce37d08",
+            "creator": "sanderdy",
+            "format": "shapefile",
+            "space": "incore"
+        }
+    ],
+    "ergo:roadLinkTopoVer2": [
+        {
+            "id": "60ba6340aed73f24c5c5eaca",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        }
+    ],
+    "incore:structuralCostRatio": [
+        {
+            "id": "63ff7b2b5c35c0353d5edeeb",
+            "creator": "cnavarro",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:contentCostRatio": [
+        {
+            "id": "63ff7b04a36332563d497cff",
+            "creator": "cnavarro",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "ergo:waterFacilityTopo": [
+        {
+            "id": "5a284f2ac7d30d13bc081e70",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f2ac7d30d13bc081e52",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "62cdd5371cca614f5242e635",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60e5e91960b3f41243faa3b2",
+            "creator": "sanderdy",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5d266507b9219c3c5595270c",
+            "creator": "skamesh",
+            "format": "shapefile",
+            "space": "incore"
+        }
+    ],
+    "incore:replacementCost": [
+        {
+            "id": "64833bcdd3f39a26a0c8b147",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "6480a2787ae18139d975e919",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "647dff5b4dd25160127ca192",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:waterFacilityDamageRatios": [
+        {
+            "id": "647e423d7ae18139d9758607",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:buildingInventoryArea": [
+        {
+            "id": "6243645b5b9e61751de9070f",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:censusBlockGroupsData": [
+        {
+            "id": "624366c3e894891aafd2b22f",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:censusAppraisalData": [
+        {
+            "id": "6241ff551f627b494a5d0fc7",
+            "creator": "mondrejc",
+            "format": "json",
+            "space": "incore"
+        }
+    ],
+    "incore:CGEsam": [
+        {
+            "id": "641e1fccea308903b2b8c51a",
+            "creator": "commresilience",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "6408c4a8475d895dfc2e5f05",
+            "creator": "cnavarro",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "63daafa9c4b5713b9c0c96ae",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dd85ae7b9219c06d4da8de4",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:CGEbb": [
+        {
+            "id": "641e1fff34810d74880b3985",
+            "creator": "commresilience",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "6408c3ffc4841b26d143e77f",
+            "creator": "cnavarro",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "63daaf5ca011a9746c954081",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dc1e620b9219c06dd2f473a",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:CGEiout": [
+        {
+            "id": "5dc1e6d8b9219c06dd2f475e",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:CGEmisc": [
+        {
+            "id": "641e21a702414a24a5436dfe",
+            "creator": "commresilience",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "6408c50718fd3853fb31d713",
+            "creator": "cnavarro",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "63daafe5a011a9746c954082",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dc1e7b5b9219c06dd2f47a6",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dc1e736b9219c06dd2f4782",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:CGEmisch": [
+        {
+            "id": "641e21a702414a24a5436dfe",
+            "creator": "commresilience",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "6408c50718fd3853fb31d713",
+            "creator": "cnavarro",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "63daafe5a011a9746c954082",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dc1e7b5b9219c06dd2f47a6",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:CGEemploy": [
+        {
+            "id": "641e2152ea308903b2b8c51c",
+            "creator": "commresilience",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "6408c56cba377224eb7caa9a",
+            "creator": "cnavarro",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "63dab018c4b5713b9c0c96af",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dc1e85ab9219c06dd2f47ee",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:CGEjobcr": [
+        {
+            "id": "641e209eea308903b2b8c51b",
+            "creator": "commresilience",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "6408c5c7c4841b26d143e786",
+            "creator": "cnavarro",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "63dab074a011a9746c954083",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dc1e962b9219c06dd2f487e",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:CGEoutcr": [
+        {
+            "id": "641e20f134810d74880b3986",
+            "creator": "commresilience",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "6408c61d475d895dfc2e5f0d",
+            "creator": "cnavarro",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "63dab0a7c4b5713b9c0c96b0",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dc1e9aeb9219c06dd2f48bc",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:housingUnitInventory": [
+        {
+            "id": "621cec65e894891aafd17890",
+            "creator": "natrose",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "61d783eb3ed7dd5c873b42d2",
+            "creator": "natrose",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "61d778a14b896661e24989ed",
+            "creator": "natrose",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "60aac3195e52dd415f54e4ff",
+            "creator": "omarnofal",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5fc6ab1cd2066956f49e7a03",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dfd1104fc33d500081556b6",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dbc6c31b9219c06dd222bd2",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5d543087b9219c0689b98234",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:addressPoints": [
+        {
+            "id": "60aac382088dfa3b65030b16",
+            "creator": "omarnofal",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5fc6aadcc38a0722f563392e",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5dbc6ba1b9219c06dd222bab",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "5d542fefb9219c0689b981fb",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:houseRecTransitionProbMatrix": [
+        {
+            "id": "60f5e2ae544e944c3cec0794",
+            "creator": "snunez",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:houseRecInitialStageProbability": [
+        {
+            "id": "60f5e918544e944c3cec668b",
+            "creator": "snunez",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:waterNetwork": [
+        {
+            "id": "64adbed3e1b74b4e158210ed",
+            "creator": "cwang138",
+            "format": "shp-network",
+            "space": "incore"
+        },
+        {
+            "id": "631f4bfb923e0e341acf1c96",
+            "creator": "snunez",
+            "format": "shp-network",
+            "space": "incore"
+        },
+        {
+            "id": "62d586120b99e237881b0519",
+            "creator": "cwang138",
+            "format": "shp-network",
+            "space": "incore"
+        }
+    ],
+    "incore:networkInterdependencyTable": [
+        {
+            "id": "631f96fb923e0e341acf1f5d",
+            "creator": "snunez",
+            "format": "table",
+            "space": "incore"
+        },
+        {
+            "id": "631f95f3b4f2e17eff72e2e9",
+            "creator": "snunez",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:pipelineDamageRatios": [
+        {
+            "id": "6480a2d44dd25160127d2fcc",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "ergo:bridges": [
+        {
+            "id": "5a284f2ec7d30d13bc08205e",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f2dc7d30d13bc082040",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f2dc7d30d13bc082022",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f2dc7d30d13bc082004",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        },
+        {
+            "id": "60e86ee960b3f41243fb9ee8",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60e86ed1544e944c3ce6241a",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60e86eab60b3f41243fb9e44",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60e86e91544e944c3ce62376",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60e86e6f60b3f41243fb9df3",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60e86d6b544e944c3ce622d2",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60e5e576d3c92a78c893ff69",
+            "creator": "sanderdy",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60620320be94522d1cb9f7f0",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5d6ede5db9219c34b56fc20b",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        }
+    ],
+    "ergo:bridgesVer2": [
+        {
+            "id": "60620320be94522d1cb9f7f0",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        }
+    ],
+    "ergo:bridgesVer3": [
+        {
+            "id": "60e86ee960b3f41243fb9ee8",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60e86ed1544e944c3ce6241a",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60e86eab60b3f41243fb9e44",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60e86e91544e944c3ce62376",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60e86e6f60b3f41243fb9df3",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "60e86d6b544e944c3ce622d2",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        }
+    ],
+    "incore:epfDamageRatios": [
+        {
+            "id": "6483354b41181d20004efbd7",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:epfDamage": [
+        {
+            "id": "6483354b41181d20004efbd7",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:CGElandcap": [
+        {
+            "id": "5dc1e810b9219c06dd2f47ca",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:CGEigtd": [
+        {
+            "id": "5dc1e895b9219c06dd2f4812",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:CGEtauff": [
+        {
+            "id": "5dc1e8eeb9219c06dd2f4836",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "ergo:bridgeDamage": [
+        {
+            "id": "5a284f2cc7d30d13bc081f96",
+            "creator": "ergo",
+            "format": "table",
+            "space": "ergo"
+        },
+        {
+            "id": "5a284f2cc7d30d13bc081f78",
+            "creator": "ergo",
+            "format": "shapefile",
+            "space": "ergo"
+        }
+    ],
+    "incore:pipelineDamage": [
+        {
+            "id": "6480a2d44dd25160127d2fcc",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:SeasideCGEsam": [
+        {
+            "id": "5f17393633b2700c11feab38",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:SeasideCGEbb": [
+        {
+            "id": "603d23d634f29a7fa41c4c4e",
+            "creator": "mondrejc",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:SeasideCGEhhtable": [
+        {
+            "id": "5f173d6bc98cf43417c89561",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:SeasideCGEemploy": [
+        {
+            "id": "5f173c97c98cf43417c8955d",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:SeasideCGEjobcr": [
+        {
+            "id": "5f173d262fab4d660a8e9f9c",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:SeasideCGEsim": [
+        {
+            "id": "5f174211c98cf43417c89565",
+            "creator": "diegoac2",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:powerLineSupplyDemandInfo": [
+        {
+            "id": "64adbfdeae71103fb41906e6",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:epfSupplyDemandInfo": [
+        {
+            "id": "64adc019e1b74b4e1582110d",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:waterFacilitySupplyDemandInfo": [
+        {
+            "id": "64adc051ae71103fb41906e7",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:pipelineSupplyDemandInfo": [
+        {
+            "id": "64adc08ee1b74b4e1582110e",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "incore:interdep": [
+        {
+            "id": "64adc0c4ae71103fb41906e8",
+            "creator": "cwang138",
+            "format": "table",
+            "space": "incore"
+        }
+    ],
+    "ergo:buildingDamageRatios": [
+        {
+            "id": "5a284f2ec7d30d13bc08209a",
+            "creator": "ergo",
+            "format": "table",
+            "space": "ergo"
+        }
+    ],
+    "ergo:bridgeDamageRatios": [
+        {
+            "id": "5a284f2cc7d30d13bc081f96",
+            "creator": "ergo",
+            "format": "table",
+            "space": "ergo"
+        }
+    ],
+    "ergo:buildingContentDamageRatios": [
+        {
+            "id": "5a284f2ec7d30d13bc082086",
+            "creator": "ergo",
+            "format": "table",
+            "space": "ergo"
+        }
+    ],
+    "ergo:buildingASDamageRatios": [
+        {
+            "id": "5a284f2ec7d30d13bc08207c",
+            "creator": "ergo",
+            "format": "table",
+            "space": "ergo"
+        }
+    ],
+    "ergo:buildingDSDamageRatios": [
+        {
+            "id": "5a284f2ec7d30d13bc082090",
+            "creator": "ergo",
+            "format": "table",
+            "space": "ergo"
+        }
+    ],
+    "ergo:roadNetwork": [
+        {
+            "id": "5a284f2bc7d30d13bc081ed4",
+            "creator": "ergo",
+            "format": "shp-network",
+            "space": "ergo"
+        },
+        {
+            "id": "603d37ec34f29a7fa4211fc4",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        },
+        {
+            "id": "5c5de25ec5c0e488fc035613",
+            "creator": "cwang138",
+            "format": "shapefile",
+            "space": "incore"
+        }
+    ],
+    "incore:bridgeDamageValue": [
+        {
+            "id": "5c5ddff0c5c0e488fc0355df",
+            "creator": "cwang138",
+            "format": "json",
+            "space": "incore"
+        }
+    ],
+    "incore:unrepairedBridge": [
+        {
+            "id": "5c5de0c5c5c0e488fc0355eb",
+            "creator": "cwang138",
+            "format": "json",
+            "space": "incore"
+        }
+    ],
+    "incore:ADT": [
+        {
+            "id": "5c5dde00c5c0e488fc032d7f",
+            "creator": "cwang138",
+            "format": "json",
+            "space": "incore"
+        }
+    ]
+}

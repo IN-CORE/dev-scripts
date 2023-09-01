@@ -1,0 +1,247 @@
+{
+    "@context": [
+        "https://www.w3.org/ns/csvw#",
+        {
+            "@language": "en",
+            "dc": "https://purl.org/dc/terms/",
+            "gml": "https://schemas.opengis.net/gml/",
+            "wfs": "https://schemas.opengis.net/wfs/1.1.0/wfs.xsd",
+            "xlink": "https://www.w3.org/1999/xlink/",
+            "xsd": "https://www.w3.org/2001/XMLSchema#",
+            "qudt": "https://qudt.org/schema/qudt/",
+            "unit": "https://qudt.org/vocab/unit/",
+            "openvocab": "https://vocab.org/open/",
+            "rdf": "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "https://www.w3.org/2000/01/rdf-schema#",
+            "dcat": "https://www.w3.org/ns/dcat#",
+            "prov": "https://www.w3.org/ns/prov#"
+        }
+    ],
+    "dc:license": {
+        "@id": "http://opendefinition.org/licenses/cc-by/"
+    },
+    "openvocab:versionnumber": 1,
+    "tableSchema": {
+        "columns": [
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "guid",
+                "titles": "guid",
+                "dc:description": "Unique identifier",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "false",
+                "name": "id",
+                "titles": "id",
+                "dc:description": "Unique Bridge Id",
+                "qudt:unit": "qudt:CountingUnit"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "class",
+                "titles": "class",
+                "dc:description": "Structure Class",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "false",
+                "name": "spans",
+                "titles": "spans",
+                "dc:description": "Number of Spans",
+                "qudt:unit": "qudt:CountingUnit"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "str_lng",
+                "titles": "str_lng",
+                "dc:description": "Structure Length",
+                "qudt:unit": "unit:DeciM"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "qudt:unit": "unit:DeciM",
+                "name": "dckwidth",
+                "titles": "dckwidth",
+                "dc:description": "Deck Width"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "false",
+                "name": "name",
+                "titles": "name",
+                "dc:description": "Bridge Name",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "span_mass",
+                "titles": "span_mass",
+                "dc:description": "The mass of a single span of a bridge",
+                "qudt:unit": "unit:TONNE"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "clearance",
+                "titles": "clearance",
+                "qudt:unit": "unit:M",
+                "dc:description": "Clearance height, indicating the vertical space between the bridge and the surface below"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "g_elev",
+                "titles": "g_elev",
+                "dc:description": "Elevation or height of the bridge above a reference point",
+                "qudt:unit": "unit:M"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "fc",
+                "titles": "fc",
+                "dc:description": "Concrete Strength",
+                "qudt:unit": "unit:MegaPA"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "fy",
+                "titles": "fy",
+                "dc:description": "Steel Strength",
+                "qudt:unit": "unit:MegaPA"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "EBL",
+                "titles": "EBL",
+                "dc:description": "Natural logarithm of coefficient of friction of expansion bearings in longitudinal direction",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "EBT",
+                "titles": "EBT",
+                "dc:description": "Natural logarithm of coefficient of friction of expansion bearings in transverse direction",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "FBL",
+                "titles": "FBL",
+                "dc:description": "Natural logarithm of coefficient of friction of fixed bearings in longitudinal direction",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "FBT",
+                "titles": "FBT",
+                "dc:description": "Natural logarithm of coefficient of friction of fixed bearings in transverse direction",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "pass_stf",
+                "titles": "pass_stf",
+                "dc:description": "Abutment passive stiffness",
+                "qudt:unit": "unit:N-PER-MilliM2"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "act_stf",
+                "titles": "act_stf",
+                "dc:description": "Abutment active stiffness",
+                "qudt:unit": "??"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "rot_stf",
+                "titles": "rot_stf",
+                "dc:description": "Abutment rotational stiffness",
+                "qudt:unit": "??"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "trns_stf",
+                "titles": "trns_stf",
+                "dc:description": "Abutment transverse stiffness",
+                "qudt:unit": "??"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "damp",
+                "titles": "damp",
+                "dc:description": "Damping ratio",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "abt_gp_L1",
+                "titles": "abt_gp_L1",
+                "dc:description": "Left abutment gap",
+                "qudt:unit": "unit:MilliM"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "abt_gp_L2",
+                "titles": "abt_gp_L2",
+                "dc:description": "Right abutment gap",
+                "qudt:unit": "unit:MilliM"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "hng_gp_L1",
+                "titles": "hng_gp_L1",
+                "dc:description": "Left hinge gap",
+                "qudt:unit": "unit:MilliM"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "hng_gp_L2",
+                "titles": "hng_gp_L2",
+                "dc:description": "Right hinge gap",
+                "qudt:unit": "unit:MilliM"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "span_lng",
+                "titles": "span_lng",
+                "dc:description": "Span Length",
+                "qudt:unit": "unit:MilliM"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "col_thck",
+                "titles": "col_thck",
+                "dc:description": "Thickness of Column in Longitudinal Direction",
+                "qudt:unit": "unit:MilliM"
+            }
+        ]
+    },
+    "url": "ergo:bridgesVer3",
+    "dc:title": "ergo:bridgesVer3",
+    "dc:description": "Bridges"
+}

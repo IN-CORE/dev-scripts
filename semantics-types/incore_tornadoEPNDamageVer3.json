@@ -1,0 +1,95 @@
+{
+    "@context": [
+        "https://www.w3.org/ns/csvw#",
+        {
+            "@language": "en",
+            "dc": "https://purl.org/dc/terms/",
+            "gml": "https://schemas.opengis.net/gml/",
+            "wfs": "https://schemas.opengis.net/wfs/1.1.0/wfs.xsd",
+            "xlink": "https://www.w3.org/1999/xlink/",
+            "xsd": "https://www.w3.org/2001/XMLSchema#",
+            "qudt": "https://qudt.org/schema/qudt/",
+            "unit": "https://qudt.org/vocab/unit/",
+            "openvocab": "https://vocab.org/open/",
+            "rdf": "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "https://www.w3.org/2000/01/rdf-schema#",
+            "dcat": "https://www.w3.org/ns/dcat#",
+            "prov": "https://www.w3.org/ns/prov#"
+        }
+    ],
+    "dc:license": {
+        "@id": "http://opendefinition.org/licenses/cc-by/"
+    },
+    "openvocab:versionnumber": 1,
+    "tableSchema": {
+        "columns": [
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "guid",
+                "titles": "guid",
+                "dc:description": "Unique indentifier",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "meanpoles",
+                "titles": "meanpoles",
+                "dc:description": "Average number of poles to repair",
+                "qudt:unit": "qudt:CountingUnit"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "stdpoles",
+                "titles": "stdpoles",
+                "dc:description": "Standard deviation of the poles to repair",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "meancost",
+                "titles": "meancost",
+                "dc:description": "Mean repair cost",
+                "qudt:unit": "unit:USDollar"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "stdcost",
+                "titles": "stdcost",
+                "dc:description": "Standard deviation of repair cost",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "meantime",
+                "titles": "meantime",
+                "dc:description": "Mean repair time",
+                "qudt:unit": "unit:HR"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "stdtime",
+                "titles": "stdtime",
+                "dc:description": "Standard deviation of repair time",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "haz_expose",
+                "titles": "haz_expose",
+                "qudt:unit": "unit:UNITLESS",
+                "dc:description": "Hazard exposure or not"
+            }
+        ]
+    },
+    "url": "incore:tornadoEPNDamageVer3",
+    "dc:title": "incore:tornadoEPNDamageVer3",
+    "dc:description": "Tornado electric power network damage."
+}

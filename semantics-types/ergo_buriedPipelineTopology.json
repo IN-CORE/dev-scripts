@@ -1,0 +1,127 @@
+{
+   "@context": [
+        "https://www.w3.org/ns/csvw#",
+        {
+            "@language": "en",
+            "dc": "https://purl.org/dc/terms/",
+            "gml": "https://schemas.opengis.net/gml/",
+            "wfs": "https://schemas.opengis.net/wfs/1.1.0/wfs.xsd",
+            "xlink": "https://www.w3.org/1999/xlink/",
+            "xsd": "https://www.w3.org/2001/XMLSchema#",
+            "qudt": "https://qudt.org/schema/qudt/",
+            "unit": "https://qudt.org/vocab/unit/",
+            "openvocab": "https://vocab.org/open/",
+            "rdf": "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "https://www.w3.org/2000/01/rdf-schema#",
+            "dcat": "https://www.w3.org/ns/dcat#",
+            "prov": "https://www.w3.org/ns/prov#"
+        }
+    ],
+    "dc:license": {
+        "@id": "http://opendefinition.org/licenses/cc-by/"
+    },
+   "dc:title":"ergo:buriedPipelineTopology",
+   "dc:description":"Pipeline Inventory",
+   "url":"ergo:buriedPipelineTopology",
+   "openvocab:versionnumber":"1.0",
+   "tableSchema":{
+      "columns":[
+         {
+            "name":"linknwid",
+            "titles":"linknwid",
+            "dc:description":"Link ID for Network",
+            "datatype":"xsd:integer",
+            "required":"false",
+            "qudt:unit":"unit:UNITLESS"
+         },
+         {
+            "name":"fromnode",
+            "titles":"fromnode",
+            "dc:description":"From Node ID",
+            "datatype":"xsd:integer",
+            "required":"false",
+            "qudt:unit":"unit:UNITLESS"
+         },
+         {
+            "name":"tonode",
+            "titles":"tonode",
+            "dc:description":"To Node ID",
+            "datatype":"xsd:integer",
+            "required":"false",
+            "qudt:unit":"unit:UNITLESS"
+         },
+         {
+            "name":"direction",
+            "titles":"direction",
+            "dc:description":"Direction (Oneway or Twoway)",
+            "datatype":"xsd:integer",
+            "required":"false",
+            "qudt:unit":"unit:UNITLESS"
+         },
+         {
+            "name":"pipetype",
+            "titles":"pipetype",
+            "dc:description":"MAEviz Pipe Type",
+            "datatype":"xsd:string",
+            "required":"true",
+            "qudt:unit":"unit:UNITLESS"
+         },
+         {
+            "name":"pipetypehz",
+            "titles":"pipetypehz",
+            "dc:description":"HAZUS Pipe Type",
+            "datatype":"xsd:integer",
+            "required":"true",
+            "qudt:unit":"unit:UNITLESS"
+         },
+         {
+            "name":"pipelinesc",
+            "titles":"pipelinesc",
+            "dc:description":"HAZUS Pipe Class",
+            "datatype":"xsd:string",
+            "required":"true",
+            "qudt:unit":"unit:UNITLESS"
+         },
+         {
+            "name":"jointtype",
+            "titles":"jointtype",
+            "dc:description":"Joint Type",
+            "datatype":"xsd:string",
+            "required":"true",
+            "qudt:unit":"unit:UNITLESS"
+         },
+         {
+            "name":"diameter",
+            "titles":"diameter",
+            "dc:description":"Pipe Diameter",
+            "datatype":"xsd:double",
+            "required":"true",
+            "qudt:unit":"unit:cm"
+         },
+         {
+            "name":"length",
+            "titles":"length",
+            "dc:description":"Pipe Length",
+            "datatype":"xsd:double",
+            "required":"true",
+            "qudt:unit":"unit:kilometer"
+         },
+         {
+            "name":"soiltype",
+            "titles":"soiltype",
+            "dc:description":"Soil Type",
+            "datatype":"xsd:string",
+            "required":"true",
+            "qudt:unit":"unit:UNITLESS"
+         },
+         {
+            "name":"guid",
+            "titles":"guid",
+            "dc:description":"Unique Identifier",
+            "datatype":"xsd:string",
+            "required":"false",
+            "qudt:unit":"unit:UNITLESS"
+         }
+      ]
+   }
+}

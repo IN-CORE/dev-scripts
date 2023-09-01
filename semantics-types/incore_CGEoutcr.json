@@ -1,0 +1,39 @@
+{
+    "@context": [
+        "https://www.w3.org/ns/csvw#",
+        {
+            "@language": "en",
+            "dc": "https://purl.org/dc/terms/",
+            "gml": "https://schemas.opengis.net/gml/",
+            "wfs": "https://schemas.opengis.net/wfs/1.1.0/wfs.xsd",
+            "xlink": "https://www.w3.org/1999/xlink/",
+            "xsd": "https://www.w3.org/2001/XMLSchema#",
+            "qudt": "https://qudt.org/schema/qudt/",
+            "unit": "https://qudt.org/vocab/unit/",
+            "openvocab": "https://vocab.org/open/",
+            "rdf": "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "https://www.w3.org/2000/01/rdf-schema#",
+            "dcat": "https://www.w3.org/ns/dcat#",
+            "prov": "https://www.w3.org/ns/prov#"
+        }
+    ],
+    "dc:license": {
+        "@id": "http://opendefinition.org/licenses/cc-by/"
+    },
+    "openvocab:versionnumber": 1,
+    "tableSchema": {
+        "columns": [
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "dummy",
+                "titles": "dummy",
+                "dc:description": "List of sectors",
+                "qudt:unit": "unit:UNITLESS"
+            }
+        ]
+    },
+    "url": "incore:CGEoutcr",
+    "dc:title": "incore:CGEoutcr",
+    "dc:description": "Matrix describing the number of workers who live in Salt Lake City but commute outside of town to work"
+}

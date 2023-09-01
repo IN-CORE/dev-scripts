@@ -1,0 +1,279 @@
+{
+    "@context": [
+        "https://www.w3.org/ns/csvw#",
+        {
+            "@language": "en",
+            "dc": "https://purl.org/dc/terms/",
+            "gml": "https://schemas.opengis.net/gml/",
+            "wfs": "https://schemas.opengis.net/wfs/1.1.0/wfs.xsd",
+            "xlink": "https://www.w3.org/1999/xlink/",
+            "xsd": "https://www.w3.org/2001/XMLSchema#",
+            "qudt": "https://qudt.org/schema/qudt/",
+            "unit": "https://qudt.org/vocab/unit/",
+            "openvocab": "https://vocab.org/open/",
+            "rdf": "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "https://www.w3.org/2000/01/rdf-schema#",
+            "dcat": "https://www.w3.org/ns/dcat#",
+            "prov": "https://www.w3.org/ns/prov#"
+        }
+    ],
+    "dc:license": {
+        "@id": "http://opendefinition.org/licenses/cc-by/"
+    },
+    "openvocab:versionnumber": 1,
+    "tableSchema": {
+        "columns": [
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "guid",
+                "titles": "guid",
+                "dc:description": "Unique identifier of the building",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "struct_typ",
+                "titles": "struct_typ",
+                "dc:description": "General Structure Type",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "occ_type",
+                "titles": "occ_type",
+                "dc:description": "Broad HAZUS Occupancy Category",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "appr_bldg",
+                "titles": "appr_bldg",
+                "dc:description": "Appraised value for the building in dollars",
+                "qudt:unit": "unit:USDollar"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "sq_foot",
+                "titles": "sq_foot",
+                "dc:description": "Square foot",
+                "qudt:unit": "unit:FT2"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "dwell_unit",
+                "titles": "dwell_unit",
+                "dc:description": "Dwelling unit",
+                "qudt:unit": "qudt:CountingUnit"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "no_stories",
+                "titles": "no_stories",
+                "dc:description": "Number of stories",
+                "qudt:unit": "qudt:CountingUnit"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "cont_val",
+                "titles": "cont_val",
+                "dc:description": "Value of building contents in dollars",
+                "qudt:unit": "qudt:CurrencyUnit"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "str_typ2",
+                "titles": "str_typ2",
+                "dc:description": "Detailed Structure Type as per HAZUS MR-3 specifications",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "efacility",
+                "titles": "efacility",
+                "dc:description": "Essential facility designation",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "parid",
+                "titles": "parid",
+                "qudt:unit": "unit:UNITLESS",
+                "dc:description": "Parcel identifier"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "year_built",
+                "titles": "year_built",
+                "dc:description": "Year of building construction",
+                "qudt:unit": "unit:YR"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "a_stories",
+                "titles": "a_stories",
+                "dc:description": "Total number of above-ground stories for the building",
+                "qudt:unit": "qudt:CountingUnit"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "b_stories",
+                "titles": "b_stories",
+                "dc:description": "Total number of below-ground stories for the building",
+                "qudt:unit": "qudt:CountingUnit"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "bsmt_type",
+                "dc:description": "Basement type",
+                "titles": "bsmt_type",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "gsq_foot",
+                "titles": "gsq_foot",
+                "dc:description": "Total ground floor area for the building in square feet (computed)",
+                "qudt:unit": "unit:FT2"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "occ_detail",
+                "titles": "occ_detail",
+                "qudt:unit": "unit:UNITLESS",
+                "dc:description": "Specific Occupancy Category, describing the detailed use of the building"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "major_occ",
+                "titles": "major_occ",
+                "qudt:unit": "unit:UNITLESS",
+                "dc:description": "Major Occupancy category for the parcel in which the building is sited"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "broad_occ",
+                "titles": "broad_occ",
+                "qudt:unit": "unit:UNITLESS",
+                "dc:description": "Broad occupancy"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "repl_cst",
+                "titles": "repl_cst",
+                "dc:description": "Replacement cost in dollars for the building",
+                "qudt:unit": "unit:USDollar"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "str_cst",
+                "titles": "str_cst",
+                "qudt:unit": "unit:USDollar",
+                "dc:description": "Structural component of the replacement cost in dollars"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "nstra_cst",
+                "titles": "nstra_cst",
+                "qudt:unit": "qudt:CurrencyUnit",
+                "dc:description": "Acceleration-sensitive component of the replacement cost in dollars"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "nstrd_cst",
+                "titles": "nstrd_cst",
+                "dc:description": "Drift-sensitive component of the replacement cost in dollars",
+                "qudt:unit": "qudt:CurrencyUnit"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "dgn_lvl",
+                "titles": "dgn_lvl",
+                "qudt:unit": "unit:UNITLESS",
+                "dc:description": "Design-level for the building as per HAZUS MR-3 specifications"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "occ_typ2",
+                "titles": "occ_typ2",
+                "dc:description": "Detailed HAZUS Occupancy Category for the building",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "archetype",
+                "titles": "archetype",
+                "qudt:unit": "unit:UNITLESS",
+                "dc:description": "Archetype of the building"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "appr_land",
+                "titles": "appr_land",
+                "dc:description": "Appraised value for the land in dollars",
+                "qudt:unit": "unit:USDollar"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "appr_tot",
+                "titles": "appr_tot",
+                "qudt:unit": "unit:USDollar",
+                "dc:description": "Total appraised value in dollars"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "ffe_elev",
+                "titles": "ffe_elev",
+                "dc:description": "First-floor elevation ",
+                "qudt:unit": "unit:M"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "lhsm_elev",
+                "titles": "lhsm_elev",
+                "qudt:unit": "unit:FT",
+                "dc:description": "Elevation of the lowest horizontal structural member coming from building inventory"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "g_elev",
+                "titles": "g_elev",
+                "qudt:unit": "unit:M",
+                "dc:description": "Elevation of the building with respect to the ground coming from building inventory"
+            }
+        ]
+    },
+    "url": "ergo:buildingInventoryVer7",
+    "dc:title": "ergo:buildingInventoryVer7",
+    "dc:description": "Building inventory version 7"
+}

@@ -1,0 +1,143 @@
+{
+    "@context": [
+        "https://www.w3.org/ns/csvw#",
+        {
+            "@language": "en",
+            "dc": "https://purl.org/dc/terms/",
+            "gml": "https://schemas.opengis.net/gml/",
+            "wfs": "https://schemas.opengis.net/wfs/1.1.0/wfs.xsd",
+            "xlink": "https://www.w3.org/1999/xlink/",
+            "xsd": "https://www.w3.org/2001/XMLSchema#",
+            "qudt": "https://qudt.org/schema/qudt/",
+            "unit": "https://qudt.org/vocab/unit/",
+            "openvocab": "https://vocab.org/open/",
+            "rdf": "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "https://www.w3.org/2000/01/rdf-schema#",
+            "dcat": "https://www.w3.org/ns/dcat#",
+            "prov": "https://www.w3.org/ns/prov#"
+        }
+    ],
+    "dc:license": {
+        "@id": "http://opendefinition.org/licenses/cc-by/"
+    },
+    "openvocab:versionnumber": 1,
+    "tableSchema": {
+        "columns": [
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "guid",
+                "titles": "guid",
+                "dc:description": "Unique identifier",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "linknwid",
+                "titles": "linknwid",
+                "dc:description": "Unique identifier for each link or connection in the network",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "fromnode",
+                "titles": "fromnode",
+                "dc:description": "Identifier for the node where the connection originates.",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "tonode",
+                "dc:description": "Identifier for the node where the connection terminates.",
+                "titles": "tonode",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "direction",
+                "titles": "direction",
+                "dc:description": "Direction (Oneway or Twoway)",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "pipetype",
+                "titles": "pipetype",
+                "dc:description": "MAEviz Pipe Type",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "length_km",
+                "titles": "length_km",
+                "dc:description": "Length of the connection in kilometers",
+                "qudt:unit": "unit:KM"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "capacity",
+                "titles": "capacity",
+                "dc:description": "Maximum capacity or flow rate of the connection",
+                "qudt:unit": "unit:M3-PER-SEC"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "length",
+                "titles": "length",
+                "dc:description": "Length of the connection between nodes",
+                "qudt:unit": "unit:FT"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "roughness",
+                "titles": "roughness",
+                "dc:description": "Roughness coefficient that affects fluid flow within the connection",
+                "qudt:unit": "unit:MilliM"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "minorloss",
+                "titles": "minorloss",
+                "dc:description": "Coefficient representing minor losses like bends, junctions, or fittings",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "status",
+                "titles": "status",
+                "qudt:unit": "unit:UNITLESS",
+                "dc:description": "Status of the connection, likely indicating whether it's open or closed."
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "false",
+                "name": "setting",
+                "titles": "setting",
+                "dc:description": "Settings",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "false",
+                "name": "parameters",
+                "titles": "parameters",
+                "dc:description": "parameters",
+                "qudt:unit": "unit:UNITLESS"
+            }
+        ]
+    },
+    "url": "ergo:pipeline",
+    "dc:title": "ergo:pipeline",
+    "dc:description": "Pipeline"
+}

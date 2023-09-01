@@ -1,0 +1,255 @@
+{
+    "@context": [
+        "https://www.w3.org/ns/csvw#",
+        {
+            "@language": "en",
+            "dc": "https://purl.org/dc/terms/",
+            "gml": "https://schemas.opengis.net/gml/",
+            "wfs": "https://schemas.opengis.net/wfs/1.1.0/wfs.xsd",
+            "xlink": "https://www.w3.org/1999/xlink/",
+            "xsd": "https://www.w3.org/2001/XMLSchema#",
+            "qudt": "https://qudt.org/schema/qudt/",
+            "unit": "https://qudt.org/vocab/unit/",
+            "openvocab": "https://vocab.org/open/",
+            "rdf": "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "https://www.w3.org/2000/01/rdf-schema#",
+            "dcat": "https://www.w3.org/ns/dcat#",
+            "prov": "https://www.w3.org/ns/prov#"
+        }
+    ],
+    "dc:license": {
+        "@id": "http://opendefinition.org/licenses/cc-by/"
+    },
+    "openvocab:versionnumber": 1,
+    "tableSchema": {
+        "columns": [
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "R_FID_Road",
+                "titles": "R_FID_Road",
+                "dc:description": "Unique identifier for each road segment",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "R_NAME",
+                "titles": "R_NAME",
+                "dc:description": "Name or label of the road",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "R_x_start",
+                "titles": "R_x_start",
+                "dc:description": "X-coordinate of the starting point of the road segment",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "R_y_start",
+                "titles": "R_y_start",
+                "dc:description": "Y-coordinate of the starting point of the road segment",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "R_x_end",
+                "titles": "R_x_end",
+                "dc:description": "X-coordinate of the ending point of the road segment",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "R_y_end",
+                "titles": "R_y_end",
+                "dc:description": "Y-coordinate of the ending point of the road segment",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "R_xy_start",
+                "titles": "R_xy_start",
+                "dc:description": "Concatenated X and Y coordinates of the starting point",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "R_xy_end",
+                "titles": "R_xy_end",
+                "dc:description": "Concatenated X and Y coordinates of the ending point",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "R_start_no",
+                "titles": "R_start_no",
+                "dc:description": "Starting node number",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "R_end_node",
+                "titles": "R_end_node",
+                "dc:description": "Ending node number",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "R_StartNod",
+                "titles": "R_StartNod",
+                "dc:description": "Another starting node identifier",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "R_EndNode2",
+                "titles": "R_EndNode2",
+                "dc:description": "Another ending node identifier",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "R_length",
+                "titles": "R_length",
+                "qudt:unit": "unit:KM",
+                "dc:description": "Length of the road segment"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "R_T_R",
+                "titles": "R_T_R",
+                "dc:description": "??",
+                "qudt:unit": "??"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "R_Road_FID",
+                "titles": "R_Road_FID",
+                "dc:description": "Road feature identifier",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "R_Scenario",
+                "titles": "R_Scenario",
+                "dc:description": "Scenario related to the road segment",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "R_Scenar_1",
+                "titles": "R_Scenar_1",
+                "dc:description": "Another scenario related to the road segment",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "R_Pf_20Yea",
+                "titles": "R_Pf_20Yea",
+                "dc:description": "Probability value",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "R_START_X",
+                "titles": "R_START_X",
+                "dc:description": "X-coordinate of the starting point",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "R_START_Y",
+                "dc:description": "Y-coordinate of the starting point",
+                "titles": "R_START_Y",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "R_MID_X",
+                "titles": "R_MID_X",
+                "dc:description": "X-coordinate of the midpoint",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "R_MID_Y",
+                "titles": "R_MID_Y",
+                "dc:description": "Y-coordinate of the midpoint",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "R_END_X",
+                "titles": "R_END_X",
+                "dc:description": "X-coordinate of the ending point",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "R_END_Y",
+                "titles": "R_END_Y",
+                "dc:description": "Y-coordinate of the ending point",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "R_Shape_Le",
+                "titles": "R_Shape_Le",
+                "dc:description": "Shape length",
+                "qudt:unit": "unit:KM"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "R__FID",
+                "titles": "R__FID",
+                "dc:description": "Another feature identifier",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "R__ObjectI",
+                "titles": "R__ObjectI",
+                "dc:description": "Another object identifier",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "distance",
+                "titles": "distance",
+                "dc:description": "Distance",
+                "qudt:unit": "unit:KM"
+            }
+        ]
+    },
+    "url": "ergo:roadLinkTopoVer2",
+    "dc:title": "ergo:roadLinkTopoVer2",
+    "dc:description": "Road link version 2"
+}

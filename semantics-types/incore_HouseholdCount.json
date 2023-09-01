@@ -1,0 +1,55 @@
+{
+    "@context": [
+        "https://www.w3.org/ns/csvw#",
+        {
+            "@language": "en",
+            "dc": "https://purl.org/dc/terms/",
+            "gml": "https://schemas.opengis.net/gml/",
+            "wfs": "https://schemas.opengis.net/wfs/1.1.0/wfs.xsd",
+            "xlink": "https://www.w3.org/1999/xlink/",
+            "xsd": "https://www.w3.org/2001/XMLSchema#",
+            "qudt": "https://qudt.org/schema/qudt/",
+            "unit": "https://qudt.org/vocab/unit/",
+            "openvocab": "https://vocab.org/open/",
+            "rdf": "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "https://www.w3.org/2000/01/rdf-schema#",
+            "dcat": "https://www.w3.org/ns/dcat#",
+            "prov": "https://www.w3.org/ns/prov#"
+        }
+    ],
+    "dc:license": {
+        "@id": "http://opendefinition.org/licenses/cc-by/"
+    },
+    "openvocab:versionnumber": 1,
+    "tableSchema": {
+        "columns": [
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "Household Group",
+                "titles": "Household Group",
+                "dc:description": "Household Group",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "HH0",
+                "titles": "HH0",
+                "dc:description": "Pre-disaster household count",
+                "qudt:unit": "qudt:CountingUnit"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "HH1",
+                "titles": "HH1",
+                "dc:description": "Post-disaster household count",
+                "qudt:unit": "qudt:CountingUnit"
+            }
+        ]
+    },
+    "url": "incore:HouseholdCount",
+    "dc:title": "incore:HouseholdCount",
+    "dc:description": "Household count."
+}

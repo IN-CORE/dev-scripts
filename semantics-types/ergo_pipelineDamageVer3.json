@@ -1,0 +1,119 @@
+{
+    "@context": [
+        "https://www.w3.org/ns/csvw#",
+        {
+            "@language": "en",
+            "dc": "https://purl.org/dc/terms/",
+            "gml": "https://schemas.opengis.net/gml/",
+            "wfs": "https://schemas.opengis.net/wfs/1.1.0/wfs.xsd",
+            "xlink": "https://www.w3.org/1999/xlink/",
+            "xsd": "https://www.w3.org/2001/XMLSchema#",
+            "qudt": "https://qudt.org/schema/qudt/",
+            "unit": "https://qudt.org/vocab/unit/",
+            "openvocab": "https://vocab.org/open/",
+            "rdf": "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "https://www.w3.org/2000/01/rdf-schema#",
+            "dcat": "https://www.w3.org/ns/dcat#",
+            "prov": "https://www.w3.org/ns/prov#"
+        }
+    ],
+    "dc:license": {
+        "@id": "http://opendefinition.org/licenses/cc-by/"
+    },
+    "openvocab:versionnumber": 1,
+    "tableSchema": {
+        "columns": [
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "guid",
+                "titles": "guid",
+                "dc:description": "Unique Identifier",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "haz_expose",
+                "titles": "haz_expose",
+                "dc:description": "Exposed to hazard or not",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "LS_0",
+                "titles": "LS_0",
+                "dc:description": "Limit state 0",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "LS_1",
+                "titles": "LS_1",
+                "dc:description": "Limit state 1",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "LS_2",
+                "titles": "LS_2",
+                "dc:description": "Limit state 2",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "qudt:unit": "unit:UNITLESS",
+                "name": "LS_3",
+                "titles": "LS_3",
+                "dc:description": "Limit state 3"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "DS_0",
+                "titles": "DS_0",
+                "dc:description": "Damage state 0",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "DS_1",
+                "titles": "DS_1",
+                "dc:description": "Damage state 1",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "DS_2",
+                "titles": "DS_2",
+                "dc:description": "Damage state 2",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "DS_3",
+                "titles": "DS_3",
+                "dc:description": "Damage state 3",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "DS_4",
+                "titles": "DS_4",
+                "dc:description": "Damage state 4",
+                "qudt:unit": "unit:UNITLESS"
+            }
+        ]
+    },
+    "url": "ergo:pipelineDamageVer3",
+    "dc:title": "ergo:pipelineDamageVer3",
+    "dc:description": "Pipeline damage"
+}

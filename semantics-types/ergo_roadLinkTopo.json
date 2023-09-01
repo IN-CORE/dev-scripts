@@ -1,0 +1,143 @@
+{
+    "@context": [
+        "https://www.w3.org/ns/csvw#",
+        {
+            "@language": "en",
+            "dc": "https://purl.org/dc/terms/",
+            "gml": "https://schemas.opengis.net/gml/",
+            "wfs": "https://schemas.opengis.net/wfs/1.1.0/wfs.xsd",
+            "xlink": "https://www.w3.org/1999/xlink/",
+            "xsd": "https://www.w3.org/2001/XMLSchema#",
+            "qudt": "https://qudt.org/schema/qudt/",
+            "unit": "https://qudt.org/vocab/unit/",
+            "openvocab": "https://vocab.org/open/",
+            "rdf": "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "https://www.w3.org/2000/01/rdf-schema#",
+            "dcat": "https://www.w3.org/ns/dcat#",
+            "prov": "https://www.w3.org/ns/prov#"
+        }
+    ],
+    "dc:license": {
+        "@id": "http://opendefinition.org/licenses/cc-by/"
+    },
+    "openvocab:versionnumber": 1,
+    "tableSchema": {
+        "columns": [
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "guid",
+                "titles": "guid",
+                "dc:description": "Unique identifier",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "linknwid",
+                "titles": "linknwid",
+                "dc:description": "Unique identifier for each road link or segment",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "fromnode",
+                "titles": "fromnode",
+                "dc:description": "Identifier for the node where the road link starts",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "tonode",
+                "titles": "tonode",
+                "dc:description": "Identifier for the node where the road link ends",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "freeflowsp",
+                "titles": "freeflowsp",
+                "dc:description": "Free-flow speed of the road segment",
+                "qudt:unit": "unit:MI-PER-HR"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "direction",
+                "titles": "direction",
+                "dc:description": "Directed or undirected of the road link",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "lanes",
+                "titles": "lanes",
+                "dc:description": "Number of lanes on the road segment",
+                "qudt:unit": "qudt:CountingUnit"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "alpha",
+                "titles": "alpha",
+                "qudt:unit": "unit:UNITLESS",
+                "dc:description": "Coefficient for a traffic flow equation"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "beta",
+                "titles": "beta",
+                "dc:description": "Coefficient for a traffic flow equation",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "capacity",
+                "titles": "capacity",
+                "dc:description": "Maximum capacity or flow rate of the road segment, possibly in vehicles per hour",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "len_mile",
+                "titles": "len_mile",
+                "dc:description": "Length of the road segment in miles",
+                "qudt:unit": "unit:MI"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "SHIELD",
+                "titles": "SHIELD",
+                "qudt:unit": "unit:UNITLESS",
+                "dc:description": "Road shield or symbol indicating a specific route"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "HWY_NUM",
+                "titles": "HWY_NUM",
+                "dc:description": "Highway number or identifier",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "linktype",
+                "titles": "linktype",
+                "dc:description": "Type of road link",
+                "qudt:unit": "unit:UNITLESS"
+            }
+        ]
+    },
+    "url": "ergo:roadLinkTopo",
+    "dc:title": "ergo:roadLinkTopo",
+    "dc:description": "Road links"
+}

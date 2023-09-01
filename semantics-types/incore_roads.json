@@ -1,0 +1,127 @@
+{
+    "@context": [
+        "https://www.w3.org/ns/csvw#",
+        {
+            "@language": "en",
+            "dc": "https://purl.org/dc/terms/",
+            "gml": "https://schemas.opengis.net/gml/",
+            "wfs": "https://schemas.opengis.net/wfs/1.1.0/wfs.xsd",
+            "xlink": "https://www.w3.org/1999/xlink/",
+            "xsd": "https://www.w3.org/2001/XMLSchema#",
+            "qudt": "https://qudt.org/schema/qudt/",
+            "unit": "https://qudt.org/vocab/unit/",
+            "openvocab": "https://vocab.org/open/",
+            "rdf": "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "https://www.w3.org/2000/01/rdf-schema#",
+            "dcat": "https://www.w3.org/ns/dcat#",
+            "prov": "https://www.w3.org/ns/prov#"
+        }
+    ],
+    "dc:license": {
+        "@id": "http://opendefinition.org/licenses/cc-by/"
+    },
+    "openvocab:versionnumber": 1,
+    "tableSchema": {
+        "columns": [
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "highway",
+                "titles": "highway",
+                "dc:description": "Type of highway or road segment",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "unit_cost",
+                "titles": "unit_cost",
+                "dc:description": "Cost associated with the unit of measure for the road segment ",
+                "qudt:unit": "unit:USDollar"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "repl_cost",
+                "titles": "repl_cost",
+                "dc:description": "Replacement cost of the road segment",
+                "qudt:unit": "unit:USDollar"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "linknwid",
+                "titles": "linknwid",
+                "dc:description": "Unique identifier for the road segment",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "fromnode",
+                "titles": "fromnode",
+                "dc:description": "Identifier for the starting node of the road segment",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "tonode",
+                "titles": "tonode",
+                "dc:description": "Identifier for the ending node of the road segment",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "true",
+                "name": "direction",
+                "titles": "direction",
+                "dc:description": "Directed or not ",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "len_mile",
+                "titles": "len_mile",
+                "dc:description": "Length of the road segment",
+                "qudt:unit": "unit:MI"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "true",
+                "name": "len_km",
+                "titles": "len_km",
+                "dc:description": "Length of the road segment",
+                "qudt:unit": "unit:KM"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "guid",
+                "titles": "guid",
+                "dc:description": "Unique identifier",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "fnode_guid",
+                "titles": "fnode_guid",
+                "dc:description": "GUID of the starting node of the road segment",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "tnode_guid",
+                "titles": "tnode_guid",
+                "dc:description": "GUID of the ending node of the road segment",
+                "qudt:unit": "unit:UNITLESS"
+            }
+        ]
+    },
+    "url": "incore:roads",
+    "dc:title": "incore:roads",
+    "dc:description": "Road"
+}

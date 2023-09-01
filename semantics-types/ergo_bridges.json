@@ -1,0 +1,79 @@
+{
+    "@context": [
+        "https://www.w3.org/ns/csvw#",
+        {
+            "@language": "en",
+            "dc": "https://purl.org/dc/terms/",
+            "gml": "https://schemas.opengis.net/gml/",
+            "wfs": "https://schemas.opengis.net/wfs/1.1.0/wfs.xsd",
+            "xlink": "https://www.w3.org/1999/xlink/",
+            "xsd": "https://www.w3.org/2001/XMLSchema#",
+            "qudt": "https://qudt.org/schema/qudt/",
+            "unit": "https://qudt.org/vocab/unit/",
+            "openvocab": "https://vocab.org/open/",
+            "rdf": "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "https://www.w3.org/2000/01/rdf-schema#",
+            "dcat": "https://www.w3.org/ns/dcat#",
+            "prov": "https://www.w3.org/ns/prov#"
+        }
+    ],
+    "dc:license": {
+        "@id": "http://opendefinition.org/licenses/cc-by/"
+    },
+    "openvocab:versionnumber": 1,
+    "tableSchema": {
+        "columns": [
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "guid",
+                "titles": "guid",
+                "dc:description": "Unique identifier",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "false",
+                "name": "id",
+                "titles": "id",
+                "dc:description": "Unique Bridge Id",
+                "qudt:unit": "qudt:CountingUnit"
+            },
+            {
+                "datatype": "xsd:string",
+                "required": "true",
+                "name": "class",
+                "titles": "class",
+                "dc:description": "Structure Class",
+                "qudt:unit": "unit:UNITLESS"
+            },
+            {
+                "datatype": "xsd:integer",
+                "required": "false",
+                "name": "spans",
+                "titles": "spans",
+                "dc:description": "Number of Spans",
+                "qudt:unit": "qudt:CountingUnit"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "name": "str_lng",
+                "titles": "str_lng",
+                "dc:description": "Structure Length",
+                "qudt:unit": "unit:DeciM"
+            },
+            {
+                "datatype": "xsd:decimal",
+                "required": "false",
+                "qudt:unit": "unit:DeciM",
+                "name": "dckwidth",
+                "titles": "dckwidth",
+                "dc:description": "Deck Width"
+            }
+        ]
+    },
+    "url": "ergo:bridges",
+    "dc:title": "ergo:bridges",
+    "dc:description": "Bridges"
+}

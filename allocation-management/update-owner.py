@@ -41,7 +41,7 @@ def main():
     mongo_host = "127.0.0.1"
     mongo_port = 27019
     mongo_user = 'root'
-    mongo_password = 'incorerocks'
+    mongo_password = 'password'
 
     client = MongoClient(mongo_host, mongo_port, username=mongo_user, password=mongo_password, authSource='admin')
     # use this for local test

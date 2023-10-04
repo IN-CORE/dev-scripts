@@ -1,0 +1,3 @@
+PWDEV=<dev password>
+PWPROD=<prod password>
+TOKEN=<token without bearer>

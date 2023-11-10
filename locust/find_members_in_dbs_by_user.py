@@ -25,7 +25,7 @@ def main(user_dict):
     ################################################################
     ################################################################
     # DO NOT PUT YOUR PASSWORD IN THE CODE and PUSH to the repo
-    mongo_password = 'password'
+    mongo_password = ''
     ################################################################
     ################################################################
     ################################################################
@@ -39,9 +39,11 @@ def main(user_dict):
     # check what database you want to use
     is_data = False
     is_dfr3 = False
+    is_earthquake_model = True
     is_earthquake_dataset = True
     is_hurricane = False
     is_tornado_model = True
+    is_tornado_dataset = True
     is_flood = False
 
     # query user's space id
@@ -56,7 +58,6 @@ def main(user_dict):
         id_list = []
         if doc_list is None:
             print("No dataset")
-            return None
         else:
             for doc in doc_list:
                 doc_id = str(doc['_id'])
@@ -67,8 +68,18 @@ def main(user_dict):
         doc_list = query_from_earthquake_dataset(client, user_dict)
         id_list = []
         if doc_list is None:
-            print("No dataset")
-            return
+            print("No earthquake dataset")
+        else:
+            for doc in doc_list:
+                doc_id = str(doc['_id'])
+                id_list.append(doc_id)
+            merged_list = merge_with_existing_members(merged_list, id_list)
+
+    if is_earthquake_model:
+        doc_list = query_from_earthquake_model(client, user_dict)
+        id_list = []
+        if doc_list is None:
+            print("No earthquake model")
         else:
             for doc in doc_list:
                 doc_id = str(doc['_id'])
@@ -79,8 +90,18 @@ def main(user_dict):
         doc_list = query_from_tornado_model(client, user_dict)
         id_list = []
         if doc_list is None:
-            print("No dataset")
-            return
+            print("No tornado model")
+        else:
+            for doc in doc_list:
+                doc_id = str(doc['_id'])
+                id_list.append(doc_id)
+            merged_list = merge_with_existing_members(merged_list, id_list)
+
+    if is_tornado_dataset:
+        doc_list = query_from_tornado_dataset(client, user_dict)
+        id_list = []
+        if doc_list is None:
+            print("No tornado dataset")
         else:
             for doc in doc_list:
                 doc_id = str(doc['_id'])
@@ -166,6 +187,18 @@ def query_from_earthquake_dataset(client, user_dict):
         return None
 
 
+def query_from_earthquake_model(client, user_dict):
+    db = client["hazarddb"]
+    db.collection = db["EarthquakeModel"]
+    doc = db.collection.find(user_dict)
+
+    doc_list = list(doc)
+    if len(doc_list) > 0:
+        return doc_list
+    else:
+        return None
+
+
 def query_from_tornado_model(client, user_dict):
     db = client["hazarddb"]
     db.collection = db["TornadoModel"]
@@ -185,7 +218,26 @@ def query_from_tornado_model(client, user_dict):
         return None
 
 
+def query_from_tornado_dataset(client, user_dict):
+    db = client["hazarddb"]
+    db.collection = db["TornadoDataset"]
+    doc = db.collection.find(user_dict)
+
+    doc_list = list(doc)
+    if len(doc_list) > 0:
+        return doc_list
+    else:
+        return None
+    doc = db.collection.find(user_dict)
+
+    doc_list = list(doc)
+    if len(doc_list) > 0:
+        return doc_list
+    else:
+        return None
+
+
 if __name__ == "__main__":
     # change this for getting the public id
-    public_id_dict = {"creator": "ylyang"}
+    public_id_dict = {"creator": "username"}
     main(public_id_dict)

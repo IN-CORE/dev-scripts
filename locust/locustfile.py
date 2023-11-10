@@ -9,7 +9,7 @@ class MyUser(HttpUser):
     wait_time = between(1, 5)  # Add the desired wait time between tasks
 
     headers = {
-        "Authorization":"bear {Your Authorization}"
+        "Authorization": ""
     }
 
     ##### Debugging #####
@@ -53,6 +53,37 @@ class MyUser(HttpUser):
                 "amplifyHazard": "true"
             }
         }
+        earthquake_dataset_json = {
+            "name": "Memphis Deterministic EQ",
+            "description": "Memphis dataset based deterministic hazard",
+            "eqType": "dataset",
+            "hazardDatasets": [
+                {
+                    "hazardType": "deterministic",
+                    "demandType": "SA",
+                    "demandUnits": "g",
+                    "period": "0.2",
+                    "eqParameters": {
+                        "srcLatitude": "35.927",
+                        "srcLongitude": "-89.919",
+                        "magnitude": "7.9",
+                        "depth": "10.0"
+                    }
+                },
+                {
+                    "hazardType": "deterministic",
+                    "demandType": "PGA",
+                    "demandUnits": "g",
+                    "period": "0.0",
+                    "eqParameters": {
+                        "srcLatitude": "35.927",
+                        "srcLongitude": "-89.919",
+                        "magnitude": "7.9",
+                        "depth": "10.0"
+                    }
+                }
+            ]
+        }
         points = """[
             {
                 "demands": ["0.2 SA"],
@@ -65,12 +96,21 @@ class MyUser(HttpUser):
                 "loc": "35.027, -90.077"
             }
         ]"""
+        files = [
+            {"name": "eq-dataset-SA.tif",
+             "location": "/Users/ylyang/incore-workshop/inspire-workshop-2023-11-15/session2/data/hazard/earthquake/eq-dataset-SA.tif"},
+            {"name": "eq-dataset-PGA.tif",
+             "location": "/Users/ylyang/incore-workshop/inspire-workshop-2023-11-15/session2/data/hazard/earthquake/eq-dataset-PGA.tif"}
+        ]
 
         # GET /earthquakes/{id}
         self.client.get(f"{url}{id}", headers=self.headers)
 
-        # POST /earthquake
+        # POST /earthquake for model based
         self.post(url, self.headers, earthquake_model_json, "earthquake")
+
+        # POST /earthquake for dataset based
+        self.post_with_file(url, self.headers, earthquake_dataset_json, "earthquake", files)
 
         # POST /earthquakes/{id}/values
         self.post_values(url, id, self.headers, points)
@@ -100,7 +140,6 @@ class MyUser(HttpUser):
             "description": "Joplin tornado hazard with shapefile",
             "tornadoType": "dataset"
         }
-        shapefile_location = '/Users/ylyang/incore-workshop/inspire-workshop-2023-11-15/session2/data/hazard/tornado/joplin_path_wgs84.shp'
         points = """[
             {
                 "demands": ["wind"],
@@ -113,16 +152,19 @@ class MyUser(HttpUser):
                 "loc": "35.215, -97.519"
             }
         ]"""
-
+        files = [
+            {"name":"joplin_path_wgs84.shp", "location":"/Users/ylyang/incore-workshop/inspire-workshop-2023-11-15/session2/data/hazard/tornado/joplin_path_wgs84.shp"},
+            {"name":"joplin_path_wgs84.dbf", "location":"/Users/ylyang/incore-workshop/inspire-workshop-2023-11-15/session2/data/hazard/tornado/joplin_path_wgs84.dbf"}
+        ]
 
         # GET /tornadoes/{id}
         self.client.get(f"{url}{id}", headers=self.headers)
 
-        # POST /tornadoes
+        # POST /tornadoes for model based
         self.post(url, self.headers, tornado_json_model, "tornado")
 
-        # POST /tornadoes
-        #self.post_with_file(url, self.headers, tornado_json_dataset, "tornado", shapefile_location)
+        # POST /tornadoes for dataset based
+        self.post_with_file(url, self.headers, tornado_json_dataset, "tornado", files)
 
         # POST /tornadoes/{id}/values
         self.post_values(url, id, self.headers, points)
@@ -149,7 +191,7 @@ class MyUser(HttpUser):
             id = res.json()['id']
             self.client.delete(f"{url}{id}", headers=headers)
 
-    def post_with_file(self, url, headers, form_data, hazard, shapefile_location):
+    def post_with_file(self, url, headers, form_data, hazard, files):
         dataList = []
         boundary = 'wL36Yn8afVp8Ag7AmP8qZ0SA4n1v9T'
         dataList.append(encode('--' + boundary))
@@ -161,20 +203,37 @@ class MyUser(HttpUser):
         dataList.append(encode(json.dumps(form_data)))
         dataList.append(encode('--' + boundary))
         dataList.append(
-            encode('Content-Disposition: form-data; name=file; filename={0}'.format('joplin_path_wgs84.shp')))
+            encode('Content-Disposition: form-data; name=file; filename={0}'.format(files[0].get("name"))))
 
         fileType = mimetypes.guess_type(
-            shapefile_location)[
+            files[0].get("location"))[
                        0] or 'application/octet-stream'
         dataList.append(encode('Content-Type: {}'.format(fileType)))
         dataList.append(encode(''))
 
-        with open(shapefile_location, 'rb') as f:
+        with open(
+                files[0].get("location"),
+                'rb') as f:
+            dataList.append(f.read())
+        dataList.append(encode('--' + boundary))
+        dataList.append(
+            encode('Content-Disposition: form-data; name=file; filename={0}'.format(files[1].get("name"))))
+
+        fileType = mimetypes.guess_type(
+            files[1].get("location"))[
+                       0] or 'application/octet-stream'
+        dataList.append(encode('Content-Type: {}'.format(fileType)))
+        dataList.append(encode(''))
+
+        with open(
+                files[1].get("location"),
+                'rb') as f:
             dataList.append(f.read())
         dataList.append(encode('--' + boundary + '--'))
         dataList.append(encode(''))
         body = b'\r\n'.join(dataList)
         payload = body
+
         headers = headers | {'Content-type': 'multipart/form-data; boundary={}'.format(boundary)}
 
         res = self.client.post(f"{url}", data=payload, headers=headers)

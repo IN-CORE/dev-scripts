@@ -9,7 +9,7 @@ class MyUser(HttpUser):
     wait_time = between(1, 5)  # Add the desired wait time between tasks
 
     headers = {
-        "Authorization": "bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJfa1pWbFM4OU1SVWNZaURYUjByaGVVSUh6RzdZWXZ4eXcxZ1l3WjJZajVjIn0.eyJleHAiOjE2OTk1ODA3MTcsImlhdCI6MTY5OTU2NjMxNywianRpIjoiZThjMDNhZTMtYTI4YS00M2NiLTgyODUtZDI3YzU4MDQ0ODExIiwiaXNzIjoiaHR0cHM6Ly9pbmNvcmUubmNzYS5pbGxpbm9pcy5lZHUvcmVhbG1zL0luLWNvcmUiLCJhdWQiOlsiSU5DT1JFIiwiYWNjb3VudCJdLCJzdWIiOiIyNTNlNWU3MC0wYjU0LTQ5MDEtODc3NS1jOWZmN2I1MzViOGEiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJyZWFjdC1hdXRoIiwic2Vzc2lvbl9zdGF0ZSI6Ijc0YWQ2OWEzLTU1NGUtNDE2ZS05M2EwLTY1ZmNkZjg5OWM3OSIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDozMDAwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWluLWNvcmUiLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiaW5jb3JlX3VzZXJfcm9sZSJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJzaWQiOiI3NGFkNjlhMy01NTRlLTQxNmUtOTNhMC02NWZjZGY4OTljNzkiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwidWlkX251bWJlciI6NjcxMjYsIm5hbWUiOiJZYS1MYW4gWWFuZyIsImdyb3VwcyI6WyJpbmNvcmVfam9wbGluX3VzZXIiLCJpbmNvcmVfbmNzYSIsImluY29yZV9nYWx2ZXN0b25fdXNlciIsImluY29yZV9hZG1pbiIsImluY29yZV9zbGNfdXNlciIsImluY29yZV91c2VyIl0sInByZWZlcnJlZF91c2VybmFtZSI6InlseWFuZyIsImdpdmVuX25hbWUiOiJZYS1MYW4iLCJmYW1pbHlfbmFtZSI6IllhbmciLCJlbWFpbCI6InlseWFuZ0BpbGxpbm9pcy5lZHUifQ.JStC5W8bFds4M1_KSMBphfP_BCP-BleUYddr3dwBYdSpI0OZ4lfIhEQ3gNBmDueQMB0Ldqo_8AsPcTo4KOYv_f8rUuHzOZ2Wz6IK1tNl2iykozQzx1xPMIexYhlpLs5wcE-dcHKSNv70e6pCH6o9yzlib1b27bo9zlLFxIhadMPbcoglZRJSxtLqL0qXatdGiq4s0qRztt0S4XlovC3drsPXi5OF_na0JGSWQsbN9CC-Y5-YaBWtty8-ZpkdGsoKaNH85FNKtvZr7P7Uwz8lcPNJzriWmueC8rXXwfGXZtd54qtGHt1iLm2PSMVXktkNHMZ6nG_bWxCoksomHQNwNg"
+        "Authorization":"bear {Your Authorization}"
     }
 
     ##### Debugging #####
@@ -53,7 +53,7 @@ class MyUser(HttpUser):
                 "amplifyHazard": "true"
             }
         }
-        points = [
+        points = """[
             {
                 "demands": ["0.2 SA"],
                 "units": ["g"],
@@ -64,7 +64,7 @@ class MyUser(HttpUser):
                 "units": ["g", "g", "g"],
                 "loc": "35.027, -90.077"
             }
-        ]
+        ]"""
 
         # GET /earthquakes/{id}
         self.client.get(f"{url}{id}", headers=self.headers)
@@ -73,7 +73,7 @@ class MyUser(HttpUser):
         self.post(url, self.headers, earthquake_model_json, "earthquake")
 
         # POST /earthquakes/{id}/values
-        #self.post_values(url, id, self.headers, points, "earthquake")
+        self.post_values(url, id, self.headers, points)
 
     @task
     def hazard_tornado(self):
@@ -101,7 +101,7 @@ class MyUser(HttpUser):
             "tornadoType": "dataset"
         }
         shapefile_location = '/Users/ylyang/incore-workshop/inspire-workshop-2023-11-15/session2/data/hazard/tornado/joplin_path_wgs84.shp'
-        points = [
+        points = """[
             {
                 "demands": ["wind"],
                 "units": ["mph"],
@@ -112,7 +112,7 @@ class MyUser(HttpUser):
                 "units": ["mph"],
                 "loc": "35.215, -97.519"
             }
-        ]
+        ]"""
 
 
         # GET /tornadoes/{id}
@@ -124,8 +124,8 @@ class MyUser(HttpUser):
         # POST /tornadoes
         #self.post_with_file(url, self.headers, tornado_json_dataset, "tornado", shapefile_location)
 
-
-
+        # POST /tornadoes/{id}/values
+        self.post_values(url, id, self.headers, points)
 
 
     def post(self, url, headers, form_data, hazard):
@@ -182,7 +182,7 @@ class MyUser(HttpUser):
             id = res.json()['id']
             self.client.delete(f"{url}{id}", headers=headers)
 
-    def post_values(self, url, id, headers, form_data, hazard):
+    def post_values(self, url, id, headers, form_data):
         dataList = []
         boundary = 'wL36Yn8afVp8Ag7AmP8qZ0SA4n1v9T'
         dataList.append(encode('--' + boundary))

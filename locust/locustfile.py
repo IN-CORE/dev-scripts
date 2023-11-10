@@ -1,6 +1,7 @@
 import json
 import logging
 import mimetypes
+import time
 from http.client import HTTPConnection
 from locust import HttpUser, task, between
 from codecs import encode
@@ -188,8 +189,20 @@ class MyUser(HttpUser):
 
         res = self.client.post(f"{url}", data=payload, headers=headers)
         if res.status_code == 200:
-            id = res.json()['id']
-            self.client.delete(f"{url}{id}", headers=headers)
+            index = 0
+
+            is_space_ok = False
+            while is_space_ok is False and index <= 5:
+                time.sleep(5)
+                id = res.json()['id']
+                get_res = self.client.get(f"{url}{id}", headers=headers)
+                index += 1
+
+                if get_res.status_code == 200:
+                    is_space_ok = True
+                    self.client.delete(f"{url}{id}", headers=headers)
+
+
 
     def post_with_file(self, url, headers, form_data, hazard, files):
         dataList = []
@@ -206,28 +219,22 @@ class MyUser(HttpUser):
             encode('Content-Disposition: form-data; name=file; filename={0}'.format(files[0].get("name"))))
 
         fileType = mimetypes.guess_type(
-            files[0].get("location"))[
-                       0] or 'application/octet-stream'
+            files[0].get("location"))[0] or 'application/octet-stream'
         dataList.append(encode('Content-Type: {}'.format(fileType)))
         dataList.append(encode(''))
 
-        with open(
-                files[0].get("location"),
-                'rb') as f:
+        with open(files[0].get("location"),'rb') as f:
             dataList.append(f.read())
         dataList.append(encode('--' + boundary))
         dataList.append(
             encode('Content-Disposition: form-data; name=file; filename={0}'.format(files[1].get("name"))))
 
         fileType = mimetypes.guess_type(
-            files[1].get("location"))[
-                       0] or 'application/octet-stream'
+            files[1].get("location"))[0] or 'application/octet-stream'
         dataList.append(encode('Content-Type: {}'.format(fileType)))
         dataList.append(encode(''))
 
-        with open(
-                files[1].get("location"),
-                'rb') as f:
+        with open(files[1].get("location"), 'rb') as f:
             dataList.append(f.read())
         dataList.append(encode('--' + boundary + '--'))
         dataList.append(encode(''))
@@ -238,8 +245,18 @@ class MyUser(HttpUser):
 
         res = self.client.post(f"{url}", data=payload, headers=headers)
         if res.status_code == 200:
-            id = res.json()['id']
-            self.client.delete(f"{url}{id}", headers=headers)
+            index = 0
+
+            is_space_ok = False
+            while is_space_ok is False and index <= 5:
+                time.sleep(5)
+                id = res.json()['id']
+                get_res = self.client.get(f"{url}{id}", headers=headers)
+                index += 1
+
+                if get_res.status_code == 200:
+                    is_space_ok = True
+                    self.client.delete(f"{url}{id}", headers=headers)
 
     def post_values(self, url, id, headers, form_data):
         dataList = []

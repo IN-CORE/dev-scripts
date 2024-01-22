@@ -59,6 +59,3 @@ utils/fragility_utils/data/
 *pycache*
 
 .ipynb_checkpoints
-
-/Users/rmp6/Documents/incore/dev-scripts/incore-services/revert_deleted_datasetIds_TornadoDataset.json
-/Users/rmp6/Documents/incore/dev-scripts/incore-services/revert_deleted_datasetIds_TornadoModel.json

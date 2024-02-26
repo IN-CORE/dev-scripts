@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def main(input_building_csv, retrofit_plan_csv, input_elevation_guide_csv, output_cost_csv,
          output_cost_json, inflation_rate):
     # read building data
@@ -32,51 +33,42 @@ def main(input_building_csv, retrofit_plan_csv, input_elevation_guide_csv, outpu
         elif bsmt_type == 3:
             bsmt_guide_column = "Type 3"
         elevation_value = row['retrofit_value']
-        bsmt_value = elevation_guide_df[elevation_guide_df[elevation_column] == elevation_value][bsmt_guide_column].values[0]
-        merged_df.at[index, 'cost'] = sq_foot * bsmt_value * inflation_rate
+        bsmt_value = elevation_guide_df[elevation_guide_df[elevation_column]
+                                        == elevation_value][bsmt_guide_column].values[0]
+        merged_df.at[index, 'Retrofit_Cost'] = sq_foot * bsmt_value * inflation_rate
 
     # calculate the total cost
-    total_cost = merged_df['cost'].sum()
+    total_cost = merged_df['Retrofit_Cost'].sum()
 
     # check the unique basement type
     unique_bsmt_type = building_df['bsmt_type'].unique()
 
     # create the total cost for each basement type
-    total_cost_by_bsmt = []
-    for bsmt_type in unique_bsmt_type:
-        total_cost_by_bsmt.append(merged_df[merged_df['bsmt_type'] == bsmt_type]['cost'].sum())
+    total_cost_by_bsmt = merged_df.groupby('bsmt_type')['Retrofit_Cost'].sum().reset_index()
 
     # create the total buildings for each basement type
-    total_building = []
-    for bsmt_type in unique_bsmt_type:
-        total_building.append(merged_df[merged_df['bsmt_type'] == bsmt_type]['guid'].count())
-
-    # create the average cost for each basement type
-    average_cost = []
-    for i in range(len(unique_bsmt_type)):
-        average_cost.append(total_cost_by_bsmt[i] / total_building[i])
+    total_building = merged_df.groupby('bsmt_type')['Retrofit_Cost'].count().reset_index()
 
     # round the total cost to 2 decimal places
     total_cost = round(total_cost, 2)
 
-    # round the total cost for each basement type to 2 decimal places
-    total_cost_by_bsmt = [round(x, 2) for x in total_cost_by_bsmt]
-
-    # round the average cost to 2 decimal places
-    average_cost = [round(x, 2) for x in average_cost]
-
-    # create the json including total cost, basement type, total cost for each basement type, total buildings for each basement type, and average cost for each basement type
-    cost_json = { "total_cost": total_cost, "basement_type": unique_bsmt_type.tolist(), "total_cost_for_each_basement_type": total_cost_by_bsmt, "total_buildings_for_each_basement_type": total_building, "average_cost_for_each_basement_type": average_cost }
+    # create the output json
+    output_json = {
+        "total_cost": total_cost,
+        "basement_type": unique_bsmt_type.tolist(),
+        "total_cost_for_each_basement_type": total_cost_by_bsmt.to_dict(orient='records'),
+        "total_buildings_for_each_basement_type": total_building.to_dict(orient='records')
+    }
 
     # save the result to json
     with open(output_cost_json, 'w') as json_file:
-        json_file.write(str(cost_json))
+        json_file.write(str(output_json))
 
     # only keep guid and cost columns
-    merged_df = merged_df[['guid', 'cost']]
+    merged_df = merged_df[['guid', 'Retrofit_Cost']]
 
     # round the cost to 2 decimal places
-    merged_df['cost'] = merged_df['cost'].apply(lambda x: round(x, 2))
+    merged_df['Retrofit_Cost'] = merged_df['Retrofit_Cost'].apply(lambda x: round(x, 2))
 
     # save the result to csv
     merged_df.to_csv(output_cost_csv, index=False)

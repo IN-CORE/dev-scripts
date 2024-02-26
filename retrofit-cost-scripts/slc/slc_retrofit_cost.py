@@ -3,7 +3,7 @@ import json
 import pandas as pd
 
 
-def main(input_cost_csv, output_cost_csv, output_cost_json):
+def main(input_cost_csv, output_cost_csv, output_cost_json, inflation_rate):
     # read input cost csv
     cost_df = pd.read_csv(input_cost_csv)
 
@@ -15,6 +15,12 @@ def main(input_cost_csv, output_cost_csv, output_cost_json):
 
     # convert retrofit cost to float
     cost_df['Retrofit_Cost'] = cost_df['Retrofit_Cost'].astype(float)
+
+    # apply inflation by multiplying the retrofit cost by inflation rate
+    cost_df['Retrofit_Cost'] = cost_df['Retrofit_Cost'] * inflation_rate
+
+    # round the retrofit cost to 2 decimal places
+    cost_df['Retrofit_Cost'] = cost_df['Retrofit_Cost'].round(2)
 
     # check the unique structure types
     struct_types = cost_df['struct_typ'].unique()
@@ -52,6 +58,7 @@ if __name__ == '__main__':
     input_cost_csv = "data/Salt_Lake_City_Build_W_Cost.csv"
     output_cost_csv = "data/Salt_Lake_City_Build_W_Cost_output.csv"
     output_cost_json = "data/Salt_Lake_City_Build_W_Cost_output.json"
+    inflation_rate = 1.79
 
-    main(input_cost_csv, output_cost_csv, output_cost_json)
+    main(input_cost_csv, output_cost_csv, output_cost_json, inflation_rate)
     print("Process completed successfully!")

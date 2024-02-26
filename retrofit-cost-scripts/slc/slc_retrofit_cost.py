@@ -58,7 +58,7 @@ if __name__ == '__main__':
     input_cost_csv = "data/Salt_Lake_City_Build_W_Cost.csv"
     output_cost_csv = "data/Salt_Lake_City_Build_W_Cost_output.csv"
     output_cost_json = "data/Salt_Lake_City_Build_W_Cost_output.json"
-    inflation_rate = 1.79
+    inflation_rate = 1
 
     main(input_cost_csv, output_cost_csv, output_cost_json, inflation_rate)
     print("Process completed successfully!")

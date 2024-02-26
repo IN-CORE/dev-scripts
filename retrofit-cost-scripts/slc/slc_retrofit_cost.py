@@ -19,8 +19,7 @@ def main(input_cost_csv, output_cost_csv, output_cost_json):
     # convert retrofit cost to float
     cost_df['Retrofit_Cost'] = cost_df['Retrofit_Cost'].astype(float)
 
-    # save the output cost csv
-    cost_df.to_csv(output_cost_csv, index=False)
+
 
     # check the unique structure types
     struct_types = cost_df['struct_typ'].unique()
@@ -45,6 +44,12 @@ def main(input_cost_csv, output_cost_csv, output_cost_json):
     # save the output cost json
     with open(output_cost_json, 'w') as f:
         json.dump(output_json, f, indent=4)
+
+    # drop struct_typ column
+    cost_df = cost_df.drop(columns=['struct_typ'])
+
+    # save the output cost csv
+    cost_df.to_csv(output_cost_csv, index=False)
 
 
 if __name__ == '__main__':

@@ -1,6 +1,7 @@
 import pandas as pd
 
-def main(input_building_csv, retrofit_plan_csv, input_elevation_guide_csv, output_cost_csv, output_cost_json):
+def main(input_building_csv, retrofit_plan_csv, input_elevation_guide_csv, output_cost_csv,
+         output_cost_json, inflation_rate):
     # read building data
     building_df = pd.read_csv(input_building_csv)
 
@@ -27,6 +28,8 @@ if __name__ == '__main__':
     input_elevation_guide_csv = "data/elevation_unit_cost_guide.csv"
     output_cost_csv = "data/galveston_cost_output.csv"
     output_cost_json = "data/galveston_cost_output.json"
+    inflation_rate = 1.79
 
-    main(input_building_csv, retrofit_plan_csv, input_elevation_guide_csv, output_cost_csv, output_cost_json)
+    main(input_building_csv, retrofit_plan_csv, input_elevation_guide_csv, output_cost_csv,
+         output_cost_json, inflation_rate)
     print("Process completed successfully!")

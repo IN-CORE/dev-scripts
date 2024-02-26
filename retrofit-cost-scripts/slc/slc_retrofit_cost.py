@@ -1,7 +1,4 @@
 #!/usr/bin/env python3
-import argparse
-from pyincore import Dataset, IncoreClient, DataService
-from pyincore.utils.dataprocessutil import DataProcessUtil
 import json
 import pandas as pd
 
@@ -19,8 +16,6 @@ def main(input_cost_csv, output_cost_csv, output_cost_json):
     # convert retrofit cost to float
     cost_df['Retrofit_Cost'] = cost_df['Retrofit_Cost'].astype(float)
 
-
-
     # check the unique structure types
     struct_types = cost_df['struct_typ'].unique()
 
@@ -33,7 +28,7 @@ def main(input_cost_csv, output_cost_csv, output_cost_json):
     # create total number of rows by structure type
     struct_count = cost_df.groupby('struct_typ')['Retrofit_Cost'].count().reset_index()
 
-    # create json output that contains the total cost, structure_types, total cost by structure type, and total number of rows by structure type
+    # create json output
     output_json = {
         "total_cost": total_cost,
         "structure_types": struct_types.tolist(),

@@ -1,27 +1,3 @@
 {
-    "total_cost": 1032115666.9499998,
-    "structure_types": [
-        "URML",
-        "URMM"
-    ],
-    "total_cost_by_struct_type": [
-        {
-            "struct_typ": "URML",
-            "Retrofit_Cost": 930862100.22
-        },
-        {
-            "struct_typ": "URMM",
-            "Retrofit_Cost": 101253566.73
-        }
-    ],
-    "total_count_by_struct_type": [
-        {
-            "struct_typ": "URML",
-            "Retrofit_Cost": 31514
-        },
-        {
-            "struct_typ": "URMM",
-            "Retrofit_Cost": 451
-        }
-    ]
+    "total_cost": 199783209.37
 }

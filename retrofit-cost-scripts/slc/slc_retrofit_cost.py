@@ -69,8 +69,8 @@ def main(retrofit_strategy_id, input_cost_csv, output_cost_csv, output_cost_json
         # if you need to include following items in output json
         # uncomment the following lines
         # "structure_types": struct_types.tolist(),
-        # "total_cost_by_struct_type": struct_cost.to_dict(orient='records'),
-        # "total_count_by_struct_type": struct_count.to_dict(orient='records'),
+        # "total_cost_by_building_type": struct_cost.to_dict(orient='records'),
+        # "total_count_by_building_type": struct_count.to_dict(orient='records'),
         # "retrofit_keys": retrofit_keys.tolist(),
         # "total_cost_by_retrofit_key": retrofit_cost.to_dict(orient='records'),
         # "total_count_by_retrofit_key": retrofit_count.to_dict(orient='records')

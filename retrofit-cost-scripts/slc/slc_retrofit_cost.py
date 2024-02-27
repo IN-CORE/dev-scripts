@@ -6,9 +6,8 @@ from pyincore import Dataset, AnalysisUtil
 from pyincore import IncoreClient
 from pyincore.dataservice import DataService
 
-def main(retrofit_strategy_id, input_cost_csv, output_cost_csv, output_cost_json, inflation_rate):
+def main(retrofit_strategy_id, input_cost_csv, output_cost_csv, output_cost_json, inflation_rate, client):
     # download the retrofit cost csv from the API
-    client = IncoreClient("https://incore-dev.ncsa.illinois.edu")
     retrofit_strategy_dataset = Dataset.from_data_service(retrofit_strategy_id, DataService(client))
 
     if retrofit_strategy_dataset is not None:
@@ -89,6 +88,7 @@ def main(retrofit_strategy_id, input_cost_csv, output_cost_csv, output_cost_json
 
 
 if __name__ == '__main__':
+    client = IncoreClient("https://incore-dev.ncsa.illinois.edu")
     # input and output file paths
     retrofit_strategy_id = "65d5206b8215870f805d6001"
     input_cost_csv = "data/Salt_Lake_City_Build_W_Cost.csv"
@@ -96,5 +96,5 @@ if __name__ == '__main__':
     output_cost_json = "data/Salt_Lake_City_Build_W_Cost_output.json"
     inflation_rate = 1
 
-    main(retrofit_strategy_id, input_cost_csv, output_cost_csv, output_cost_json, inflation_rate)
+    main(retrofit_strategy_id, input_cost_csv, output_cost_csv, output_cost_json, inflation_rate, client)
     print("Process completed successfully!")

@@ -25,23 +25,26 @@ def main(input_building_csv, retrofit_plan_csv, input_elevation_guide_csv, outpu
         bsmt_type = row['bsmt_type']
         sq_foot = row['sq_foot']
         if bsmt_type == 0:
-            bsmt_guide_column = "Type 0"
+            bsmt_guide_column = "Slab on Grade"
         elif bsmt_type == 1:
-            bsmt_guide_column = "Type 1"
+            bsmt_guide_column = "Slab on Grade"
         elif bsmt_type == 2:
-            bsmt_guide_column = "Type 2"
+            bsmt_guide_column = "Slab Separation"
         elif bsmt_type == 3:
-            bsmt_guide_column = "Type 3"
+            bsmt_guide_column = "Open Foundation"
         elevation_value = row['retrofit_value']
         bsmt_value = elevation_guide_df[elevation_guide_df[elevation_column]
                                         == elevation_value][bsmt_guide_column].values[0]
         merged_df.at[index, 'Retrofit_Cost'] = sq_foot * bsmt_value * inflation_rate
 
+    # drop the rows with null retrofit cost
+    merged_df = merged_df.dropna(subset=['Retrofit_Cost'])
+
     # calculate the total cost
     total_cost = merged_df['Retrofit_Cost'].sum()
 
     # check the unique basement type
-    unique_bsmt_type = building_df['bsmt_type'].unique()
+    unique_bsmt_type = merged_df['bsmt_type'].unique()
 
     # create the total cost for each basement type
     total_cost_by_bsmt = merged_df.groupby('bsmt_type')['Retrofit_Cost'].sum().reset_index()

@@ -30,8 +30,8 @@ def main(retrofit_strategy_id, input_cost_csv, output_cost_csv, output_cost_json
         print("Error: The input cost csv does not have the necessary columns.")
         return
 
-    # remove the rows with missing retrofit cost
-    cost_df = cost_df.dropna(subset=['Retrofit_Cost'])
+    # fill the balnk retrofit cost with NA
+    cost_df['Retrofit_Cost'] = cost_df['Retrofit_Cost'].fillna('NA')
 
     # convert retrofit cost to float
     cost_df['Retrofit_Cost'] = cost_df['Retrofit_Cost'].astype(float)

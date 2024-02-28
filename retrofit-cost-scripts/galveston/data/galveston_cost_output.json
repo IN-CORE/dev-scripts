@@ -1,1 +1,1 @@
-{'total_cost': 944677390.28, 'basement_type': [0, 1, 2], 'total_cost_for_each_basement_type': [{'bsmt_type': 0, 'Retrofit_Cost': 322412283.26}, {'bsmt_type': 1, 'Retrofit_Cost': 484585905.57}, {'bsmt_type': 2, 'Retrofit_Cost': 137679201.45}], 'total_buildings_for_each_basement_type': [{'bsmt_type': 0, 'Retrofit_Cost': 204}, {'bsmt_type': 1, 'Retrofit_Cost': 444}, {'bsmt_type': 2, 'Retrofit_Cost': 851}]}
+{'total_cost': 1780339267.97}

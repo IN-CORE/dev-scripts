@@ -1,4 +1,5 @@
 import pandas as pd
+from pyincore import IncoreClient
 
 
 def main(input_building_csv, retrofit_plan_csv, input_elevation_guide_csv, output_cost_csv,
@@ -78,14 +79,16 @@ def main(input_building_csv, retrofit_plan_csv, input_elevation_guide_csv, outpu
 
 
 if __name__ == '__main__':
-    # result file
-    input_building_csv = "data/galveston_bldg_island2.csv"
+    client = IncoreClient()
+
+    # input and output parameters
+    input_building_dataset_id = "63ff6b135c35c0353d5ed3ac"
     retrofit_plan_csv = "data/galveston_retrofit_plan.csv"
     input_elevation_guide_csv = "data/elevation_unit_cost_guide.csv"
     output_cost_csv = "data/galveston_cost_output.csv"
     output_cost_json = "data/galveston_cost_output.json"
     inflation_rate = 1.79
 
-    main(input_building_csv, retrofit_plan_csv, input_elevation_guide_csv, output_cost_csv,
-         output_cost_json, inflation_rate)
+    main(input_building_dataset_id, retrofit_plan_csv, input_elevation_guide_csv, output_cost_csv,
+         output_cost_json, inflation_rate, client)
     print("Process completed successfully!")

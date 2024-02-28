@@ -1,3 +1,5 @@
+import json
+
 import pandas as pd
 from pyincore import IncoreClient, Dataset, DataService
 
@@ -81,7 +83,7 @@ def main(input_building_dataset_id, input_retrofit_plan_dataset_id, input_elevat
 
     # save the result to json
     with open(output_cost_json, 'w') as json_file:
-        json_file.write(str(output_json))
+        json.dump(output_json, json_file)
 
     # only keep guid and cost columns
     merged_df = merged_df[['guid', 'Retrofit_Cost']]

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import argparse
 import json
 import pandas as pd
 
@@ -6,7 +7,26 @@ from pyincore import Dataset, AnalysisUtil
 from pyincore import IncoreClient
 from pyincore.dataservice import DataService
 
-def main(retrofit_strategy_id, input_cost_csv, output_cost_csv, output_cost_json, inflation_rate, client):
+
+def main():
+    # IN-CORE token (optional)
+    token = args.token
+
+    # IN-CORE Service URL
+    service_url = args.service_url
+
+    # Retrofit Strategy dataset ID
+    retrofit_strategy_id = args.retrofit_strategy_id
+
+    # Input cost CSV file
+    input_cost_csv = args.input_cost_csv
+
+    # Inflation rate
+    inflation_rate = float(args.inflation_rate)
+
+    # Create IN-CORE client
+    client = IncoreClient(service_url, token)
+
     # download the retrofit cost csv from the API
     retrofit_strategy_dataset = Dataset.from_data_service(retrofit_strategy_id, DataService(client))
 
@@ -77,24 +97,31 @@ def main(retrofit_strategy_id, input_cost_csv, output_cost_csv, output_cost_json
     }
 
     # save the output cost json
-    with open(output_cost_json, 'w') as f:
+    # the output json name is hardcoded as "retrofit_cost.json"
+    with open("retrofit_cost.json", 'w') as f:
         json.dump(output_json, f, indent=4)
 
     # keep only necessary columns
     cost_df = cost_df[['guid', 'Retrofit_Cost']]
 
     # save the output cost csv
-    cost_df.to_csv(output_cost_csv, index=False)
+    # the output csv name is hardcoded as "retrofit_cost.csv"
+    cost_df.to_csv("retrofit_cost", index=False)
 
 
 if __name__ == '__main__':
-    client = IncoreClient("https://incore-dev.ncsa.illinois.edu")
-    # input and output file paths
-    retrofit_strategy_id = "65d5206b8215870f805d6001"
-    input_cost_csv = "data/Salt_Lake_City_Build_W_Cost.csv"
-    output_cost_csv = "data/Salt_Lake_City_Build_W_Cost_output.csv"
-    output_cost_json = "data/Salt_Lake_City_Build_W_Cost_output.json"
-    inflation_rate = 1
+    parser = argparse.ArgumentParser(description='Calculate retrofit cost for SLC.')
+    parser.add_argument('--token', dest='token', help='Service token')
+    parser.add_argument('--service_url', dest='service_url', help='Service URL')
+    parser.add_argument('--retrofit_strategy_id', dest='retrofit_strategy_id', help='Retrofit Strategy dataset ID')
+    parser.add_argument('--input_cost_csv', dest='input_cost_csv', help='Input cost CSV file')
+    parser.add_argument('--inflation_rate', dest='inflation_rate', help='Inflation rate')
 
-    main(retrofit_strategy_id, input_cost_csv, output_cost_csv, output_cost_json, inflation_rate, client)
-    print("Process completed successfully!")
+    args = parser.parse_args()
+    main()
+
+    # to run the script, use the following command
+    # python slc_retrofit_cost.py --token <your_token> --service_url https://incore-dev.ncsa.illinois.edu --retrofit_strategy_id 65d5206b8215870f805d6001 --input_cost_csv data/Salt_Lake_City_Build_W_Cost.csv --inflation_rate 1
+
+
+

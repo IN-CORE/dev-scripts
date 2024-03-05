@@ -1,11 +1,31 @@
+import argparse
 import json
 
 import pandas as pd
 from pyincore import IncoreClient, Dataset, DataService
 
 
-def main(input_building_dataset_id, input_retrofit_plan_dataset_id, input_elevation_guide_csv, output_cost_csv,
-         output_cost_json, inflation_rate, client):
+def main():
+    # IN-CORE token (optional)
+    token = args.token
+
+    # IN-CORE Service URL
+    service_url = args.service_url
+
+    # Input building dataset ID
+    input_building_dataset_id = args.input_building_dataset_id
+
+    # Input retrofit plan dataset ID
+    input_retrofit_strategy_dataset_id = args.input_retrofit_strategy_dataset_id
+
+    # Input elevation guide CSV file
+    input_elevation_guide_csv = args.input_elevation_guide_csv
+
+    # Inflation rate
+    inflation_rate = float(args.inflation_rate)
+
+    # Create IN-CORE client
+    client = IncoreClient(service_url, token)
     # read building data
     building_dataset = Dataset.from_data_service(input_building_dataset_id, DataService(client))
     if building_dataset is not None:
@@ -15,7 +35,7 @@ def main(input_building_dataset_id, input_retrofit_plan_dataset_id, input_elevat
         return
 
     # read retrofit strategy data
-    retrofit_strategy_dataset = Dataset.from_data_service(input_retrofit_plan_dataset_id, DataService(client))
+    retrofit_strategy_dataset = Dataset.from_data_service(input_retrofit_strategy_dataset_id, DataService(client))
     if retrofit_strategy_dataset is not None:
         rf_df = retrofit_strategy_dataset.get_dataframe_from_csv()
     else:
@@ -82,7 +102,8 @@ def main(input_building_dataset_id, input_retrofit_plan_dataset_id, input_elevat
     }
 
     # save the result to json
-    with open(output_cost_json, 'w') as json_file:
+    # output json file name hardcoded as retrofit_cost.json
+    with open("retrofit_cost.json", 'w') as json_file:
         json.dump(output_json, json_file)
 
     # only keep guid and cost columns
@@ -92,20 +113,21 @@ def main(input_building_dataset_id, input_retrofit_plan_dataset_id, input_elevat
     merged_df['Retrofit_Cost'] = merged_df['Retrofit_Cost'].apply(lambda x: round(x, 2))
 
     # save the result to csv
-    merged_df.to_csv(output_cost_csv, index=False)
+    # output csv file name hardcoded as retrofit_cost.csv
+    merged_df.to_csv("retrofit_cost.csv", index=False)
 
 
 if __name__ == '__main__':
-    client = IncoreClient()
+    parser = argparse.ArgumentParser(description='Calculate retrofit cost for SLC.')
+    parser.add_argument('--token', dest='token', help='Service token')
+    parser.add_argument('--service_url', dest='service_url', help='Client URL')
+    parser.add_argument('--input_building_dataset_id', dest='input_building_dataset_id', help='Retrofit Strategy dataset ID')
+    parser.add_argument('--input_retrofit_strategy_dataset_id', dest='input_retrofit_strategy_dataset_id', help='Input cost CSV file')
+    parser.add_argument('--input_elevation_guide_csv', dest='input_elevation_guide_csv', help='Input elevation guide CSV file')
+    parser.add_argument('--inflation_rate', dest='inflation_rate', help='Inflation rate')
 
-    # input and output parameters
-    input_building_dataset_id = "63ff6b135c35c0353d5ed3ac"
-    input_retrofit_strategy_dataset_id = "65dcf904c013b927b93bf632"
-    input_elevation_guide_csv = "data/elevation_unit_cost_guide.csv"
-    output_cost_csv = "data/galveston_cost_output.csv"
-    output_cost_json = "data/galveston_cost_output.json"
-    inflation_rate = 1.79
+    args = parser.parse_args()
+    main()
 
-    main(input_building_dataset_id, input_retrofit_strategy_dataset_id, input_elevation_guide_csv, output_cost_csv,
-         output_cost_json, inflation_rate, client)
-    print("Process completed successfully!")
+    # to run the script, use the following command
+    # python galveston_retrofit_cost.py --token <your_token> --service_url https://incore.ncsa.illinois.edu --input_building_dataset_id 63ff6b135c35c0353d5ed3ac --input_retrofit_strategy_dataset_id 65dcf904c013b927b93bf632 --input_elevation_guide_csv data/elevation_unit_cost_guide.csv --inflation_rate 1.79

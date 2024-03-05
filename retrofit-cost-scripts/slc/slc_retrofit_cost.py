@@ -21,8 +21,8 @@ def main():
     # Retrofit Strategy dataset ID
     retrofit_strategy_id = args.retrofit_strategy_id
 
-    # Input cost CSV file
-    input_cost_csv = args.input_cost_csv
+    # Retrofit cost dataset ID
+    input_cost_dataset_id = args.input_cost_dataset_id
 
     # Inflation rate
     inflation_rate = float(args.inflation_rate)
@@ -46,7 +46,13 @@ def main():
         return
 
     # read input cost csv
-    cost_df = pd.read_csv(input_cost_csv)
+    cost_df = Dataset.from_data_service(input_cost_dataset_id, DataService(client))
+
+    if cost_df is not None:
+        cost_df = cost_df.get_dataframe_from_csv()
+    else:
+        print("Error: The input cost dataset is not found.")
+        return
 
     # merge rf_df and cost_df using guid column
     cost_df = cost_df.merge(rf_df, on='guid', how='right')
@@ -54,22 +60,22 @@ def main():
     # keep only necessary columns
     # if the column names are different, this will make an error
     try:
-        cost_df = cost_df[['guid', 'struct_typ', 'retrofit_key', 'Retrofit_Cost']]
+        cost_df = cost_df[['guid', 'struct_typ', 'retrofit_key', 'retrofit_cost']]
     except KeyError:
         print("Error: The input cost csv does not have the necessary columns.")
         return
 
     # fill the balnk retrofit cost with NA
-    cost_df['Retrofit_Cost'] = cost_df['Retrofit_Cost'].fillna('NA')
+    cost_df['retrofit_cost'] = cost_df['retrofit_cost'].fillna('NA')
 
     # convert retrofit cost to float
-    cost_df['Retrofit_Cost'] = cost_df['Retrofit_Cost'].astype(float)
+    cost_df['retrofit_cost'] = cost_df['retrofit_cost'].astype(float)
 
     # apply inflation by multiplying the retrofit cost by inflation rate
-    cost_df['Retrofit_Cost'] = cost_df['Retrofit_Cost'] * inflation_rate
+    cost_df['retrofit_cost'] = cost_df['retrofit_cost'] * inflation_rate
 
     # round the retrofit cost to 2 decimal places
-    cost_df['Retrofit_Cost'] = cost_df['Retrofit_Cost'].round(2)
+    cost_df['retrofit_cost'] = cost_df['retrofit_cost'].round(2)
 
     # check the unique structure types
     struct_types = cost_df['struct_typ'].unique()
@@ -78,19 +84,19 @@ def main():
     retrofit_keys = cost_df['retrofit_key'].unique()
 
     # create the total cost value
-    total_cost = cost_df['Retrofit_Cost'].sum()
+    total_cost = cost_df['retrofit_cost'].sum()
 
     # create total cost by structure type
-    struct_cost = cost_df.groupby('struct_typ')['Retrofit_Cost'].sum().reset_index()
+    struct_cost = cost_df.groupby('struct_typ')['retrofit_cost'].sum().reset_index()
 
     # create total cost by retrofit key
-    retrofit_cost = cost_df.groupby('retrofit_key')['Retrofit_Cost'].sum().reset_index()
+    retrofit_cost = cost_df.groupby('retrofit_key')['retrofit_cost'].sum().reset_index()
 
     # create total number of rows by structure type
-    struct_count = cost_df.groupby('struct_typ')['Retrofit_Cost'].count().reset_index()
+    struct_count = cost_df.groupby('struct_typ')['retrofit_cost'].count().reset_index()
 
     # create total number of rows by retrofit key
-    retrofit_count = cost_df.groupby('retrofit_key')['Retrofit_Cost'].count().reset_index()
+    retrofit_count = cost_df.groupby('retrofit_key')['retrofit_cost'].count().reset_index()
 
     # create json output
     output_json = {
@@ -111,7 +117,7 @@ def main():
         json.dump(output_json, f, indent=4)
 
     # keep only necessary columns
-    cost_df = cost_df[['guid', 'Retrofit_Cost']]
+    cost_df = cost_df[['guid', 'retrofit_cost']]
 
     # save the output cost csv
     # the output csv name is hardcoded as "retrofit_cost.csv"
@@ -124,14 +130,14 @@ if __name__ == '__main__':
     parser.add_argument('--result_name', dest='result_name', help='Result name')
     parser.add_argument('--service_url', dest='service_url', help='Service URL')
     parser.add_argument('--retrofit_strategy_id', dest='retrofit_strategy_id', help='Retrofit Strategy dataset ID')
-    parser.add_argument('--input_cost_csv', dest='input_cost_csv', help='Input cost CSV file')
+    parser.add_argument('--input_cost_dataset_id', dest='input_cost_dataset_id', help='Input cost dataset ID')
     parser.add_argument('--inflation_rate', dest='inflation_rate', help='Inflation rate')
 
     args = parser.parse_args()
     main()
 
     # to run the script, use the following command
-    # python slc_retrofit_cost.py --token <your_token> --result_name SLC --service_url https://incore-dev.ncsa.illinois.edu --retrofit_strategy_id 65d5206b8215870f805d6001 --input_cost_csv data/Salt_Lake_City_Build_W_Cost.csv --inflation_rate 1
+    # python slc_retrofit_cost.py --token <your_token> --result_name SLC --service_url https://incore-dev.ncsa.illinois.edu --retrofit_strategy_id 65d5206b8215870f805d6001 --input_cost_dataset_id 65e78c754331420c85cdbee5 --inflation_rate 1
 
 
 

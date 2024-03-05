@@ -15,6 +15,9 @@ def main():
     # IN-CORE Service URL
     service_url = args.service_url
 
+    # Result name (optional)
+    result_name = args.result_name
+
     # Retrofit Strategy dataset ID
     retrofit_strategy_id = args.retrofit_strategy_id
 
@@ -26,6 +29,12 @@ def main():
 
     # Create IN-CORE client
     client = IncoreClient(service_url, token)
+
+    # set output name
+    if result_name is not None:
+        output_name = result_name + "_retrofit_cost"
+    else:
+        output_name = "retrofit_cost"
 
     # download the retrofit cost csv from the API
     retrofit_strategy_dataset = Dataset.from_data_service(retrofit_strategy_id, DataService(client))
@@ -98,7 +107,7 @@ def main():
 
     # save the output cost json
     # the output json name is hardcoded as "retrofit_cost.json"
-    with open("retrofit_cost.json", 'w') as f:
+    with open(output_name + ".json", 'w') as f:
         json.dump(output_json, f, indent=4)
 
     # keep only necessary columns
@@ -106,12 +115,13 @@ def main():
 
     # save the output cost csv
     # the output csv name is hardcoded as "retrofit_cost.csv"
-    cost_df.to_csv("retrofit_cost", index=False)
+    cost_df.to_csv(output_name + ".csv", index=False)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Calculate retrofit cost for SLC.')
     parser.add_argument('--token', dest='token', help='Service token')
+    parser.add_argument('--result_name', dest='result_name', help='Result name')
     parser.add_argument('--service_url', dest='service_url', help='Service URL')
     parser.add_argument('--retrofit_strategy_id', dest='retrofit_strategy_id', help='Retrofit Strategy dataset ID')
     parser.add_argument('--input_cost_csv', dest='input_cost_csv', help='Input cost CSV file')
@@ -121,7 +131,7 @@ if __name__ == '__main__':
     main()
 
     # to run the script, use the following command
-    # python slc_retrofit_cost.py --token <your_token> --service_url https://incore-dev.ncsa.illinois.edu --retrofit_strategy_id 65d5206b8215870f805d6001 --input_cost_csv data/Salt_Lake_City_Build_W_Cost.csv --inflation_rate 1
+    # python slc_retrofit_cost.py --token <your_token> --result_name SLC --service_url https://incore-dev.ncsa.illinois.edu --retrofit_strategy_id 65d5206b8215870f805d6001 --input_cost_csv data/Salt_Lake_City_Build_W_Cost.csv --inflation_rate 1
 
 
 

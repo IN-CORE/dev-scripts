@@ -147,4 +147,4 @@ if __name__ == '__main__':
     main()
 
     # to run the script, use the following command
-    # python galveston_retrofit_cost.py --token <your_token> --result_name test --service_url https://incore.ncsa.illinois.edu --input_building_dataset_id 63ff6b135c35c0353d5ed3ac --input_retrofit_strategy_dataset_id 65dcf904c013b927b93bf632 --input_elevation_guide_dataset_id 65e76d15dc75ad0c36514e2d --inflation_rate 1.79
+    # python galveston_retrofit_cost.py --token <your_token> --result_name galveston --service_url https://incore.ncsa.illinois.edu --input_building_dataset_id 63ff6b135c35c0353d5ed3ac --input_retrofit_strategy_dataset_id 65dcf904c013b927b93bf632 --input_elevation_guide_dataset_id 65e76d15dc75ad0c36514e2d --inflation_rate 1.79

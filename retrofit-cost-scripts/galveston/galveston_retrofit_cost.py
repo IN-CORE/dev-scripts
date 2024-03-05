@@ -12,6 +12,9 @@ def main():
     # IN-CORE Service URL
     service_url = args.service_url
 
+    # Result name (optional)
+    result_name = args.result_name
+
     # Input building dataset ID
     input_building_dataset_id = args.input_building_dataset_id
 
@@ -33,6 +36,14 @@ def main():
     else:
         print("Error: The building dataset is not found.")
         return
+
+    # set output name
+    if result_name is not None:
+        output_name = result_name + "_retrofit_cost"
+    else:
+        output_name = "retrofit_cost"
+
+    print("Output name: " + output_name)
 
     # read retrofit strategy data
     retrofit_strategy_dataset = Dataset.from_data_service(input_retrofit_strategy_dataset_id, DataService(client))
@@ -108,7 +119,7 @@ def main():
 
     # save the result to json
     # output json file name hardcoded as retrofit_cost.json
-    with open("retrofit_cost.json", 'w') as json_file:
+    with open(output_name + ".json", 'w') as json_file:
         json.dump(output_json, json_file)
 
     # only keep guid and cost columns
@@ -119,13 +130,14 @@ def main():
 
     # save the result to csv
     # output csv file name hardcoded as retrofit_cost.csv
-    merged_df.to_csv("retrofit_cost.csv", index=False)
+    merged_df.to_csv(output_name + ".csv", index=False)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Calculate retrofit cost for SLC.')
     parser.add_argument('--token', dest='token', help='Service token')
     parser.add_argument('--service_url', dest='service_url', help='Client URL')
+    parser.add_argument('--result_name', dest='result_name', help='Result name')
     parser.add_argument('--input_building_dataset_id', dest='input_building_dataset_id', help='Retrofit Strategy dataset ID')
     parser.add_argument('--input_retrofit_strategy_dataset_id', dest='input_retrofit_strategy_dataset_id', help='Input cost CSV file')
     parser.add_argument('--input_elevation_guide_dataset_id', dest='input_elevation_guide_dataset_id', help='Input elevation guide CSV file')
@@ -135,4 +147,4 @@ if __name__ == '__main__':
     main()
 
     # to run the script, use the following command
-    # python galveston_retrofit_cost.py --token <your_token> --service_url https://incore.ncsa.illinois.edu --input_building_dataset_id 63ff6b135c35c0353d5ed3ac --input_retrofit_strategy_dataset_id 65dcf904c013b927b93bf632 --input_elevation_guide_dataset_id 65e76d15dc75ad0c36514e2d --inflation_rate 1.79
+    # python galveston_retrofit_cost.py --token <your_token> --result_name test --service_url https://incore.ncsa.illinois.edu --input_building_dataset_id 63ff6b135c35c0353d5ed3ac --input_retrofit_strategy_dataset_id 65dcf904c013b927b93bf632 --input_elevation_guide_dataset_id 65e76d15dc75ad0c36514e2d --inflation_rate 1.79

@@ -18,8 +18,8 @@ def main():
     # Input retrofit plan dataset ID
     input_retrofit_strategy_dataset_id = args.input_retrofit_strategy_dataset_id
 
-    # Input elevation guide CSV file
-    input_elevation_guide_csv = args.input_elevation_guide_csv
+    # Input elevation guide dataset ID
+    input_elevation_guide_dataset_id = args.input_elevation_guide_dataset_id
 
     # Inflation rate
     inflation_rate = float(args.inflation_rate)
@@ -43,7 +43,12 @@ def main():
         return
 
     # read elevation guide data
-    elevation_guide_df = pd.read_csv(input_elevation_guide_csv)
+    elevation_guide_dataset = Dataset.from_data_service(input_elevation_guide_dataset_id, DataService(client))
+    if elevation_guide_dataset is not None:
+        elevation_guide_df = elevation_guide_dataset.get_dataframe_from_csv()
+    else:
+        print("Error: The elevation guide dataset is not found.")
+        return
 
     # merge building and retrofit plan data using guid as key
     merged_df = pd.merge(building_df, rf_df, on='guid')
@@ -123,11 +128,11 @@ if __name__ == '__main__':
     parser.add_argument('--service_url', dest='service_url', help='Client URL')
     parser.add_argument('--input_building_dataset_id', dest='input_building_dataset_id', help='Retrofit Strategy dataset ID')
     parser.add_argument('--input_retrofit_strategy_dataset_id', dest='input_retrofit_strategy_dataset_id', help='Input cost CSV file')
-    parser.add_argument('--input_elevation_guide_csv', dest='input_elevation_guide_csv', help='Input elevation guide CSV file')
+    parser.add_argument('--input_elevation_guide_dataset_id', dest='input_elevation_guide_dataset_id', help='Input elevation guide CSV file')
     parser.add_argument('--inflation_rate', dest='inflation_rate', help='Inflation rate')
 
     args = parser.parse_args()
     main()
 
     # to run the script, use the following command
-    # python galveston_retrofit_cost.py --token <your_token> --service_url https://incore.ncsa.illinois.edu --input_building_dataset_id 63ff6b135c35c0353d5ed3ac --input_retrofit_strategy_dataset_id 65dcf904c013b927b93bf632 --input_elevation_guide_csv data/elevation_unit_cost_guide.csv --inflation_rate 1.79
+    # python galveston_retrofit_cost.py --token <your_token> --service_url https://incore.ncsa.illinois.edu --input_building_dataset_id 63ff6b135c35c0353d5ed3ac --input_retrofit_strategy_dataset_id 65dcf904c013b927b93bf632 --input_elevation_guide_dataset_id 65e76d15dc75ad0c36514e2d --inflation_rate 1.79

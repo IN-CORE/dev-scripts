@@ -95,22 +95,3 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df):
         json.dump(output_json, f, indent=4)
 
     return retrofit_strategy_df
-
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Calculate retrofit cost for SLC.')
-    parser.add_argument('--token', dest='token', help='Service token')
-    parser.add_argument('--result_name', dest='result_name', help='Result name')
-    parser.add_argument('--service_url', dest='service_url', help='Service URL')
-    parser.add_argument('--retrofit_strategy_id', dest='retrofit_strategy_id', help='Retrofit Strategy dataset ID')
-    parser.add_argument('--input_cost_dataset_id', dest='input_cost_dataset_id', help='Input cost dataset ID')
-    parser.add_argument('--inflation_rate', dest='inflation_rate', help='Inflation rate')
-
-    args = parser.parse_args()
-    compute_retrofit_cost()
-
-    # to run the script, use the following command
-    # python slc_retrofit_cost.py --token <your_token> --result_name SLC --service_url https://incore-dev.ncsa.illinois.edu --retrofit_strategy_id 65d5206b8215870f805d6001 --input_cost_dataset_id 65e78c754331420c85cdbee5 --inflation_rate 1
-
-
-

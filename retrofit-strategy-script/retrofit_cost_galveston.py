@@ -6,11 +6,12 @@ import pandas as pd
 # Global variables
 GALVESTON_BLDG_RET_COST_TABLE_NAME = "galveston_bldg_ret_cost"
 
+
 def get_retrofit_cost(con):
     return con.execute(f"SELECT * FROM {GALVESTON_BLDG_RET_COST_TABLE_NAME}").fetchdf()
 
-def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df, inflation_rate): 
 
+def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df, inflation_rate):
     # set output name
     if result_name is not None:
         output_name = result_name
@@ -22,7 +23,7 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df, infl
         bsmt_type = row['bsmt_type']
         sq_foot = row['sq_foot']
         rasied_elev = row['retrofit_value']
-        
+
         if bsmt_type == '0' or bsmt_type == '1':
             bsmt_type_column = "slab_on_grade"
         elif bsmt_type == '2':
@@ -42,7 +43,6 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df, infl
     total = {}
     by_rule = {}
 
-
     # fill na values with -1 for retrofit cost
     retrofit_strategy_df['retrofit_cost'] = retrofit_strategy_df['retrofit_cost'].fillna(-1)
     retrofit_strategy_df['retrofit_cost'] = retrofit_strategy_df['retrofit_cost'].round(2)
@@ -51,9 +51,9 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df, infl
     total['num_bldg'] = retrofit_strategy_df.shape[0]
 
     # number of buildings by rule
-    count_by_rule = retrofit_strategy_df[['guid','rule']].groupby('rule').count()
+    count_by_rule = retrofit_strategy_df[['guid', 'rule']].groupby('rule').count()
     count_by_rule_dict = count_by_rule.to_dict()
-    for k,v in count_by_rule_dict['guid'].items():
+    for k, v in count_by_rule_dict['guid'].items():
         by_rule[k] = {"num_bldg": v}
 
     # select rows with positive retrofit cost
@@ -63,7 +63,7 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df, infl
     total['num_bldg_no_cost'] = total['num_bldg'] - rs_postive_df.shape[0]
 
     # number of buildings (positive) by rule
-    count_postive_by_rule = rs_postive_df[['guid','rule']].groupby('rule').count()
+    count_postive_by_rule = rs_postive_df[['guid', 'rule']].groupby('rule').count()
     count_postive_by_rule_dict = count_postive_by_rule.to_dict()
     for k in by_rule.keys():
         n = 0
@@ -76,7 +76,7 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df, infl
     total['cost'] = total_ret_cost
 
     # compute total retrofit cost by rule
-    total_ret_cost_by_rule = rs_postive_df[['rule','retrofit_cost']].groupby('rule').sum()
+    total_ret_cost_by_rule = rs_postive_df[['rule', 'retrofit_cost']].groupby('rule').sum()
     total_ret_cost_by_rule_dict = total_ret_cost_by_rule.to_dict()
     for k in by_rule.keys():
         c = 0
@@ -115,4 +115,3 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df, infl
         json.dump(output_json, f, indent=4)
 
     return retrofit_strategy_df
-

@@ -3,18 +3,18 @@ import argparse
 import json
 import pandas as pd
 
-
 # Global variables
 SLC_BLDG_RET_COST_TABLE_NAME = "slc_bldg_ret_cost"
+
 
 def get_retrofit_cost(con):
     return con.execute(f"SELECT * FROM {SLC_BLDG_RET_COST_TABLE_NAME}").fetchdf()
 
-def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df):
 
+def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df):
     # set output name
     if result_name is not None:
-        output_name = result_name
+        output_name = result_name.replace(" ", "_")
     else:
         output_name = "retrofit_cost"
 
@@ -31,9 +31,9 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df):
     total['num_bldg'] = retrofit_strategy_df.shape[0]
 
     # number of buildings by rule
-    count_by_rule = retrofit_strategy_df[['guid','rule']].groupby('rule').count()
+    count_by_rule = retrofit_strategy_df[['guid', 'rule']].groupby('rule').count()
     count_by_rule_dict = count_by_rule.to_dict()
-    for k,v in count_by_rule_dict['guid'].items():
+    for k, v in count_by_rule_dict['guid'].items():
         by_rule[k] = {"num_bldg": v}
 
     # select rows with positive retrofit cost
@@ -43,7 +43,7 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df):
     total['num_bldg_no_cost'] = total['num_bldg'] - rs_postive_df.shape[0]
 
     # number of buildings (positive) by rule
-    count_postive_by_rule = rs_postive_df[['guid','rule']].groupby('rule').count()
+    count_postive_by_rule = rs_postive_df[['guid', 'rule']].groupby('rule').count()
     count_postive_by_rule_dict = count_postive_by_rule.to_dict()
     for k in by_rule.keys():
         n = 0
@@ -56,7 +56,7 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df):
     total['cost'] = total_ret_cost
 
     # compute total retrofit cost by rule
-    total_ret_cost_by_rule = rs_postive_df[['rule','retrofit_cost']].groupby('rule').sum()
+    total_ret_cost_by_rule = rs_postive_df[['rule', 'retrofit_cost']].groupby('rule').sum()
     total_ret_cost_by_rule_dict = total_ret_cost_by_rule.to_dict()
     for k in by_rule.keys():
         c = 0

@@ -100,18 +100,12 @@ def create_geo_retrofit_strategy(df, result_name):
 
 
 ### Parse the retrofit strategy rules
-def parse_rules(rules_str):
-    rules = json.loads(rules_str)
-    return rules
+def _parse_param_str(param_str):
+    param = json.loads(param_str)
+    return param
 
 
-### Parse the retrofits
-def parse_retrofits(retrofits_str):
-    retrofits = json.loads(retrofits_str)
-    return retrofits
-
-
-def handler(signum, frame):
+def _handler(signum, frame):
     print("Forever is over!")
     raise Exception("end of time")
 
@@ -121,7 +115,7 @@ def store_results(dataservice, spaceservice, source_id, title, local_file, data_
                          "sourceDataset": source_id}
 
     # register the handler
-    signal.signal(signal.SIGALRM, handler)
+    signal.signal(signal.SIGALRM, _handler)
 
     if output_format == "shapefile":
         files = []
@@ -183,7 +177,7 @@ def post_retrofit_summary(service_url, rs_dataset_id, rules_q, retrofits_q, rs_d
 
 def main():
     rules_str = args.rules
-    rules = parse_rules(rules_str)
+    rules = _parse_param_str(rules_str)
     if rules['testbed'] == "slc":
         config = SLC_CONFIG
     elif rules['testbed'] == "galveston":
@@ -195,7 +189,7 @@ def main():
         exit(1)
 
     retrofits_str = args.retrofits
-    retrofits = parse_rules(retrofits_str)
+    retrofits = _parse_param_str(retrofits_str)
 
     # if no name is provided by the user, construct a name
     strategy_result_name = args.result_name
@@ -254,8 +248,6 @@ def main():
     spaces = []
     if args.spaces is not None and len(args.spaces) > 0:
         spaces = args.spaces.strip().split(",")
-    source_id = args.source_id
-
 
     # Create IN-CORE client
     client = IncoreClient(service_url, token)
@@ -286,23 +278,16 @@ def main():
 
     # post retrofit strategy detail json to maestro
     status = post_retrofit_summary(service_url, rs_dataset_id, rules, retrofits, rs_details_dict, rs_detail_layer_id)
+    print(f"Retrofit strategy summary posted to the maestro service with status code: {status}")
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Cluster building functionality results.')
-    parser.add_argument('--result_name', dest='result_name', help='Result Name')
+    parser = argparse.ArgumentParser(description='Generating Retrofit Strategy Dataset and Computing Retrofit Cost')
+    parser.add_argument('--rules', dest='rules', type=json.loads, help='Retrofit strategy rules')
+    parser.add_argument('--retrofits', dest='retrofits', type=json.loads, help='Retrofit methods and values')
+    parser.add_argument('--result_name', dest='result_name', help='Strategy Related Results Name')
     parser.add_argument('--token', dest='token', help='Service token')
     parser.add_argument('--service_url', dest='service_url', help='Service endpoint')
-    parser.add_argument('--buildings', dest='buildings', help='Building Inventory')
-    parser.add_argument('--functionality_probability', dest='functionality_probability',
-                        help='Building Functionality Probability')
-    parser.add_argument('--archetype_mapping', dest='archetype_mapping', help='Archetype Mapping')
-    parser.add_argument('--arch_col', dest='arch_col', help='Column to match on')
-    # parser = argparse.ArgumentParser(description='Generating Retrofit Strategy Dataset and Computing Retrofit Cost')
-    # parser.add_argument('--strategy_result_name', dest='strategy_result_name', help='Strategy Result name')
-    # parser.add_argument('--cost_result_name', dest='cost_result_name', help='Cost result name')
-    # parser.add_argument('--rules', dest='rules', type=json.loads, help='Retrofit strategy rules')
-    # parser.add_argument('--retrofits', dest='retrofits', type=json.loads, help='Retrofits')
 
     args = parser.parse_args()
     main()

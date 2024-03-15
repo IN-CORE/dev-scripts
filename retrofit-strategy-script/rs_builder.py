@@ -175,9 +175,8 @@ def post_retrofit_summary(service_url, rs_dataset_id, rules_q, retrofits_q, rs_d
     return response.status_code
 
 
-def main():
-    rules_str = args.rules
-    rules = _parse_param_str(rules_str)
+def main(args):
+    rules = args.rules
     if rules['testbed'] == "slc":
         config = SLC_CONFIG
     elif rules['testbed'] == "galveston":
@@ -188,8 +187,7 @@ def main():
         print("Invalid testbed")
         exit(1)
 
-    retrofits_str = args.retrofits
-    retrofits = _parse_param_str(retrofits_str)
+    retrofits = args.retrofits
 
     # if no name is provided by the user, construct a name
     strategy_result_name = args.result_name
@@ -288,6 +286,7 @@ if __name__ == '__main__':
     parser.add_argument('--result_name', dest='result_name', help='Strategy Related Results Name')
     parser.add_argument('--token', dest='token', help='Service token')
     parser.add_argument('--service_url', dest='service_url', help='Service endpoint')
+    parser.add_argument('--spaces', dest='spaces', help='Spaces to write to (comma separated)')
 
     args = parser.parse_args()
-    main()
+    main(args)

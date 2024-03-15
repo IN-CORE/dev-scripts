@@ -14,7 +14,7 @@ def get_retrofit_cost(con):
 def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df, inflation_rate):
     # set output name
     if result_name is not None:
-        output_name = result_name
+        output_name = result_name.replace(" ", "_")
     else:
         output_name = "retrofit_cost"
 

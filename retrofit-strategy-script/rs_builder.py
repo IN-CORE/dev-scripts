@@ -142,7 +142,7 @@ def store_results(dataservice, spaceservice, source_id, title, local_file, data_
             spaceservice.add_to_space_by_name(space, dataset_id)
 
     print("saving output dataset id")
-    output_dataset_id = open(title + "-output_id.txt", "w")
+    output_dataset_id = open(title.replace(" ", "_") + "-output_id.txt", "w")
     output_dataset_id.write(dataset_id)
     output_dataset_id.close()
 

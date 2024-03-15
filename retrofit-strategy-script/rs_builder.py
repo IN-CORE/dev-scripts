@@ -48,7 +48,7 @@ def get_buildings(conn, config, struct_typ, bnd_name):
     sql_str = f"SELECT guid, ST_AsText(geom) as geom{add_col_str} FROM {config['bldg_table_name']} " + \
             f"WHERE {config['structure_type_col']}='{struct_typ.upper()}' " + \
             f"AND {config['zone_col']}='{bnd_name.upper()}';"
-    print(sql_str)
+    
     rel = conn.sql(sql_str)
     print("# of buildings selected:", rel.shape[0])
 

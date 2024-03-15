@@ -142,7 +142,7 @@ def store_results(dataservice, spaceservice, source_id, title, local_file, data_
             spaceservice.add_to_space_by_name(space, dataset_id)
 
     print("saving output dataset id")
-    output_dataset_id = open(title.replace(" ", "_") + "-output_id.txt", "w")
+    output_dataset_id = open(title + "-output_id.txt", "w")
     output_dataset_id.write(dataset_id)
     output_dataset_id.close()
 
@@ -191,7 +191,7 @@ def main(args):
 
     # if no name is provided by the user, construct a name
     strategy_result_name = args.result_name
-    if strategy_result_name is None:
+    if strategy_result_name is None or strategy_result_name == "":
         strategy_result_name = f"Retrofit Strategy {rules['testbed']}"
     cost_result_name = f"Retrofit Cost {rules['testbed']}"
 
@@ -258,7 +258,7 @@ def main(args):
     rs_dataset_id = store_results(dataservice,
                                   spaceservice,
                                   source_id=None,  # Don't join with parent dataset
-                                  title=strategy_result_name,
+                                  title=f"{strategy_result_name} Strategy",
                                   local_file=rs_fname,
                                   data_type="incore:retrofitStrategy",
                                   output_format="table",

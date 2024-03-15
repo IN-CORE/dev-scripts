@@ -55,7 +55,7 @@ utils/fragility_utils/data/
 
 # env files
 *.env
-f
+
 # build files
 *pycache*
 

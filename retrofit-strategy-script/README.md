@@ -27,6 +27,74 @@ run main script
 python rs_builder.py
 '''
 
+## Input
+1. strategy_result_name: name of the retrofit strategy 
+2. retrofit rules in json string
+
+**Example for Galveston**
+```json
+    rules = {
+        "testbed":"galveston",
+        "rules": 3,
+        "zones": ["1P", "1P", "0.2P"],
+        "strtypes": ["1", "2", "1"],
+        "pcts": [1,1,1]
+    }
+    retrofits = {
+        "ret_keys":["elevation","elevation","elevation"],
+        "ret_vals":[5, 10, 5]        
+    }
+```
+
+**Example for SLC**
+```json
+    rules = {
+        "testbed":"slc",
+        "rules": 3,
+        "zones": ["COUNCIL DISTRICT 1","COUNCIL DISTRICT 2","COUNCIL DISTRICT 3"],
+        "strtypes": ["URML","URMM","URML"],
+        "pcts": [10,20,20]
+    }
+    retrofits = {
+        "ret_keys":["Wood or Metal Deck Diaphragms Retrofitted","Wood or Metal Deck Diaphragms Retrofitted","Wood or Metal Deck Diaphragms Retrofitted"],
+        "ret_vals":["","",""]        
+    }
+```
+
+## Output
+### retrofit strategy file in CSV:
+- columns: guid, retrofit_key, retrofit_value
+### retrofit strategy file in Shapefile:
+- columns: (geometry), guid, retrofit_k, retorfit_v, retrofit_c
+### retrofit cost file in JSON
+```json
+    {
+        "total": {
+            "num_bldg": 3283,
+            "num_bldg_no_cost": 42,
+            "cost": 117260721.43
+        },
+        "by_rule": {
+            "0": {
+                "num_bldg": 3191,
+                "num_bldg_no_cost": 40,
+                "cost": 94393478.73
+            },
+            "1": {
+                "num_bldg": 90,
+                "num_bldg_no_cost": 0,
+                "cost": 22867242.7
+            },
+            "2": {
+                "num_bldg": 2,
+                "num_bldg_no_cost": 2,
+                "cost": 0
+            }
+        }
+    }
+```
+
+
 ## rs_data.db
 
 ### Preparing the shapefiles

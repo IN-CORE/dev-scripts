@@ -122,7 +122,7 @@ if __name__ == "__main__":
     #     "ret_vals":[5]        
     # }
 
-    ### testing with 1 rule for Galveston
+    ### testing with 3 rule for Galveston
     rules = {
         "testbed":"galveston",
         "rules": 3,
@@ -161,7 +161,9 @@ if __name__ == "__main__":
     #     "ret_vals":[""]        
     # }
 
-    result_name = "retrofit_strategy_galveston"
+
+    strategy_result_name = "retrofit_strategy_galveston"
+    cost_result_name = "rc_cost_slc"
 
     con = get_connection("rs_data.db")
 
@@ -191,15 +193,15 @@ if __name__ == "__main__":
         if df.shape[0] > 0:
             df_list.append(df)
 
-    merged_df = merge_create_retrofit_strategy(df_list, result_name)
+    merged_df = merge_create_retrofit_strategy(df_list, strategy_result_name)
 
     # # calculate retrofit cost
     if rules['testbed'] == "slc":
         ret_cost_df = rc_slc.get_retrofit_cost(con)
-        final_df = rc_slc.compute_retrofit_cost("rc_cost_slc", merged_df, ret_cost_df)    
+        final_df = rc_slc.compute_retrofit_cost(cost_result_name, merged_df, ret_cost_df)    
     elif rules['testbed'] == "galveston":
         ret_cost_df = rc_galveston.get_retrofit_cost(con)
-        final_df = rc_galveston.compute_retrofit_cost("rc_cost_galveston", merged_df, ret_cost_df, 1.79)  
+        final_df = rc_galveston.compute_retrofit_cost(cost_result_name, merged_df, ret_cost_df, 1.79)  
     elif rules['testbed'] == "joplin":
         pass
     else:
@@ -208,5 +210,5 @@ if __name__ == "__main__":
 
     print(final_df.columns)
     # create geospatial data of retrofit strategy (with cost)
-    create_geo_retrofit_strategy(final_df, result_name)
+    create_geo_retrofit_strategy(final_df, strategy_result_name)
     con.close()

@@ -51,10 +51,11 @@ utils/fragility_utils/data/
 
 # test files
 *test*
+!retrofit-strategy-script/unit_test.py
 
 # env files
 *.env
-
+f
 # build files
 *pycache*
 

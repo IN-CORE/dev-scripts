@@ -23,12 +23,13 @@ conda install python-duckdb -c conda-forge
 ```
 
 run main script
-'''console
+```console
 python rs_builder.py
-'''
+```
 
 ## Input
 1. strategy_result_name: name of the retrofit strategy 
+2. cost_result_name: name of the retrofit cost
 2. retrofit rules in json string
 
 **Example for Galveston**

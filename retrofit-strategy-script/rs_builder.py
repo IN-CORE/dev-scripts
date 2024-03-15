@@ -6,6 +6,8 @@ import json
 import retrofit_cost_slc as rc_slc
 import retrofit_cost_galveston as rc_galveston
 
+DATA_FILE = "rs_data.db"
+
 SLC_CONFIG = {
     "bldg_table_name": "slc",
     "structure_type_col": "struct_typ",
@@ -99,8 +101,9 @@ def parse_retrofits(retrofits_str):
 
 if __name__ == "__main__":
 
-    # parser = argparse.ArgumentParser(description='Generating Retrofit Strategy Dataset')
-    # parser.add_argument('--result_name', dest='result_name', help='Result name')
+    # parser = argparse.ArgumentParser(description='Generating Retrofit Strategy Dataset and Computing Retrofit Cost')
+    # parser.add_argument('--strategy_result_name', dest='strategy_result_name', help='Strategy Result name')
+    # parser.add_argument('--cost_result_name', dest='cost_result_name', help='Cost result name')
     # parser.add_argument('--rules', dest='rules', type=json.loads, help='Retrofit strategy rules')
     # parser.add_argument('--retrofits', dest='retrofits', type=json.loads, help='Retrofits')
 
@@ -165,7 +168,7 @@ if __name__ == "__main__":
     strategy_result_name = "retrofit_strategy_galveston"
     cost_result_name = "rc_cost_slc"
 
-    con = get_connection("rs_data.db")
+    con = get_connection(DATA_FILE)
 
     config = {}
     if rules['testbed'] == "slc":

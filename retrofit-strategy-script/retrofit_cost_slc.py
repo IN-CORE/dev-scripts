@@ -95,4 +95,4 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df):
     with open(output_name + ".json", 'w') as f:
         json.dump(output_json, f, indent=4)
 
-    return retrofit_strategy_df
+    return retrofit_strategy_df, output_json

@@ -51,6 +51,7 @@ utils/fragility_utils/data/
 
 # test files
 *test*
+!retrofit-strategy-script/test.sh
 
 # env files
 *.env

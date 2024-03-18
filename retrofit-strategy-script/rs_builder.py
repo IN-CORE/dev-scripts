@@ -32,7 +32,8 @@ GALVESTON_CONFIG = {
 JOPLIN_CONFIG = {
     "bldg_table_name": "joplin",
     "structure_type_col": "archetype",
-    "zone_col": "name"
+    "zone_col": "",
+    "additional_columns": ["archetype", "gsq_foot"]
 }
 
 
@@ -53,13 +54,21 @@ def get_connection(db_file):
 
 ### Get all the buildings in a specific boundary with a specific structure type
 def get_buildings(conn, config, struct_typ, bnd_name):
+
+    # adding additional columns to the query
     add_col_str = ""
     for col in config['additional_columns']:
         add_col_str += ", " + col
+    
+    # adding zone rule to the query. If zone_col is empty, no zone rule is added
+    zone_rule_str = f"AND {config['zone_col']}='{bnd_name.upper()}' "
+    if config['zone_col'] == "":
+        zone_rule_str = ""
 
+    # constructing the sql query
     sql_str = f"SELECT guid, ST_AsText(geom) as geom{add_col_str} FROM {config['bldg_table_name']} " + \
               f"WHERE {config['structure_type_col']}='{struct_typ.upper()}' " + \
-              f"AND {config['zone_col']}='{bnd_name.upper()}';"
+              zone_rule_str + ";"
 
     rel = conn.sql(sql_str)
     print("# of buildings selected:", rel.shape[0])

@@ -26,4 +26,4 @@ python rs_builder.py \
   --token ".incoretoken" \
   --service_url "https://incore-dev.ncsa.illinois.edu" \
   --space "commresiliencejoplin"
-  # --space "slc-app" on prod
+  # --space "joplin-app" on prod

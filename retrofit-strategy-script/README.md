@@ -10,6 +10,7 @@ A script to generate a retrofit strategy with given rules and to compute retrofi
 - **rs_builder.py**: main script to genearte a retrofit strategy with given rules and to compute retrofit cost
 - **retrofit_cost_galveston.py**: script to compute retrofit cost for Galveston
 - **retrofit_cost_slc.py**: script to compute retrofit cost for SLC
+- **retrofit_cost_joplin.py**: script to compute retrofit cost for Joplin
 - **rs_data.db**: a duckdb file contains data needed for the script (detail description below)
 
 - **rs_data_builder.py**: a script to create rs_data.db file
@@ -24,13 +25,28 @@ conda install python-duckdb -c conda-forge
 
 run main script
 ```console
-python rs_builder.py
+See test.sh 
 ```
 
 ## Input
-1. strategy_result_name: name of the retrofit strategy 
-2. cost_result_name: name of the retrofit cost
-2. retrofit rules in json string
+```console
+usage: rs_builder.py [-h] [--rules RULES] [--retrofits RETROFITS] [--result_name RESULT_NAME] [--token TOKEN]
+                     [--service_url SERVICE_URL] [--spaces SPACES]
+
+Generating Retrofit Strategy Dataset and Computing Retrofit Cost
+
+options:
+  -h, --help            show this help message and exit
+  --rules RULES         Retrofit strategy rules
+  --retrofits RETROFITS
+                        Retrofit methods and values
+  --result_name RESULT_NAME
+                        Strategy Related Results Name
+  --token TOKEN         Service token
+  --service_url SERVICE_URL
+                        Service endpoint
+  --spaces SPACES       Spaces to write to (comma separated)
+```
 
 **Example for Galveston**
 ```json
@@ -112,6 +128,8 @@ Instead of doing spatial operation on-the-fly (e.g. find buildings in a zone by 
 ### Tables in rs_data.db
 - **slc**: SLC building inventory with zone (boundary)
 - **galveston**: Galveston building inventory with zone (boundary)
+- **joplin**: Joplin building inventory
 - **slc_bldg_ret_cost**: SLC retrofit cost table (actual cost per building)
 - **galveston_bldg_ret_cost**: Galveston retrofit cost table (lookup table with unit cost)
+- **joplin_bldg_ret_cost**: Joplin retrofit unit cost table (lookup table with unit cost)
 

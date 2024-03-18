@@ -44,6 +44,7 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df, infl
     by_rule = {}
 
     # fill na values with -1 for retrofit cost
+    retrofit_strategy_df['retrofit_cost'] = retrofit_strategy_df['retrofit_cost'].astype(float)
     retrofit_strategy_df['retrofit_cost'] = retrofit_strategy_df['retrofit_cost'].fillna(-1)
     retrofit_strategy_df['retrofit_cost'] = retrofit_strategy_df['retrofit_cost'].round(2)
 
@@ -114,4 +115,4 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df, infl
     with open(output_name + ".json", 'w') as f:
         json.dump(output_json, f, indent=4)
 
-    return retrofit_strategy_df
+    return retrofit_strategy_df, output_json

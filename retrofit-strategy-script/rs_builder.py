@@ -1,4 +1,5 @@
 import os
+import urllib
 
 import duckdb
 import geopandas as gpd
@@ -6,8 +7,8 @@ import pandas as pd
 import argparse
 import json
 import requests
-from pyincore import IncoreClient, DataService, SpaceService
-from scipy import signal
+from pyincore import IncoreClient, DataService, SpaceService, globals as pyglobals
+import signal
 
 import retrofit_cost_slc as rc_slc
 import retrofit_cost_galveston as rc_galveston
@@ -110,6 +111,17 @@ def _handler(signum, frame):
     raise Exception("end of time")
 
 
+def _get_bearer_token(token_file, service_url):
+    with open(token_file, 'r') as f:
+        auth = f.read().splitlines()
+        # check if token is valid
+        userinfo_url = urllib.parse.urljoin(service_url, pyglobals.KEYCLOAK_USERINFO_PATH)
+        r = requests.get(userinfo_url, headers={'Authorization': auth[0]})
+        if r.status_code != 200:
+            return None
+    return auth[0]
+
+
 def store_results(dataservice, spaceservice, source_id, title, local_file, data_type, output_format, spaces):
     output_properties = {"dataType": data_type, "title": title + "- test", "format": output_format,
                          "sourceDataset": source_id}
@@ -136,7 +148,7 @@ def store_results(dataservice, spaceservice, source_id, title, local_file, data_
     if save_to_service:
         response = dataservice.create_dataset(output_properties)
         dataset_id = response['id']
-        print("created dataset" + dataset_id)
+        print("created dataset " + dataset_id)
         # Add file to spaces
         for space in spaces:
             spaceservice.add_to_space_by_name(space, dataset_id)
@@ -159,14 +171,19 @@ def store_results(dataservice, spaceservice, source_id, title, local_file, data_
     return dataset_id
 
 
-def post_retrofit_summary(service_url, rs_dataset_id, rules_q, retrofits_q, rs_details_dict, rs_details_layer_id):
+def post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rules_q, retrofits_q, rs_details_dict,
+                          rs_details_layer_id):
     rs_details_summary = {
         **rs_details_dict,
         "rules": rules_q,
         "retrofits": retrofits_q,
         "rsDetailsLayerId": rs_details_layer_id,
     }
-    response = requests.post(f"{service_url}/maestro/datasets/{rs_dataset_id}/rsdetails", json=rs_details_summary)
+
+    # e.g. https://incore-dev.ncsa.illinois.edu/maestro/slc/datasets/5f9e3e3e3e5f3e3e3e3e3e3e/rsdetails
+    response = requests.post(f"{service_url}/maestro/{testbed}/datasets/{rs_dataset_id}/rsdetails",
+                             headers={'Authorization': bearer_token},
+                             json=rs_details_summary)
     if response.status_code != 200:
         print("Failed to post retrofit strategy summary to the maestro service.")
         print(response.text)
@@ -177,11 +194,12 @@ def post_retrofit_summary(service_url, rs_dataset_id, rules_q, retrofits_q, rs_d
 
 def main(args):
     rules = args.rules
-    if rules['testbed'] == "slc":
+    testbed = rules['testbed']
+    if testbed == "slc":
         config = SLC_CONFIG
-    elif rules['testbed'] == "galveston":
+    elif testbed == "galveston":
         config = GALVESTON_CONFIG
-    elif rules['testbed'] == "joplin":
+    elif testbed == "joplin":
         config = JOPLIN_CONFIG
     else:
         print("Invalid testbed")
@@ -192,8 +210,8 @@ def main(args):
     # if no name is provided by the user, construct a name
     strategy_result_name = args.result_name
     if strategy_result_name is None or strategy_result_name == "":
-        strategy_result_name = f"Retrofit Strategy {rules['testbed']}"
-    cost_result_name = f"Retrofit Cost {rules['testbed']}"
+        strategy_result_name = f"Retrofit Strategy {testbed}"
+    cost_result_name = f"Retrofit Cost {testbed}"
 
     # get the buildings from the database
     con = get_connection(DATA_FILE)
@@ -219,20 +237,18 @@ def main(args):
     # calculate retrofit cost and other details
     # incore:retrofitStrategyDetail
     rs_detail_df = pd.DataFrame()
+    rs_details_dict = None
     if rules['testbed'] == "slc":
         ret_cost_df = rc_slc.get_retrofit_cost(con)
-        rs_detail_df = rc_slc.compute_retrofit_cost(cost_result_name, rs_df, ret_cost_df)
+        rs_detail_df, rs_details_dict = rc_slc.compute_retrofit_cost(cost_result_name, rs_df, ret_cost_df)
     elif rules['testbed'] == "galveston":
         ret_cost_df = rc_galveston.get_retrofit_cost(con)
-        rs_detail_df = rc_galveston.compute_retrofit_cost(cost_result_name, rs_df, ret_cost_df, 1.79)
+        rs_detail_df, rs_details_dict = rc_galveston.compute_retrofit_cost(cost_result_name, rs_df, ret_cost_df, 1.79)
     elif rules['testbed'] == "joplin":
         pass
     else:
         print("Invalid testbed")
         exit(1)
-
-    # return retrofit strategy details in dict format
-    rs_details_dict = rs_detail_df.to_dict('records')
 
     # create geospatial data of retrofit strategy (with cost)
     rs_details_geo_df, rs_details_geo_fname = create_geo_retrofit_strategy(rs_detail_df, strategy_result_name)
@@ -275,8 +291,12 @@ def main(args):
                                        spaces=spaces)
 
     # post retrofit strategy detail json to maestro
-    status = post_retrofit_summary(service_url, rs_dataset_id, rules, retrofits, rs_details_dict, rs_detail_layer_id)
-    print(f"Retrofit strategy summary posted to the maestro service with status code: {status}")
+    if rs_details_dict is not None:
+        bearer_token = _get_bearer_token(args.token, args.service_url)
+        status = post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rules, retrofits,
+                                       rs_details_dict,
+                                       rs_detail_layer_id)
+        print(f"Retrofit strategy summary posted to the maestro service with status code: {status}")
 
 
 if __name__ == '__main__':

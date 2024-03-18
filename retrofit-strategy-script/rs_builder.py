@@ -12,6 +12,7 @@ import signal
 
 import retrofit_cost_slc as rc_slc
 import retrofit_cost_galveston as rc_galveston
+import retrofit_cost_joplin as rc_joplin
 
 DATA_FILE = "rs_data.db"
 
@@ -254,7 +255,8 @@ def main(args):
         ret_cost_df = rc_galveston.get_retrofit_cost(con)
         rs_detail_df, rs_details_dict = rc_galveston.compute_retrofit_cost(cost_result_name, rs_df, ret_cost_df, 1.79)
     elif rules['testbed'] == "joplin":
-        pass
+        ret_cost_df = rc_joplin.get_retrofit_cost(con)
+        rs_detail_df, rs_details_dict = rc_joplin.compute_retrofit_cost(cost_result_name, rs_df, ret_cost_df)
     else:
         print("Invalid testbed")
         exit(1)

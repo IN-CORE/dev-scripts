@@ -24,21 +24,24 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df):
         gsq_foot = row['gsq_foot']
         retrofit_key = row['retrofit_key']
 
-
-        if retrofit_key == '1':
+        # matching retrofit key to retrofit column in the unit-cost table
+        if retrofit_key == 'retrofit_1':
             retrofit_column = "retrofit_1"
-        elif archetype == '2':
+        elif retrofit_key == 'retrofit_2':
             retrofit_column = "retrofit_2"
-        elif archetype == '3':
+        elif retrofit_key == 'retrofit_3':
             retrofit_column = "retrofit_3"
         else:
-            print("Invalid bsmt_type value and can't calculate retrofit cost")
+            print("Invalid retrofit key and can't calculate retrofit cost")
             retrofit_strategy_df.at[index, 'retrofit_cost'] = -1
             continue
 
         unit_cost = input_cost_df[input_cost_df['archetype'] == archetype][retrofit_column].values[0]
         retrofit_cost = gsq_foot * unit_cost
 
+        # retrofit cost == 0 doesn't make sense, so set it to -1
+        if retrofit_cost == 0: 
+            retrofit_cost = -1
         retrofit_strategy_df.at[index, 'retrofit_cost'] = retrofit_cost
 
     total = {}

@@ -123,8 +123,10 @@ def _get_bearer_token(token_file, service_url):
 
 
 def store_results(dataservice, spaceservice, source_id, title, local_file, data_type, output_format, spaces):
-    output_properties = {"dataType": data_type, "title": title + "- test", "format": output_format,
-                         "sourceDataset": source_id}
+    output_properties = {"dataType": data_type, "title": title, "description": title, "format": output_format}
+
+    if source_id is not None:
+        output_properties["sourceDataset"] = source_id
 
     # register the handler
     signal.signal(signal.SIGALRM, _handler)
@@ -286,7 +288,7 @@ def main(args):
                                        source_id=None,  # Don't join with parent dataset
                                        title=f"{strategy_result_name} Details",
                                        local_file=rs_details_geo_fname,
-                                       data_type="incore:retrofitStrategyDetail",
+                                       data_type="incore:rsDetail",
                                        output_format="shapefile",
                                        spaces=spaces)
 

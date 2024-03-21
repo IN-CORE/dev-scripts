@@ -14,7 +14,7 @@ def get_connection(db_file):
     return conn
 
 ### Create a database from a csv file
-def create_db_with_shp(conn, table_name, shapefile):
+def create_table_with_shp(conn, table_name, shapefile):
     con.execute(f"DROP TABLE IF EXISTS {table_name};")
     conn.execute(f"CREATE TABLE {table_name} AS SELECT * FROM ST_READ('{shapefile}');") 
 
@@ -27,12 +27,23 @@ def create_table_from_csv(conn, table_name, csv_file):
 
 if __name__ == "__main__":
     con = get_connection("rs_data.db")
-    #create_db_with_shp(con, "slc", "base-data/slc_bldg_council2.shp")
-    #create_db_with_shp(con, "galveston", "base-data/galveston_bldg_bnd.shp")
+    #create_table_with_shp(con, "slc", "base-data/slc_bldg_council2.shp")
+    #create_table_with_shp(con, "galveston", "base-data/galveston_bldg_bnd.shp")
     #create_table_from_csv(con, "galveston_bldg_ret_cost", "base-data/galveston_elev_unit_cost.csv")
-    create_table_from_csv(con, "slc_bldg_ret_cost", "base-data/slc_bldg_retrofit_cost2.csv")
-    print(con.execute("select * from slc_bldg_ret_cost limit 5;").fetchall())
-    print(con.execute("select COUNT(retrofit_cost) from slc_bldg_ret_cost;").fetchall())
+
+    #create_table_from_csv(con, "slc_bldg_ret_cost", "base-data/slc_bldg_retrofit_cost2.csv")
+
+    table_name = "joplin"
+
+    create_table_with_shp(con, "joplin", "base-data/joplin_bldg.shp")
+    print(con.execute(f"select * from {table_name} limit 5;").fetchall())
+    print(con.execute(f"select COUNT(guid) from {table_name};").fetchall())
+
+    table_name = "joplin_bldg_ret_cost"
+
+    create_table_from_csv(con, "joplin_bldg_ret_cost", "base-data/joplin_retrofit_unit_cost.csv")
+    print(con.execute(f"select * from {table_name} limit 5;").fetchall())
+
     print(con.execute("show tables;").fetchall())
 
     con.close()

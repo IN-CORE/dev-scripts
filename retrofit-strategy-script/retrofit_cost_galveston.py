@@ -46,7 +46,6 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df, infl
     # fill na values with -1 for retrofit cost
     retrofit_strategy_df['retrofit_cost'] = retrofit_strategy_df['retrofit_cost'].astype(float)
     retrofit_strategy_df['retrofit_cost'] = retrofit_strategy_df['retrofit_cost'].fillna(-1)
-    retrofit_strategy_df['retrofit_cost'] = retrofit_strategy_df['retrofit_cost'].round(2)
 
     # total number of building
     total['num_bldg'] = retrofit_strategy_df.shape[0]

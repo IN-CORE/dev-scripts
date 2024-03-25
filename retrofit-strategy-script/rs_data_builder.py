@@ -33,15 +33,16 @@ if __name__ == "__main__":
 
     #create_table_from_csv(con, "slc_bldg_ret_cost", "base-data/slc_bldg_retrofit_cost2.csv")
 
-    table_name = "joplin"
+    #table_name = "joplin"
 
-    create_table_with_shp(con, "joplin", "base-data/joplin_bldg.shp")
-    print(con.execute(f"select * from {table_name} limit 5;").fetchall())
-    print(con.execute(f"select COUNT(guid) from {table_name};").fetchall())
+    #create_table_with_shp(con, "joplin", "base-data/joplin_bldg.shp")
+    #print(con.execute(f"select * from {table_name} limit 5;").fetchall())
+    #print(con.execute(f"select COUNT(guid) from {table_name};").fetchall())
 
     table_name = "joplin_bldg_ret_cost"
 
-    create_table_from_csv(con, "joplin_bldg_ret_cost", "base-data/joplin_retrofit_unit_cost.csv")
+    #create_table_from_csv(con, "joplin_bldg_ret_cost", "base-data/joplin_retrofit_unit_cost.csv")
+    create_table_from_csv(con, "joplin_bldg_ret_cost", "base-data/joplin_retrofit_cost.csv")
     print(con.execute(f"select * from {table_name} limit 5;").fetchall())
 
     print(con.execute("show tables;").fetchall())

@@ -18,10 +18,35 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df):
     else:
         output_name = "retrofit_cost"
 
+    # updated the retrofit cost calculation
+    # Instead of "gsq_foot * unit_cost", we are using the mean cost per retrofit key
+    
+    # old implementation "gsq_foot * unit_cost"
+    # retrofit_column = ""
+    # for index, row in retrofit_strategy_df.iterrows():
+    #     archetype = row['archetype']
+    #     gsq_foot = row['gsq_foot']
+    #     retrofit_key = row['retrofit_key']
+
+    #     # matching retrofit key to retrofit column in the unit-cost table
+    #     if retrofit_key == 'retrofit_1':
+    #         retrofit_column = "retrofit_1"
+    #     elif retrofit_key == 'retrofit_2':
+    #         retrofit_column = "retrofit_2"
+    #     elif retrofit_key == 'retrofit_3':
+    #         retrofit_column = "retrofit_3"
+    #     else:
+    #         print("Invalid retrofit key and can't calculate retrofit cost")
+    #         retrofit_strategy_df.at[index, 'retrofit_cost'] = -1
+    #         continue
+
+    #     unit_cost = input_cost_df[input_cost_df['archetype'] == archetype][retrofit_column].values[0]
+    #     retrofit_cost = gsq_foot * unit_cost
+
+    # new implementation: using cost by archetype from the table 
     retrofit_column = ""
     for index, row in retrofit_strategy_df.iterrows():
         archetype = row['archetype']
-        gsq_foot = row['gsq_foot']
         retrofit_key = row['retrofit_key']
 
         # matching retrofit key to retrofit column in the unit-cost table
@@ -36,8 +61,7 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df):
             retrofit_strategy_df.at[index, 'retrofit_cost'] = -1
             continue
 
-        unit_cost = input_cost_df[input_cost_df['archetype'] == archetype][retrofit_column].values[0]
-        retrofit_cost = gsq_foot * unit_cost
+        retrofit_cost = input_cost_df[input_cost_df['archetype'] == archetype][retrofit_column].values[0]
 
         # retrofit cost == 0 doesn't make sense, so set it to -1
         if retrofit_cost == 0: 
@@ -50,7 +74,6 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df):
     # fill na values with -1 for retrofit cost
     retrofit_strategy_df['retrofit_cost'] = retrofit_strategy_df['retrofit_cost'].astype(float)
     retrofit_strategy_df['retrofit_cost'] = retrofit_strategy_df['retrofit_cost'].fillna(-1)
-    retrofit_strategy_df['retrofit_cost'] = retrofit_strategy_df['retrofit_cost'].round(2)
 
     # total number of building
     total['num_bldg'] = retrofit_strategy_df.shape[0]

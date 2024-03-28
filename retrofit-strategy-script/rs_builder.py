@@ -87,6 +87,7 @@ def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals
     :param percents: pecentages e.g. [10, 20, 30]
     :param retrofit_keys: e.g. ['elevation', 'elevation', 'elevation']
     :param retrofit_vals: e.g. [5, 10, 5]
+    :param rule_no: e.g. [0, 1, 2]
     :return:
     '''
     df = rel.to_df()
@@ -103,6 +104,15 @@ def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals
         bin_edges[-1] = total
 
     # Assign segment IDs based on bins
+    if 100 in percents:
+        # If one segment is 100%, directly assign values without binning
+        segment_index = percents.index(100)
+        df['retrofit_key'] = retrofit_keys[segment_index]
+        df['retrofit_value'] = retrofit_vals[segment_index]
+        df['rule'] = rule_no[segment_index]
+        print(f"# of buildings sampled: {df.shape[0]} / {df.shape[0]}")
+        return df
+
     df['segment_id'] = pd.cut(df.index,
                               bins=bin_edges,
                               labels=range(1, len(percents) + 1),
@@ -118,7 +128,7 @@ def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals
     df['rule'] = df['segment_id'].map(rule_no_map)
 
     # Count buildings by segment before dropping 'segment_id'
-    building_counts = df.groupby('segment_id').size()
+    building_counts = df.groupby('segment_id', observed=False).size()
     # Print number of buildings sampled by segment
     for count in building_counts.items():
         print(f"# of buildings sampled: {count[1]} / {df.shape[0]}")
@@ -319,7 +329,10 @@ def main(args):
     # check unique retrofit key
     # check pct sum < 100
     valid = _check_condition_validity(grouped_conditions)
-    if valid and grouped_conditions is not None and len(grouped_conditions) > 0:
+    if not valid or grouped_conditions is None or len(grouped_conditions) == 0:
+        print("Invalid retrofit strategy rules. Cannot calculate retrofit strategy.")
+        exit(1)
+    else:
         for condition in grouped_conditions:
             zone = condition.get('zone')
             strtype = condition.get('strtype')
@@ -334,73 +347,73 @@ def main(args):
             if df.shape[0] > 0:
                 df_list.append(df)
 
-    # incore:retrofitStrategy
-    rs_df, rs_fname = merge_create_retrofit_strategy(df_list, strategy_result_name)
+        # incore:retrofitStrategy
+        rs_df, rs_fname = merge_create_retrofit_strategy(df_list, strategy_result_name)
 
-    # calculate retrofit cost and other details
-    # incore:retrofitStrategyDetail
-    rs_detail_df = pd.DataFrame()
-    rs_details_dict = None
-    if rules['testbed'] == "slc":
-        ret_cost_df = rc_slc.get_retrofit_cost(con)
-        rs_detail_df, rs_details_dict = rc_slc.compute_retrofit_cost(cost_result_name, rs_df, ret_cost_df)
-    elif rules['testbed'] == "galveston":
-        ret_cost_df = rc_galveston.get_retrofit_cost(con)
-        rs_detail_df, rs_details_dict = rc_galveston.compute_retrofit_cost(cost_result_name, rs_df, ret_cost_df, 1.79)
-    elif rules['testbed'] == "joplin":
-        ret_cost_df = rc_joplin.get_retrofit_cost(con)
-        rs_detail_df, rs_details_dict = rc_joplin.compute_retrofit_cost(cost_result_name, rs_df, ret_cost_df)
-    else:
-        print("Invalid testbed")
-        exit(1)
+        # calculate retrofit cost and other details
+        # incore:retrofitStrategyDetail
+        rs_detail_df = pd.DataFrame()
+        rs_details_dict = None
+        if rules['testbed'] == "slc":
+            ret_cost_df = rc_slc.get_retrofit_cost(con)
+            rs_detail_df, rs_details_dict = rc_slc.compute_retrofit_cost(cost_result_name, rs_df, ret_cost_df)
+        elif rules['testbed'] == "galveston":
+            ret_cost_df = rc_galveston.get_retrofit_cost(con)
+            rs_detail_df, rs_details_dict = rc_galveston.compute_retrofit_cost(cost_result_name, rs_df, ret_cost_df, 1.79)
+        elif rules['testbed'] == "joplin":
+            ret_cost_df = rc_joplin.get_retrofit_cost(con)
+            rs_detail_df, rs_details_dict = rc_joplin.compute_retrofit_cost(cost_result_name, rs_df, ret_cost_df)
+        else:
+            print("Invalid testbed")
+            exit(1)
 
-    # create geospatial data of retrofit strategy (with cost)
-    rs_details_geo_df, rs_details_geo_fname = create_geo_retrofit_strategy(rs_detail_df, strategy_result_name)
+        # create geospatial data of retrofit strategy (with cost)
+        rs_details_geo_df, rs_details_geo_fname = create_geo_retrofit_strategy(rs_detail_df, strategy_result_name)
 
-    # close the db connection
-    con.close()
+        # close the db connection
+        con.close()
 
-    # ----------------- Post retrofit strategy to the service -----------------
-    token = args.token
-    service_url = args.service_url
-    spaces = []
-    if args.spaces is not None and len(args.spaces) > 0:
-        spaces = args.spaces.strip().split(",")
+        # ----------------- Post retrofit strategy to the service -----------------
+        token = args.token
+        service_url = args.service_url
+        spaces = []
+        if args.spaces is not None and len(args.spaces) > 0:
+            spaces = args.spaces.strip().split(",")
 
-    # Create IN-CORE client
-    client = IncoreClient(service_url, token)
+        # Create IN-CORE client
+        client = IncoreClient(service_url, token)
 
-    # Data Service
-    dataservice = DataService(client)
-    spaceservice = SpaceService(client)
+        # Data Service
+        dataservice = DataService(client)
+        spaceservice = SpaceService(client)
 
-    # post retrofit strategy csv to the service
-    rs_dataset_id = store_results(dataservice,
-                                  spaceservice,
-                                  source_id=None,  # Don't join with parent dataset
-                                  title=f"{strategy_result_name} Strategy",
-                                  local_file=rs_fname,
-                                  data_type="incore:retrofitStrategy",
-                                  output_format="table",
-                                  spaces=spaces)
+        # post retrofit strategy csv to the service
+        rs_dataset_id = store_results(dataservice,
+                                      spaceservice,
+                                      source_id=None,  # Don't join with parent dataset
+                                      title=f"{strategy_result_name} Strategy",
+                                      local_file=rs_fname,
+                                      data_type="incore:retrofitStrategy",
+                                      output_format="table",
+                                      spaces=spaces)
 
-    # post retrofit strategy detail shapefile to service
-    rs_detail_layer_id = store_results(dataservice,
-                                       spaceservice,
-                                       source_id=None,  # Don't join with parent dataset
-                                       title=f"{strategy_result_name} Details",
-                                       local_file=rs_details_geo_fname,
-                                       data_type="incore:rsDetail",
-                                       output_format="shapefile",
-                                       spaces=spaces)
+        # post retrofit strategy detail shapefile to service
+        rs_detail_layer_id = store_results(dataservice,
+                                           spaceservice,
+                                           source_id=None,  # Don't join with parent dataset
+                                           title=f"{strategy_result_name} Details",
+                                           local_file=rs_details_geo_fname,
+                                           data_type="incore:rsDetail",
+                                           output_format="shapefile",
+                                           spaces=spaces)
 
-    # post retrofit strategy detail json to maestro
-    if rs_details_dict is not None:
-        bearer_token = _get_bearer_token(args.token, args.service_url)
-        status = post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rules, retrofits,
-                                       rs_details_dict,
-                                       rs_detail_layer_id)
-        print(f"Retrofit strategy summary posted to the maestro service with status code: {status}")
+        # post retrofit strategy detail json to maestro
+        if rs_details_dict is not None:
+            bearer_token = _get_bearer_token(args.token, args.service_url)
+            status = post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rules, retrofits,
+                                           rs_details_dict,
+                                           rs_detail_layer_id)
+            print(f"Retrofit strategy summary posted to the maestro service with status code: {status}")
 
 
 if __name__ == '__main__':

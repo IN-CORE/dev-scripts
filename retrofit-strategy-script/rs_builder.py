@@ -103,15 +103,18 @@ def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals
     if bin_edges[-1] > total:
         bin_edges[-1] = total
 
-
+    # If one segment is 100%, directly assign values without binning
     if 100 in percents:
-        # If one segment is 100%, directly assign values without binning
         segment_index = percents.index(100)
         df['retrofit_key'] = retrofit_keys[segment_index]
         df['retrofit_value'] = retrofit_vals[segment_index]
         df['rule'] = rule_no[segment_index]
         print(f"# of buildings sampled: {df.shape[0]} / {df.shape[0]}")
         return df
+    # if all percents are 0, return an empty DataFrame
+    elif all(p == 0 for p in percents):
+        print(f"# of buildings sampled: {0} / {df.shape[0]}")
+        return pd.DataFrame()
 
     # Assign segment IDs based on bins
     df['segment_id'] = pd.cut(df.index,
@@ -140,15 +143,20 @@ def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals
     # Filter to keep only rows with assigned retrofit keys and values
     sampled_df = df.dropna(subset=['retrofit_key', 'retrofit_value', 'rule'])
 
-    # set categorical type to be string
-    df['retrofit_key'] = df['retrofit_key'].astype(str)
-
     return sampled_df
 
 
 def merge_create_retrofit_strategy(df_list, result_name):
     df = pd.concat(df_list)
-    df["retrofit_key"] = df["retrofit_key"].astype(str)
+
+    # set categorical type
+    df['retrofit_key'] = df['retrofit_key'].astype(str)
+    try:
+        df['retrofit_value'] = df['retrofit_value'].astype(float)
+    except ValueError:
+        df['retrofit_value'] = df['retrofit_value'].astype(str)
+    df['rule'] = df['rule'].astype(str)
+
     rs_csv_name = result_name.replace(" ", "_") + ".csv"
     df[['guid', 'retrofit_key', 'retrofit_value']].to_csv(rs_csv_name, index=False)
     return df, rs_csv_name

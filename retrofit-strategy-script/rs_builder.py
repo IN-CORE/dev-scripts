@@ -404,16 +404,16 @@ def main(args):
 
 
 if __name__ == '__main__':
-    fake_args = ["rs_builder.py",
-                 "--rules",
-                 '{"testbed": "galveston", "rules": 3, "zones": ["1P", "0.2P", "1P"], "strtypes": ["1", "2", "1"], '
-                 '"pcts": [1, 1, 1]}',
-                 "--retrofits", '{"ret_keys": ["elevation", "elevation", "elevation"], "ret_vals": [5, 10, 10]}',
-                 "--result_name", "Galveston 3 rules",
-                 "--token", ".incoretoken",
-                 "--service_url", "https://incore-dev.ncsa.illinois.edu",
-                 "--space", "commresiliencegal"]
-    sys.argv = fake_args
+    # fake_args = ["rs_builder.py",
+    #              "--rules",
+    #              '{"testbed": "galveston", "rules": 3, "zones": ["1P", "0.2P", "1P"], "strtypes": ["1", "2", "1"], '
+    #              '"pcts": [1, 1, 1]}',
+    #              "--retrofits", '{"ret_keys": ["elevation", "elevation", "elevation"], "ret_vals": [5, 10, 10]}',
+    #              "--result_name", "Galveston 3 rules",
+    #              "--token", ".incoretoken",
+    #              "--service_url", "https://incore-dev.ncsa.illinois.edu",
+    #              "--space", "commresiliencegal"]
+    # sys.argv = fake_args
 
     parser = argparse.ArgumentParser(description='Generating Retrofit Strategy Dataset and Computing Retrofit Cost')
     parser.add_argument('--rules', dest='rules', type=json.loads, help='Retrofit strategy rules')

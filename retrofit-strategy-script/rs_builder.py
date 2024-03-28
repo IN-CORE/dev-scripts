@@ -13,6 +13,8 @@ import signal
 import retrofit_cost_slc as rc_slc
 import retrofit_cost_galveston as rc_galveston
 import retrofit_cost_joplin as rc_joplin
+import numpy as np
+import sys
 
 DATA_FILE = "rs_data.db"
 
@@ -55,12 +57,11 @@ def get_connection(db_file):
 
 ### Get all the buildings in a specific boundary with a specific structure type
 def get_buildings(conn, config, struct_typ, bnd_name):
-
     # adding additional columns to the query
     add_col_str = ""
     for col in config['additional_columns']:
         add_col_str += ", " + col
-    
+
     # adding zone rule to the query. If zone_col is empty, no zone rule is added
     zone_rule_str = f"AND {config['zone_col']}='{bnd_name.upper()}' "
     if config['zone_col'] == "":
@@ -78,21 +79,42 @@ def get_buildings(conn, config, struct_typ, bnd_name):
 
 
 ### create a retrofit strategy file from a list of buildings and retrofit strategies
-def create_retrofit_strategy_by_rule(idx, rel, percent, retrofit_key, retrofit_val):
+def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals):
+    '''
+
+    :param idx:
+    :param rel: buildings
+    :param percents: pecentages e.g. [10, 20, 30]
+    :param retrofit_keys: e.g. ['elevation', 'elevation', 'elevation']
+    :param retrofit_vals: e.g. [5, 10, 5]
+    :return:
+    '''
     df = rel.to_df()
-    # selecting randm buildings with percent
-    df_sample = df.sample(frac=percent / 100.0)
 
-    # add retrofit key and value to the dataframe
-    idx_list = [idx] * df_sample.shape[0]
-    key_list = [retrofit_key] * df_sample.shape[0]
-    val_list = [retrofit_val] * df_sample.shape[0]
-    df_sample['retrofit_key'] = key_list
-    df_sample['retrofit_value'] = val_list
-    df_sample['rule'] = idx_list
+    # Shuffle DataFrame to ensure randomness
+    df = df.sample(frac=1).reset_index(drop=True)
 
-    print("# of buildings sampled:", df_sample.shape[0], "/", df.shape[0])
-    return df_sample
+    # Calculate the cumulative sum of percentages to define segment boundaries
+    segment_limits = np.cumsum([0] + percents)
+    df['segment_id'] = pd.cut(df.index + 1,
+                              bins=np.linspace(0, 100, sum(percents) // 10 + 1),
+                              labels=range(1, len(percents) + 1))
+
+    # Map segment IDs to retrofit keys and values
+    retrofit_key_map = dict(zip(range(1, len(percents) + 1), retrofit_keys))
+    retrofit_value_map = dict(zip(range(1, len(percents) + 1), retrofit_vals))
+
+    df['retrofit_key'] = df['segment_id'].map(retrofit_key_map)
+    df['retrofit_value'] = df['segment_id'].map(retrofit_value_map)
+
+    # Remove the segment_id column if it's no longer needed
+    df.drop('segment_id', axis=1, inplace=True)
+
+    # Filter to keep only rows with assigned retrofit keys and values
+    df = df.dropna(subset=['retrofit_key', 'retrofit_value'])
+
+    print("# of buildings sampled:", df.shape[0], "/", df.shape[0])
+    return df
 
 
 def merge_create_retrofit_strategy(df_list, result_name):
@@ -203,6 +225,22 @@ def post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rul
 
     return response.status_code
 
+def _check_condition_validity(grouped_conditions):
+    valid = True
+    for item in grouped_conditions:
+        ret = [(key, val) for key, val in zip(item['ret_keys'], item['ret_vals'])]
+        unique_ret_vals = len(set(ret)) == len(ret)
+        if not unique_ret_vals:
+            print(f"Retrofits for zone {item['zone']} and strtype {item['strtype']} are duplicated.")
+            valid = False
+
+        # Check if the sum of pcts is less than 100
+        sum_pct_less_than_100 = sum(item['pcts']) < 100
+        if not sum_pct_less_than_100:
+            print(f"Sum of percentages for zone {item['zone']} and strtype {item['strtype']} is greater than 100%.")
+            valid = False
+
+    return valid
 
 def main(args):
     rules = args.rules
@@ -229,19 +267,54 @@ def main(args):
     con = get_connection(DATA_FILE)
 
     df_list = []
-    for idx in range(rules['rules']):
-        zone = rules['zones'][idx]
-        strtype = rules['strtypes'][idx]
 
-        pct = rules['pcts'][idx]
-        ret_key = retrofits['ret_keys'][idx]
-        ret_val = retrofits['ret_vals'][idx]
+    # Grouping strategy
+    grouped = {}
+    # Given the new requirement, we need to incorporate the retrofit values into the grouping
 
-        rel = get_buildings(con, config, strtype, zone)
+    # Extending the previous solution to include retrofits
+    grouped = {}
+    for i, (zone, strtype, pct) in enumerate(zip(rules["zones"], rules["strtypes"], rules["pcts"])):
+        key = (zone, strtype)  # Tuple of zone and strtype as the unique identifier
+        ret_key = retrofits["ret_keys"][i]
+        ret_val = retrofits["ret_vals"][i]
+        if key not in grouped:
+            grouped[key] = {"pcts": [], "ret_keys": [], "ret_vals": []}
+        grouped[key]["pcts"].append(pct)
+        grouped[key]["ret_keys"].append(ret_key)
+        grouped[key]["ret_vals"].append(ret_val)
 
-        df = create_retrofit_strategy_by_rule(idx, rel, pct, ret_key, ret_val)
-        if df.shape[0] > 0:
-            df_list.append(df)
+    grouped_conditions = [
+        {
+            "zone": key[0],
+            "strtype": key[1],
+            "pcts": value["pcts"],
+            "ret_keys": value["ret_keys"],
+            "ret_vals":value["ret_vals"]
+        } for key, value in grouped.items()
+    ]
+    # e.g.
+    # grouped_conditions = [
+    # {'pcts': [1, 1], 'ret_keys': ['elevation', 'elevation'], 'ret_vals': [5, 10], 'strtype': '1', 'zone': '1P'},
+    # {'pcts': [1], 'ret_keys': ['elevation'], 'ret_vals': [5], 'strtype': '2', 'zone': '0.2P'}
+    # ]
+
+    # check unique retrofit key
+    # check pct sum < 100
+    valid = _check_condition_validity(grouped_conditions)
+    if valid and grouped_conditions is not None and len(grouped_conditions) > 0:
+        for condition in grouped_conditions:
+            zone = condition.get('zone')
+            strtype = condition.get('strtype')
+            pcts = condition.get('pcts')
+            ret_keys = condition.get('ret_keys')
+            ret_vals = condition.get('ret_vals')
+
+            rel = get_buildings(con, config, strtype, zone)
+
+            df = create_retrofit_strategy_by_rule(rel, pcts, ret_keys, ret_vals)
+            if df.shape[0] > 0:
+                df_list.append(df)
 
     # incore:retrofitStrategy
     rs_df, rs_fname = merge_create_retrofit_strategy(df_list, strategy_result_name)
@@ -269,50 +342,60 @@ def main(args):
     # close the db connection
     con.close()
 
-    # ----------------- Post retrofit strategy to the service -----------------
-    token = args.token
-    service_url = args.service_url
-    spaces = []
-    if args.spaces is not None and len(args.spaces) > 0:
-        spaces = args.spaces.strip().split(",")
-
-    # Create IN-CORE client
-    client = IncoreClient(service_url, token)
-
-    # Data Service
-    dataservice = DataService(client)
-    spaceservice = SpaceService(client)
-
-    # post retrofit strategy csv to the service
-    rs_dataset_id = store_results(dataservice,
-                                  spaceservice,
-                                  source_id=None,  # Don't join with parent dataset
-                                  title=f"{strategy_result_name} Strategy",
-                                  local_file=rs_fname,
-                                  data_type="incore:retrofitStrategy",
-                                  output_format="table",
-                                  spaces=spaces)
-
-    # post retrofit strategy detail shapefile to service
-    rs_detail_layer_id = store_results(dataservice,
-                                       spaceservice,
-                                       source_id=None,  # Don't join with parent dataset
-                                       title=f"{strategy_result_name} Details",
-                                       local_file=rs_details_geo_fname,
-                                       data_type="incore:rsDetail",
-                                       output_format="shapefile",
-                                       spaces=spaces)
-
-    # post retrofit strategy detail json to maestro
-    if rs_details_dict is not None:
-        bearer_token = _get_bearer_token(args.token, args.service_url)
-        status = post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rules, retrofits,
-                                       rs_details_dict,
-                                       rs_detail_layer_id)
-        print(f"Retrofit strategy summary posted to the maestro service with status code: {status}")
+    # # ----------------- Post retrofit strategy to the service -----------------
+    # token = args.token
+    # service_url = args.service_url
+    # spaces = []
+    # if args.spaces is not None and len(args.spaces) > 0:
+    #     spaces = args.spaces.strip().split(",")
+    #
+    # # Create IN-CORE client
+    # client = IncoreClient(service_url, token)
+    #
+    # # Data Service
+    # dataservice = DataService(client)
+    # spaceservice = SpaceService(client)
+    #
+    # # post retrofit strategy csv to the service
+    # rs_dataset_id = store_results(dataservice,
+    #                               spaceservice,
+    #                               source_id=None,  # Don't join with parent dataset
+    #                               title=f"{strategy_result_name} Strategy",
+    #                               local_file=rs_fname,
+    #                               data_type="incore:retrofitStrategy",
+    #                               output_format="table",
+    #                               spaces=spaces)
+    #
+    # # post retrofit strategy detail shapefile to service
+    # rs_detail_layer_id = store_results(dataservice,
+    #                                    spaceservice,
+    #                                    source_id=None,  # Don't join with parent dataset
+    #                                    title=f"{strategy_result_name} Details",
+    #                                    local_file=rs_details_geo_fname,
+    #                                    data_type="incore:rsDetail",
+    #                                    output_format="shapefile",
+    #                                    spaces=spaces)
+    #
+    # # post retrofit strategy detail json to maestro
+    # if rs_details_dict is not None:
+    #     bearer_token = _get_bearer_token(args.token, args.service_url)
+    #     status = post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rules, retrofits,
+    #                                    rs_details_dict,
+    #                                    rs_detail_layer_id)
+    #     print(f"Retrofit strategy summary posted to the maestro service with status code: {status}")
 
 
 if __name__ == '__main__':
+    fake_args = ["rs_builder.py",
+                 "--rules",
+                 '{"testbed": "galveston", "rules": 3, "zones": ["1P", "1P", "0.2P"], "strtypes": ["1", "1", "2"], "pcts": [1, 1, 1]}',
+                 "--retrofits", '{"ret_keys": ["elevation", "elevation", "elevation"], "ret_vals": [5, 10, 5]}',
+                 "--result_name", "Galveston 3 rules",
+                 "--token", ".incoretoken",
+                 "--service_url", "https://incore-dev.ncsa.illinois.edu",
+                 "--space", "commresiliencegal"]
+    sys.argv = fake_args
+
     parser = argparse.ArgumentParser(description='Generating Retrofit Strategy Dataset and Computing Retrofit Cost')
     parser.add_argument('--rules', dest='rules', type=json.loads, help='Retrofit strategy rules')
     parser.add_argument('--retrofits', dest='retrofits', type=json.loads, help='Retrofit methods and values')

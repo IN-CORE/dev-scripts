@@ -96,7 +96,7 @@ def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals
 
     total = len(df)
     cumulative_percents = np.cumsum([0] + percents)
-    bin_edges = (cumulative_percents * total / 100.0).round().astype(int)
+    bin_edges = [round(pct / 100 * total) for pct in cumulative_percents]
 
     # preventive bin edges can't be larger than the total number of buildings
     if bin_edges[-1] > total:
@@ -106,7 +106,7 @@ def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals
     df['segment_id'] = pd.cut(df.index,
                               bins=bin_edges,
                               labels=range(1, len(percents) + 1),
-                              include_lowest=True)
+                              include_lowest=True, right=False)
 
     # Map segment IDs to retrofit keys and values
     retrofit_key_map = dict(zip(range(1, len(percents) + 1), retrofit_keys))

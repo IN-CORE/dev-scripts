@@ -14,7 +14,6 @@ import retrofit_cost_slc as rc_slc
 import retrofit_cost_galveston as rc_galveston
 import retrofit_cost_joplin as rc_joplin
 import numpy as np
-import sys
 
 DATA_FILE = "rs_data.db"
 

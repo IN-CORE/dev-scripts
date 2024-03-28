@@ -250,7 +250,7 @@ def _check_condition_validity(grouped_conditions):
             valid = False
 
         # Check if the sum of pcts is less than 100
-        sum_pct_less_than_100 = sum(item['pcts']) < 100
+        sum_pct_less_than_100 = sum(item['pcts']) <= 100
         if not sum_pct_less_than_100:
             print(f"Sum of percentages for zone {item['zone']} and strtype {item['strtype']} is greater than 100%.")
             valid = False
@@ -360,61 +360,50 @@ def main(args):
     # close the db connection
     con.close()
 
-    # # ----------------- Post retrofit strategy to the service -----------------
-    # token = args.token
-    # service_url = args.service_url
-    # spaces = []
-    # if args.spaces is not None and len(args.spaces) > 0:
-    #     spaces = args.spaces.strip().split(",")
-    #
-    # # Create IN-CORE client
-    # client = IncoreClient(service_url, token)
-    #
-    # # Data Service
-    # dataservice = DataService(client)
-    # spaceservice = SpaceService(client)
-    #
-    # # post retrofit strategy csv to the service
-    # rs_dataset_id = store_results(dataservice,
-    #                               spaceservice,
-    #                               source_id=None,  # Don't join with parent dataset
-    #                               title=f"{strategy_result_name} Strategy",
-    #                               local_file=rs_fname,
-    #                               data_type="incore:retrofitStrategy",
-    #                               output_format="table",
-    #                               spaces=spaces)
-    #
-    # # post retrofit strategy detail shapefile to service
-    # rs_detail_layer_id = store_results(dataservice,
-    #                                    spaceservice,
-    #                                    source_id=None,  # Don't join with parent dataset
-    #                                    title=f"{strategy_result_name} Details",
-    #                                    local_file=rs_details_geo_fname,
-    #                                    data_type="incore:rsDetail",
-    #                                    output_format="shapefile",
-    #                                    spaces=spaces)
-    #
-    # # post retrofit strategy detail json to maestro
-    # if rs_details_dict is not None:
-    #     bearer_token = _get_bearer_token(args.token, args.service_url)
-    #     status = post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rules, retrofits,
-    #                                    rs_details_dict,
-    #                                    rs_detail_layer_id)
-    #     print(f"Retrofit strategy summary posted to the maestro service with status code: {status}")
+    # ----------------- Post retrofit strategy to the service -----------------
+    token = args.token
+    service_url = args.service_url
+    spaces = []
+    if args.spaces is not None and len(args.spaces) > 0:
+        spaces = args.spaces.strip().split(",")
+
+    # Create IN-CORE client
+    client = IncoreClient(service_url, token)
+
+    # Data Service
+    dataservice = DataService(client)
+    spaceservice = SpaceService(client)
+
+    # post retrofit strategy csv to the service
+    rs_dataset_id = store_results(dataservice,
+                                  spaceservice,
+                                  source_id=None,  # Don't join with parent dataset
+                                  title=f"{strategy_result_name} Strategy",
+                                  local_file=rs_fname,
+                                  data_type="incore:retrofitStrategy",
+                                  output_format="table",
+                                  spaces=spaces)
+
+    # post retrofit strategy detail shapefile to service
+    rs_detail_layer_id = store_results(dataservice,
+                                       spaceservice,
+                                       source_id=None,  # Don't join with parent dataset
+                                       title=f"{strategy_result_name} Details",
+                                       local_file=rs_details_geo_fname,
+                                       data_type="incore:rsDetail",
+                                       output_format="shapefile",
+                                       spaces=spaces)
+
+    # post retrofit strategy detail json to maestro
+    if rs_details_dict is not None:
+        bearer_token = _get_bearer_token(args.token, args.service_url)
+        status = post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rules, retrofits,
+                                       rs_details_dict,
+                                       rs_detail_layer_id)
+        print(f"Retrofit strategy summary posted to the maestro service with status code: {status}")
 
 
 if __name__ == '__main__':
-    # fake_args = ["rs_builder.py",
-    #              "--rules",
-    #              '{"testbed": "galveston", "rules": 3, "zones": ["1P", "0.2P", "1P"], "strtypes": ["1", "2", "1"], '
-    #              '"pcts": [1, 1, 1]}',
-    #              "--retrofits", '{"ret_keys": ["elevation", "elevation", "elevation"], "ret_vals": [5, 10, 10]}',
-    #              "--result_name", "Galveston 3 rules",
-    #              "--token", ".incoretoken",
-    #              "--service_url", "https://incore-dev.ncsa.illinois.edu",
-    #              "--space", "commresiliencegal"]
-    # sys.argv = fake_args
-
     parser = argparse.ArgumentParser(description='Generating Retrofit Strategy Dataset and Computing Retrofit Cost')
     parser.add_argument('--rules', dest='rules', type=json.loads, help='Retrofit strategy rules')
     parser.add_argument('--retrofits', dest='retrofits', type=json.loads, help='Retrofit methods and values')

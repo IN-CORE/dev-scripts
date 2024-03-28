@@ -79,7 +79,7 @@ def get_buildings(conn, config, struct_typ, bnd_name):
 
 
 ### create a retrofit strategy file from a list of buildings and retrofit strategies
-def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals):
+def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals, rule_no):
     '''
 
     :param idx:
@@ -91,30 +91,45 @@ def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals
     '''
     df = rel.to_df()
 
-    # Shuffle DataFrame to ensure randomness
+    # Shuffle DataFrame to ensure randomness (comment this out for reproducibility)
     df = df.sample(frac=1).reset_index(drop=True)
 
-    # Calculate the cumulative sum of percentages to define segment boundaries
-    segment_limits = np.cumsum([0] + percents)
-    df['segment_id'] = pd.cut(df.index + 1,
-                              bins=np.linspace(0, 100, sum(percents) // 10 + 1),
-                              labels=range(1, len(percents) + 1))
+    total = len(df)
+    cumulative_percents = np.cumsum([0] + percents)
+    bin_edges = (cumulative_percents * total / 100.0).round().astype(int)
+
+    # preventive bin edges can't be larger than the total number of buildings
+    if bin_edges[-1] > total:
+        bin_edges[-1] = total
+
+    # Assign segment IDs based on bins
+    df['segment_id'] = pd.cut(df.index,
+                              bins=bin_edges,
+                              labels=range(1, len(percents) + 1),
+                              include_lowest=True)
 
     # Map segment IDs to retrofit keys and values
     retrofit_key_map = dict(zip(range(1, len(percents) + 1), retrofit_keys))
     retrofit_value_map = dict(zip(range(1, len(percents) + 1), retrofit_vals))
+    rule_no_map = dict(zip(range(1, len(percents) + 1), rule_no))
 
     df['retrofit_key'] = df['segment_id'].map(retrofit_key_map)
     df['retrofit_value'] = df['segment_id'].map(retrofit_value_map)
+    df['rule'] = df['segment_id'].map(rule_no_map)
+
+    # Count buildings by segment before dropping 'segment_id'
+    building_counts = df.groupby('segment_id').size()
+    # Print number of buildings sampled by segment
+    for count in building_counts.items():
+        print(f"# of buildings sampled: {count[1]} / {df.shape[0]}")
 
     # Remove the segment_id column if it's no longer needed
     df.drop('segment_id', axis=1, inplace=True)
 
     # Filter to keep only rows with assigned retrofit keys and values
-    df = df.dropna(subset=['retrofit_key', 'retrofit_value'])
+    sampled_df = df.dropna(subset=['retrofit_key', 'retrofit_value', 'rule'])
 
-    print("# of buildings sampled:", df.shape[0], "/", df.shape[0])
-    return df
+    return sampled_df
 
 
 def merge_create_retrofit_strategy(df_list, result_name):
@@ -279,24 +294,26 @@ def main(args):
         ret_key = retrofits["ret_keys"][i]
         ret_val = retrofits["ret_vals"][i]
         if key not in grouped:
-            grouped[key] = {"pcts": [], "ret_keys": [], "ret_vals": []}
+            grouped[key] = {"pcts": [], "ret_keys": [], "ret_vals": [], "rule_no": []}
         grouped[key]["pcts"].append(pct)
         grouped[key]["ret_keys"].append(ret_key)
         grouped[key]["ret_vals"].append(ret_val)
-
+        grouped[key]["rule_no"].append(i)
     grouped_conditions = [
         {
             "zone": key[0],
             "strtype": key[1],
             "pcts": value["pcts"],
             "ret_keys": value["ret_keys"],
-            "ret_vals":value["ret_vals"]
+            "ret_vals":value["ret_vals"],
+            "rule_no":value["rule_no"]
         } for key, value in grouped.items()
     ]
     # e.g.
     # grouped_conditions = [
-    # {'pcts': [1, 1], 'ret_keys': ['elevation', 'elevation'], 'ret_vals': [5, 10], 'strtype': '1', 'zone': '1P'},
-    # {'pcts': [1], 'ret_keys': ['elevation'], 'ret_vals': [5], 'strtype': '2', 'zone': '0.2P'}
+    # {'pcts': [1, 1], 'ret_keys': ['elevation', 'elevation'], 'ret_vals': [5, 10], 'strtype': '1', 'zone': '1P',
+    # "rule_no":[0, 2]},
+    # {'pcts': [1], 'ret_keys': ['elevation'], 'ret_vals': [5], 'strtype': '2', 'zone': '0.2P', "rule_no":[1]}
     # ]
 
     # check unique retrofit key
@@ -309,10 +326,11 @@ def main(args):
             pcts = condition.get('pcts')
             ret_keys = condition.get('ret_keys')
             ret_vals = condition.get('ret_vals')
+            rule_no = condition.get('rule_no')
 
             rel = get_buildings(con, config, strtype, zone)
 
-            df = create_retrofit_strategy_by_rule(rel, pcts, ret_keys, ret_vals)
+            df = create_retrofit_strategy_by_rule(rel, pcts, ret_keys, ret_vals, rule_no)
             if df.shape[0] > 0:
                 df_list.append(df)
 
@@ -388,8 +406,9 @@ def main(args):
 if __name__ == '__main__':
     fake_args = ["rs_builder.py",
                  "--rules",
-                 '{"testbed": "galveston", "rules": 3, "zones": ["1P", "1P", "0.2P"], "strtypes": ["1", "1", "2"], "pcts": [1, 1, 1]}',
-                 "--retrofits", '{"ret_keys": ["elevation", "elevation", "elevation"], "ret_vals": [5, 10, 5]}',
+                 '{"testbed": "galveston", "rules": 3, "zones": ["1P", "0.2P", "1P"], "strtypes": ["1", "2", "1"], '
+                 '"pcts": [1, 1, 1]}',
+                 "--retrofits", '{"ret_keys": ["elevation", "elevation", "elevation"], "ret_vals": [5, 10, 10]}',
                  "--result_name", "Galveston 3 rules",
                  "--token", ".incoretoken",
                  "--service_url", "https://incore-dev.ncsa.illinois.edu",

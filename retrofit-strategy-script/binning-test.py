@@ -70,9 +70,10 @@ def main():
     # # test keep 0 buildings
     # df = pd.DataFrame()
 
+    percents = [20]
     # percents = [20, 30, 30]
     # percents = [0, 100]
-    percents = [100, 0, 0, 0]
+    # percents = [100, 0, 0, 0]
     # percents = [0, 100, 0, 0]
     # percents = [0, 0, 0, 0, 0]
     # percents = [1, 2, 2, 90]

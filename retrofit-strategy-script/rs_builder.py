@@ -103,7 +103,7 @@ def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals
         bin_edges[-1] = total
 
     # Function to use a sliding window of size 2 to find non-overlapping bins
-    def _find_effective_bins():
+    def _find_effective_bins_labels():
         labels = range(1, len(percents) + 1)
         effective_bins = {}
         selected_labels = []
@@ -116,10 +116,15 @@ def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals
 
         return selected_labels
 
+    if len(_find_effective_bins_labels()) == 0:
+        selected_labels = False
+    else:
+        selected_labels = _find_effective_bins_labels()
+
     # Assign segment IDs based on bins
     df['segment_id'] = pd.cut(df.index,
                               bins=bin_edges,
-                              labels=_find_effective_bins(),
+                              labels=selected_labels,
                               include_lowest=False, right=False, duplicates='drop')
 
     # Map segment IDs to retrofit keys and values
@@ -133,9 +138,11 @@ def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals
 
     # Count buildings by segment before dropping 'segment_id'
     building_counts = df.groupby('segment_id', observed=False).size()
-    # Print number of buildings sampled by segment
-    for count in building_counts.items():
-        print(f"# of buildings sampled: {count[1]} / {df.shape[0]}")
+    if len(building_counts) == 0:
+        print(f"# of buildings sampled: {0} / {df.shape[0]}")
+    else:
+        for count in building_counts.items():
+            print(f"# of buildings sampled: {count[1]} / {df.shape[0]}")
 
     # Remove the segment_id column if it's no longer needed
     df.drop('segment_id', axis=1, inplace=True)

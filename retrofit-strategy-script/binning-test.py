@@ -62,15 +62,17 @@ def main():
     df = df.sample(frac=1).reset_index(drop=True)
 
     # # test keep only 5 buildings
-    # df = df[:5]
+    df = df[:5]
 
     # test keep 1 building
-    df = df[:1]
+    # df = df[:1]
 
     # # test keep 0 buildings
     # df = pd.DataFrame()
 
     percents = [20]
+    # percents = [100]
+    # percents = [0]
     # percents = [20, 30, 30]
     # percents = [0, 100]
     # percents = [100, 0, 0, 0]
@@ -90,7 +92,7 @@ def main():
         bin_edges[-1] = total
 
     # Function to use a sliding window of size 2 to find non-overlapping bins
-    def _find_effective_bins():
+    def _find_effective_bins_labels():
         labels=range(1, len(percents) + 1)
         effective_bins = {}
         selected_labels = []
@@ -103,14 +105,21 @@ def main():
 
         return selected_labels
 
+    if len(_find_effective_bins_labels()) == 0:
+        selected_labels = False
+    else:
+        selected_labels = _find_effective_bins_labels()
     df['segment_id'] = pd.cut(df.index,
                               bins=bin_edges,
-                              labels=_find_effective_bins(),
+                              labels=selected_labels,
                               include_lowest=False, right=False, duplicates='drop')
 
     building_counts = df.groupby('segment_id', observed=False).size()
-    for count in building_counts.items():
-        print(f"# of buildings sampled: {count[1]} / {df.shape[0]}")
+    if len(building_counts) == 0:
+        print(f"# of buildings sampled: {0} / {df.shape[0]}")
+    else:
+        for count in building_counts.items():
+            print(f"# of buildings sampled: {count[1]} / {df.shape[0]}")
 
 
 if __name__ == '__main__':

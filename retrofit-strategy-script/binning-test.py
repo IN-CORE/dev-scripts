@@ -70,12 +70,14 @@ def main():
     # # test keep 0 buildings
     # df = pd.DataFrame()
 
-    percents = [20, 30, 30]
+    # percents = [20, 30, 30]
     # percents = [0, 100]
     # percents = [100, 0, 0, 0]
     # percents = [0, 100, 0, 0]
     # percents = [0, 0, 0, 0, 0]
     # percents = [1, 2, 2, 90]
+    # percents = [1, 90, 2, 1]
+    percents = [0, 50, 50, 0]
 
     total = len(df)
     cumulative_percents = np.cumsum([0] + percents)
@@ -85,20 +87,35 @@ def main():
     if bin_edges[-1] > total:
         bin_edges[-1] = total
 
+    # Function to use a sliding window of size 2 to find non-overlapping bins
+    def _find_effective_bins(bin_edges):
+        labels = range(1, len(bin_edges))
+        effective_bins = {}
+        selected_labels = []
+        for i in range(len(bin_edges) - 1):
+            if bin_edges[i] != bin_edges[i + 1]:
+                effective_bins[i] = (bin_edges[i], bin_edges[i + 1])
+        # For each non-overlapping bin, select the corresponding label.
+        for idx in effective_bins:
+            selected_labels.append(labels[idx])
+
+        return selected_labels
+
     # If one segment is 100%, directly assign values without binning
     if 100 in percents:
-        print("handle 100%")
+        raise ValueError("handle 100%")
     # if all percents are 0, return an empty DataFrame
     elif all(p == 0 for p in percents):
-        print("handle 0%")
+        raise ValueError("handle 0%")
 
     df['segment_id'] = pd.cut(df.index,
                               bins=bin_edges,
-                              labels=range(1, len(percents) + 1),
-                              include_lowest=False, right=False)
-    building_counts = df.groupby('segment_id', observed=False).size()
-    print(building_counts)
+                              labels=_find_effective_bins(bin_edges),
+                              include_lowest=False, right=False, duplicates='drop')
 
+    building_counts = df.groupby('segment_id', observed=False).size()
+    for count in building_counts.items():
+        print(f"# of buildings sampled: {count[1]} / {df.shape[0]}")
 
 
 if __name__ == '__main__':

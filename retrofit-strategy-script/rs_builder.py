@@ -116,8 +116,8 @@ def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals
         return pd.DataFrame()
 
         # Function to use a sliding window of size 2 to find non-overlapping bins
-    def _find_effective_bins(bin_edges):
-        labels = range(1, len(bin_edges))
+    def _find_effective_bins():
+        labels=range(1, len(percents) + 1)
         effective_bins = {}
         selected_labels = []
         for i in range(len(bin_edges) - 1):
@@ -132,7 +132,7 @@ def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals
     # Assign segment IDs based on bins
     df['segment_id'] = pd.cut(df.index,
                               bins=bin_edges,
-                              labels=_find_effective_bins(bin_edges),
+                              labels=_find_effective_bins(),
                               include_lowest=False, right=False, duplicates='drop')
 
     # Map segment IDs to retrofit keys and values

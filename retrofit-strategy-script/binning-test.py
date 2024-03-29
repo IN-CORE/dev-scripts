@@ -61,23 +61,24 @@ def main():
     # shuffle the buildings
     df = df.sample(frac=1).reset_index(drop=True)
 
-    # test keep only 5 buildings
-    df = df[:5]
+    # # test keep only 5 buildings
+    # df = df[:5]
 
     # # test keep 1 building
     # df = df[:1]
-    #
-    # # test keep 0 buildings
-    # df = pd.DataFrame()
 
-    # percents = [20, 30, 30]
+    # test keep 0 buildings
+    df = pd.DataFrame()
+
+    percents = [20, 30, 30]
     # percents = [0, 100]
     # percents = [100, 0, 0, 0]
     # percents = [0, 100, 0, 0]
     # percents = [0, 0, 0, 0, 0]
     # percents = [1, 2, 2, 90]
     # percents = [1, 90, 2, 1]
-    percents = [0, 50, 50, 0]
+    # percents = [0, 49, 51, 0]
+    # percents = [0, 51, 49, 0]
 
     total = len(df)
     cumulative_percents = np.cumsum([0] + percents)
@@ -88,8 +89,8 @@ def main():
         bin_edges[-1] = total
 
     # Function to use a sliding window of size 2 to find non-overlapping bins
-    def _find_effective_bins(bin_edges):
-        labels = range(1, len(bin_edges))
+    def _find_effective_bins():
+        labels=range(1, len(percents) + 1)
         effective_bins = {}
         selected_labels = []
         for i in range(len(bin_edges) - 1):
@@ -110,7 +111,7 @@ def main():
 
     df['segment_id'] = pd.cut(df.index,
                               bins=bin_edges,
-                              labels=_find_effective_bins(bin_edges),
+                              labels=_find_effective_bins(),
                               include_lowest=False, right=False, duplicates='drop')
 
     building_counts = df.groupby('segment_id', observed=False).size()

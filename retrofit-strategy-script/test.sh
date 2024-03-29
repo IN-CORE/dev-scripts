@@ -68,8 +68,8 @@ python rs_builder.py \
   # --space "slc-app" on prod
 
 python rs_builder.py \
-  --rules '{"testbed": "joplin", "rules": 3, "zones": ["","",""], "strtypes": ["1", "2", "3"], "pcts": [34.5, 50, 20]}' \
-  --retrofits '{"ret_keys": ["retrofit_2", "retrofit_2", "retrofit_2"], "ret_vals": ["", "", ""]}'\
+  --rules '{"testbed": "joplin", "rules": 3, "zones": ["","",""], "strtypes": ["1", "1", "1"], "pcts": [34.5, 65.5, 0]}' \
+  --retrofits '{"ret_keys": ["retrofit_1", "retrofit_2", "retrofit_3"], "ret_vals": ["", "", ""]}'\
   --result_name "Joplin 3 rules" \
   --token ".incoretoken" \
   --service_url "https://incore-dev.ncsa.illinois.edu" \

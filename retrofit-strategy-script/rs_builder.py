@@ -398,46 +398,48 @@ def main(args):
     con.close()
 
     # ----------------- Post retrofit strategy to the service -----------------
-    token = args.token
-    service_url = args.service_url
-    spaces = []
-    if args.spaces is not None and len(args.spaces) > 0:
-        spaces = args.spaces.strip().split(",")
+    post_to_services = True
+    if (post_to_services):
+        token = args.token
+        service_url = args.service_url
+        spaces = []
+        if args.spaces is not None and len(args.spaces) > 0:
+            spaces = args.spaces.strip().split(",")
 
-    # Create IN-CORE client
-    client = IncoreClient(service_url, token)
+        # Create IN-CORE client
+        client = IncoreClient(service_url, token)
 
-    # Data Service
-    dataservice = DataService(client)
-    spaceservice = SpaceService(client)
+        # Data Service
+        dataservice = DataService(client)
+        spaceservice = SpaceService(client)
 
-    # post retrofit strategy csv to the service
-    rs_dataset_id = store_results(dataservice,
-                                  spaceservice,
-                                  source_id=None,  # Don't join with parent dataset
-                                  title=f"{strategy_result_name} Strategy",
-                                  local_file=rs_fname,
-                                  data_type="incore:retrofitStrategy",
-                                  output_format="table",
-                                  spaces=spaces)
+        # post retrofit strategy csv to the service
+        rs_dataset_id = store_results(dataservice,
+                                      spaceservice,
+                                      source_id=None,  # Don't join with parent dataset
+                                      title=f"{strategy_result_name} Strategy",
+                                      local_file=rs_fname,
+                                      data_type="incore:retrofitStrategy",
+                                      output_format="table",
+                                      spaces=spaces)
 
-    # post retrofit strategy detail shapefile to service
-    rs_detail_layer_id = store_results(dataservice,
-                                       spaceservice,
-                                       source_id=None,  # Don't join with parent dataset
-                                       title=f"{strategy_result_name} Details",
-                                       local_file=rs_details_geo_fname,
-                                       data_type="incore:rsDetail",
-                                       output_format="shapefile",
-                                       spaces=spaces)
+        # post retrofit strategy detail shapefile to service
+        rs_detail_layer_id = store_results(dataservice,
+                                           spaceservice,
+                                           source_id=None,  # Don't join with parent dataset
+                                           title=f"{strategy_result_name} Details",
+                                           local_file=rs_details_geo_fname,
+                                           data_type="incore:rsDetail",
+                                           output_format="shapefile",
+                                           spaces=spaces)
 
-    # post retrofit strategy detail json to maestro
-    if rs_details_dict is not None:
-        bearer_token = _get_bearer_token(args.token, args.service_url)
-        status = post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rules, retrofits,
-                                       rs_details_dict,
-                                       rs_detail_layer_id)
-        print(f"Retrofit strategy summary posted to the maestro service with status code: {status}")
+        # post retrofit strategy detail json to maestro
+        if rs_details_dict is not None:
+            bearer_token = _get_bearer_token(args.token, args.service_url)
+            status = post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rules, retrofits,
+                                           rs_details_dict,
+                                           rs_detail_layer_id)
+            print(f"Retrofit strategy summary posted to the maestro service with status code: {status}")
 
 
 if __name__ == '__main__':

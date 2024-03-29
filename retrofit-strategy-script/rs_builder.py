@@ -102,22 +102,9 @@ def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals
     if bin_edges[-1] > total:
         bin_edges[-1] = total
 
-    # If one segment is 100%, directly assign values without binning
-    if 100 in percents:
-        segment_index = percents.index(100)
-        df['retrofit_key'] = retrofit_keys[segment_index]
-        df['retrofit_value'] = retrofit_vals[segment_index]
-        df['rule'] = rule_no[segment_index]
-        print(f"# of buildings sampled: {df.shape[0]} / {df.shape[0]}")
-        return df
-    # if all percents are 0, return an empty DataFrame
-    elif all(p == 0 for p in percents):
-        print(f"# of buildings sampled: {0} / {df.shape[0]}")
-        return pd.DataFrame()
-
-        # Function to use a sliding window of size 2 to find non-overlapping bins
+    # Function to use a sliding window of size 2 to find non-overlapping bins
     def _find_effective_bins():
-        labels=range(1, len(percents) + 1)
+        labels = range(1, len(percents) + 1)
         effective_bins = {}
         selected_labels = []
         for i in range(len(bin_edges) - 1):

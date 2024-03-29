@@ -64,15 +64,15 @@ def main():
     # # test keep only 5 buildings
     # df = df[:5]
 
-    # # test keep 1 building
-    # df = df[:1]
+    # test keep 1 building
+    df = df[:1]
 
-    # test keep 0 buildings
-    df = pd.DataFrame()
+    # # test keep 0 buildings
+    # df = pd.DataFrame()
 
-    percents = [20, 30, 30]
+    # percents = [20, 30, 30]
     # percents = [0, 100]
-    # percents = [100, 0, 0, 0]
+    percents = [100, 0, 0, 0]
     # percents = [0, 100, 0, 0]
     # percents = [0, 0, 0, 0, 0]
     # percents = [1, 2, 2, 90]
@@ -101,13 +101,6 @@ def main():
             selected_labels.append(labels[idx])
 
         return selected_labels
-
-    # If one segment is 100%, directly assign values without binning
-    if 100 in percents:
-        raise ValueError("handle 100%")
-    # if all percents are 0, return an empty DataFrame
-    elif all(p == 0 for p in percents):
-        raise ValueError("handle 0%")
 
     df['segment_id'] = pd.cut(df.index,
                               bins=bin_edges,

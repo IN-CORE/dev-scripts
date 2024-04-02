@@ -1,6 +1,6 @@
 import argparse
 import json
-
+import math
 import pandas as pd
 
 # Global variables
@@ -101,7 +101,7 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df):
 
     # compute total retrofit cost
     total_ret_cost = rs_postive_df['retrofit_cost'].sum()
-    total['cost'] = total_ret_cost
+    total['cost'] = math.ceil(total_ret_cost)
 
     # compute total retrofit cost by rule
     total_ret_cost_by_rule = rs_postive_df[['rule', 'retrofit_cost']].groupby('rule').sum()
@@ -110,7 +110,7 @@ def compute_retrofit_cost(result_name, retrofit_strategy_df, input_cost_df):
         c = 0
         if k in total_ret_cost_by_rule_dict['retrofit_cost']:
             c = total_ret_cost_by_rule_dict['retrofit_cost'][k]
-        by_rule[k]["cost"] = c
+        by_rule[k]["cost"] = math.ceil(c)
 
     # create json output
     # {

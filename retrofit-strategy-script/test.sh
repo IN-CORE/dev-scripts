@@ -59,7 +59,7 @@ python rs_builder.py \
   # --space "galveston-app" on prod
 
 python rs_builder.py \
-  --rules '{"testbed": "slc", "rules": 3, "zones": ["COUNCIL DISTRICT 1", "COUNCIL DISTRICT 2", "COUNCIL DISTRICT 3"], "strtypes": ["URML", "URMM", "URML"], "pcts": [10, 20, 20]}' \
+  --rules '{"testbed": "slc", "rules": 3, "zones": ["1", "2", "3"], "strtypes": ["URML", "URMM", "URML"], "pcts": [10, 20, 20]}' \
   --retrofits '{"ret_keys": ["Wood or Metal Deck Diaphragms Retrofitted", "Wood or Metal Deck Diaphragms Retrofitted", "Wood or Metal Deck Diaphragms Retrofitted"], "ret_vals": ["", "", ""]}'\
   --result_name "SLC 3 rules" \
   --token ".incoretoken" \

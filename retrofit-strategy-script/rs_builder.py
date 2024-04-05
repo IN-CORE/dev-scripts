@@ -20,7 +20,7 @@ DATA_FILE = "rs_data.db"
 SLC_CONFIG = {
     "bldg_table_name": "slc",
     "structure_type_col": "struct_typ",
-    "zone_col": "NAME",
+    "zone_col": "COUNCIL_ID",
     "additional_columns": []
 }
 

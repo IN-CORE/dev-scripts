@@ -52,6 +52,7 @@ utils/fragility_utils/data/
 # test files
 *test*
 !retrofit-strategy-script/test.sh
+!retrofit-strategy-script/binning-test.py
 
 # env files
 *.env

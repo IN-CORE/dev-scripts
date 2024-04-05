@@ -13,6 +13,7 @@ import signal
 import retrofit_cost_slc as rc_slc
 import retrofit_cost_galveston as rc_galveston
 import retrofit_cost_joplin as rc_joplin
+import numpy as np
 
 DATA_FILE = "rs_data.db"
 
@@ -55,12 +56,11 @@ def get_connection(db_file):
 
 ### Get all the buildings in a specific boundary with a specific structure type
 def get_buildings(conn, config, struct_typ, bnd_name):
-
     # adding additional columns to the query
     add_col_str = ""
     for col in config['additional_columns']:
         add_col_str += ", " + col
-    
+
     # adding zone rule to the query. If zone_col is empty, no zone rule is added
     zone_rule_str = f"AND {config['zone_col']}='{bnd_name.upper()}' "
     if config['zone_col'] == "":
@@ -78,25 +78,92 @@ def get_buildings(conn, config, struct_typ, bnd_name):
 
 
 ### create a retrofit strategy file from a list of buildings and retrofit strategies
-def create_retrofit_strategy_by_rule(idx, rel, percent, retrofit_key, retrofit_val):
+def create_retrofit_strategy_by_rule(rel, percents, retrofit_keys, retrofit_vals, rule_no):
+    '''
+
+    :param idx:
+    :param rel: buildings
+    :param percents: pecentages e.g. [10, 20, 30]
+    :param retrofit_keys: e.g. ['elevation', 'elevation', 'elevation']
+    :param retrofit_vals: e.g. [5, 10, 5]
+    :param rule_no: e.g. [0, 1, 2]
+    :return:
+    '''
     df = rel.to_df()
-    # selecting randm buildings with percent
-    df_sample = df.sample(frac=percent / 100.0)
 
-    # add retrofit key and value to the dataframe
-    idx_list = [idx] * df_sample.shape[0]
-    key_list = [retrofit_key] * df_sample.shape[0]
-    val_list = [retrofit_val] * df_sample.shape[0]
-    df_sample['retrofit_key'] = key_list
-    df_sample['retrofit_value'] = val_list
-    df_sample['rule'] = idx_list
+    # Shuffle DataFrame to ensure randomness (comment this out for reproducibility)
+    df = df.sample(frac=1).reset_index(drop=True)
 
-    print("# of buildings sampled:", df_sample.shape[0], "/", df.shape[0])
-    return df_sample
+    total = len(df)
+    cumulative_percents = np.cumsum([0] + percents)
+    bin_edges = [round(pct / 100 * total) for pct in cumulative_percents]
+
+    # preventive bin edges can't be larger than the total number of buildings
+    if bin_edges[-1] > total:
+        bin_edges[-1] = total
+
+    # Function to use a sliding window of size 2 to find non-overlapping bins
+    def _find_effective_bins_labels():
+        labels = range(1, len(percents) + 1)
+        effective_bins = {}
+        selected_labels = []
+        for i in range(len(bin_edges) - 1):
+            if bin_edges[i] != bin_edges[i + 1]:
+                effective_bins[i] = (bin_edges[i], bin_edges[i + 1])
+        # For each non-overlapping bin, select the corresponding label.
+        for idx in effective_bins:
+            selected_labels.append(labels[idx])
+
+        return selected_labels
+
+    if len(_find_effective_bins_labels()) == 0:
+        selected_labels = False
+    else:
+        selected_labels = _find_effective_bins_labels()
+
+    # Assign segment IDs based on bins
+    df['segment_id'] = pd.cut(df.index,
+                              bins=bin_edges,
+                              labels=selected_labels,
+                              include_lowest=False, right=False, duplicates='drop')
+
+    # Map segment IDs to retrofit keys and values
+    retrofit_key_map = dict(zip(range(1, len(percents) + 1), retrofit_keys))
+    retrofit_value_map = dict(zip(range(1, len(percents) + 1), retrofit_vals))
+    rule_no_map = dict(zip(range(1, len(percents) + 1), rule_no))
+
+    df['retrofit_key'] = df['segment_id'].map(retrofit_key_map)
+    df['retrofit_value'] = df['segment_id'].map(retrofit_value_map)
+    df['rule'] = df['segment_id'].map(rule_no_map)
+
+    # Count buildings by segment before dropping 'segment_id'
+    building_counts = df.groupby('segment_id', observed=False).size()
+    if len(building_counts) == 0:
+        print(f"# of buildings sampled: {0} / {df.shape[0]}")
+    else:
+        for count in building_counts.items():
+            print(f"# of buildings sampled: {count[1]} / {df.shape[0]}")
+
+    # Remove the segment_id column if it's no longer needed
+    df.drop('segment_id', axis=1, inplace=True)
+
+    # Filter to keep only rows with assigned retrofit keys and values
+    sampled_df = df.dropna(subset=['retrofit_key', 'retrofit_value', 'rule'])
+
+    return sampled_df
 
 
 def merge_create_retrofit_strategy(df_list, result_name):
     df = pd.concat(df_list)
+
+    # set categorical type
+    df['retrofit_key'] = df['retrofit_key'].astype(str)
+    try:
+        df['retrofit_value'] = df['retrofit_value'].astype(float)
+    except ValueError:
+        df['retrofit_value'] = df['retrofit_value'].astype(str)
+    df['rule'] = df['rule'].astype(str)
+
     rs_csv_name = result_name.replace(" ", "_") + ".csv"
     df[['guid', 'retrofit_key', 'retrofit_value']].to_csv(rs_csv_name, index=False)
     return df, rs_csv_name
@@ -203,6 +270,22 @@ def post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rul
 
     return response.status_code
 
+def _check_condition_validity(grouped_conditions):
+    valid = True
+    for item in grouped_conditions:
+        ret = [(key, val) for key, val in zip(item['ret_keys'], item['ret_vals'])]
+        unique_ret_vals = len(set(ret)) == len(ret)
+        if not unique_ret_vals:
+            print(f"Retrofits for zone {item['zone']} and strtype {item['strtype']} are duplicated.")
+            valid = False
+
+        # Check if the sum of pcts is less than 100
+        sum_pct_less_than_100 = sum(item['pcts']) <= 100
+        if not sum_pct_less_than_100:
+            print(f"Sum of percentages for zone {item['zone']} and strtype {item['strtype']} is greater than 100%.")
+            valid = False
+
+    return valid
 
 def main(args):
     rules = args.rules
@@ -229,21 +312,66 @@ def main(args):
     con = get_connection(DATA_FILE)
 
     df_list = []
-    for idx in range(rules['rules']):
-        zone = rules['zones'][idx]
-        strtype = rules['strtypes'][idx]
 
-        pct = rules['pcts'][idx]
-        ret_key = retrofits['ret_keys'][idx]
-        ret_val = retrofits['ret_vals'][idx]
+    # Grouping strategy
+    grouped = {}
+    # Given the new requirement, we need to incorporate the retrofit values into the grouping
+
+    # Extending the previous solution to include retrofits
+    grouped = {}
+    for i, (zone, strtype, pct) in enumerate(zip(rules["zones"], rules["strtypes"], rules["pcts"])):
+        key = (zone, strtype)  # Tuple of zone and strtype as the unique identifier
+        ret_key = retrofits["ret_keys"][i]
+        ret_val = retrofits["ret_vals"][i]
+        if key not in grouped:
+            grouped[key] = {"pcts": [], "ret_keys": [], "ret_vals": [], "rule_no": []}
+        grouped[key]["pcts"].append(pct)
+        grouped[key]["ret_keys"].append(ret_key)
+        grouped[key]["ret_vals"].append(ret_val)
+        grouped[key]["rule_no"].append(i)
+    grouped_conditions = [
+        {
+            "zone": key[0],
+            "strtype": key[1],
+            "pcts": value["pcts"],
+            "ret_keys": value["ret_keys"],
+            "ret_vals":value["ret_vals"],
+            "rule_no":value["rule_no"]
+        } for key, value in grouped.items()
+    ]
+    # e.g.
+    # grouped_conditions = [
+    # {'pcts': [1, 1], 'ret_keys': ['elevation', 'elevation'], 'ret_vals': [5, 10], 'strtype': '1', 'zone': '1P',
+    # "rule_no":[0, 2]},
+    # {'pcts': [1], 'ret_keys': ['elevation'], 'ret_vals': [5], 'strtype': '2', 'zone': '0.2P', "rule_no":[1]}
+    # ]
+
+    # check unique retrofit key
+    # check pct sum < 100
+    valid = _check_condition_validity(grouped_conditions)
+    if not valid or grouped_conditions is None or len(grouped_conditions) == 0:
+        print("Invalid retrofit strategy rules. Cannot calculate retrofit strategy.")
+        exit(1)
+
+    for condition in grouped_conditions:
+        zone = condition.get('zone')
+        strtype = condition.get('strtype')
+        pcts = condition.get('pcts')
+        ret_keys = condition.get('ret_keys')
+        ret_vals = condition.get('ret_vals')
+        rule_no = condition.get('rule_no')
 
         rel = get_buildings(con, config, strtype, zone)
 
-        df = create_retrofit_strategy_by_rule(idx, rel, pct, ret_key, ret_val)
+        df = create_retrofit_strategy_by_rule(rel, pcts, ret_keys, ret_vals, rule_no)
         if df.shape[0] > 0:
             df_list.append(df)
 
     # incore:retrofitStrategy
+    if len(df_list) == 0:
+        print("No retrofit strategy is generated.")
+        exit(1)
+
     rs_df, rs_fname = merge_create_retrofit_strategy(df_list, strategy_result_name)
 
     # calculate retrofit cost and other details
@@ -270,46 +398,48 @@ def main(args):
     con.close()
 
     # ----------------- Post retrofit strategy to the service -----------------
-    token = args.token
-    service_url = args.service_url
-    spaces = []
-    if args.spaces is not None and len(args.spaces) > 0:
-        spaces = args.spaces.strip().split(",")
+    post_to_services = True
+    if (post_to_services):
+        token = args.token
+        service_url = args.service_url
+        spaces = []
+        if args.spaces is not None and len(args.spaces) > 0:
+            spaces = args.spaces.strip().split(",")
 
-    # Create IN-CORE client
-    client = IncoreClient(service_url, token)
+        # Create IN-CORE client
+        client = IncoreClient(service_url, token)
 
-    # Data Service
-    dataservice = DataService(client)
-    spaceservice = SpaceService(client)
+        # Data Service
+        dataservice = DataService(client)
+        spaceservice = SpaceService(client)
 
-    # post retrofit strategy csv to the service
-    rs_dataset_id = store_results(dataservice,
-                                  spaceservice,
-                                  source_id=None,  # Don't join with parent dataset
-                                  title=f"{strategy_result_name} Strategy",
-                                  local_file=rs_fname,
-                                  data_type="incore:retrofitStrategy",
-                                  output_format="table",
-                                  spaces=spaces)
+        # post retrofit strategy csv to the service
+        rs_dataset_id = store_results(dataservice,
+                                      spaceservice,
+                                      source_id=None,  # Don't join with parent dataset
+                                      title=f"{strategy_result_name} Strategy",
+                                      local_file=rs_fname,
+                                      data_type="incore:retrofitStrategy",
+                                      output_format="table",
+                                      spaces=spaces)
 
-    # post retrofit strategy detail shapefile to service
-    rs_detail_layer_id = store_results(dataservice,
-                                       spaceservice,
-                                       source_id=None,  # Don't join with parent dataset
-                                       title=f"{strategy_result_name} Details",
-                                       local_file=rs_details_geo_fname,
-                                       data_type="incore:rsDetail",
-                                       output_format="shapefile",
-                                       spaces=spaces)
+        # post retrofit strategy detail shapefile to service
+        rs_detail_layer_id = store_results(dataservice,
+                                           spaceservice,
+                                           source_id=None,  # Don't join with parent dataset
+                                           title=f"{strategy_result_name} Details",
+                                           local_file=rs_details_geo_fname,
+                                           data_type="incore:rsDetail",
+                                           output_format="shapefile",
+                                           spaces=spaces)
 
-    # post retrofit strategy detail json to maestro
-    if rs_details_dict is not None:
-        bearer_token = _get_bearer_token(args.token, args.service_url)
-        status = post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rules, retrofits,
-                                       rs_details_dict,
-                                       rs_detail_layer_id)
-        print(f"Retrofit strategy summary posted to the maestro service with status code: {status}")
+        # post retrofit strategy detail json to maestro
+        if rs_details_dict is not None:
+            bearer_token = _get_bearer_token(args.token, args.service_url)
+            status = post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rules, retrofits,
+                                           rs_details_dict,
+                                           rs_detail_layer_id)
+            print(f"Retrofit strategy summary posted to the maestro service with status code: {status}")
 
 
 if __name__ == '__main__':

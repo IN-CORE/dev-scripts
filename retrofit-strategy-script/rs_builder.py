@@ -1,3 +1,4 @@
+import base64
 import os
 import urllib
 
@@ -14,6 +15,8 @@ import retrofit_cost_slc as rc_slc
 import retrofit_cost_galveston as rc_galveston
 import retrofit_cost_joplin as rc_joplin
 import numpy as np
+from datetime import datetime, timezone
+
 
 DATA_FILE = "rs_data.db"
 
@@ -188,13 +191,29 @@ def _handler(signum, frame):
     raise Exception("end of time")
 
 
-def _get_bearer_token(token_file, service_url):
+def _is_token_expired(token):
+    """Check if the token has expired
+
+    Returns:
+         True if the token has expired, False otherwise
+    """
+    # Split the token to get payload
+    _, payload_encoded, _ = token.split('.')
+    # Decode the payload
+    payload = base64.urlsafe_b64decode(payload_encoded + '==')  # Padding just in case
+    payload_json = json.loads(payload)
+    now = datetime.now(timezone.utc)
+    current_time = now.timestamp()
+    # Compare current time with exp claim
+    return current_time > payload_json['exp']
+
+
+def _get_bearer_token(token_file):
     with open(token_file, 'r') as f:
         auth = f.read().splitlines()
         # check if token is valid
-        userinfo_url = urllib.parse.urljoin(service_url, pyglobals.KEYCLOAK_USERINFO_PATH)
-        r = requests.get(userinfo_url, headers={'Authorization': auth[0]})
-        if r.status_code != 200:
+        if _is_token_expired(auth[0]):
+            print("Token has expired. Please get a new token.")
             return None
     return auth[0]
 
@@ -435,11 +454,14 @@ def main(args):
 
         # post retrofit strategy detail json to maestro
         if rs_details_dict is not None:
-            bearer_token = _get_bearer_token(args.token, args.service_url)
-            status = post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rules, retrofits,
-                                           rs_details_dict,
-                                           rs_detail_layer_id)
-            print(f"Retrofit strategy summary posted to the maestro service with status code: {status}")
+            bearer_token = _get_bearer_token(args.token)
+            if bearer_token is not None:
+                status = post_retrofit_summary(service_url, bearer_token, testbed, rs_dataset_id, rules, retrofits,
+                                               rs_details_dict,
+                                               rs_detail_layer_id)
+                print(f"Retrofit strategy summary posted to the maestro service with status code: {status}")
+            else:
+                print("Token expired. Failed to post retrofit strategy summary to the maestro service.")
 
 
 if __name__ == '__main__':

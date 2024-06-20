@@ -55,7 +55,8 @@ utils/fragility_utils/data/
 !retrofit-strategy-script/binning-test.py
 
 # env files
-*.env
+*.env*
+*NSI/.env*
 
 # build files
 *pycache*

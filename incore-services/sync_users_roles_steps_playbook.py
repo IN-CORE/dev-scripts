@@ -1,6 +1,13 @@
 import json
 import requests
+
 import os
+
+from dotenv import load_dotenv
+
+# Load .env file
+load_dotenv()
+
 
 def create_roles(base_url, headers):
     """
@@ -139,15 +146,76 @@ def get_userinfo_from_keycloak_group(group_id, keycloak_base_url, admin_username
 
 # attach roles
 def assign_roles(base_url):
-    pass
+    # get list of users
+    response = requests.request("GET", base_url + "/users", headers=headers)
+    users = response.json()
+
+    # get list of roles
+    response = requests.request("GET", base_url + "/roles", headers=headers)
+    roles = response.json()
+    role_id = None
+    for role in roles:
+        if role["name"] == "member":
+            role_id = str(role["id"])
+
+    # asign them to member role if they don't already have a role
+    if role_id:
+        for user in users:
+            if "role" not in user.keys() or user["role"] is None or "name" not in user["role"].keys():
+                response = requests.request("POST", base_url + "/users/" + str(user["id"]) + "/roles/" + role_id,
+                                            headers=headers)
+                print(response.text)
+
+
+def delete_ncsa_developers(base_url, developer_username_list):
+    # get list of users
+    response = requests.request("GET", base_url + "/users", headers=headers)
+    users = response.json()
+
+    # filter out NCSA developers
+    for user in users:
+        if user["username"] in developer_username_list:
+            delete_users(base_url, user["id"])
+
+
+def delete_users(base_url,user_id):
+    # get list of users
+    response = requests.request("DELETE", base_url + "/users/" + str(user_id), headers=headers)
+    print(response.text)
+
+
+def get_access_token(server_base_url, token_url, token_username, token_password):
+    request_url = server_base_url + token_url
+    headers = {
+        'Content-Type': "application/x-www-form-urlencoded"
+    }
+
+    payload = {
+        'grant_type': 'password',
+        'client_id': 'react-auth',
+        'username': token_username,
+        'password': token_password
+    }
+
+    response = requests.post(request_url, headers=headers, data=payload)
+    response_json = json.loads(response.text)
+
+    return(response_json["access_token"])
 
 
 if __name__ == "__main__":
+    first_run = os.getenv("FIRST_RUN")
     realm = os.getenv("REALM")
-    auth_token = os.getenv("AUTH_TOKEN")
+    token_username = os.getenv("TOKEN_USERNAME")
+    token_password = os.getenv("TOKEN_PASSWORD")
     server_base_url = os.getenv("SERVER_BASE_URL")
+    token_url = os.getenv("TOKEN_URL")
     admin_username = os.getenv("ADMIN_USERNAME")
     admin_password = os.getenv("ADMIN_PASSWORD")
+    ncsa_developer_lists = os.getenv("NCSA_DEVELOPER_LIST").split(",")
+    exclude_ncsa_developer = True
+
+    auth_token = "bearer " + get_access_token(server_base_url, token_url, token_username, token_password)
 
     headers = {
         'Authorization': auth_token,
@@ -161,27 +229,33 @@ if __name__ == "__main__":
             "testbed": "slc",
             "url": server_base_url + "/maestro/slc",
             "group_name": "incore_slc_user",
-            "group_id": "18ec08f4-86ae-4ec3-bb57-54c19e5398cf"  # get this information from keycloak
+            "group_id": os.getenv("SLC_GROUP_ID")  # get this information from keycloak
         },
         {
             "testbed": "galveston",
             "url": server_base_url + "/maestro/galveston",
             "group_name": "incore_galveston_user",
-            "group_id": "c098e80e-64a0-43b0-91b2-66a79dadb225"  # get this information from keycloak
+            "group_id":  os.getenv("GALVESTON_GROUP_ID")
         },
         {
             "testbed": "joplin",
             "url": server_base_url + "/maestro/joplin",
             "group_name": "incore_joplin_user",
-            "group_id": "2b691eaf-22ff-41ea-b8f5-d835a4a9e35a"  # get this information from keycloak
+            "group_id": os.getenv("JOPLIN_GROUP_ID")  # get this information from keycloak
         },
     ]
 
     for item in config:
-
-        create_roles(item["url"], headers)
-        create_steps(item["url"], headers)
-
         userinfo_list = get_userinfo_from_keycloak_group(item["group_id"], keycloak_base_url, admin_username,
                                                          admin_password,realm=realm)
-        create_user(item["url"], headers, userinfo_list)
+
+        if exclude_ncsa_developer:
+            create_user(item["url"], headers,  [usr for usr in userinfo_list if usr["username"] not in ncsa_developer_lists])
+        else:
+            create_user(item["url"], headers,  ncsa_developer_lists)
+
+        if int(first_run):
+            create_roles(item["url"], headers)
+            create_steps(item["url"], headers)
+
+        assign_roles(item["url"])

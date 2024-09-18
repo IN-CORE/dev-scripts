@@ -64,3 +64,15 @@ utils/fragility_utils/data/
 
 # token
 *incoretoken*
+
+# gis data
+utils/geoserver_utils/data/
+utils/gis_utils/*.dbf
+utils/gis_utils/*.prj
+utils/gis_utils/*.shp
+utils/gis_utils/*.shx
+utils/gis_utils/*.geobuf
+utils/gis_utils/*.geojson
+utils/gis_utils/*.json
+utils/gis_utils/*.csv
+utils/gis_utils/*.geoparquet

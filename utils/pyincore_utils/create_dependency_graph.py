@@ -121,14 +121,14 @@ for analysis_name, analysis_class in analysis_classes.items():
     spec = analysis_class.get_spec()
 
     for input in spec["input_datasets"]:
-        if input["required"]:
-            if type(input["type"]) == list:
-                for t in input["type"]:
-                    input_types_for_analysis[t].append(analysis_name)
-                    seen_types.add(t)
-            else:
-                input_types_for_analysis[input["type"]].append(analysis_name)
-                seen_types.add(input["type"])
+        # if input["required"]:
+        if type(input["type"]) == list:
+            for t in input["type"]:
+                input_types_for_analysis[t].append(analysis_name)
+                seen_types.add(t)
+        else:
+            input_types_for_analysis[input["type"]].append(analysis_name)
+            seen_types.add(input["type"])
     for output in spec["output_datasets"]:
         if type(output["type"]) == list:
             for t in output["type"]:

@@ -1,35 +1,178 @@
 {
-    "BuildingEconLoss": {
+    "BuyoutDecision": {
         "before": [
-            "MeanDamage"
+            "BuildingStructuralDamage",
+            "HousingUnitAllocation",
+            "PopulationDislocation",
+            "CombinedWindWaveSurgeBuildingDamage"
+        ],
+        "after": []
+    },
+    "PopulationDislocation": {
+        "before": [
+            "BuildingStructuralDamage",
+            "HousingUnitAllocation",
+            "CumulativeBuildingDamage",
+            "CombinedWindWaveSurgeBuildingDamage"
+        ],
+        "after": [
+            "BuyoutDecision",
+            "INDP",
+            "HousingValuationRecovery",
+            "HousingRecoverySequential"
+        ]
+    },
+    "HousingUnitAllocation": {
+        "after": [
+            "BuyoutDecision",
+            "PopulationDislocation"
+        ],
+        "before": []
+    },
+    "NciFunctionality": {
+        "before": [
+            "PipelineFunctionality",
+            "EpnFunctionality",
+            "WaterFacilityDamage",
+            "WaterFacilityRestoration",
+            "EpfDamage",
+            "EpfRestoration",
+            "WfnFunctionality",
+            "MonteCarloLimitStateProbability"
+        ],
+        "after": []
+    },
+    "WaterFacilityRestoration": {
+        "after": [
+            "INDP",
+            "NciFunctionality"
+        ],
+        "before": []
+    },
+    "HousingRecoverySequential": {
+        "before": [
+            "PopulationDislocation",
+            "SocialVulnerabilityScore"
+        ],
+        "after": []
+    },
+    "HousingValuationRecovery": {
+        "before": [
+            "PopulationDislocation"
+        ],
+        "after": []
+    },
+    "INDP": {
+        "before": [
+            "PipelineFunctionality",
+            "EpnFunctionality",
+            "WaterFacilityRestoration",
+            "WaterFacilityRepairCost",
+            "EpfRestoration",
+            "WfnFunctionality",
+            "MonteCarloLimitStateProbability",
+            "EpfRepairCost",
+            "PipelineRepairCost",
+            "PipelineRestoration",
+            "PopulationDislocation"
+        ],
+        "after": []
+    },
+    "CombinedWindWaveSurgeBuildingDamage": {
+        "before": [
+            "BuildingNonStructuralDamage",
+            "BuildingStructuralDamage",
+            "CombinedWindWaveSurgeBuildingDamage"
+        ],
+        "after": [
+            "CumulativeBuildingDamage",
+            "CombinedWindWaveSurgeBuildingDamage",
+            "CombinedWindWaveSurgeBuildingLoss",
+            "MonteCarloLimitStateProbability",
+            "MeanDamage",
+            "JoplinEmpiricalBuildingRestoration",
+            "CommercialBuildingRecovery",
+            "PopulationDislocation",
+            "BuyoutDecision"
+        ]
+    },
+    "CombinedWindWaveSurgeBuildingLoss": {
+        "before": [
+            "BuildingNonStructuralDamage",
+            "BuildingStructuralDamage",
+            "CombinedWindWaveSurgeBuildingDamage"
+        ],
+        "after": []
+    },
+    "JoplinEmpiricalBuildingRestoration": {
+        "before": [
+            "BuildingNonStructuralDamage",
+            "BuildingStructuralDamage",
+            "CumulativeBuildingDamage",
+            "CombinedWindWaveSurgeBuildingDamage"
         ],
         "after": []
     },
     "MeanDamage": {
-        "after": [
-            "BuildingEconLoss"
-        ],
         "before": [
+            "CumulativeBuildingDamage",
+            "CombinedWindWaveSurgeBuildingDamage",
+            "BuildingStructuralDamage",
             "BridgeDamage",
             "RoadDamage",
-            "CumulativeBuildingDamage",
-            "BuildingStructuralDamage",
-            "BuildingNonStructuralDamage",
-            "CombinedWindWaveSurgeBuildingDamage"
+            "BuildingNonStructuralDamage"
+        ],
+        "after": [
+            "BuildingEconLoss"
         ]
+    },
+    "MonteCarloLimitStateProbability": {
+        "before": [
+            "PipelineDamage",
+            "WaterFacilityDamage",
+            "CumulativeBuildingDamage",
+            "CombinedWindWaveSurgeBuildingDamage",
+            "BuildingStructuralDamage",
+            "EpfDamage",
+            "BridgeDamage",
+            "RoadDamage",
+            "BuildingNonStructuralDamage"
+        ],
+        "after": [
+            "INDP",
+            "EpnFunctionality",
+            "WaterFacilityRepairCost",
+            "WfnFunctionality",
+            "BuildingFunctionality",
+            "ResidentialBuildingRecovery",
+            "EpfRepairCost",
+            "NciFunctionality",
+            "CommercialBuildingRecovery",
+            "CapitalShocks"
+        ]
+    },
+    "BuildingNonStructuralDamage": {
+        "after": [
+            "CombinedWindWaveSurgeBuildingDamage",
+            "CombinedWindWaveSurgeBuildingLoss",
+            "MonteCarloLimitStateProbability",
+            "MeanDamage",
+            "JoplinEmpiricalBuildingRestoration"
+        ],
+        "before": []
     },
     "PipelineFunctionality": {
         "before": [
             "PipelineDamageRepairRate"
         ],
         "after": [
+            "INDP",
             "EpnFunctionality",
+            "WfnFunctionality",
             "BuildingFunctionality",
             "NciFunctionality",
-            "INDP",
-            "CapitalShocks",
-            "WfnFunctionality",
-            "CommercialBuildingRecovery"
+            "CommercialBuildingRecovery",
+            "CapitalShocks"
         ]
     },
     "PipelineRepairCost": {
@@ -50,22 +193,85 @@
     },
     "PipelineDamageRepairRate": {
         "after": [
-            "PipelineRepairCost",
             "PipelineFunctionality",
-            "PipelineRestoration"
+            "PipelineRestoration",
+            "PipelineRepairCost"
         ],
         "before": []
+    },
+    "RoadDamage": {
+        "after": [
+            "MonteCarloLimitStateProbability",
+            "MeanDamage"
+        ],
+        "before": []
+    },
+    "PipelineDamage": {
+        "after": [
+            "MonteCarloLimitStateProbability"
+        ],
+        "before": []
+    },
+    "EpfRestoration": {
+        "after": [
+            "INDP",
+            "NciFunctionality"
+        ],
+        "before": [
+            "EpfDamage"
+        ]
     },
     "CommercialBuildingRecovery": {
         "before": [
             "PipelineFunctionality",
             "EpnFunctionality",
-            "BuildingStructuralDamage",
-            "MonteCarloLimitStateProbability",
             "CombinedWindWaveSurgeBuildingDamage",
-            "WfnFunctionality"
+            "BuildingStructuralDamage",
+            "WfnFunctionality",
+            "MonteCarloLimitStateProbability"
         ],
         "after": []
+    },
+    "CumulativeBuildingDamage": {
+        "before": [
+            "BuildingStructuralDamage",
+            "CumulativeBuildingDamage",
+            "CombinedWindWaveSurgeBuildingDamage"
+        ],
+        "after": [
+            "CumulativeBuildingDamage",
+            "MonteCarloLimitStateProbability",
+            "MeanDamage",
+            "JoplinEmpiricalBuildingRestoration",
+            "PopulationDislocation"
+        ]
+    },
+    "BuildingStructuralDamage": {
+        "after": [
+            "CumulativeBuildingDamage",
+            "CombinedWindWaveSurgeBuildingDamage",
+            "CombinedWindWaveSurgeBuildingLoss",
+            "MonteCarloLimitStateProbability",
+            "MeanDamage",
+            "JoplinEmpiricalBuildingRestoration",
+            "CommercialBuildingRecovery",
+            "PopulationDislocation",
+            "BuyoutDecision"
+        ],
+        "before": []
+    },
+    "BuildingEconLoss": {
+        "before": [
+            "MeanDamage"
+        ],
+        "after": []
+    },
+    "BridgeDamage": {
+        "after": [
+            "MonteCarloLimitStateProbability",
+            "MeanDamage"
+        ],
+        "before": []
     },
     "EpfRepairCost": {
         "before": [
@@ -74,22 +280,6 @@
         "after": [
             "INDP"
         ]
-    },
-    "INDP": {
-        "before": [
-            "WaterFacilityRestoration",
-            "PipelineFunctionality",
-            "EpnFunctionality",
-            "PipelineRepairCost",
-            "PipelineRestoration",
-            "MonteCarloLimitStateProbability",
-            "WaterFacilityRepairCost",
-            "PopulationDislocation",
-            "EpfRepairCost",
-            "EpfRestoration",
-            "WfnFunctionality"
-        ],
-        "after": []
     },
     "ResidentialBuildingRecovery": {
         "before": [
@@ -105,102 +295,59 @@
             "INDP"
         ]
     },
-    "MonteCarloLimitStateProbability": {
-        "after": [
-            "EpnFunctionality",
-            "BuildingFunctionality",
-            "ResidentialBuildingRecovery",
-            "WaterFacilityRepairCost",
-            "NciFunctionality",
-            "EpfRepairCost",
-            "INDP",
-            "CapitalShocks",
-            "WfnFunctionality",
-            "CommercialBuildingRecovery"
-        ],
-        "before": [
-            "BridgeDamage",
-            "PipelineDamage",
-            "RoadDamage",
-            "CumulativeBuildingDamage",
-            "BuildingStructuralDamage",
-            "BuildingNonStructuralDamage",
-            "EpfDamage",
-            "CombinedWindWaveSurgeBuildingDamage",
-            "WaterFacilityDamage"
-        ]
-    },
-    "EpfRestoration": {
-        "after": [
-            "INDP",
-            "NciFunctionality"
-        ],
-        "before": [
-            "EpfDamage"
-        ]
-    },
-    "NciFunctionality": {
+    "CapitalShocks": {
         "before": [
             "PipelineFunctionality",
             "EpnFunctionality",
-            "MonteCarloLimitStateProbability",
-            "EpfDamage",
-            "EpfRestoration",
-            "WaterFacilityRestoration",
             "WfnFunctionality",
-            "WaterFacilityDamage"
-        ],
-        "after": []
-    },
-    "WaterFacilityRestoration": {
-        "after": [
-            "INDP",
-            "NciFunctionality"
-        ],
-        "before": []
-    },
-    "CombinedWindWaveSurgeBuildingDamage": {
-        "before": [
-            "BuildingNonStructuralDamage",
-            "CombinedWindWaveSurgeBuildingDamage",
-            "BuildingStructuralDamage"
+            "MonteCarloLimitStateProbability"
         ],
         "after": [
-            "CombinedWindWaveSurgeBuildingLoss",
-            "MeanDamage",
-            "CumulativeBuildingDamage",
-            "JoplinEmpiricalBuildingRestoration",
-            "MonteCarloLimitStateProbability",
-            "CombinedWindWaveSurgeBuildingDamage",
-            "PopulationDislocation",
-            "BuyoutDecision",
-            "CommercialBuildingRecovery"
+            "MlEnabledCgeSlc",
+            "SaltLakeCGEModel",
+            "JoplinCGEModel",
+            "GalvestonCGEModel",
+            "SeasideCGEModel"
         ]
     },
-    "CombinedWindWaveSurgeBuildingLoss": {
-        "before": [
-            "BuildingNonStructuralDamage",
-            "CombinedWindWaveSurgeBuildingDamage",
-            "BuildingStructuralDamage"
-        ],
-        "after": []
-    },
-    "JoplinEmpiricalBuildingRestoration": {
-        "before": [
-            "BuildingNonStructuralDamage",
-            "CombinedWindWaveSurgeBuildingDamage",
-            "CumulativeBuildingDamage",
-            "BuildingStructuralDamage"
-        ],
-        "after": []
-    },
-    "BuildingNonStructuralDamage": {
+    "EpnFunctionality": {
         "after": [
-            "CombinedWindWaveSurgeBuildingLoss",
-            "MeanDamage",
-            "MonteCarloLimitStateProbability",
-            "JoplinEmpiricalBuildingRestoration",
-            "CombinedWindWaveSurgeBuildingDamage"
+            "INDP",
+            "EpnFunctionality",
+            "WfnFunctionality",
+            "BuildingFunctionality",
+            "NciFunctionality",
+            "CommercialBuildingRecovery",
+            "CapitalShocks"
+        ],
+        "before": [
+            "PipelineFunctionality",
+            "EpnFunctionality",
+            "WfnFunctionality",
+            "MonteCarloLimitStateProbability"
+        ]
+    },
+    "WfnFunctionality": {
+        "after": [
+            "INDP",
+            "EpnFunctionality",
+            "WfnFunctionality",
+            "BuildingFunctionality",
+            "NciFunctionality",
+            "CommercialBuildingRecovery",
+            "CapitalShocks"
+        ],
+        "before": [
+            "PipelineFunctionality",
+            "EpnFunctionality",
+            "WfnFunctionality",
+            "MonteCarloLimitStateProbability"
+        ]
+    },
+    "WaterFacilityDamage": {
+        "after": [
+            "NciFunctionality",
+            "MonteCarloLimitStateProbability"
         ],
         "before": []
     },
@@ -234,152 +381,9 @@
         ],
         "after": []
     },
-    "CapitalShocks": {
+    "SocialVulnerabilityScore": {
         "after": [
-            "SeasideCGEModel",
-            "MlEnabledCgeSlc",
-            "SaltLakeCGEModel",
-            "GalvestonCGEModel",
-            "JoplinCGEModel"
-        ],
-        "before": [
-            "MonteCarloLimitStateProbability",
-            "PipelineFunctionality",
-            "EpnFunctionality",
-            "WfnFunctionality"
-        ]
-    },
-    "BuyoutDecision": {
-        "before": [
-            "HousingUnitAllocation",
-            "CombinedWindWaveSurgeBuildingDamage",
-            "PopulationDislocation",
-            "BuildingStructuralDamage"
-        ],
-        "after": []
-    },
-    "CumulativeBuildingDamage": {
-        "before": [
-            "CombinedWindWaveSurgeBuildingDamage",
-            "CumulativeBuildingDamage",
-            "BuildingStructuralDamage"
-        ],
-        "after": [
-            "MeanDamage",
-            "CumulativeBuildingDamage",
-            "MonteCarloLimitStateProbability",
-            "JoplinEmpiricalBuildingRestoration",
-            "PopulationDislocation"
-        ]
-    },
-    "PopulationDislocation": {
-        "before": [
-            "HousingUnitAllocation",
-            "CombinedWindWaveSurgeBuildingDamage",
-            "CumulativeBuildingDamage",
-            "BuildingStructuralDamage"
-        ],
-        "after": [
-            "HousingValuationRecovery",
-            "HousingRecoverySequential",
-            "BuyoutDecision",
-            "INDP"
-        ]
-    },
-    "BuildingStructuralDamage": {
-        "after": [
-            "CombinedWindWaveSurgeBuildingLoss",
-            "MeanDamage",
-            "CumulativeBuildingDamage",
-            "JoplinEmpiricalBuildingRestoration",
-            "MonteCarloLimitStateProbability",
-            "CombinedWindWaveSurgeBuildingDamage",
-            "PopulationDislocation",
-            "BuyoutDecision",
-            "CommercialBuildingRecovery"
-        ],
-        "before": []
-    },
-    "BridgeDamage": {
-        "after": [
-            "MonteCarloLimitStateProbability",
-            "MeanDamage"
-        ],
-        "before": []
-    },
-    "WaterFacilityDamage": {
-        "after": [
-            "NciFunctionality",
-            "MonteCarloLimitStateProbability"
-        ],
-        "before": []
-    },
-    "BuildingFunctionality": {
-        "before": [
-            "MonteCarloLimitStateProbability",
-            "PipelineFunctionality",
-            "EpnFunctionality",
-            "WfnFunctionality"
-        ],
-        "after": []
-    },
-    "EpnFunctionality": {
-        "before": [
-            "MonteCarloLimitStateProbability",
-            "PipelineFunctionality",
-            "EpnFunctionality",
-            "WfnFunctionality"
-        ],
-        "after": [
-            "EpnFunctionality",
-            "BuildingFunctionality",
-            "NciFunctionality",
-            "INDP",
-            "CapitalShocks",
-            "WfnFunctionality",
-            "CommercialBuildingRecovery"
-        ]
-    },
-    "WfnFunctionality": {
-        "before": [
-            "MonteCarloLimitStateProbability",
-            "PipelineFunctionality",
-            "EpnFunctionality",
-            "WfnFunctionality"
-        ],
-        "after": [
-            "EpnFunctionality",
-            "BuildingFunctionality",
-            "NciFunctionality",
-            "INDP",
-            "CapitalShocks",
-            "WfnFunctionality",
-            "CommercialBuildingRecovery"
-        ]
-    },
-    "HousingRecoverySequential": {
-        "before": [
-            "SocialVulnerabilityScore",
-            "PopulationDislocation"
-        ],
-        "after": []
-    },
-    "HousingValuationRecovery": {
-        "before": [
-            "PopulationDislocation"
-        ],
-        "after": []
-    },
-    "RoadDamage": {
-        "after": [
-            "MonteCarloLimitStateProbability",
-            "MeanDamage"
-        ],
-        "before": []
-    },
-    "PipelineDamage": {
-        "after": [
-            "MonteCarloLimitStateProbability"
+            "HousingRecoverySequential"
         ],
         "before": []
     },
@@ -391,17 +395,33 @@
         ],
         "before": []
     },
-    "HousingUnitAllocation": {
-        "after": [
-            "PopulationDislocation",
-            "BuyoutDecision"
+    "BuildingFunctionality": {
+        "before": [
+            "PipelineFunctionality",
+            "EpnFunctionality",
+            "WfnFunctionality",
+            "MonteCarloLimitStateProbability"
         ],
-        "before": []
+        "after": []
     },
-    "SocialVulnerabilityScore": {
-        "after": [
-            "HousingRecoverySequential"
-        ],
-        "before": []
+    "BuildingClusterRecovery": {
+        "before": [],
+        "after": []
+    },
+    "GasFacilityDamage": {
+        "before": [],
+        "after": []
+    },
+    "MultiObjectiveRetrofitOptimization": {
+        "before": [],
+        "after": []
+    },
+    "TornadoEpnDamage": {
+        "before": [],
+        "after": []
+    },
+    "TrafficFlowRecovery": {
+        "before": [],
+        "after": []
     }
 }

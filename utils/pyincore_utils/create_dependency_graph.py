@@ -166,4 +166,11 @@ for value in dependency_graph.values():
     if value.get("after", None) is None:
         value["after"] = []
 
+if len(analysis_classes) != len(dependency_graph):
+    print("Some analyses are missing from the dependency graph\nAdding them now:")
+    for analysis_name in analysis_classes.keys():
+        if analysis_name not in dependency_graph:
+            print(analysis_name)
+            dependency_graph[analysis_name] = {"before": [], "after": []}
+
 json.dump(dependency_graph, open("dependency_graph.json", "w"), indent=4)

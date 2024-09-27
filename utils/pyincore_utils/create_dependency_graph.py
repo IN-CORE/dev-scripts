@@ -121,56 +121,78 @@ for analysis_name, analysis_class in analysis_classes.items():
     spec = analysis_class.get_spec()
 
     for input in spec["input_datasets"]:
-        # if input["required"]:
         if type(input["type"]) == list:
             for t in input["type"]:
-                input_types_for_analysis[t].append(analysis_name)
+                input_types_for_analysis[t].append((analysis_name, input["id"]))
                 seen_types.add(t)
         else:
-            input_types_for_analysis[input["type"]].append(analysis_name)
+            input_types_for_analysis[input["type"]].append((analysis_name, input["id"]))
             seen_types.add(input["type"])
     for output in spec["output_datasets"]:
         if type(output["type"]) == list:
             for t in output["type"]:
-                output_types_for_analysis[t].append(analysis_name)
+                output_types_for_analysis[t].append((analysis_name, output["id"]))
                 seen_types.add(t)
         else:
-            output_types_for_analysis[output["type"]].append(analysis_name)
+            output_types_for_analysis[output["type"]].append(
+                (analysis_name, output["id"])
+            )
             seen_types.add(output["type"])
 
 dependency_graph = defaultdict(dict)
 
 for type in list(seen_types):
-    # add afters
-    for analysis_name in input_types_for_analysis[type]:
-        for other_type in output_types_for_analysis[type]:
-            if dependency_graph[analysis_name].get("before", None) is None:
-                dependency_graph[analysis_name]["before"] = set({other_type})
-            else:
-                dependency_graph[analysis_name]["before"].add(other_type)
     # add befores
-    for analysis_name in output_types_for_analysis[type]:
-        for other_type in input_types_for_analysis[type]:
-            if dependency_graph[analysis_name].get("after", None) is None:
-                dependency_graph[analysis_name]["after"] = set({other_type})
+    for analysis_name, propertyA in input_types_for_analysis[type]:
+        for other_type, propertyB in output_types_for_analysis[type]:
+            if dependency_graph[analysis_name].get("before", None) is None:
+                dependency_graph[analysis_name]["before"] = set(
+                    {(other_type, propertyA, propertyB)}
+                )
             else:
-                dependency_graph[analysis_name]["after"].add(other_type)
+                dependency_graph[analysis_name]["before"].add(
+                    (other_type, propertyA, propertyB)
+                )
+    # add afters
+    for analysis_name, propertyA in output_types_for_analysis[type]:
+        for other_type, propertyB in input_types_for_analysis[type]:
+            if dependency_graph[analysis_name].get("after", None) is None:
+                dependency_graph[analysis_name]["after"] = set(
+                    {(other_type, propertyA, propertyB)}
+                )
+            else:
+                dependency_graph[analysis_name]["after"].add(
+                    (other_type, propertyA, propertyB)
+                )
 
 # Convert sets to lists
 for value in dependency_graph.values():
     for k, v in value.items():
-        value[k] = list(v)
+        if k == "before":
+            value[k] = dict(
+                [
+                    (analysis, {"from": propB, "to": propA})
+                    for analysis, propA, propB in v
+                ]
+            )
+        else:
+            value[k] = dict(
+                [
+                    (analysis, {"from": propA, "to": propB})
+                    for analysis, propA, propB in v
+                ]
+            )
 
     if value.get("before", None) is None:
-        value["before"] = []
+        value["before"] = {}
     if value.get("after", None) is None:
-        value["after"] = []
+        value["after"] = {}
 
 if len(analysis_classes) != len(dependency_graph):
     print("Some analyses are missing from the dependency graph\nAdding them now:")
     for analysis_name in analysis_classes.keys():
         if analysis_name not in dependency_graph:
             print(analysis_name)
-            dependency_graph[analysis_name] = {"before": [], "after": []}
+            dependency_graph[analysis_name] = {"before": {}, "after": {}}
 
-json.dump(dependency_graph, open("dependency_graph.json", "w"), indent=4)
+json.dump(dependency_graph, open("new_dependency_graph.json", "w"), indent=4)

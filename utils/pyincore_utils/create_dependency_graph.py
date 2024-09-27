@@ -147,11 +147,11 @@ for type in list(seen_types):
         for other_type, propertyB in output_types_for_analysis[type]:
             if dependency_graph[analysis_name].get("before", None) is None:
                 dependency_graph[analysis_name]["before"] = set(
-                    {(other_type, propertyA, propertyB)}
+                    {(other_type, propertyB, propertyA)}
                 )
             else:
                 dependency_graph[analysis_name]["before"].add(
-                    (other_type, propertyA, propertyB)
+                    (other_type, propertyB, propertyA)
                 )
     # add afters
     for analysis_name, propertyA in output_types_for_analysis[type]:
@@ -169,19 +169,27 @@ for type in list(seen_types):
 for value in dependency_graph.values():
     for k, v in value.items():
         if k == "before":
-            value[k] = dict(
-                [
-                    (analysis, {"from": propB, "to": propA})
-                    for analysis, propA, propB in v
-                ]
-            )
+            value[k] = defaultdict(list)
+            for analysis, propA, propB in list(v):
+                value[k][analysis].append({"from": propB, "to": propA})
+
+            # value[k] = dict(
+            #     [
+            #         (analysis, {"from": propB, "to": propA})
+            #         for analysis, propA, propB in list(v)
+            #     ]
+            # )
         else:
-            value[k] = dict(
-                [
-                    (analysis, {"from": propA, "to": propB})
-                    for analysis, propA, propB in v
-                ]
-            )
+            value[k] = defaultdict(list)
+            for analysis, propA, propB in list(v):
+                value[k][analysis].append({"from": propA, "to": propB})
+
+            # value[k] = dict(
+            #     [
+            #         (analysis, {"from": propA, "to": propB})
+            #         for analysis, propA, propB in list(v)
+            #     ]
+            # )
 
     if value.get("before", None) is None:
         value["before"] = {}

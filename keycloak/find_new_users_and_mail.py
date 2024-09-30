@@ -43,6 +43,9 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import requests
 import json
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Load environment variables
 keycloak_url = os.getenv("KEYCLOAK_URL")
@@ -55,7 +58,6 @@ email_subject = os.getenv("EMAIL_SUBJECT", "Keycloak Group Members Report")
 email_from = os.getenv("EMAIL_FROM", "your_netid@illinois.edu")
 smtp_user = os.getenv("SMTP_USER")
 smtp_pass = os.getenv("SMTP_PASS")
-
 
 def get_keycloak_token():
     """Get access token from Keycloak."""
@@ -117,7 +119,7 @@ def send_email(body):
     msg.attach(MIMEText(body, 'plain'))
 
     try:
-        server = smtplib.SMTP('smtp-relay.uillinois.edu', 587)
+        server = smtplib.SMTP('outbound-relays.techservices.illinois.edu', 25)
         server.starttls()
         server.login(smtp_user, smtp_pass)
         server.sendmail(email_from, email_recipients, msg.as_string())

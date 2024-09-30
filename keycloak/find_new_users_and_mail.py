@@ -66,6 +66,7 @@ if not all([email_from, email_recipients, email_subject, email_body, smtp_server
 # Convert email recipients to a list
 email_to = email_recipients.split(",")
 
+
 def get_keycloak_token():
     """Get access token from Keycloak."""
     token_url = f"{keycloak_url}/auth/realms/master/protocol/openid-connect/token"

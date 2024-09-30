@@ -12,30 +12,37 @@ REALM="In-core"
 GROUP="0unapproved"
 
 # Get access token using credentials from .env file
-curl -s "${KEYCLOAK_URL}/auth/realms/master/protocol/openid-connect/token" \
+TOKEN_RESPONSE=$(curl -s "${KEYCLOAK_URL}/auth/realms/master/protocol/openid-connect/token" \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --data-urlencode "username=${KEYCLOAK_USERNAME}" \
     --data-urlencode "password=${KEYCLOAK_PASSWORD}" \
     --data-urlencode 'grant_type=password' \
-    --data-urlencode 'client_id=admin-cli' | jq -r .access_token > /tmp/access_token
+    --data-urlencode 'client_id=admin-cli')
+
+ACCESS_TOKEN=$(echo "${TOKEN_RESPONSE}" | jq -r .access_token)
+
+# Check if the token was retrieved successfully
+if [[ "${ACCESS_TOKEN}" == "null" || -z "${ACCESS_TOKEN}" ]]; then
+    echo "Failed to retrieve access token. Please check your credentials or configuration."
+    exit 1
+fi
 
 # Get group ID
 GID=$(curl -s "${KEYCLOAK_URL}/auth/admin/realms/${REALM}/groups?search=${GROUP}" \
     --header "Content-Type: application/json" \
-    --header "Authorization: Bearer $(cat /tmp/access_token)" | jq -r '.[0].id')
+    --header "Authorization: Bearer ${ACCESS_TOKEN}" | jq -r '.[0].id')
 
-# Capture raw user information (this can be an empty array or an error)
+# Capture raw user information
 RAW_RESULT=$(curl -s "${KEYCLOAK_URL}/auth/admin/realms/${REALM}/groups/${GID}/members?max=9999" \
     --header "Content-Type: application/json" \
-    --header "Authorization: Bearer $(cat /tmp/access_token)")
+    --header "Authorization: Bearer ${ACCESS_TOKEN}")
 
-# Clean up
-rm /tmp/access_token
+# Clean up the access token (no need to store it in a file)
+unset ACCESS_TOKEN
 
-# Check if RAW_RESULT is a valid JSON array and not an error message
+# Check if RAW_RESULT is a valid JSON array and contains users
 if echo "${RAW_RESULT}" | jq empty 2>/dev/null; then
-    # Check if the result contains any users
-    if [ "$(echo "${RAW_RESULT}" | jq length)" -gt 0 ]; then
+    if [ "$(echo "${RAW_RESULT}" | jq 'if type=="array" then length else 0 end')" -gt 0 ]; then
         # If users exist, extract user information
         RESULT=$(echo "${RAW_RESULT}" | jq -r '.[] | [.username, .firstName, .lastName, .email] | @csv')
 
@@ -52,3 +59,4 @@ if echo "${RAW_RESULT}" | jq empty 2>/dev/null; then
 else
     echo "Invalid response from Keycloak. Please check your connection or configuration."
 fi
+

@@ -54,8 +54,7 @@ utils/fragility_utils/data/
 !retrofit-strategy-script/test.sh
 !retrofit-strategy-script/binning-test.py
 
-# env files
-*.env
+
 
 # build files
 *pycache*
@@ -64,3 +63,10 @@ utils/fragility_utils/data/
 
 # token
 *incoretoken*
+
+# tmp files
+NSI
+
+# data files
+utils/geoserver_utils/data/
+utils/gis_utils/data/

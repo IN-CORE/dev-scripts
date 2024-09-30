@@ -62,6 +62,10 @@ utils/fragility_utils/data/
 # token
 *incoretoken*
 
+# .env files
+*.env
+keycloak/.env
+
 # tmp files
 NSI
 

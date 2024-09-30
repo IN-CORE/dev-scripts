@@ -55,7 +55,6 @@ email_recipients = os.getenv("EMAIL_RECIPIENTS", "").split(",")
 email_subject = os.getenv("EMAIL_SUBJECT", "There is new user in IN-CORE")
 email_from = os.getenv("EMAIL_FROM")
 
-
 def get_keycloak_token():
     """Get access token from Keycloak."""
     token_url = f"{keycloak_url}/auth/realms/master/protocol/openid-connect/token"
@@ -120,7 +119,6 @@ def send_email(body):
     smtp_port = int(os.getenv("SMTP_PORT", 25))
 
     try:
-        # Set up the SMTP server using values from .env
         server = smtplib.SMTP(smtp_server, smtp_port)
         server.starttls()
         server.ehlo()  # Re-identify as encrypted connection

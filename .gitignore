@@ -54,7 +54,8 @@ utils/fragility_utils/data/
 !retrofit-strategy-script/test.sh
 !retrofit-strategy-script/binning-test.py
 
-
+# env files
+*.env
 
 # build files
 *pycache*

@@ -21,9 +21,6 @@ How to Use:
 
    EMAIL_RECIPIENTS: A comma-separated list of email recipients.
    EMAIL_SUBJECT: The subject of the email.
-   EMAIL_BODY: The body of the email (user report content).
-   SMTP_USER: Your University of Illinois email (for SMTP authentication).
-   SMTP_PASS: The password for your University of Illinois email.
    EMAIL_FROM: The "From" email address.
 
 2. Run the Script:
@@ -43,6 +40,10 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import requests
 import json
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Load environment variables
 keycloak_url = os.getenv("KEYCLOAK_URL")
@@ -51,10 +52,8 @@ password = os.getenv("KEYCLOAK_PASSWORD")
 realm = os.getenv("REALM", "In-core")
 group = os.getenv("GROUP", "0unapproved")
 email_recipients = os.getenv("EMAIL_RECIPIENTS", "").split(",")
-email_subject = os.getenv("EMAIL_SUBJECT", "Keycloak Group Members Report")
-email_from = os.getenv("EMAIL_FROM", "your_netid@illinois.edu")
-smtp_user = os.getenv("SMTP_USER")
-smtp_pass = os.getenv("SMTP_PASS")
+email_subject = os.getenv("EMAIL_SUBJECT", "There is new user in IN-CORE")
+email_from = os.getenv("EMAIL_FROM")
 
 
 def get_keycloak_token():
@@ -116,10 +115,15 @@ def send_email(body):
     msg['Subject'] = email_subject
     msg.attach(MIMEText(body, 'plain'))
 
+    # Load SMTP server and port from environment variables
+    smtp_server = os.getenv("SMTP_SERVER")
+    smtp_port = int(os.getenv("SMTP_PORT", 25))
+
     try:
-        server = smtplib.SMTP('smtp-relay.uillinois.edu', 587)
+        # Set up the SMTP server using values from .env
+        server = smtplib.SMTP(smtp_server, smtp_port)
         server.starttls()
-        server.login(smtp_user, smtp_pass)
+        server.ehlo()  # Re-identify as encrypted connection
         server.sendmail(email_from, email_recipients, msg.as_string())
         server.quit()
         print("Email sent successfully.")

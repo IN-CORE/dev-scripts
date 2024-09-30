@@ -21,6 +21,7 @@ How to Use:
 
    EMAIL_RECIPIENTS: A comma-separated list of email recipients.
    EMAIL_SUBJECT: The subject of the email.
+   EMAIL_BODY: The body of the email (user report content).
    EMAIL_FROM: The "From" email address.
 
 2. Run the Script:
@@ -51,9 +52,19 @@ username = os.getenv("KEYCLOAK_USERNAME")
 password = os.getenv("KEYCLOAK_PASSWORD")
 realm = os.getenv("REALM", "In-core")
 group = os.getenv("GROUP", "0unapproved")
-email_recipients = os.getenv("EMAIL_RECIPIENTS", "").split(",")
-email_subject = os.getenv("EMAIL_SUBJECT", "There is new user in IN-CORE")
+email_recipients = os.getenv("EMAIL_RECIPIENTS")
+email_subject = os.getenv("EMAIL_SUBJECT")
+email_body = os.getenv("EMAIL_BODY")
 email_from = os.getenv("EMAIL_FROM")
+smtp_server = os.getenv("SMTP_SERVER")
+smtp_port = os.getenv("SMTP_PORT")
+
+# Check if any of the required environment variables are missing
+if not all([email_from, email_recipients, email_subject, email_body, smtp_server, smtp_port, keycloak_url, username, password]):
+    raise ValueError("One or more required environment variables are missing.")
+
+# Convert email recipients to a list
+email_to = email_recipients.split(",")
 
 def get_keycloak_token():
     """Get access token from Keycloak."""
@@ -110,19 +121,19 @@ def send_email(body):
     """Send an email with the provided content."""
     msg = MIMEMultipart()
     msg['From'] = email_from
-    msg['To'] = ", ".join(email_recipients)
+    msg['To'] = ", ".join(email_to)
     msg['Subject'] = email_subject
-    msg.attach(MIMEText(body, 'plain'))
-
-    # Load SMTP server and port from environment variables
-    smtp_server = os.getenv("SMTP_SERVER")
-    smtp_port = int(os.getenv("SMTP_PORT", 25))
+    msg.attach(MIMEText(body, 'plain', 'utf-8'))
 
     try:
-        server = smtplib.SMTP(smtp_server, smtp_port)
+        # Set up the SMTP server using values from .env
+        server = smtplib.SMTP(smtp_server, int(smtp_port))
+        server.ehlo()
         server.starttls()
-        server.ehlo()  # Re-identify as encrypted connection
-        server.sendmail(email_from, email_recipients, msg.as_string())
+        server.ehlo()
+
+        # Send the email
+        server.sendmail(email_from, email_to, msg.as_string())
         server.quit()
         print("Email sent successfully.")
     except Exception as e:
@@ -158,3 +169,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

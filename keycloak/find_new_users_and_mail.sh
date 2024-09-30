@@ -1,5 +1,38 @@
 #!/bin/bash
 
+# =============================================================
+# Script: find_new_users_and_mail.sh
+# Description: This Bash script retrieves user information from
+# a Keycloak group and sends the results via email. The script
+# fetches an access token from the Keycloak API, queries a
+# specified group for its members, and sends the list of users
+# in CSV format to the provided email recipients. It supports
+# sending emails to multiple recipients via environment variables.
+#
+# How to Use:
+# 1. Configure .env file:
+#    The script relies on an .env file for sensitive information
+#    such as Keycloak credentials and email recipients. Create an
+#    .env file in the same directory as the script with the following
+#    content:
+#
+#    KEYCLOAK_USERNAME=your_keycloak_username
+#    KEYCLOAK_PASSWORD=your_keycloak_password
+#    KEYCLOAK_URL=https://your_keycloak_url
+#
+#    EMAIL_RECIPIENTS=recipient1@example.com,recipient2@example.com
+#    EMAIL_SUBJECT="Keycloak Group Members Report"
+#
+# 2. Run the Script:
+#    ./find_new_users_and_mail.sh
+#
+# 3. Functionality:
+#    - Authenticates with Keycloak and retrieves an access token.
+#    - Queries the specified group in Keycloak for members.
+#    - Sends the user list via email to recipients in the .env file.
+#
+# =============================================================
+
 # Load environment variables from .env file
 if [ -f .env ]; then
     source .env

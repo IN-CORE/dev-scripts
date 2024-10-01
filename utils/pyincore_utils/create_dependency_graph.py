@@ -68,7 +68,7 @@ analysis_classes = {
     "BuildingClusterRecovery": BuildingClusterRecovery(client),
     "BuildingEconLoss": BuildingEconLoss(client),
     "BuildingFunctionality": BuildingFunctionality(client),
-    "BuildingNonStructuralDamage": BuildingNonStructDamage(client),
+    "BuildingNonStructDamage": BuildingNonStructDamage(client),
     "BuildingStructuralDamage": BuildingStructuralDamage(client),
     "BuyoutDecision": BuyoutDecision(client),
     "CapitalShocks": CapitalShocks(client),
@@ -111,6 +111,57 @@ analysis_classes = {
     "WaterFacilityDamage": WaterFacilityDamage(client),
     "WaterFacilityRestoration": WaterFacilityRestoration(client),
     "WfnFunctionality": WfnFunctionality(client),
+}
+
+# create a dictionary of pretty names
+pretty_names = {
+    "BridgeDamage": "Bridge Damage",
+    "BuildingClusterRecovery": "Building Cluster Recovery",
+    "BuildingEconLoss": "Building Economic Loss",
+    "BuildingFunctionality": "Building Functionality",
+    "BuildingNonStructDamage": "Building Non-Structural Damage",
+    "BuildingStructuralDamage": "Building Structural Damage",
+    "BuyoutDecision": "Buyout Decision",
+    "CapitalShocks": "Capital Shocks",
+    "CombinedWindWaveSurgeBuildingDamage": "Combined Wind Wave Surge Building Damage",
+    "CombinedWindWaveSurgeBuildingLoss": "Combined Wind Wave Surge Building Loss",
+    "CommercialBuildingRecovery": "Commercial Building Recovery",
+    "CumulativeBuildingDamage": "Cumulative Building Damage",
+    "EpfDamage": "Electric Power Facility Damage",
+    "EpfRepairCost": "Electric Power Facility Repair Cost",
+    "EpfRestoration": "Electric Power Facility Restoration",
+    "EpnFunctionality": "Electric Power Network Functionality",
+    "GalvestonCGEModel": "Galveston CGE Model",
+    "GasFacilityDamage": "Gas Facility Damage",
+    "HousingRecoverySequential": "Housing Recovery Sequential",
+    "HousingUnitAllocation": "Housing Unit Allocation",
+    "HousingValuationRecovery": "Housing Valuation Recovery",
+    "INDP": "Infrastructure Network Disruption Planning",
+    "JoplinCGEModel": "Joplin CGE Model",
+    "JoplinEmpiricalBuildingRestoration": "Joplin Empirical Building Restoration",
+    "MeanDamage": "Mean Damage",
+    "MlEnabledCgeSlc": "Machine Learning Enabled CGE SLC",
+    "MonteCarloLimitStateProbability": "Monte Carlo Limit State Probability",
+    "MultiObjectiveRetrofitOptimization": "Multi-Objective Retrofit Optimization",
+    "NciFunctionality": "Network Cascading Interdependency Functionality",
+    "PipelineDamage": "Pipeline Damage",
+    "PipelineDamageRepairRate": "Pipeline Damage Repair Rate",
+    "PipelineFunctionality": "Pipeline Functionality",
+    "PipelineRepairCost": "Pipeline Repair Cost",
+    "PipelineRestoration": "Pipeline Restoration",
+    "PopulationDislocation": "Population Dislocation",
+    "ResidentialBuildingRecovery": "Residential Building Recovery",
+    "RoadDamage": "Road Damage",
+    "SaltLakeCGEModel": "Salt Lake CGE Model",
+    "SeasideCGEModel": "Seaside CGE Model",
+    "SocialVulnerabilityScore": "Social Vulnerability Score",
+    "TornadoEpnDamage": "Tornado Electric Power Network Damage",
+    "TrafficFlowRecovery": "Traffic Flow Recovery",
+    "WaterFacilityDamage": "Water Facility Damage",
+    "WaterFacilityRepairCost": "Water Facility Repair Cost",
+    "WaterFacilityDamage": "Water Facility Damage",
+    "WaterFacilityRestoration": "Water Facility Restoration",
+    "WfnFunctionality": "Water Facility Network Functionality",
 }
 
 input_types_for_analysis = defaultdict(list)
@@ -202,5 +253,9 @@ if len(analysis_classes) != len(dependency_graph):
         if analysis_name not in dependency_graph:
             print(analysis_name)
             dependency_graph[analysis_name] = {"before": {}, "after": {}}
+
+# Add pretty names
+for analysis_name, value in dependency_graph.items():
+    value["pretty_name"] = pretty_names[analysis_name]
 
 json.dump(dependency_graph, open("new_dependency_graph.json", "w"), indent=4)

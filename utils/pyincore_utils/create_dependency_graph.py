@@ -222,7 +222,7 @@ for value in dependency_graph.values():
         if k == "before":
             value[k] = defaultdict(list)
             for analysis, propA, propB in list(v):
-                value[k][analysis].append({"from": propB, "to": propA})
+                value[k][analysis].append({"from": propA, "to": propB})
 
             # value[k] = dict(
             #     [

@@ -114,54 +114,138 @@ analysis_classes = {
 }
 
 # create a dictionary of pretty names
-pretty_names = {
-    "BridgeDamage": "Bridge Damage",
-    "BuildingClusterRecovery": "Building Cluster Recovery",
-    "BuildingEconLoss": "Building Economic Loss",
-    "BuildingFunctionality": "Building Functionality",
-    "BuildingNonStructDamage": "Building Non-Structural Damage",
-    "BuildingStructuralDamage": "Building Structural Damage",
-    "BuyoutDecision": "Buyout Decision",
-    "CapitalShocks": "Capital Shocks",
-    "CombinedWindWaveSurgeBuildingDamage": "Combined Wind Wave Surge Building Damage",
-    "CombinedWindWaveSurgeBuildingLoss": "Combined Wind Wave Surge Building Loss",
-    "CommercialBuildingRecovery": "Commercial Building Recovery",
-    "CumulativeBuildingDamage": "Cumulative Building Damage",
-    "EpfDamage": "Electric Power Facility Damage",
-    "EpfRepairCost": "Electric Power Facility Repair Cost",
-    "EpfRestoration": "Electric Power Facility Restoration",
-    "EpnFunctionality": "Electric Power Network Functionality",
-    "GalvestonCGEModel": "Galveston CGE Model",
-    "GasFacilityDamage": "Gas Facility Damage",
-    "HousingRecoverySequential": "Housing Recovery Sequential",
-    "HousingUnitAllocation": "Housing Unit Allocation",
-    "HousingValuationRecovery": "Housing Valuation Recovery",
-    "INDP": "Infrastructure Network Disruption Planning",
-    "JoplinCGEModel": "Joplin CGE Model",
-    "JoplinEmpiricalBuildingRestoration": "Joplin Empirical Building Restoration",
-    "MeanDamage": "Mean Damage",
-    "MlEnabledCgeSlc": "Machine Learning Enabled CGE SLC",
-    "MonteCarloLimitStateProbability": "Monte Carlo Limit State Probability",
-    "MultiObjectiveRetrofitOptimization": "Multi-Objective Retrofit Optimization",
-    "NciFunctionality": "Network Cascading Interdependency Functionality",
-    "PipelineDamage": "Pipeline Damage",
-    "PipelineDamageRepairRate": "Pipeline Damage Repair Rate",
-    "PipelineFunctionality": "Pipeline Functionality",
-    "PipelineRepairCost": "Pipeline Repair Cost",
-    "PipelineRestoration": "Pipeline Restoration",
-    "PopulationDislocation": "Population Dislocation",
-    "ResidentialBuildingRecovery": "Residential Building Recovery",
-    "RoadDamage": "Road Damage",
-    "SaltLakeCGEModel": "Salt Lake CGE Model",
-    "SeasideCGEModel": "Seaside CGE Model",
-    "SocialVulnerabilityScore": "Social Vulnerability Score",
-    "TornadoEpnDamage": "Tornado Electric Power Network Damage",
-    "TrafficFlowRecovery": "Traffic Flow Recovery",
-    "WaterFacilityDamage": "Water Facility Damage",
-    "WaterFacilityRepairCost": "Water Facility Repair Cost",
-    "WaterFacilityDamage": "Water Facility Damage",
-    "WaterFacilityRestoration": "Water Facility Restoration",
-    "WfnFunctionality": "Water Facility Network Functionality",
+pretty_tagged_names = {
+    "BridgeDamage": {"name": "Bridge Damage", "tags": ["Bridge"]},
+    "BuildingClusterRecovery": {
+        "name": "Building Cluster Recovery",
+        "tags": ["Building"],
+    },
+    "BuildingEconLoss": {"name": "Building Economic Loss", "tags": ["Building"]},
+    "BuildingFunctionality": {"name": "Building Functionality", "tags": ["Building"]},
+    "BuildingNonStructDamage": {
+        "name": "Building Non-Structural Damage",
+        "tags": ["Building"],
+    },
+    "BuildingStructuralDamage": {
+        "name": "Building Structural Damage",
+        "tags": ["Building"],
+    },
+    "BuyoutDecision": {"name": "Buyout Decision", "tags": ["Decision Support"]},
+    "CapitalShocks": {"name": "Capital Shocks", "tags": ["Economic"]},
+    "CombinedWindWaveSurgeBuildingDamage": {
+        "name": "Combined Wind Wave Surge Building Damage",
+        "tags": ["Building"],
+    },
+    "CombinedWindWaveSurgeBuildingLoss": {
+        "name": "Combined Wind Wave Surge Building Loss",
+        "tags": ["Building"],
+    },
+    "CommercialBuildingRecovery": {
+        "name": "Commercial Building Recovery",
+        "tags": ["Socioeconomic"],
+    },
+    "CumulativeBuildingDamage": {
+        "name": "Cumulative Building Damage",
+        "tags": ["Building"],
+    },
+    "EpfDamage": {"name": "Electric Power Facility Damage", "tags": ["Lifeline"]},
+    "EpfRepairCost": {
+        "name": "Electric Power Facility Repair Cost",
+        "tags": ["Lifeline"],
+    },
+    "EpfRestoration": {
+        "name": "Electric Power Facility Restoration",
+        "tags": ["LifeLine"],
+    },
+    "EpnFunctionality": {
+        "name": "Electric Power Network Functionality",
+        "tags": ["Lifeline"],
+    },
+    "GalvestonCGEModel": {"name": "Galveston CGE Model", "tags": ["Economic"]},
+    "GasFacilityDamage": {"name": "Gas Facility Damage", "tags": ["Lifeline"]},
+    "HousingRecoverySequential": {
+        "name": "Housing Recovery Sequential",
+        "tags": ["Socioeconomic", "Decision Support"],
+    },
+    "HousingUnitAllocation": {
+        "name": "Housing Unit Allocation",
+        "tags": ["Socioeconomic"],
+    },
+    "HousingValuationRecovery": {
+        "name": "Housing Valuation Recovery",
+        "tags": ["Socioeconomic"],
+    },
+    "INDP": {
+        "name": "Infrastructure Network Disruption Planning",
+        "tags": ["Decision Support"],
+    },
+    "JoplinCGEModel": {"name": "Joplin CGE Model", "tags": ["Economic"]},
+    "JoplinEmpiricalBuildingRestoration": {
+        "name": "Joplin Empirical Building Restoration",
+        "tags": ["Building"],
+    },
+    "MeanDamage": {"name": "Mean Damage", "tags": []},
+    "MlEnabledCgeSlc": {
+        "name": "Machine Learning Enabled CGE SLC",
+        "tags": ["Economic"],
+    },
+    "MonteCarloLimitStateProbability": {
+        "name": "Monte Carlo Limit State Probability",
+        "tags": ["Decision Support"],
+    },
+    "MultiObjectiveRetrofitOptimization": {
+        "name": "Multi-Objective Retrofit Optimization",
+        "tags": ["Decision Support"],
+    },
+    "NciFunctionality": {
+        "name": "Network Cascading Interdependency Functionality",
+        "tags": ["Decision Support"],
+    },
+    "PipelineDamage": {"name": "Pipeline Damage", "tags": ["Lifeline"]},
+    "PipelineDamageRepairRate": {
+        "name": "Pipeline Damage Repair Rate",
+        "tags": ["Lifeline"],
+    },
+    "PipelineFunctionality": {"name": "Pipeline Functionality", "tags": ["Lifeline"]},
+    "PipelineRepairCost": {"name": "Pipeline Repair Cost", "tags": ["Lifeline"]},
+    "PipelineRestoration": {"name": "Pipeline Restoration", "tags": ["Lifeline"]},
+    "PopulationDislocation": {
+        "name": "Population Dislocation",
+        "tags": ["Socioeconomic"],
+    },
+    "ResidentialBuildingRecovery": {
+        "name": "Residential Building Recovery",
+        "tags": ["Socioeconomic", "Decision Support"],
+    },
+    "RoadDamage": {"name": "Road Damage", "tags": ["Lifeline"]},
+    "SaltLakeCGEModel": {"name": "Salt Lake CGE Model", "tags": ["Economic"]},
+    "SeasideCGEModel": {"name": "Seaside CGE Model", "tags": ["Economic"]},
+    "SocialVulnerabilityScore": {
+        "name": "Social Vulnerability Score",
+        "tags": ["Socioeconomic"],
+    },
+    "TornadoEpnDamage": {
+        "name": "Tornado Electric Power Network Damage",
+        "tags": ["Lifeline"],
+    },
+    "TrafficFlowRecovery": {
+        "name": "Traffic Flow Recovery",
+        "tags": ["Decision Support", "Lifeline"],
+    },
+    "WaterFacilityDamage": {"name": "Water Facility Damage", "tags": ["Lifeline"]},
+    "WaterFacilityRepairCost": {
+        "name": "Water Facility Repair Cost",
+        "tags": ["Lifeline"],
+    },
+    "WaterFacilityDamage": {"name": "Water Facility Damage", "tags": ["Lifeline"]},
+    "WaterFacilityRestoration": {
+        "name": "Water Facility Restoration",
+        "tags": ["Lifeline"],
+    },
+    "WfnFunctionality": {
+        "name": "Water Facility Network Functionality",
+        "tags": ["Lifeline"],
+    },
 }
 
 input_types_for_analysis = defaultdict(list)
@@ -256,6 +340,7 @@ if len(analysis_classes) != len(dependency_graph):
 
 # Add pretty names
 for analysis_name, value in dependency_graph.items():
-    value["pretty_name"] = pretty_names[analysis_name]
+    value["pretty_name"] = pretty_tagged_names[analysis_name]["name"]
+    value["tags"] = pretty_tagged_names[analysis_name]["tags"]
 
 json.dump(dependency_graph, open("new_dependency_graph.json", "w"), indent=4)

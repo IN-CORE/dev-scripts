@@ -5,9 +5,8 @@ from jinja2 import Template
 
 # Read the Jinja2 email template
 def get_email_template(filename):        
-    with open("templates/simplified_welcome_email_inlined.html", "r") as file:
+    with open(filename, "r") as file:
         template_str = file.read()
-
     jinja_template = Template(template_str)
     return jinja_template
 

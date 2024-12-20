@@ -48,7 +48,7 @@ app.secret_key = 'incore'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/approval/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         admin_username = request.form['username']
@@ -66,13 +66,13 @@ def login():
 
     return render_template('login.html')
 
-@app.route('/logout')
+@app.route('/approval/logout')
 def logout():
     session.clear()
     flash('You have been logged out', 'success')
     return redirect(url_for('login'))
 
-@app.route('/')
+@app.route('/approval')
 def index():
     token = session.get('token')
     if not token:
@@ -81,7 +81,7 @@ def index():
     user_approval = incoreuser.IncoreUserApproval.init_with_token(token)
     return render_template('index.html', users=user_approval.unapproved_users, blacklisted_users=user_approval.blacklisted_users)
 
-@app.route('/approve/<user_id>', methods=['POST'])
+@app.route('/approval/approve/<user_id>', methods=['POST'])
 def approve(user_id):
     token = session.get('token')
     if not token:

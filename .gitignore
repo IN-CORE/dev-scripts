@@ -72,3 +72,4 @@ NSI
 # data files
 utils/geoserver_utils/data/
 utils/gis_utils/data/
+*env*

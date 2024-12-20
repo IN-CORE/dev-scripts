@@ -38,7 +38,7 @@ def send_noti_email(to_email_list, users):
     return send_email(subject, body, to_email_list, from_email, smtp_server, smtp_port), to_email_list
 
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(check_new_users, 'interval', minutes=1)
+sched.add_job(check_new_users, 'interval', hours=6)
 sched.start()
 
 app = Flask(__name__)

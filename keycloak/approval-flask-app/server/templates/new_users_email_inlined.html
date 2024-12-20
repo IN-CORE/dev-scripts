@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Welcome to IN-CORE</title>
+    
+</head>
+<body style="font-family: Helvetica, sans-serif; font-size: 16px; line-height: 1.5; background-color: #f4f5f6; margin: 0; padding: 0; color: #333;">
+    <div class="container" style="max-width: 600px; margin: 24px auto; padding: 20px; background-color: #ffffff; border: 1px solid #eaebed; border-radius: 8px;">
+        <div class="content">
+            <img src="https://incore.ncsa.illinois.edu/doc/incore/_static/resilience-logo.png" alt="IN-CORE" style="width: 50%; height: auto; display: block; margin: 0 auto 16px;">
+            <p style="margin: 0 0 16px;">Hi, IN-CORE Admin,</p>
+            <p style="margin: 0 0 16px;">New users are signed up:</p>
+            <table style="width: 100%; border: 1px solid black; border-collapse: collapse;" width="100%">
+                <tr>
+                    <th style="border: 1px solid black; border-collapse: collapse; padding: 8px;">Username</th>
+                    <th style="border: 1px solid black; border-collapse: collapse; padding: 8px;">Email</th>
+                    <th style="border: 1px solid black; border-collapse: collapse; padding: 8px;">First Name</th>
+                    <th style="border: 1px solid black; border-collapse: collapse; padding: 8px;">Last Name</th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td style="border: 1px solid black; border-collapse: collapse; padding: 8px;">{{ user['username'] }}</td>
+                    <td style="border: 1px solid black; border-collapse: collapse; padding: 8px;">{{ user['email'] }}</td>
+                    <td style="border: 1px solid black; border-collapse: collapse; padding: 8px;">{{ user['firstName'] }}</td>
+                    <td style="border: 1px solid black; border-collapse: collapse; padding: 8px;">{{ user['lastName'] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br>
+            <p style="margin: 0 0 16px;">Click <a href="{{ approve_app_url }}" style="color: #0867ec; text-decoration: underline;">here</a> to approve them.</p>
+
+            <p style="margin: 0 0 16px;">- IN-CORE System Bot</p>
+            
+        </div>
+    </div>
+</body>
+</html>

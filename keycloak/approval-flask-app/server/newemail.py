@@ -14,12 +14,16 @@ def send_email(subject, body, to_email, from_email, smtp_server, smtp_port):
     # Create the email message
     msg = MIMEMultipart()
     msg['From'] = from_email
-    msg['To'] = to_email
+    if isinstance(to_email, list): 
+        msg['To'] = " ,".join(to_email)
+    else:
+        msg['To'] = to_email
     msg['Subject'] = subject
 
     # Attach the email body
     msg.attach(MIMEText(body, 'html'))
     success = False
+    server = None
     try:
         # Set up the SMTP server
         server = smtplib.SMTP(smtp_server, smtp_port,timeout=10)
@@ -35,8 +39,9 @@ def send_email(subject, body, to_email, from_email, smtp_server, smtp_port):
         success = False
 
     finally:
-        server.quit()
-        print(f"SMTP server connection closed")
+        if server != None:
+            server.quit()
+            print(f"SMTP server connection closed")
         return success
 
 # Example usage
@@ -47,8 +52,7 @@ if __name__ == "__main__":
     from_email = "no-reply@illinois.edu"
     smtp_server = "outbound-relays.techservices.illinois.edu"
     smtp_port = 25
-    # smtp_user = "your_email@example.com"
-    # smtp_password = "your_password"
+
 
     body = get_email_template.render({"name": "Sakib Khan", "username": "sakib"})
     send_email(subject, body, to_email, from_email, smtp_server, smtp_port)

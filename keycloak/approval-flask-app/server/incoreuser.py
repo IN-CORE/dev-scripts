@@ -1,11 +1,14 @@
 
 from keycloak import KeycloakAdmin, KeycloakOpenID
 
+server_url = "https://incore.ncsa.illinois.edu/auth/"
+
 class IncoreUserApproval:
     def __init__(self, key_admin):
         self.blacklist = ["@qq.com"]
         self.UNAPPROVED_GROUP_ID = "2434d561-bdf7-4759-b268-f0a0af0d7f02" # for 0unapproved group
         self.INCORE_USER_GROUP_ID = "4fbbb905-4c80-4b69-9b78-00ac7ab55371" # for incore user group
+        self.server_url = server_url
         self.key_admin = key_admin
         self.unapproved_users = []
         self.approved_users = []
@@ -26,7 +29,7 @@ class IncoreUserApproval:
     def get_keycloak_admin_token(admin_username, admin_password):
         try:
             keycloak_openid = KeycloakOpenID(
-                server_url="https://incore.ncsa.illinois.edu/auth/",
+                server_url=server_url,
                 client_id="admin-cli",
                 realm_name="master"
             )
@@ -40,7 +43,7 @@ class IncoreUserApproval:
     def get_keycloak_admin_by_token(token):
         try:
             keycloak_admin = KeycloakAdmin(
-                server_url="https://incore.ncsa.illinois.edu/auth/",
+                server_url=server_url,
                 client_id="admin-cli",
                 realm_name="In-core",
                 token=token
@@ -54,13 +57,13 @@ class IncoreUserApproval:
     def get_keycloak_admin(admin_username, admin_password):
         try:
             keycloak_openid = KeycloakOpenID(
-                server_url="https://incore.ncsa.illinois.edu/auth/",
+                server_url=server_url,
                 client_id="admin-cli",
                 realm_name="master"
             )
             token = keycloak_openid.token(username=admin_username, password=admin_password, grant_type='password')
             keycloak_admin = KeycloakAdmin(
-                server_url="https://incore.ncsa.illinois.edu/auth/",
+                server_url=server_url,
                 client_id="admin-cli",
                 realm_name="In-core",
                 token=token
@@ -164,7 +167,4 @@ class IncoreUserApproval:
         return False
 
 
-if __name__ == "__main__":
-    approval = IncoreUserApproval("keycloak", "Mbge2f9ZAwtSnc9N")
-    approval.summary()
-#    approval.approve_users(approval.unapproved_users)
+

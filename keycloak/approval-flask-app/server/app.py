@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 from datetime import timedelta
 import incoreuser
 from newemail import send_email, get_email_template
@@ -71,6 +71,12 @@ def logout():
     session.clear()
     flash('You have been logged out', 'success')
     return redirect(url_for('login'))
+
+@app.route('/approval/healthz')
+def healthz():
+    # Add any specific checks for the application's health
+    health_status = {"status": "healthy"}
+    return jsonify(health_status), 200    
 
 @app.route('/approval')
 def index():

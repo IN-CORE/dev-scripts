@@ -78,7 +78,7 @@ def healthz():
     health_status = {"status": "healthy"}
     return jsonify(health_status), 200    
 
-@app.route('/approval')
+@app.route('/approval/')
 def index():
     token = session.get('token')
     if not token:

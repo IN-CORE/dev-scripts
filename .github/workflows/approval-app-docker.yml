@@ -9,7 +9,6 @@ on:
 
 env:
   MAIN_REPO: IN-CORE/dev-scripts
-  DOCKERHUB_ORG: incore
   NCSAHUB: hub.ncsa.illinois.edu/incore
   PLATFORM: "linux/amd64"
 
@@ -52,13 +51,7 @@ jobs:
           IMAGE="approval-app"
           IMAGES=""
           for tag in ${tags}; do
-            if [ "${{ secrets.DOCKERHUB_USERNAME }}" != "" ]; then
-              IMAGES="${IMAGES}${{ env.DOCKERHUB_ORG }}/${IMAGE}:${tag},"
-            fi
-            if [ "${{ secrets.HUB_USERNAME }}" != "" ]; then
-              IMAGES="${IMAGES}${{ env.NCSAHUB }}/${IMAGE}:${tag},"
-            fi
-            IMAGES="${IMAGES}ghcr.io/${OWNER_LC}/${IMAGE}:${tag},"
+            IMAGES="${IMAGES}${{ env.NCSAHUB }}/${IMAGE}:${tag},"
           done
           IMAGES="${IMAGES%,}"
 
@@ -78,27 +71,12 @@ jobs:
           echo "Name:      ${{ steps.buildx.outputs.name }}"
           echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
 
-      - name: Login to DockerHub
-        if: ${{ secrets.DOCKERHUB_USERNAME && secrets.DOCKERHUB_PASSWORD }}
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
       - name: Login to NCSA Hub
-        if: ${{ secrets.HUB_USERNAME && secrets.HUB_PASSWORD }}
         uses: docker/login-action@v2
         with:
           registry: hub.ncsa.illinois.edu
           username: ${{ secrets.HUB_USERNAME }}
           password: ${{ secrets.HUB_PASSWORD }}
-
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v3
@@ -115,12 +93,3 @@ jobs:
             VERSION=${{ env.VERSION }}
             BUILDNUMBER=${{ github.run_number }}
             GITSHA1=${{ github.sha }}
-
-      - name: Update Docker Hub Description
-        if: ${{ secrets.DOCKERHUB_USERNAME && secrets.DOCKERHUB_PASSWORD }}
-        uses: peter-evans/dockerhub-description@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          repository: ${{ env.DOCKERHUB_ORG }}/approval-app
-          readme-filepath: README.md

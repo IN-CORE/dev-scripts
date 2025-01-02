@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - master
       - develop
   pull_request:
 
@@ -35,7 +36,7 @@ jobs:
           OWNER=${{ github.repository_owner }}
           OWNER_LC=${OWNER,,}
 
-          if [ "$BRANCH" == "main" ]; then
+          if [ "$BRANCH" == "master" || "$BRANCH" == "main" ]; then
             VERSION="$(awk '/^# \[/ { print $2; exit }' CHANGELOG.md | sed -e 's/\[//' -e 's/\]//')"
             tags="latest"
             tmpversion="${VERSION}"

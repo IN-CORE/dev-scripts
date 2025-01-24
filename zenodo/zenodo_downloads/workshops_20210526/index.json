@@ -1,0 +1,49 @@
+{
+  "parent": "workshops",
+  "entries": [
+    {
+      "file": "workshops/20210526/agenda.md",
+      "parent": null
+    },
+    {
+      "file": "workshops/20210526/session2/session2-hazard.ipynb",
+      "parent": "workshops/20210526/agenda"
+    },
+    {
+      "file": "workshops/20210526/session2/session2-assignment.ipynb",
+      "parent": "workshops/20210526/agenda"
+    },
+    {
+      "file": "workshops/20210526/session2/session2-assignment-answer.ipynb",
+      "parent": "workshops/20210526/agenda"
+    },
+    {
+      "file": "workshops/20210526/session2/session2-assignment-answer.ipynb",
+      "parent": "workshops/20210526/agenda"
+    },
+    {
+      "file": "workshops/20210526/session3/session3-damage-analysis.ipynb",
+      "parent": "workshops/20210526/agenda"
+    },
+    {
+      "file": "workshops/20210526/session3/session3-assignment.ipynb",
+      "parent": "workshops/20210526/agenda"
+    },
+    {
+      "file": "workshops/20210526/session3/session3-assignment-answer.ipynb",
+      "parent": "workshops/20210526/agenda"
+    },
+    {
+      "file": "workshops/20210526/session4/session4-viz.ipynb",
+      "parent": "workshops/20210526/agenda"
+    },
+    {
+      "file": "workshops/20210526/session4/session4-assignment.ipynb",
+      "parent": "workshops/20210526/agenda"
+    },
+    {
+      "file": "workshops/20210526/session4/session4-assignment-answer.ipynb",
+      "parent": "workshops/20210526/agenda"
+    }
+  ]
+}

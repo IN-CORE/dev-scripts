@@ -1,0 +1,9 @@
+{
+  "parent": "tutorials",
+  "entries": [
+    {
+      "file": "notebooks/create_dataset/create_dfr3_object.ipynb",
+      "parent": null
+    }
+  ]
+}

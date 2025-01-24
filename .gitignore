@@ -53,6 +53,7 @@ utils/fragility_utils/data/
 *test*
 !retrofit-strategy-script/test.sh
 !retrofit-strategy-script/binning-test.py
+!zenodo/zenodo_downloads/Galveston_testbed
 
 # build files
 *pycache*

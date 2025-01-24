@@ -2,7 +2,8 @@
   "parent": "tutorials",
   "entries": [
     {
-      "file": "notebooks/create_dataset/create_dfr3_object.ipynb",
+      "source_file": "create_dfr3_object/create_dfr3_object.ipynb",
+      "dest_file": "notebooks/create_dfr3_object/create_dfr3_object.ipynb",
       "parent": null
     }
   ]

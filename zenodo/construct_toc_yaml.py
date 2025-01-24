@@ -1,17 +1,20 @@
 import os
 import json
+import shutil
+
 import yaml
 
 ZENODO_DIR = "zenodo_downloads"  # the folder where downloaded zip files exists
-TOC_FILE = "_toc.yml"
+COMPANION_FOLDERS = ["files", "images"]  # Companion folders to copy alongside the main notebook file
+DEST_DIR = "jupyter_book"
 
 
 def load_index_files(zenodo_dir=ZENODO_DIR):
     """Loads index.json files from all first-level subfolders in"""
     index_data = {}
 
-    for folder in os.listdir(ZENODO_DIR):
-        folder_path = os.path.join(ZENODO_DIR, folder)
+    for folder in os.listdir(zenodo_dir):
+        folder_path = os.path.join(zenodo_dir, folder)
         index_file = os.path.join(folder_path, "index.json")
 
         if os.path.isdir(folder_path) and os.path.exists(index_file):
@@ -42,7 +45,7 @@ def build_toc_structure(index_data):
                 toc_structure["chapters"].append(top_level_entry)
 
         for entry in entries:
-            file_entry = {"file": entry["file"]}
+            file_entry = {"file": entry["dest_file"]}
 
             # If it has a parent, store in a map for later processing
             if entry["parent"]:
@@ -70,14 +73,50 @@ def build_toc_structure(index_data):
     return toc_structure
 
 
-def save_toc_file(toc_structure, toc_file_path=TOC_FILE):
+def save_toc_file(toc_structure, dest_dir=DEST_DIR):
     """Writes the constructed TOC structure to _toc.yml"""
+    os.makedirs(dest_dir, exist_ok=True)  # Ensure the destination directory exists
+    toc_file_path = os.path.join(dest_dir, "_toc.yml")
+
     with open(toc_file_path, "w") as f:
         yaml.dump(toc_structure, f, default_flow_style=False, sort_keys=False)
     print(f"✅ Successfully generated {toc_file_path}")
+
+
+def copy_files(index_data, zenodo_dir=ZENODO_DIR, dest_dir=DEST_DIR):
+    """Copies files and companion folders to their structured destinations based on index.json."""
+    os.makedirs(dest_dir, exist_ok=True)  # Ensure the destination directory exists
+
+    for folder, data in index_data.items():
+        folder_path = os.path.join(zenodo_dir, folder)  # Source folder
+
+        for entry in data["entries"]:
+            source_file = os.path.join(zenodo_dir, entry["source_file"]) # Original location
+            source_folder = os.path.dirname(source_file)
+            dest_file = os.path.join(dest_dir, entry["dest_file"])  # Target location
+            dest_folder = os.path.dirname(dest_file)
+
+            # Ensure destination directories exist
+            os.makedirs(os.path.dirname(dest_file), exist_ok=True)
+
+            # Copy the main file
+            if os.path.exists(source_file):
+                shutil.copy2(source_file, dest_file)
+                print(f"✅ Copied {source_file} ➝ {dest_file}")
+            else:
+                print(f"⚠️ Warning: {source_file} not found!")
+
+            for companion_folder in ["files", "images"]:  # Only copy "files" and "images" folders
+                source_companion = os.path.join(source_folder, companion_folder)
+                dest_companion = os.path.join(dest_folder, companion_folder)
+
+                if os.path.exists(source_companion) and os.path.isdir(source_companion):
+                    shutil.copytree(source_companion, dest_companion, dirs_exist_ok=True)
+                    print(f"📂 Copied companion folder {source_companion} ➝ {dest_companion}")
 
 
 if __name__ == "__main__":
     index_data = load_index_files()
     toc_structure = build_toc_structure(index_data)
     save_toc_file(toc_structure)
+    copy_files(index_data)

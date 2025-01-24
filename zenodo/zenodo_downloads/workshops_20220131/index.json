@@ -2,23 +2,28 @@
   "parent": "workshops",
   "entries": [
     {
-      "file": "workshops/20220131/agenda.md",
+      "source_file": "workshops_20220131/agenda.md",
+      "dest_file": "workshops/20220131/agenda.md",
       "parent": null
     },
     {
-      "file": "workshops/20220131/session1/session1-jupyter-intro.ipynb",
+      "source_file": "workshops_20220131/session1/session1-jupyter-intro.ipynb",
+      "dest_file": "workshops/20220131/session1/session1-jupyter-intro.ipynb",
       "parent": "workshops/20220131/agenda"
     },
     {
-      "file": "workshops/20220131/session2/session2-hazard.ipynb",
+      "source_file": "workshops_20220131/session2/session2-hazard.ipynb",
+      "dest_file": "workshops/20220131/session2/session2-hazard.ipynb",
       "parent": "workshops/20220131/agenda"
     },
     {
-      "file": "workshops/20220131/session3/session3-building_damage_analysis.ipynb",
+      "source_file": "workshops_20220131/session3/session3-building_damage_analysis.ipynb",
+      "dest_file": "workshops/20220131/session3/session3-building_damage_analysis.ipynb",
       "parent": "workshops/20220131/agenda"
     },
     {
-      "file": "workshops/20220131/session4/session4-damage-analyses-lifelines.ipynb",
+      "source_file": "workshops_20220131/session4/session4-damage-analyses-lifelines.ipynb",
+      "dest_file": "workshops/20220131/session4/session4-damage-analyses-lifelines.ipynb",
       "parent": "workshops/20220131/agenda"
     }
   ]

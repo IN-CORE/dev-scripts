@@ -2,7 +2,8 @@
   "parent": "tutorials",
   "entries": [
     {
-      "file": "notebooks/create_dataset/create_dataset.ipynb",
+      "source_file": "create_dataset/create_dataset.ipynb",
+      "dest_file": "notebooks/create_dataset/create_dataset.ipynb",
       "parent": null
     }
   ]

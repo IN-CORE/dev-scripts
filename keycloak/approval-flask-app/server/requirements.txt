@@ -1,0 +1,4 @@
+Flask
+python-keycloak
+apscheduler
+python-dotenv

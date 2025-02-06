@@ -1,7 +1,7 @@
 
 from keycloak import KeycloakAdmin, KeycloakOpenID
 
-server_url = "https://incore.ncsa.illinois.edu/auth/"
+server_url = "https://tools.in-core.org/auth/"
 
 class IncoreUserApproval:
     def __init__(self, key_admin):

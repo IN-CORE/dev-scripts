@@ -34,6 +34,7 @@ from pyincore.analyses.joplinempiricalbuildingrestoration import (
 )
 from pyincore.analyses.meandamage import MeanDamage
 from pyincore.analyses.mlenabledcgeslc import MlEnabledCgeSlc
+from pyincore.analyses.mlenabledcgejoplin import MlEnabledCgeJoplin
 from pyincore.analyses.montecarlolimitstateprobability import (
     MonteCarloLimitStateProbability,
 )
@@ -90,6 +91,7 @@ analysis_classes = {
     "JoplinEmpiricalBuildingRestoration": JoplinEmpiricalBuildingRestoration(client),
     "MeanDamage": MeanDamage(client),
     "MlEnabledCgeSlc": MlEnabledCgeSlc(client),
+    "MlEnabledCgeJoplin": MlEnabledCgeJoplin(client),
     "MonteCarloLimitStateProbability": MonteCarloLimitStateProbability(client),
     "MultiObjectiveRetrofitOptimization": MultiObjectiveRetrofitOptimization(client),
     "NciFunctionality": NciFunctionality(client),
@@ -187,6 +189,10 @@ pretty_tagged_names = {
     "MeanDamage": {"name": "Mean Damage", "tags": []},
     "MlEnabledCgeSlc": {
         "name": "Machine Learning Enabled CGE SLC",
+        "tags": ["Economic"],
+    },
+    "MlEnabledCgeJoplin": {
+        "name": "Machine Learning Enabled CGE Joplin",
         "tags": ["Economic"],
     },
     "MonteCarloLimitStateProbability": {
@@ -343,4 +349,20 @@ for analysis_name, value in dependency_graph.items():
     value["pretty_name"] = pretty_tagged_names[analysis_name]["name"]
     value["tags"] = pretty_tagged_names[analysis_name]["tags"]
 
-json.dump(dependency_graph, open("new_dependency_graph.json", "w"), indent=4)
+# add input dataset types in dependency graph
+for analysis_name, analysis_class in analysis_classes.items():
+    spec = analysis_class.get_spec()
+    dependency_graph[analysis_name]["inputs"] = dict()
+    hazards = spec.get("input_hazards", [])
+    datasets = spec.get("input_datasets", [])
+    print(analysis_name)
+    for hazard in hazards:
+        dependency_graph[analysis_name]["inputs"][hazard["id"]] = (
+            hazard["type"] if isinstance(hazard["type"], list) else [hazard["type"]]
+        )
+    for dataset in datasets:
+        dependency_graph[analysis_name]["inputs"][dataset["id"]] = (
+            dataset["type"] if isinstance(dataset["type"], list) else [dataset["type"]]
+        )
+
+json.dump(dependency_graph, open("test_dependencyGraph.json", "w"), indent=4)

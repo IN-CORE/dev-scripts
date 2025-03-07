@@ -65,192 +65,295 @@ client = IncoreClient()
 
 # Create a dictionary of all the classes
 analysis_classes = {
-    "BridgeDamage": BridgeDamage(client),
-    "BuildingClusterRecovery": BuildingClusterRecovery(client),
-    "BuildingEconLoss": BuildingEconLoss(client),
-    "BuildingFunctionality": BuildingFunctionality(client),
-    "BuildingNonStructDamage": BuildingNonStructDamage(client),
-    "BuildingStructuralDamage": BuildingStructuralDamage(client),
-    "BuyoutDecision": BuyoutDecision(client),
-    "CapitalShocks": CapitalShocks(client),
-    "CombinedWindWaveSurgeBuildingDamage": CombinedWindWaveSurgeBuildingDamage(client),
-    "CombinedWindWaveSurgeBuildingLoss": CombinedWindWaveSurgeBuildingLoss(client),
-    "CommercialBuildingRecovery": CommercialBuildingRecovery(client),
-    "CumulativeBuildingDamage": CumulativeBuildingDamage(client),
-    "EpfDamage": EpfDamage(client),
-    "EpfRepairCost": EpfRepairCost(client),
-    "EpfRestoration": EpfRestoration(client),
-    "EpnFunctionality": EpnFunctionality(client),
-    "GalvestonCGEModel": GalvestonCGEModel(client),
-    "GasFacilityDamage": GasFacilityDamage(client),
-    "HousingRecoverySequential": HousingRecoverySequential(client),
-    "HousingUnitAllocation": HousingUnitAllocation(client),
-    "HousingValuationRecovery": HousingValuationRecovery(client),
-    "INDP": INDP(client),
-    "JoplinCGEModel": JoplinCGEModel(client),
-    "JoplinEmpiricalBuildingRestoration": JoplinEmpiricalBuildingRestoration(client),
-    "MeanDamage": MeanDamage(client),
-    "MlEnabledCgeSlc": MlEnabledCgeSlc(client),
-    "MlEnabledCgeJoplin": MlEnabledCgeJoplin(client),
-    "MonteCarloLimitStateProbability": MonteCarloLimitStateProbability(client),
-    "MultiObjectiveRetrofitOptimization": MultiObjectiveRetrofitOptimization(client),
-    "NciFunctionality": NciFunctionality(client),
-    "PipelineDamage": PipelineDamage(client),
-    "PipelineDamageRepairRate": PipelineDamageRepairRate(client),
-    "PipelineFunctionality": PipelineFunctionality(client),
-    "PipelineRepairCost": PipelineRepairCost(client),
-    "PipelineRestoration": PipelineRestoration(client),
-    "PopulationDislocation": PopulationDislocation(client),
-    "ResidentialBuildingRecovery": ResidentialBuildingRecovery(client),
-    "RoadDamage": RoadDamage(client),
-    "SaltLakeCGEModel": SaltLakeCGEModel(client),
-    "SeasideCGEModel": SeasideCGEModel(client),
-    "SocialVulnerabilityScore": SocialVulnerabilityScore(client),
-    "TornadoEpnDamage": TornadoEpnDamage(client),
-    "TrafficFlowRecovery": TrafficFlowRecovery(client),
-    "WaterFacilityDamage": WaterFacilityDamage(client),
-    "WaterFacilityRepairCost": WaterFacilityRepairCost(client),
-    "WaterFacilityDamage": WaterFacilityDamage(client),
-    "WaterFacilityRestoration": WaterFacilityRestoration(client),
-    "WfnFunctionality": WfnFunctionality(client),
+    "studio-BridgeDamage": BridgeDamage(client),
+    "studio-BuildingClusterRecovery": BuildingClusterRecovery(client),
+    "studio-BuildingEconLoss": BuildingEconLoss(client),
+    "studio-BuildingFunctionality": BuildingFunctionality(client),
+    "studio-BuildingNonStructDamage": BuildingNonStructDamage(client),
+    "studio-BuildingStructuralDamage": BuildingStructuralDamage(client),
+    "studio-BuyoutDecision": BuyoutDecision(client),
+    "studio-CapitalShocks": CapitalShocks(client),
+    "studio-CombinedWindWaveSurgeBuildingDamage": CombinedWindWaveSurgeBuildingDamage(
+        client
+    ),
+    "studio-CombinedWindWaveSurgeBuildingLoss": CombinedWindWaveSurgeBuildingLoss(
+        client
+    ),
+    "studio-CommercialBuildingRecovery": CommercialBuildingRecovery(client),
+    "studio-CumulativeBuildingDamage": CumulativeBuildingDamage(client),
+    "studio-EpfDamage": EpfDamage(client),
+    "studio-EpfRepairCost": EpfRepairCost(client),
+    "studio-EpfRestoration": EpfRestoration(client),
+    "studio-EpnFunctionality": EpnFunctionality(client),
+    "studio-GalvestonCGEModel": GalvestonCGEModel(client),
+    "studio-GasFacilityDamage": GasFacilityDamage(client),
+    "studio-HousingRecoverySequential": HousingRecoverySequential(client),
+    "studio-HousingUnitAllocation": HousingUnitAllocation(client),
+    "studio-HousingValuationRecovery": HousingValuationRecovery(client),
+    "studio-INDP": INDP(client),
+    "studio-JoplinCGEModel": JoplinCGEModel(client),
+    "studio-JoplinEmpiricalBuildingRestoration": JoplinEmpiricalBuildingRestoration(
+        client
+    ),
+    "studio-MeanDamage": MeanDamage(client),
+    "studio-MlEnabledCgeSlc": MlEnabledCgeSlc(client),
+    "studio-MlEnabledCgeJoplin": MlEnabledCgeJoplin(client),
+    "studio-MonteCarloLimitStateProbability": MonteCarloLimitStateProbability(client),
+    "studio-MultiObjectiveRetrofitOptimization": MultiObjectiveRetrofitOptimization(
+        client
+    ),
+    "studio-NciFunctionality": NciFunctionality(client),
+    "studio-PipelineDamage": PipelineDamage(client),
+    "studio-PipelineDamageRepairRate": PipelineDamageRepairRate(client),
+    "studio-PipelineFunctionality": PipelineFunctionality(client),
+    "studio-PipelineRepairCost": PipelineRepairCost(client),
+    "studio-PipelineRestoration": PipelineRestoration(client),
+    "studio-PopulationDislocation": PopulationDislocation(client),
+    "studio-ResidentialBuildingRecovery": ResidentialBuildingRecovery(client),
+    "studio-RoadDamage": RoadDamage(client),
+    "studio-SaltLakeCGEModel": SaltLakeCGEModel(client),
+    "studio-SeasideCGEModel": SeasideCGEModel(client),
+    "studio-SocialVulnerabilityScore": SocialVulnerabilityScore(client),
+    "studio-TornadoEpnDamage": TornadoEpnDamage(client),
+    "studio-TrafficFlowRecovery": TrafficFlowRecovery(client),
+    "studio-WaterFacilityDamage": WaterFacilityDamage(client),
+    "studio-WaterFacilityRepairCost": WaterFacilityRepairCost(client),
+    "studio-WaterFacilityRestoration": WaterFacilityRestoration(client),
+    "studio-WfnFunctionality": WfnFunctionality(client),
 }
 
 # create a dictionary of pretty names
 pretty_tagged_names = {
-    "BridgeDamage": {"name": "Bridge Damage", "tags": ["Bridge"]},
-    "BuildingClusterRecovery": {
+    "studio-BridgeDamage": {
+        "name": "Bridge Damage",
+        "tags": ["Bridge"],
+        "manual": "bridge_dmg.html",
+    },
+    "studio-BuildingClusterRecovery": {
         "name": "Building Cluster Recovery",
         "tags": ["Building"],
+        "manual": "building_cluster_recovery.html",
     },
-    "BuildingEconLoss": {"name": "Building Economic Loss", "tags": ["Building"]},
-    "BuildingFunctionality": {"name": "Building Functionality", "tags": ["Building"]},
-    "BuildingNonStructDamage": {
+    "studio-BuildingEconLoss": {
+        "name": "Building Economic Loss",
+        "tags": ["Building"],
+        "manual": "building_loss.html",
+    },
+    "studio-BuildingFunctionality": {
+        "name": "Building Functionality",
+        "tags": ["Building"],
+        "manual": "building_func.html",
+    },
+    "studio-BuildingNonStructDamage": {
         "name": "Building Non-Structural Damage",
         "tags": ["Building"],
+        "manual": "building_nonstructural_dmg.html",
     },
-    "BuildingStructuralDamage": {
+    "studio-BuildingStructuralDamage": {
         "name": "Building Structural Damage",
         "tags": ["Building"],
+        "manual": "building_structural_dmg.html",
     },
-    "BuyoutDecision": {"name": "Buyout Decision", "tags": ["Decision Support"]},
-    "CapitalShocks": {"name": "Capital Shocks", "tags": ["Economic"]},
-    "CombinedWindWaveSurgeBuildingDamage": {
+    "studio-BuyoutDecision": {
+        "name": "Buyout Decision",
+        "tags": ["Decision Support"],
+        "manual": "buyout_decision.html",
+    },
+    "studio-CapitalShocks": {
+        "name": "Capital Shocks",
+        "tags": ["Economic"],
+        "manual": "capital_shocks.html",
+    },
+    "studio-CombinedWindWaveSurgeBuildingDamage": {
         "name": "Combined Wind Wave Surge Building Damage",
         "tags": ["Building"],
+        "manual": "combined_wind_wave_surge_building_dmg.html",
     },
-    "CombinedWindWaveSurgeBuildingLoss": {
+    "studio-CombinedWindWaveSurgeBuildingLoss": {
         "name": "Combined Wind Wave Surge Building Loss",
         "tags": ["Building"],
+        "manual": "combined_wind_wave_surge_building_loss.html",
     },
-    "CommercialBuildingRecovery": {
+    "studio-CommercialBuildingRecovery": {
         "name": "Commercial Building Recovery",
         "tags": ["Socioeconomic"],
+        "manual": "commercial_building_recovery.html",
     },
-    "CumulativeBuildingDamage": {
+    "studio-CumulativeBuildingDamage": {
         "name": "Cumulative Building Damage",
         "tags": ["Building"],
+        "manual": "cumulative_building_dmg.html",
     },
-    "EpfDamage": {"name": "Electric Power Facility Damage", "tags": ["Lifeline"]},
-    "EpfRepairCost": {
+    "studio-EpfDamage": {
+        "name": "Electric Power Facility Damage",
+        "tags": ["Lifeline"],
+        "manual": "epf_dmg.html",
+    },
+    "studio-EpfRepairCost": {
         "name": "Electric Power Facility Repair Cost",
         "tags": ["Lifeline"],
+        "manual": "epf_repair_cost.html",
     },
-    "EpfRestoration": {
+    "studio-EpfRestoration": {
         "name": "Electric Power Facility Restoration",
         "tags": ["LifeLine"],
+        "manual": "epf_restoration.html",
     },
-    "EpnFunctionality": {
+    "studio-EpnFunctionality": {
         "name": "Electric Power Network Functionality",
         "tags": ["Lifeline"],
+        "manual": "epn_functionality.html",
     },
-    "GalvestonCGEModel": {"name": "Galveston CGE Model", "tags": ["Economic"]},
-    "GasFacilityDamage": {"name": "Gas Facility Damage", "tags": ["Lifeline"]},
-    "HousingRecoverySequential": {
+    "studio-GalvestonCGEModel": {
+        "name": "Galveston CGE Model",
+        "tags": ["Economic"],
+        "manual": "galveston_cge.html",
+    },
+    "studio-GasFacilityDamage": {
+        "name": "Gas Facility Damage",
+        "tags": ["Lifeline"],
+        "manual": "gas_facility_damage.html",
+    },
+    "studio-HousingRecoverySequential": {
         "name": "Housing Recovery Sequential",
         "tags": ["Socioeconomic", "Decision Support"],
+        "manual": "housing_household_recovery.html",
     },
-    "HousingUnitAllocation": {
+    "studio-HousingUnitAllocation": {
         "name": "Housing Unit Allocation",
         "tags": ["Socioeconomic"],
+        "manual": "housingunitallocation.html",
     },
-    "HousingValuationRecovery": {
+    "studio-HousingValuationRecovery": {
         "name": "Housing Valuation Recovery",
         "tags": ["Socioeconomic"],
+        "manual": "housing_recovery.html",
     },
-    "INDP": {
+    "studio-INDP": {
         "name": "Infrastructure Network Disruption Planning",
         "tags": ["Decision Support"],
+        "manual": "indp.html",
     },
-    "JoplinCGEModel": {"name": "Joplin CGE Model", "tags": ["Economic"]},
-    "JoplinEmpiricalBuildingRestoration": {
+    "studio-JoplinCGEModel": {
+        "name": "Joplin CGE Model",
+        "tags": ["Economic"],
+        "manual": "joplin_cge.html",
+    },
+    "studio-JoplinEmpiricalBuildingRestoration": {
         "name": "Joplin Empirical Building Restoration",
         "tags": ["Building"],
+        "manual": "",
     },
-    "MeanDamage": {"name": "Mean Damage", "tags": []},
-    "MlEnabledCgeSlc": {
+    "studio-MeanDamage": {"name": "Mean Damage", "tags": [], "manual": "mean_dmg.html"},
+    "studio-MlEnabledCgeSlc": {
         "name": "Machine Learning Enabled CGE SLC",
         "tags": ["Economic"],
+        "manual": "ml_slc_cge.html",
     },
-    "MlEnabledCgeJoplin": {
+    "studio-MlEnabledCgeJoplin": {
         "name": "Machine Learning Enabled CGE Joplin",
         "tags": ["Economic"],
+        "manual": "ml_joplin_cge.html",
     },
-    "MonteCarloLimitStateProbability": {
+    "studio-MonteCarloLimitStateProbability": {
         "name": "Monte Carlo Limit State Probability",
         "tags": ["Decision Support"],
+        "manual": "mc_limit_state_prob.html",
     },
-    "MultiObjectiveRetrofitOptimization": {
+    "studio-MultiObjectiveRetrofitOptimization": {
         "name": "Multi-Objective Retrofit Optimization",
         "tags": ["Decision Support"],
+        "manual": "multi_retrofit_optimization.html",
     },
-    "NciFunctionality": {
+    "studio-NciFunctionality": {
         "name": "Network Cascading Interdependency Functionality",
         "tags": ["Decision Support"],
+        "manual": "nci_functionality.html",
     },
-    "PipelineDamage": {"name": "Pipeline Damage", "tags": ["Lifeline"]},
-    "PipelineDamageRepairRate": {
+    "studio-PipelineDamage": {
+        "name": "Pipeline Damage",
+        "tags": ["Lifeline"],
+        "manual": "pipeline_dmg.html",
+    },
+    "studio-PipelineDamageRepairRate": {
         "name": "Pipeline Damage Repair Rate",
         "tags": ["Lifeline"],
+        "manual": "pipeline_dmg_w_repair_rate.html",
     },
-    "PipelineFunctionality": {"name": "Pipeline Functionality", "tags": ["Lifeline"]},
-    "PipelineRepairCost": {"name": "Pipeline Repair Cost", "tags": ["Lifeline"]},
-    "PipelineRestoration": {"name": "Pipeline Restoration", "tags": ["Lifeline"]},
-    "PopulationDislocation": {
+    "studio-PipelineFunctionality": {
+        "name": "Pipeline Functionality",
+        "tags": ["Lifeline"],
+        "manual": "pipeline_functionality.html",
+    },
+    "studio-PipelineRepairCost": {
+        "name": "Pipeline Repair Cost",
+        "tags": ["Lifeline"],
+        "manual": "pipeline_repair_cost.html",
+    },
+    "studio-PipelineRestoration": {
+        "name": "Pipeline Restoration",
+        "tags": ["Lifeline"],
+        "manual": "pipeline_restoration.html",
+    },
+    "studio-PopulationDislocation": {
         "name": "Population Dislocation",
         "tags": ["Socioeconomic"],
+        "manual": "populationdislocation.html",
     },
-    "ResidentialBuildingRecovery": {
+    "studio-ResidentialBuildingRecovery": {
         "name": "Residential Building Recovery",
         "tags": ["Socioeconomic", "Decision Support"],
+        "manual": "residential_building_recovery.html",
     },
-    "RoadDamage": {"name": "Road Damage", "tags": ["Lifeline"]},
-    "SaltLakeCGEModel": {"name": "Salt Lake CGE Model", "tags": ["Economic"]},
-    "SeasideCGEModel": {"name": "Seaside CGE Model", "tags": ["Economic"]},
-    "SocialVulnerabilityScore": {
+    "studio-RoadDamage": {
+        "name": "Road Damage",
+        "tags": ["Lifeline"],
+        "manual": "road_dmg.html",
+    },
+    "studio-SaltLakeCGEModel": {
+        "name": "Salt Lake CGE Model",
+        "tags": ["Economic"],
+        "manual": "slc_cge.html",
+    },
+    "studio-SeasideCGEModel": {
+        "name": "Seaside CGE Model",
+        "tags": ["Economic"],
+        "manual": "seaside_cge.html",
+    },
+    "studio-SocialVulnerabilityScore": {
         "name": "Social Vulnerability Score",
         "tags": ["Socioeconomic"],
+        "manual": "social_vulnerability_score.html",
     },
-    "TornadoEpnDamage": {
+    "studio-TornadoEpnDamage": {
         "name": "Tornado Electric Power Network Damage",
         "tags": ["Lifeline"],
+        "manual": "tornadoepn_dmg.html",
     },
-    "TrafficFlowRecovery": {
+    "studio-TrafficFlowRecovery": {
         "name": "Traffic Flow Recovery",
         "tags": ["Decision Support", "Lifeline"],
+        "manual": "traffic_flow_recovery.html",
     },
-    "WaterFacilityDamage": {"name": "Water Facility Damage", "tags": ["Lifeline"]},
-    "WaterFacilityRepairCost": {
+    "studio-WaterFacilityDamage": {
+        "name": "Water Facility Damage",
+        "tags": ["Lifeline"],
+        "manual": "waterfacility_dmg.html",
+    },
+    "studio-WaterFacilityRepairCost": {
         "name": "Water Facility Repair Cost",
         "tags": ["Lifeline"],
+        "manual": "water_facility_repair_cost.html",
     },
-    "WaterFacilityDamage": {"name": "Water Facility Damage", "tags": ["Lifeline"]},
-    "WaterFacilityRestoration": {
+    "studio-WaterFacilityRestoration": {
         "name": "Water Facility Restoration",
         "tags": ["Lifeline"],
+        "manual": "water_facility_restoration.html",
     },
-    "WfnFunctionality": {
+    "studio-WfnFunctionality": {
         "name": "Water Facility Network Functionality",
         "tags": ["Lifeline"],
+        "manual": "wfn_functionality.html",
     },
 }
 
@@ -348,6 +451,7 @@ if len(analysis_classes) != len(dependency_graph):
 for analysis_name, value in dependency_graph.items():
     value["pretty_name"] = pretty_tagged_names[analysis_name]["name"]
     value["tags"] = pretty_tagged_names[analysis_name]["tags"]
+    value["manual"] = pretty_tagged_names[analysis_name]["manual"]
 
 # add input dataset types in dependency graph
 for analysis_name, analysis_class in analysis_classes.items():
@@ -355,7 +459,6 @@ for analysis_name, analysis_class in analysis_classes.items():
     dependency_graph[analysis_name]["inputs"] = dict()
     hazards = spec.get("input_hazards", [])
     datasets = spec.get("input_datasets", [])
-    print(analysis_name)
     for hazard in hazards:
         dependency_graph[analysis_name]["inputs"][hazard["id"]] = (
             hazard["type"] if isinstance(hazard["type"], list) else [hazard["type"]]

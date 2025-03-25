@@ -21,10 +21,6 @@ STATE_FIPS = {
     "WI": "55", "WY": "56"
 }
 
-STATE_FIPS = {
-    "CA": "06", "FL": "12", "TX": "48"
-}
-
 
 # PostgreSQL/PostGIS connection details for local port-forwarding
 PG_HOST = "localhost"

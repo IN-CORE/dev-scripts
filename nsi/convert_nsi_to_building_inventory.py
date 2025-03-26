@@ -7,7 +7,7 @@ from pyincore_data.utils.nsiutil import NsiUtil
 
 
 if __name__ == '__main__':
-    json_path = "nsi_data"
+    json_path = "nsi_data/missing"
     # reade state group csv file
     state_group = pd.read_csv("StateToGroup_missing.csv")
 

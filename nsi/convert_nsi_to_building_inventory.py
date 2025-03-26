@@ -7,7 +7,9 @@ from pyincore_data.utils.nsiutil import NsiUtil
 
 
 if __name__ == '__main__':
-    json_path = "nsi_data/missing"
+    in_file_path = "nsi_data/missing"
+    out_file_path = "nsi_data"
+
     # reade state group csv file
     state_group = pd.read_csv("StateToGroup_missing.csv")
 
@@ -19,10 +21,10 @@ if __name__ == '__main__':
         # if it is geojson
         # in_file = os.path.join(json_path, f"{state}.geojson")
         # if it is geopackage
-        in_file = os.path.join(json_path, f"{state}.gpkg")
+        in_file = os.path.join(in_file_path, f"{state}.gpkg")
         # check if json file exists
         if os.path.exists(in_file):
-            out_gpkg = os.path.join(json_path, f"{state}.gpkg")
+            out_gpkg = os.path.join(out_file_path, f"{state}.gpkg")
             print(f"State: {state}, Region: {region}")
             # create building inventory by geojson
             gdf = NsiBuildingInventory.convert_nsi_to_building_inventory_from_geojson(in_file, region)

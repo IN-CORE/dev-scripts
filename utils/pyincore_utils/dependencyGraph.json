@@ -2761,5 +2761,293 @@
                 "incore:ADT"
             ]
         }
+    },
+    "studio-MaxDamageStateTool": {
+        "before": {
+            "studio-BuildingStructuralDamage": [
+                {
+                    "from": "ds_result",
+                    "to": "output_dataset"
+                }
+            ],
+            "studio-EpfDamage": [
+                {
+                    "from": "ds_result",
+                    "to": "output_dataset"
+                }
+            ],
+            "studio-BridgeDamage": [
+                {
+                    "from": "ds_result",
+                    "to": "output_dataset"
+                }
+            ]
+        },
+        "after": {
+            "studio-BuildingDamageSummaryTool": [
+                {
+                    "from": "max_damage",
+                    "to": "max_damage_state"
+                }
+            ]
+        },
+        "pretty_name": "Max Damage State Tool",
+        "tags": [
+            "Pyincore Utility"
+        ],
+        "manual": null,
+        "inputs": {
+            "output_dataset": [
+                "ergo:buildingDamageVer6"
+            ]
+        }
+    },
+    "studio-BuildingDamageSummaryTool": {
+        "before": {
+            "studio-MaxDamageStateTool": [
+                {
+                    "from": "max_damage",
+                    "to": "max_damage_state"
+                }
+            ]
+        },
+        "after": {},
+        "pretty_name": "Building Damage Summary Tool",
+        "tags": [
+            "Pyincore Utility"
+        ],
+        "manual": null,
+        "inputs": {
+            "max_damage_state": [
+                "Max damage State type"
+            ],
+            "buildings": [
+                "ergo:buildingInventoryVer4",
+                "ergo:buildingInventoryVer5",
+                "ergo:buildingInventoryVer6",
+                "ergo:buildingInventoryVer7"
+            ],
+            "archetype_mapping": [
+                "Archetype Mapping type"
+            ]
+        }
+    },
+    "studio-CGEPostProcessTool": {
+        "before": {
+            "studio-SaltLakeCGEModel": [
+                {
+                    "from": "household-count",
+                    "to": "household-count"
+                },
+                {
+                    "from": "domestic-supply",
+                    "to": "domestic-supply"
+                },
+                {
+                    "from": "gross-income",
+                    "to": "gross-income"
+                },
+                {
+                    "from": "pre-disaster-factor-demand",
+                    "to": "pre-disaster-factor-demand"
+                },
+                {
+                    "from": "post-disaster-factor-demand",
+                    "to": "post-disaster-factor-demand"
+                }
+            ],
+            "studio-JoplinCGEModel": [
+                {
+                    "from": "household-count",
+                    "to": "household-count"
+                },
+                {
+                    "from": "domestic-supply",
+                    "to": "domestic-supply"
+                },
+                {
+                    "from": "gross-income",
+                    "to": "gross-income"
+                },
+                {
+                    "from": "pre-disaster-factor-demand",
+                    "to": "pre-disaster-factor-demand"
+                },
+                {
+                    "from": "post-disaster-factor-demand",
+                    "to": "post-disaster-factor-demand"
+                }
+            ],
+            "studio-GalvestonCGEModel": [
+                {
+                    "from": "household-count",
+                    "to": "household-count"
+                },
+                {
+                    "from": "domestic-supply",
+                    "to": "domestic-supply"
+                },
+                {
+                    "from": "gross-income",
+                    "to": "gross-income"
+                },
+                {
+                    "from": "pre-disaster-factor-demand",
+                    "to": "pre-disaster-factor-demand"
+                },
+                {
+                    "from": "post-disaster-factor-demand",
+                    "to": "post-disaster-factor-demand"
+                }
+            ],
+            "studio-MlEnabledCgeJoplin": [
+                {
+                    "from": "household-count",
+                    "to": "household-count"
+                },
+                {
+                    "from": "domestic-supply",
+                    "to": "domestic-supply"
+                },
+                {
+                    "from": "gross-income",
+                    "to": "gross-income"
+                },
+                {
+                    "from": "pre-disaster-factor-demand",
+                    "to": "pre-disaster-factor-demand"
+                },
+                {
+                    "from": "post-disaster-factor-demand",
+                    "to": "post-disaster-factor-demand"
+                }
+            ],
+            "studio-MlEnabledCgeSlc": [
+                {
+                    "from": "household-count",
+                    "to": "household-count"
+                },
+                {
+                    "from": "domestic-supply",
+                    "to": "domestic-supply"
+                },
+                {
+                    "from": "gross-income",
+                    "to": "gross-income"
+                },
+                {
+                    "from": "pre-disaster-factor-demand",
+                    "to": "pre-disaster-factor-demand"
+                },
+                {
+                    "from": "post-disaster-factor-demand",
+                    "to": "post-disaster-factor-demand"
+                }
+            ]
+        },
+        "after": {},
+        "pretty_name": "CGE Post Process Tool",
+        "tags": [
+            "Pyincore Utility"
+        ],
+        "manual": null,
+        "inputs": {
+            "household-count": [
+                "incore:HouseholdCount"
+            ],
+            "domestic-supply": [
+                "incore:Employment"
+            ],
+            "gross-income": [
+                "incore:Employment"
+            ],
+            "pre-disaster-factor-demand":[
+                "incore:FactorDemand"
+            ],
+            "post-disaster-factor-demand":[
+                "incore:FactorDemand"
+            ]
+        }
+    },
+    "studio-DislPostProcessTool": {
+        "before": {
+            "studio-PopulationDislocation": [
+                {
+                    "from": "result",
+                    "to": "dislocation-output"
+                }
+            ]
+        },
+        "after": {},
+        "pretty_name": "Population Dislocation Post Process Tool",
+        "tags": [
+            "Pyincore Utility"
+        ],
+        "manual": null,
+        "inputs": {
+            "dislocation-output": [
+                "incore:popDislocation"
+            ]
+        }
+    },
+    "studio-BuildingFailureClusterTool": {
+        "before": {
+            "studio-MonteCarloLimitStateProbability": [
+                {
+                    "from": "failure_probability",
+                    "to": "building_failure_probability"
+                }
+            ]
+        },
+        "after": {},
+        "pretty_name": "Building Failure Cluster Tool",
+        "tags": [
+            "Pyincore Utility"
+        ],
+        "manual": null,
+        "inputs": {
+            "building_failure_probability": [
+                "incore:failureProbability"
+            ],
+            "buildings": [
+                "ergo:buildingInventoryVer4",
+                "ergo:buildingInventoryVer5",
+                "ergo:buildingInventoryVer6",
+                "ergo:buildingInventoryVer7"
+            ],
+            "archetype_mapping": [
+                "Archetype Mapping type"
+            ]
+        }
+    },
+    "studio-BuildingFunctionalityClusterTool": {
+        "before": {
+            "studio-BuildingFunctionality": [
+                {
+                    "from": "functionality_probability",
+                    "to": "functionality_probability"
+                }
+            ]
+        },
+        "after": {},
+        "pretty_name": "Building Functionality Cluster Tool",
+        "tags": [
+            "Pyincore Utility"
+        ],
+        "manual": null,
+        "inputs": {
+            "functionality_probability": [
+                "incore:funcProbability"
+            ],
+            "buildings": [
+                "ergo:buildingInventoryVer4",
+                "ergo:buildingInventoryVer5",
+                "ergo:buildingInventoryVer6",
+                "ergo:buildingInventoryVer7"
+            ],
+            "archetype_mapping": [
+                "Archetype Mapping type"
+            ]
+        }
     }
 }

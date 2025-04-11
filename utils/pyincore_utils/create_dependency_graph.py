@@ -357,6 +357,222 @@ pretty_tagged_names = {
     },
 }
 
+tool_afters = {
+    "studio-BuildingStructuralDamage": {
+        "studio-MaxDamageStateTool": [{"from": "ds_result", "to": "Output dataset"}]
+    },
+    "studio-EpfDamage": {
+        "studio-MaxDamageStateTool": [{"from": "ds_result", "to": "Output dataset"}]
+    },
+    "studio-BridgeDamage": {
+        "studio-MaxDamageStateTool": [{"from": "ds_result", "to": "Output dataset"}]
+    },
+    "studio-SaltLakeCGEModel": {
+        "studio-CGEPostProcessTool": [
+            {"from": "household-count", "to": "Household Count"},
+            {"from": "domestic-supply", "to": "Domestic supply"},
+            {"from": "gross-income", "to": "Gross Income"},
+            {"from": "pre-disaster-factor-demand", "to": "Pre Demand"},
+            {"from": "post-disaster-factor-demand", "to": "Post Demand"},
+        ]
+    },
+    "studio-JoplinCGEModel": {
+        "studio-CGEPostProcessTool": [
+            {"from": "household-count", "to": "Household Count"},
+            {"from": "domestic-supply", "to": "Domestic supply"},
+            {"from": "gross-income", "to": "Gross Income"},
+            {"from": "pre-disaster-factor-demand", "to": "Pre Demand"},
+            {"from": "post-disaster-factor-demand", "to": "Post Demand"},
+        ]
+    },
+    "studio-GalvestonCGEModel": {
+        "studio-CGEPostProcessTool": [
+            {"from": "household-count", "to": "Household Count"},
+            {"from": "domestic-supply", "to": "Domestic supply"},
+            {"from": "gross-income", "to": "Gross Income"},
+            {"from": "pre-disaster-factor-demand", "to": "Pre Demand"},
+            {"from": "post-disaster-factor-demand", "to": "Post Demand"},
+        ]
+    },
+    "studio-MlEnabledCgeJoplin": {
+        "studio-CGEPostProcessTool": [
+            {"from": "household-count", "to": "Household Count"},
+            {"from": "domestic-supply", "to": "Domestic supply"},
+            {"from": "gross-income", "to": "Gross Income"},
+            {"from": "pre-disaster-factor-demand", "to": "Pre Demand"},
+            {"from": "post-disaster-factor-demand", "to": "Post Demand"},
+        ]
+    },
+    "studio-MlEnabledCgeSlc": {
+        "studio-CGEPostProcessTool": [
+            {"from": "household-count", "to": "Household Count"},
+            {"from": "domestic-supply", "to": "Domestic supply"},
+            {"from": "gross-income", "to": "Gross Income"},
+            {"from": "pre-disaster-factor-demand", "to": "Pre Demand"},
+            {"from": "post-disaster-factor-demand", "to": "Post Demand"},
+        ]
+    },
+    "studio-PopulationDislocation": {
+        "studio-DislPostProcessTool": [{"from": "result", "to": "Dislocation Output"}]
+    },
+    "studio-MonteCarloLimitStateProbability": {
+        "studio-BuildingFailureClusterTool": [
+            {"from": "failure_probability", "to": "Building Failure Probability"}
+        ]
+    },
+    "studio-BuildingFunctionality": {
+        "studio-BuildingFunctionalityClusterTool": [
+            {"from": "functionality_probability", "to": "Functionality Probability"}
+        ]
+    },
+}
+
+tools = {
+    "studio-MaxDamageStateTool": {
+        "before": {
+            "studio-BuildingStructuralDamage": [
+                {"from": "ds_result", "to": "Output dataset"}
+            ],
+            "studio-EpfDamage": [{"from": "ds_result", "to": "Output dataset"}],
+            "studio-BridgeDamage": [{"from": "ds_result", "to": "Output dataset"}],
+        },
+        "after": {
+            "studio-BuildingDamageSummaryTool": [
+                {"from": "Max Damage", "to": "Max Damage State"}
+            ]
+        },
+        "pretty_name": "Max Damage State Tool",
+        "tags": ["Pyincore Utility"],
+        "manual": None,
+        "inputs": {"Output dataset": ["ergo:buildingDamageVer6"]},
+    },
+    "studio-BuildingDamageSummaryTool": {
+        "before": {
+            "studio-MaxDamageStateTool": [
+                {"from": "Max Damage", "to": "Max Damage State"}
+            ]
+        },
+        "after": {},
+        "pretty_name": "Building Damage Summary Tool",
+        "tags": ["Pyincore Utility"],
+        "manual": None,
+        "inputs": {
+            "Max Damage State": ["Max damage State type"],
+            "Buildings": [
+                "ergo:buildingInventoryVer4",
+                "ergo:buildingInventoryVer5",
+                "ergo:buildingInventoryVer6",
+                "ergo:buildingInventoryVer7",
+            ],
+            "Archetype Mapping": ["Archetype Mapping type"],
+        },
+    },
+    "studio-CGEPostProcessTool": {
+        "before": {
+            "studio-SaltLakeCGEModel": [
+                {"from": "household-count", "to": "Household Count"},
+                {"from": "domestic-supply", "to": "Domestic supply"},
+                {"from": "gross-income", "to": "Gross Income"},
+                {"from": "pre-disaster-factor-demand", "to": "Pre Demand"},
+                {"from": "post-disaster-factor-demand", "to": "Post Demand"},
+            ],
+            "studio-JoplinCGEModel": [
+                {"from": "household-count", "to": "Household Count"},
+                {"from": "domestic-supply", "to": "Domestic supply"},
+                {"from": "gross-income", "to": "Gross Income"},
+                {"from": "pre-disaster-factor-demand", "to": "Pre Demand"},
+                {"from": "post-disaster-factor-demand", "to": "Post Demand"},
+            ],
+            "studio-GalvestonCGEModel": [
+                {"from": "household-count", "to": "Household Count"},
+                {"from": "domestic-supply", "to": "Domestic supply"},
+                {"from": "gross-income", "to": "Gross Income"},
+                {"from": "pre-disaster-factor-demand", "to": "Pre Demand"},
+                {"from": "post-disaster-factor-demand", "to": "Post Demand"},
+            ],
+            "studio-MlEnabledCgeJoplin": [
+                {"from": "household-count", "to": "Household Count"},
+                {"from": "domestic-supply", "to": "Domestic supply"},
+                {"from": "gross-income", "to": "Gross Income"},
+                {"from": "pre-disaster-factor-demand", "to": "Pre Demand"},
+                {"from": "post-disaster-factor-demand", "to": "Post Demand"},
+            ],
+            "studio-MlEnabledCgeSlc": [
+                {"from": "household-count", "to": "Household Count"},
+                {"from": "domestic-supply", "to": "Domestic supply"},
+                {"from": "gross-income", "to": "Gross Income"},
+                {"from": "pre-disaster-factor-demand", "to": "Pre Demand"},
+                {"from": "post-disaster-factor-demand", "to": "Post Demand"},
+            ],
+        },
+        "after": {},
+        "pretty_name": "CGE Post Process Tool",
+        "tags": ["Pyincore Utility"],
+        "manual": None,
+        "inputs": {
+            "Household Count": ["incore:HouseholdCount"],
+            "Domestic supply": ["incore:Employment"],
+            "Gross Income": ["incore:Employment"],
+            "Pre Demand": ["incore:FactorDemand"],
+            "Post Demand": ["incore:FactorDemand"],
+        },
+    },
+    "studio-DislPostProcessTool": {
+        "before": {
+            "studio-PopulationDislocation": [
+                {"from": "result", "to": "Dislocation Output"}
+            ]
+        },
+        "after": {},
+        "pretty_name": "Population Dislocation Post Process Tool",
+        "tags": ["Pyincore Utility"],
+        "manual": None,
+        "inputs": {"Dislocation Output": ["incore:popDislocation"]},
+    },
+    "studio-BuildingFailureClusterTool": {
+        "before": {
+            "studio-MonteCarloLimitStateProbability": [
+                {"from": "failure_probability", "to": "Building Failure Probability"}
+            ]
+        },
+        "after": {},
+        "pretty_name": "Building Failure Cluster Tool",
+        "tags": ["Pyincore Utility"],
+        "manual": None,
+        "inputs": {
+            "Building Failure Probability": ["incore:failureProbability"],
+            "Buildings": [
+                "ergo:buildingInventoryVer4",
+                "ergo:buildingInventoryVer5",
+                "ergo:buildingInventoryVer6",
+                "ergo:buildingInventoryVer7",
+            ],
+            "Archetype Mapping": ["Archetype Mapping type"],
+        },
+    },
+    "studio-BuildingFunctionalityClusterTool": {
+        "before": {
+            "studio-BuildingFunctionality": [
+                {"from": "functionality_probability", "to": "Functionality Probability"}
+            ]
+        },
+        "after": {},
+        "pretty_name": "Building Functionality Cluster Tool",
+        "tags": ["Pyincore Utility"],
+        "manual": None,
+        "inputs": {
+            "Functionality Probability": ["incore:funcProbability"],
+            "Buildings": [
+                "ergo:buildingInventoryVer4",
+                "ergo:buildingInventoryVer5",
+                "ergo:buildingInventoryVer6",
+                "ergo:buildingInventoryVer7",
+            ],
+            "Archetype Mapping": ["Archetype Mapping type"],
+        },
+    },
+}
+
 input_types_for_analysis = defaultdict(list)
 output_types_for_analysis = defaultdict(list)
 seen_types = set()
@@ -467,5 +683,14 @@ for analysis_name, analysis_class in analysis_classes.items():
         dependency_graph[analysis_name]["inputs"][dataset["id"]] = (
             dataset["type"] if isinstance(dataset["type"], list) else [dataset["type"]]
         )
+
+# add tools to dependency graph
+for key, value in tools.items():
+    dependency_graph[key] = value
+
+# add links to tools from analyses
+for key, value in tool_afters.items():
+    for k, v in value.items():
+        dependency_graph[key]["after"][k] = v
 
 json.dump(dependency_graph, open("test_dependencyGraph.json", "w"), indent=4)

@@ -1,13 +1,14 @@
 #!/bin/bash
 
-# === CHECK ARGUMENT ===
-if [ -z "$1" ]; then
-  echo "Usage: $0 <geojson-file>"
+# === CHECK ARGUMENTS ===
+if [ -z "$1" ] || [ -z "$2" ]; then
+  echo "Usage: $0 <geojson-file> <layer-name>"
   exit 1
 fi
 
 INPUT_FILE="$1"
-FEATURES_PER_FILE=1000
+LAYER_NAME="$2"
+FEATURES_PER_FILE=10000
 
 # === CONFIGURATION ===
 NAMESPACE="incore"
@@ -16,12 +17,11 @@ LOCAL_PORT="54321"
 REMOTE_PORT="5432"
 DB_NAME="nsi"
 DB_USER="postgres"
-DB_PASSWORD="password"
+DB_PASSWORD="password"  # Replace or prompt
 TABLE_NAME="nsi"
 
-# === STEP 1: GET LAYER NAME AND TOTAL FEATURE COUNT ===
-LAYER_NAME=$(ogrinfo -ro -so -al "$INPUT_FILE" | grep "^Layer name:" | cut -d: -f2 | xargs)
-TOTAL_FEATURES=$(ogrinfo -ro -al -geom=NO "$INPUT_FILE" | grep "Feature Count:" | cut -d: -f2 | xargs)
+# === STEP 1: GET TOTAL FEATURE COUNT ===
+TOTAL_FEATURES=$(ogrinfo -ro -al -geom=NO "$INPUT_FILE" "$LAYER_NAME" | grep "Feature Count:" | cut -d: -f2 | xargs)
 
 if [ -z "$TOTAL_FEATURES" ]; then
   echo "Failed to determine feature count. Exiting."
@@ -37,11 +37,21 @@ START_INDEX=0
 
 while [ $START_INDEX -lt $TOTAL_FEATURES ]; do
   OUT_FILE=$(printf "chunks/chunk_%03d.geojson" $COUNT)
-  ogr2ogr -f GeoJSON "$OUT_FILE" "$INPUT_FILE" "$LAYER_NAME" -skip $START_INDEX -limit $FEATURES_PER_FILE
+  END_INDEX=$((START_INDEX + FEATURES_PER_FILE))
+
+  ogr2ogr -f GeoJSON "$OUT_FILE" "$INPUT_FILE" "$LAYER_NAME" \
+    -where "fid >= $START_INDEX AND fid < $END_INDEX"
+
+  if [ $? -ne 0 ]; then
+    echo "Error creating $OUT_FILE"
+    break
+  fi
+
   echo "Created $OUT_FILE"
   COUNT=$((COUNT + 1))
-  START_INDEX=$((START_INDEX + FEATURES_PER_FILE))
+  START_INDEX=$END_INDEX
 done
+
 
 # === STEP 2: PORT-FORWARD TO POSTGRESQL ===
 echo "Starting port-forward to PostgreSQL in Kubernetes..."

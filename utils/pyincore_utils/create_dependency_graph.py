@@ -445,6 +445,7 @@ tools = {
         "tags": ["Pyincore Utility"],
         "manual": None,
         "inputs": {"Output dataset": ["ergo:buildingDamageVer6"]},
+        "parameter_defaults": {},
     },
     "studio-BuildingDamageSummaryTool": {
         "before": {
@@ -466,6 +467,7 @@ tools = {
             ],
             "Archetype Mapping": ["Archetype Mapping type"],
         },
+        "parameter_defaults": {},
     },
     "studio-CGEPostProcessTool": {
         "before": {
@@ -516,6 +518,7 @@ tools = {
             "Pre Demand": ["incore:FactorDemand"],
             "Post Demand": ["incore:FactorDemand"],
         },
+        "parameter_defaults": {},
     },
     "studio-DislPostProcessTool": {
         "before": {
@@ -528,6 +531,7 @@ tools = {
         "tags": ["Pyincore Utility"],
         "manual": None,
         "inputs": {"Dislocation Output": ["incore:popDislocation"]},
+        "parameter_defaults": {},
     },
     "studio-BuildingFailureClusterTool": {
         "before": {
@@ -549,6 +553,7 @@ tools = {
             ],
             "Archetype Mapping": ["Archetype Mapping type"],
         },
+        "parameter_defaults": {},
     },
     "studio-BuildingFunctionalityClusterTool": {
         "before": {
@@ -570,6 +575,7 @@ tools = {
             ],
             "Archetype Mapping": ["Archetype Mapping type"],
         },
+        "parameter_defaults": {},
     },
 }
 

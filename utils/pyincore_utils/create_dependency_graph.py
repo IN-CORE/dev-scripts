@@ -673,8 +673,10 @@ for analysis_name, value in dependency_graph.items():
 for analysis_name, analysis_class in analysis_classes.items():
     spec = analysis_class.get_spec()
     dependency_graph[analysis_name]["inputs"] = dict()
+    dependency_graph[analysis_name]["parameter_defaults"] = dict()
     hazards = spec.get("input_hazards", [])
     datasets = spec.get("input_datasets", [])
+    parameters = spec.get("input_parameters", [])
     for hazard in hazards:
         dependency_graph[analysis_name]["inputs"][hazard["id"]] = (
             hazard["type"] if isinstance(hazard["type"], list) else [hazard["type"]]
@@ -682,6 +684,10 @@ for analysis_name, analysis_class in analysis_classes.items():
     for dataset in datasets:
         dependency_graph[analysis_name]["inputs"][dataset["id"]] = (
             dataset["type"] if isinstance(dataset["type"], list) else [dataset["type"]]
+        )
+    for parameter in parameters:
+        dependency_graph[analysis_name]["parameter_defaults"][parameter["id"]] = (
+            parameter.get("studio-default", None)
         )
 
 # add tools to dependency graph

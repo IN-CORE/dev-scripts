@@ -128,232 +128,512 @@ pretty_tagged_names = {
         "name": "Bridge Damage",
         "tags": ["Bridge"],
         "manual": "bridge_dmg.html",
+        "parameter_defaults": {
+            "result_name": "bridge-damage-result",
+            "fragility_key": None,
+            "use_liquefaction": False,
+            "liquefaction_geology_dataset_id": None,
+            "use_hazard_uncertainty": False,
+            "num_cpu": 4,
+            "hazard_id": None,
+            "hazard_type": None,
+        },
     },
     "studio-BuildingClusterRecovery": {
         "name": "Building Cluster Recovery",
         "tags": ["Building"],
         "manual": "building_cluster_recovery.html",
+        "parameter_defaults": {
+            "result_name": "building-recovery-result",
+            "uncertainty": True,
+            "sample_size": 35,
+            "random_sample_size": 50,
+            "no_of_weeks": 100,
+            "num_cpu": 4,
+        },
     },
     "studio-BuildingEconLoss": {
         "name": "Building Economic Loss",
         "tags": ["Building"],
         "manual": "building_loss.html",
+        "parameter_defaults": {
+            "result_name": "building-econ-loss-result",
+            "inflation_factor": 0.0,
+        },
     },
     "studio-BuildingFunctionality": {
         "name": "Building Functionality",
         "tags": ["Building"],
         "manual": "building_func.html",
+        "parameter_defaults": {"result_name": "bldg-functionality-result"},
     },
     "studio-BuildingNonStructDamage": {
         "name": "Building Non-Structural Damage",
         "tags": ["Building"],
         "manual": "building_nonstructural_dmg.html",
+        "parameter_defaults": {
+            "result_name": "building-nonstruct-dmg-result",
+            "hazard_type": None,
+            "hazard_id": None,
+            "fragility_key": "Acceleration-Sensitive Fragility ID Code",
+            "use_liquefaction": True,
+            "liq_geology_dataset_id": None,
+            "use_hazard_uncertainty": False,
+            "num_cpu": 1,
+        },
     },
     "studio-BuildingStructuralDamage": {
         "name": "Building Structural Damage",
         "tags": ["Building"],
         "manual": "building_structural_dmg.html",
+        "parameter_defaults": {
+            "result_name": "building-struct-dmg-result",
+            "hazard_type": None,
+            "hazard_id": None,
+            "fragility_key": None,
+            "use_liquefaction": False,
+            "use_hazard_uncertainty": False,
+            "num_cpu": 1,
+            "seed": 1234,
+            "liquefaction_geology_dataset_id": None,
+        },
     },
     "studio-BuyoutDecision": {
         "name": "Buyout Decision",
         "tags": ["Decision Support"],
         "manual": "buyout_decision.html",
+        "parameter_defaults": {
+            "fema_buyout_cap": 250000.0,
+            "residential_archetypes": None,
+            "result_name": "buyout-decision-result",
+        },
     },
     "studio-CapitalShocks": {
         "name": "Capital Shocks",
         "tags": ["Economic"],
         "manual": "capital_shocks.html",
+        "parameter_defaults": {"result_name": "capital-shocks-result"},
     },
     "studio-CombinedWindWaveSurgeBuildingDamage": {
         "name": "Combined Wind Wave Surge Building Damage",
         "tags": ["Building"],
         "manual": "combined_wind_wave_surge_building_dmg.html",
+        "parameter_defaults": {
+            "result_name": "combined-wind-wave-surge-building-damage-result"
+        },
     },
     "studio-CombinedWindWaveSurgeBuildingLoss": {
         "name": "Combined Wind Wave Surge Building Loss",
         "tags": ["Building"],
         "manual": "combined_wind_wave_surge_building_loss.html",
+        "parameter_defaults": {
+            "result_name": "combined-wind-wave-surge-building-loss-result"
+        },
     },
     "studio-CommercialBuildingRecovery": {
         "name": "Commercial Building Recovery",
         "tags": ["Socioeconomic"],
         "manual": "commercial_building_recovery.html",
+        "parameter_defaults": {
+            "result_name": "commercial-building-recovery-result",
+            "num_samples": 10,
+            "repair_key": None,
+            "seed": 1234,
+        },
     },
     "studio-CumulativeBuildingDamage": {
         "name": "Cumulative Building Damage",
         "tags": ["Building"],
         "manual": "cumulative_building_dmg.html",
+        "parameter_defaults": {
+            "result_name": "cumulative-building-damage-result",
+            "num_cpu": 4,
+        },
     },
     "studio-EpfDamage": {
         "name": "Electric Power Facility Damage",
         "tags": ["Lifeline"],
         "manual": "epf_dmg.html",
+        "parameter_defaults": {
+            "result_name": "epf-damage-result",
+            "hazard_type": None,
+            "hazard_id": None,
+            "fragility_key": None,
+            "liquefaction_fragility_key": None,
+            "use_liquefaction": False,
+            "liquefaction_geology_dataset_id": None,
+            "use_hazard_uncertainty": False,
+            "num_cpu": 1,
+        },
     },
     "studio-EpfRepairCost": {
         "name": "Electric Power Facility Repair Cost",
         "tags": ["Lifeline"],
         "manual": "epf_repair_cost.html",
+        "parameter_defaults": {"result_name": "epf-repair-cost-result", "num_cpu": 1},
     },
     "studio-EpfRestoration": {
         "name": "Electric Power Facility Restoration",
         "tags": ["LifeLine"],
         "manual": "epf_restoration.html",
+        "parameter_defaults": {
+            "result_name": "epf-restoration-result",
+            "restoration_key": None,
+            "end_time": 365.0,
+            "time_interval": 1.0,
+            "pf_interval": 0.1,
+            "discretized_days": "[1, 3, 7, 30, 90]",
+        },
     },
     "studio-EpnFunctionality": {
         "name": "Electric Power Network Functionality",
         "tags": ["Lifeline"],
         "manual": "epn_functionality.html",
+        "parameter_defaults": {
+            "result_name": "epn-functionality-result",
+            "gate_station_node_list": None,
+        },
     },
     "studio-GalvestonCGEModel": {
         "name": "Galveston CGE Model",
         "tags": ["Economic"],
         "manual": "galveston_cge.html",
+        "parameter_defaults": {"model_iterations": 1, "solver_path": None},
     },
     "studio-GasFacilityDamage": {
         "name": "Gas Facility Damage",
         "tags": ["Lifeline"],
         "manual": "gas_facility_damage.html",
+        "parameter_defaults": {
+            "result_name": "gas-facility-damage-result",
+            "fragility_key": None,
+            "liquefaction_fragility_key": None,
+            "use_liquefaction": False,
+            "liquefaction_geology_dataset_id": None,
+            "use_hazard_uncertainty": False,
+            "num_cpu": 1,
+            "hazard_id": None,
+            "hazard_type": None,
+        },
     },
     "studio-HousingRecoverySequential": {
         "name": "Housing Recovery Sequential",
         "tags": ["Socioeconomic", "Decision Support"],
         "manual": "housing_household_recovery.html",
+        "parameter_defaults": {
+            "result_name": "housing-recovery-sequential-result",
+            "t_delta": None,
+            "t_final": None,
+            "seed": 1234,
+            "num_cpu": 4,
+        },
     },
     "studio-HousingUnitAllocation": {
         "name": "Housing Unit Allocation",
         "tags": ["Socioeconomic"],
         "manual": "housingunitallocation.html",
+        "parameter_defaults": {
+            "result_name": "housing-unit-allocation-result",
+            "seed": 1234,
+            "iterations": 10,
+        },
     },
     "studio-HousingValuationRecovery": {
         "name": "Housing Valuation Recovery",
         "tags": ["Socioeconomic"],
         "manual": "housing_recovery.html",
+        "parameter_defaults": {
+            "base_year": 2008,
+            "result_name": "housing-valuation-recovery-result",
+        },
     },
     "studio-INDP": {
         "name": "Infrastructure Network Disruption Planning",
         "tags": ["Decision Support"],
         "manual": "indp.html",
+        "parameter_defaults": {
+            "network_type": "from_csv",
+            "MAGS": "[1000]",
+            "sample_range": "[0]",
+            "dislocation_data_type": "incore",
+            "return_model": "step_function",
+            "testbed_name": None,
+            "extra_commodity": None,
+            "RC": None,
+            "layers": None,
+            "method": "INDP",
+            "t_steps": 10,
+            "time_resource": True,
+            "save_model": False,
+            "solver_engine": None,
+            "solver_path": None,
+            "solver_time_limit": None,
+        },
     },
     "studio-JoplinCGEModel": {
         "name": "Joplin CGE Model",
         "tags": ["Economic"],
         "manual": "joplin_cge.html",
+        "parameter_defaults": {"model_iterations": 1, "solver_path": None},
     },
     "studio-JoplinEmpiricalBuildingRestoration": {
         "name": "Joplin Empirical Building Restoration",
         "tags": ["Building"],
         "manual": "",
+        "parameter_defaults": {
+            "result_name": "joplin-empirical-building-restoration",
+            "target_functionality_level": 0,
+            "seed": 1234,
+        },
     },
-    "studio-MeanDamage": {"name": "Mean Damage", "tags": [], "manual": "mean_dmg.html"},
+    "studio-MeanDamage": {
+        "name": "Mean Damage",
+        "tags": [],
+        "manual": "mean_dmg.html",
+        "parameter_defaults": {
+            "result_name": "mean-damage-result",
+            "damage_interval_keys": "['DS_0', 'DS_1', 'DS_2', 'DS_3', 'DS_4']",
+            "num_cpu": 1,
+        },
+    },
     "studio-MlEnabledCgeSlc": {
         "name": "Machine Learning Enabled CGE SLC",
         "tags": ["Economic"],
         "manual": "ml_slc_cge.html",
+        "parameter_defaults": {"result_name": "salt-lake-ml-enabled-cge"},
     },
     "studio-MlEnabledCgeJoplin": {
         "name": "Machine Learning Enabled CGE Joplin",
         "tags": ["Economic"],
         "manual": "ml_joplin_cge.html",
+        "parameter_defaults": {"result_name": "joplin-ml-enabled-cge"},
     },
     "studio-MonteCarloLimitStateProbability": {
         "name": "Monte Carlo Limit State Probability",
         "tags": ["Decision Support"],
         "manual": "mc_limit_state_prob.html",
+        "parameter_defaults": {
+            "result_name": "monte_carlo_limit_state_probability-result",
+            "num_cpu": 8,
+            "num_samples": 10,
+            "damage_interval_keys": "['DS_0', 'DS_1', 'DS_2', 'DS_3']",
+            "failure_state_keys": "['DS_1', 'DS_2', 'DS_3']",
+            "seed": 1234,
+        },
     },
     "studio-MultiObjectiveRetrofitOptimization": {
         "name": "Multi-Objective Retrofit Optimization",
         "tags": ["Decision Support"],
         "manual": "multi_retrofit_optimization.html",
+        "parameter_defaults": {
+            "result_name": "multiobjective-retrofit-optimization-result",
+            "model_solver": "ipopt",
+            "num_epsilon_steps": 2,
+            "max_budget": "default",
+            "budget_available": None,
+            "inactive_submodels": None,
+            "scale_data": None,
+            "scaling_factor": None,
+        },
     },
     "studio-NciFunctionality": {
         "name": "Network Cascading Interdependency Functionality",
         "tags": ["Decision Support"],
         "manual": "nci_functionality.html",
+        "parameter_defaults": {
+            "result_name": "nci-functionality-result",
+            "discretized_days": "[1, 3, 7, 30, 90]",
+        },
     },
     "studio-PipelineDamage": {
         "name": "Pipeline Damage",
         "tags": ["Lifeline"],
         "manual": "pipeline_dmg.html",
+        "parameter_defaults": {
+            "result_name": "pipeline-damage-result",
+            "hazard_type": None,
+            "hazard_id": None,
+            "fragility_key": None,
+            "num_cpu": 1,
+            "liquefaction_geology_dataset_id": None,
+        },
     },
     "studio-PipelineDamageRepairRate": {
         "name": "Pipeline Damage Repair Rate",
         "tags": ["Lifeline"],
         "manual": "pipeline_dmg_w_repair_rate.html",
+        "parameter_defaults": {
+            "result_name": "pipeline-damage-repair-rate-result",
+            "hazard_type": None,
+            "hazard_id": None,
+            "fragility_key": None,
+            "use_liquefaction": False,
+            "liquefaction_fragility_key": None,
+            "num_cpu": 1,
+            "liquefaction_geology_dataset_id": None,
+        },
     },
     "studio-PipelineFunctionality": {
         "name": "Pipeline Functionality",
         "tags": ["Lifeline"],
         "manual": "pipeline_functionality.html",
+        "parameter_defaults": {
+            "result_name": "pipeline-functionality-result",
+            "num_samples": 100,
+        },
     },
     "studio-PipelineRepairCost": {
         "name": "Pipeline Repair Cost",
         "tags": ["Lifeline"],
         "manual": "pipeline_repair_cost.html",
+        "parameter_defaults": {
+            "result_name": "pipeline-repair-cost-result",
+            "num_cpu": 1,
+            "diameter": 20,
+            "segment_length": 20,
+        },
     },
     "studio-PipelineRestoration": {
         "name": "Pipeline Restoration",
         "tags": ["Lifeline"],
         "manual": "pipeline_restoration.html",
+        "parameter_defaults": {
+            "result_name": "pipeline-restoration-result",
+            "num_cpu": 1,
+            "num_available_workers": 4,
+            "restoration_key": "Restoration ID Code",
+        },
     },
     "studio-PopulationDislocation": {
         "name": "Population Dislocation",
         "tags": ["Socioeconomic"],
         "manual": "populationdislocation.html",
+        "parameter_defaults": {
+            "result_name": "population-dislocation-result",
+            "seed": 1234,
+            "choice_dislocation": False,
+            "choice_dislocation_cutoff": 0.0,
+            "choice_dislocation_ds": None,
+            "unsafe_occupancy": False,
+            "unsafe_occupancy_cutoff": 0.0,
+            "unsafe_occupancy_ds": None,
+        },
     },
     "studio-ResidentialBuildingRecovery": {
         "name": "Residential Building Recovery",
         "tags": ["Socioeconomic", "Decision Support"],
         "manual": "residential_building_recovery.html",
+        "parameter_defaults": {
+            "result_name": "residential-building-recovery-result",
+            "num_samples": 10,
+            "repair_key": None,
+            "seed": 1234,
+        },
     },
     "studio-RoadDamage": {
         "name": "Road Damage",
         "tags": ["Lifeline"],
         "manual": "road_dmg.html",
+        "parameter_defaults": {
+            "result_name": "road-damage-result",
+            "hazard_type": None,
+            "hazard_id": None,
+            "fragility_key": None,
+            "use_liquefaction": False,
+            "liquefaction_geology_dataset_id": None,
+            "use_hazard_uncertainty": False,
+            "num_cpu": 1,
+        },
     },
     "studio-SaltLakeCGEModel": {
         "name": "Salt Lake CGE Model",
         "tags": ["Economic"],
         "manual": "slc_cge.html",
+        "parameter_defaults": {"model_iterations": 1, "solver_path": None},
     },
     "studio-SeasideCGEModel": {
         "name": "Seaside CGE Model",
         "tags": ["Economic"],
         "manual": "seaside_cge.html",
+        "parameter_defaults": {"print_solver_output": False, "solver_path": None},
     },
     "studio-SocialVulnerabilityScore": {
         "name": "Social Vulnerability Score",
         "tags": ["Socioeconomic"],
         "manual": "social_vulnerability_score.html",
+        "parameter_defaults": {"result_name": "social-vulnerability-score-result"},
     },
     "studio-TornadoEpnDamage": {
         "name": "Tornado Electric Power Network Damage",
         "tags": ["Lifeline"],
         "manual": "tornadoepn_dmg.html",
+        "parameter_defaults": {
+            "result_name": "tornado-epn-damage-result",
+            "tornado_id": None,
+            "seed": 1234,
+        },
     },
     "studio-TrafficFlowRecovery": {
         "name": "Traffic Flow Recovery",
         "tags": ["Decision Support", "Lifeline"],
         "manual": "traffic_flow_recovery.html",
+        "parameter_defaults": {
+            "num_cpu": 1,
+            "pm": 1,
+            "ini_num_population": 5,
+            "population_size": 3,
+            "num_generation": 2,
+            "mutation_rate": 0.1,
+            "crossover_rate": 1.0,
+        },
     },
     "studio-WaterFacilityDamage": {
         "name": "Water Facility Damage",
         "tags": ["Lifeline"],
         "manual": "waterfacility_dmg.html",
+        "parameter_defaults": {
+            "result_name": "water-facility-damage-result",
+            "hazard_type": None,
+            "hazard_id": None,
+            "fragility_key": None,
+            "use_liquefaction": False,
+            "liquefaction_geology_dataset_id": None,
+            "liquefaction_fragility_key": None,
+            "use_hazard_uncertainty": False,
+            "num_cpu": 1,
+        },
     },
     "studio-WaterFacilityRepairCost": {
         "name": "Water Facility Repair Cost",
         "tags": ["Lifeline"],
         "manual": "water_facility_repair_cost.html",
+        "parameter_defaults": {
+            "result_name": "water-facility-repair-cost-result",
+            "num_cpu": 1,
+        },
     },
     "studio-WaterFacilityRestoration": {
         "name": "Water Facility Restoration",
         "tags": ["Lifeline"],
         "manual": "water_facility_restoration.html",
+        "parameter_defaults": {
+            "result_name": "water-facility-restoration-result",
+            "restoration_key": "Restoration ID Code",
+            "end_time": 100.0,
+            "time_interval": 1.0,
+            "pf_interval": 0.05,
+            "discretized_days": "[1, 3, 7, 30, 90]",
+        },
     },
     "studio-WfnFunctionality": {
         "name": "Water Facility Network Functionality",
         "tags": ["Lifeline"],
         "manual": "wfn_functionality.html",
+        "parameter_defaults": {
+            "result_name": "wfn-functionality-result",
+            "tank_node_list": "[]",
+            "pumpstation_node_list": "[]",
+        },
     },
 }
 
@@ -674,12 +954,14 @@ for analysis_name, value in dependency_graph.items():
     value["pretty_name"] = pretty_tagged_names[analysis_name]["name"]
     value["tags"] = pretty_tagged_names[analysis_name]["tags"]
     value["manual"] = pretty_tagged_names[analysis_name]["manual"]
+    value["parameter_defaults"] = pretty_tagged_names[analysis_name][
+        "parameter_defaults"
+    ]
 
 # add input dataset types in dependency graph
 for analysis_name, analysis_class in analysis_classes.items():
     spec = analysis_class.get_spec()
     dependency_graph[analysis_name]["inputs"] = dict()
-    dependency_graph[analysis_name]["parameter_defaults"] = dict()
     hazards = spec.get("input_hazards", [])
     datasets = spec.get("input_datasets", [])
     parameters = spec.get("input_parameters", [])
@@ -690,10 +972,6 @@ for analysis_name, analysis_class in analysis_classes.items():
     for dataset in datasets:
         dependency_graph[analysis_name]["inputs"][dataset["id"]] = (
             dataset["type"] if isinstance(dataset["type"], list) else [dataset["type"]]
-        )
-    for parameter in parameters:
-        dependency_graph[analysis_name]["parameter_defaults"][parameter["id"]] = (
-            parameter.get("studio-default", None)
         )
 
 # add tools to dependency graph

@@ -282,7 +282,7 @@ pretty_tagged_names = {
             "end_time": 365.0,
             "time_interval": 1.0,
             "pf_interval": 0.1,
-            "discretized_days": "[1, 3, 7, 30, 90]",
+            "discretized_days": "1,3,7,30,90",
         },
     },
     "studio-EpnFunctionality": {
@@ -353,8 +353,8 @@ pretty_tagged_names = {
         "manual": "indp.html",
         "parameter_defaults": {
             "network_type": "from_csv",
-            "MAGS": "[1000]",
-            "sample_range": "[0]",
+            "MAGS": "1000",
+            "sample_range": "0",
             "dislocation_data_type": "incore",
             "return_model": "step_function",
             "testbed_name": None,
@@ -392,7 +392,7 @@ pretty_tagged_names = {
         "manual": "mean_dmg.html",
         "parameter_defaults": {
             "result_name": "mean-damage-result",
-            "damage_interval_keys": "['DS_0', 'DS_1', 'DS_2', 'DS_3', 'DS_4']",
+            "damage_interval_keys": "DS_0,DS_1,DS_2,DS_3,DS_4",
             "num_cpu": 1,
         },
     },
@@ -416,8 +416,8 @@ pretty_tagged_names = {
             "result_name": "monte_carlo_limit_state_probability-result",
             "num_cpu": 8,
             "num_samples": 10,
-            "damage_interval_keys": "['DS_0', 'DS_1', 'DS_2', 'DS_3']",
-            "failure_state_keys": "['DS_1', 'DS_2', 'DS_3']",
+            "damage_interval_keys": "DS_0,DS_1,DS_2,DS_3",
+            "failure_state_keys": "DS_1,DS_2,DS_3",
             "seed": 1234,
         },
     },
@@ -442,7 +442,7 @@ pretty_tagged_names = {
         "manual": "nci_functionality.html",
         "parameter_defaults": {
             "result_name": "nci-functionality-result",
-            "discretized_days": "[1, 3, 7, 30, 90]",
+            "discretized_days": "1,3,7,30,90",
         },
     },
     "studio-PipelineDamage": {
@@ -622,7 +622,7 @@ pretty_tagged_names = {
             "end_time": 100.0,
             "time_interval": 1.0,
             "pf_interval": 0.05,
-            "discretized_days": "[1, 3, 7, 30, 90]",
+            "discretized_days": "1,3,7,30,90",
         },
     },
     "studio-WfnFunctionality": {
@@ -631,8 +631,8 @@ pretty_tagged_names = {
         "manual": "wfn_functionality.html",
         "parameter_defaults": {
             "result_name": "wfn-functionality-result",
-            "tank_node_list": "[]",
-            "pumpstation_node_list": "[]",
+            "tank_node_list": "",
+            "pumpstation_node_list": "",
         },
     },
 }

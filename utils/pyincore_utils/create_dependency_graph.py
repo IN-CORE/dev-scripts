@@ -274,7 +274,7 @@ pretty_tagged_names = {
     },
     "studio-EpfRestoration": {
         "name": "Electric Power Facility Restoration",
-        "tags": ["LifeLine"],
+        "tags": ["Lifeline"],
         "manual": "epf_restoration.html",
         "parameter_defaults": {
             "result_name": "epf-restoration-result",

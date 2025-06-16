@@ -51,10 +51,22 @@ utils/fragility_utils/data/
 
 # test files
 *test*
-
-# env files
-*.env*
-*NSI/.env*
+!retrofit-strategy-script/test.sh
+!retrofit-strategy-script/binning-test.py
 
 # build files
 *pycache*
+
+.ipynb_checkpoints
+
+# token
+*incoretoken*
+
+# .env files
+*.env
+keycloak/.env
+
+# data files
+utils/geoserver_utils/data/
+utils/gis_utils/data/
+*env*

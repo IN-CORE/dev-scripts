@@ -1,0 +1,96 @@
+{
+    "description": "Low-Rise Steel Moment Frame",
+    "authors": [
+        "Amr S. Elnashai",
+        "Seong-Hoon Jeong",
+        "Joshua S. Steelman"
+    ],
+    "paperReference": null,
+    "resultUnit": null,
+    "resultType": "Limit State",
+    "hazardType": "earthquake",
+    "inventoryType": "building",
+
+    "demandTypes": [
+        "0.3 sec Sa"
+    ],
+    "demandUnits": [
+        "g"
+    ],
+    "fragilityCurves": [
+        {
+            "description": "legacy - PeriodStandardFragilityCurve - Moderate",
+            "rules": [
+                {
+                    "condition": [
+                        "zero_point_three_sec_Sa > 0"
+                    ],
+                    "expression": "scipy.stats.norm.cdf((math.log(zero_point_three_sec_Sa) - (-1.038))/(0.467))"
+                }
+            ],
+            "returnType": {
+                "type": "Limit State",
+                "unit": "",
+                "description": "LS_0"
+            },
+            "curveParameters": null
+        },
+        {
+            "description": "legacy - PeriodStandardFragilityCurve - Extensive",
+            "rules": [
+                {
+                    "condition": [
+                        "zero_point_three_sec_Sa > 0"
+                    ],
+                    "expression": "scipy.stats.norm.cdf((math.log(zero_point_three_sec_Sa) - (-0.505))/(0.467))"
+                }
+            ],
+            "returnType": {
+                "type": "Limit State",
+                "unit": "",
+                "description": "LS_1"
+            },
+            "curveParameters": null
+        },
+        {
+            "description": "legacy - PeriodStandardFragilityCurve - Complete",
+            "rules": [
+                {
+                    "condition": [
+                        "zero_point_three_sec_Sa > 0"
+                    ],
+                    "expression": "scipy.stats.norm.cdf((math.log(zero_point_three_sec_Sa) - (0.136))/(0.467))"
+                }
+            ],
+            "returnType": {
+                "type": "Limit State",
+                "unit": "",
+                "description": "LS_2"
+            },
+            "curveParameters": null
+        }
+    ],
+    "curveParameters": [
+        {
+            "name": "zero_point_three_sec_Sa",
+            "unit": "g",
+            "description": "0.3 sec Sa value from hazard service",
+            "fullName": "0.3 sec Sa",
+            "expression": null
+        },
+        {
+            "name": "num_stories",
+            "unit": "",
+            "description": "number of stories in building inventory",
+            "fullName": null,
+            "expression": "1"
+        },
+        {
+            "name": "period",
+            "unit": "",
+            "description": "default building period",
+            "fullName": null,
+            "expression": "0.5"
+        }
+    ]
+}

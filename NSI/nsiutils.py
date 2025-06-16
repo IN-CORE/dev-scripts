@@ -1,3 +1,40 @@
+"""
+Module: nsiutil.py
+
+Description:
+    This module provides utility functions for downloading, transforming, and uploading
+    National Structure Inventory (NSI) data. It includes functionality for:
+
+    - Downloading NSI feature collections by FIPS code or by state-level GeoPackage ZIPs
+    - Converting NSI GeoJSON/GeoPackage data into GeoDataFrames
+    - Adding metadata columns (GUID, FIPS, state/county FIPS)
+    - Saving data as GeoPackages
+    - Uploading NSI data to a PostgreSQL/PostGIS database using SQLAlchemy
+
+Dependencies:
+    - pandas
+    - geopandas
+    - fiona
+    - sqlalchemy
+    - requests
+    - geojson
+    - config.Config (application-specific configuration module)
+
+Key Classes/Functions:
+    - get_features_by_fips(fips): Fetches NSI feature collection by county FIPS
+    - download_nsi_data_state_file(state_fips): Downloads zipped GeoPackage for a state
+    - read_geopkg_to_gdf(infile): Loads a GeoPackage file into a GeoDataFrame
+    - add_guid_to_gdf(gdf): Adds a unique GUID to each row
+    - add_columns_to_gdf(gdf, fips): Adds GUID, FIPS, statefips, countyfips columns
+    - df_to_geopkg(gdf, outfile): Writes a GeoDataFrame to a .gpkg file
+    - upload_postgres_from_gpk(infile): Loads a .gpkg and uploads to PostGIS
+    - upload_postgres_gdf(gdf): Uploads a GeoDataFrame to PostGIS
+
+Usage:
+    This module is intended to be imported by other scripts (e.g., nsibuildinginventory.py)
+    to support automated workflows for NSI data ingestion and conversion.
+"""
+
 import fiona
 import uuid
 import os

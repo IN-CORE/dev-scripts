@@ -11,7 +11,7 @@ if __name__ == '__main__':
     out_file_path = "nsi_data"
 
     # reade state group csv file
-    state_group = pd.read_csv("StateToGroup_missing.csv")
+    state_group = pd.read_csv("../StateToGroup_missing.csv")
 
     # create the combined state group dictionary
     STATE_REGION = dict(zip(state_group['Abbreviation'], state_group['Group']))

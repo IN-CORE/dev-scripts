@@ -1,3 +1,36 @@
+"""
+Script: nsibuildinginventory.py
+
+Description:
+    This script retrieves NSI (National Structure Inventory) data by county FIPS
+    codes using the `NsiUtils` utility module. For each selected county, it:
+
+    - Downloads NSI features as a GeoDataFrame,
+    - Uploads the GeoDataFrame to a PostgreSQL/PostGIS database.
+
+    Optional functionality (currently commented out) allows saving each GeoDataFrame
+    to a GeoPackage (.gpkg) file locally.
+
+Usage:
+    python nsibuildinginventory.py
+
+Assumptions:
+    - The input FIPS file is located at: data\\us_county_fips_2018.csv
+    - The script is currently limited to processing the first two FIPS entries
+      from the file for testing/demo purposes.
+
+Requirements:
+    - pandas
+    - Custom module: nsiutils.NsiUtils with methods:
+        - get_features_by_fips(fips)
+        - upload_postgres_gdf(gdf)
+        - df_to_geopkg(gdf, path) (optional)
+
+Output:
+    - Uploads NSI data to a database (via NsiUtils)
+    - Optionally writes .gpkg files to the `data/` directory
+"""
+
 import pandas as pd
 
 from nsiutils import NsiUtils

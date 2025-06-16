@@ -66,9 +66,6 @@ utils/fragility_utils/data/
 *.env
 keycloak/.env
 
-# tmp files
-NSI
-
 # data files
 utils/geoserver_utils/data/
 utils/gis_utils/data/

@@ -120,6 +120,38 @@ Zips all `.geojson` files in the current directory into separate `.zip` files ba
 
 ---
 
+### sync_pg_table_with_schema.py
+
+Synchronizes the `nsi` table in a PostgreSQL/PostGIS database with a semantic schema defined in a JSON file.
+
+**Features:**
+- Adds missing columns based on the schema definition.
+- Alters column types to match those in the schema if needed.
+- Applies `NOT NULL` constraints where specified.
+- Adds digit-based `CHECK` constraints:
+  - `no_stories` must be a 3-digit integer (0–999)
+  - `year_built` must be a 4-digit integer (0–9999)
+- Uses a `.env` file for PostgreSQL connection configuration.
+
+**Usage:**
+
+```
+python sync_pg_table_with_schema.py
+```
+
+**.env file format:**
+
+```
+DB_NAME=your_db_name
+DB_USER=your_user
+DB_PASSWORD=your_password
+DB_HOST=your_host
+DB_PORT=5432
+```
+
+Ensure the `schema_definition.json` file is present in the same directory before running the script.
+---
+
 ## Common Workflows
 
 ### Ingest zipped NSI GeoPackage into a Kubernetes-hosted PostGIS database

@@ -1,0 +1,280 @@
+{
+    "dc:description": "Building inventory version 6",
+    "dc:title": "ergo:buildingInventoryVer6",
+    "openvocab:versionnumber": "1",
+    "id": "671fca6cec3aee59f2abc521",
+    "@context": [
+        "https://www.w3.org/ns/csvw#",
+        {
+            "@language": "en",
+            "dc": "https://purl.org/dc/terms/",
+            "gml": "https://schemas.opengis.net/gml/",
+            "wfs": "https://schemas.opengis.net/wfs/1.1.0/wfs.xsd",
+            "xlink": "https://www.w3.org/1999/xlink/",
+            "xsd": "https://www.w3.org/2001/XMLSchema#",
+            "qudt": "https://qudt.org/schema/qudt/",
+            "unit": "https://qudt.org/vocab/unit/",
+            "openvocab": "https://vocab.org/open/",
+            "rdf": "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "https://www.w3.org/2000/01/rdf-schema#",
+            "dcat": "https://www.w3.org/ns/dcat#",
+            "prov": "https://www.w3.org/ns/prov#"
+        }
+    ],
+    "dc:license": {
+        "@id": "http://opendefinition.org/licenses/cc-by/"
+    },
+    "url": "ergo:buildingInventoryVer6",
+    "tableSchema": {
+        "columns": [
+            {
+                "dc:description": "Geometric representation of the buildings",
+                "datatype": "gml:PointPropertyType",
+                "name": "geom",
+                "titles": "Geometry",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "Globally unique identifier for the building",
+                "datatype": "xsd:string",
+                "name": "guid",
+                "titles": "guid",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "General Structure Type",
+                "datatype": "xsd:string",
+                "name": "struct_typ",
+                "titles": "struct_typ",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "Broad HAZUS Occupancy Category",
+                "datatype": "xsd:string",
+                "name": "occ_type",
+                "titles": "occ_type",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "Appraised value for the building in dollars",
+                "datatype": "xsd:double",
+                "name": "appr_bldg",
+                "titles": "appr_bldg",
+                "qudt:unit": "unit:USDollar",
+                "required": "true"
+            },
+            {
+                "dc:description": "Total building area in square feet",
+                "datatype": "xsd:integer",
+                "name": "sq_foot",
+                "titles": "sq_foot",
+                "qudt:unit": "unit:FT2",
+                "required": "true"
+            },
+            {
+                "dc:description": "Total number of dwelling units in the building",
+                "datatype": "xsd:integer",
+                "name": "dwell_unit",
+                "titles": "dwell_unit",
+                "qudt:unit": "qudt:CountingUnit",
+                "required": "true"
+            },
+            {
+                "dc:description": "Total number of stories for the building",
+                "datatype": "xsd:integer",
+                "name": "no_stories",
+                "titles": "no_stories",
+                "qudt:unit": "qudt:CountingUnit",
+                "required": "true"
+            },
+            {
+                "dc:description": "Value of building contents in dollars",
+                "datatype": "xsd:double",
+                "name": "cont_val",
+                "titles": "cont_val",
+                "qudt:unit": "unit:USDollar",
+                "required": "true"
+            },
+            {
+                "dc:description": "Detailed Structure Type as per HAZUS MR-3 specifications",
+                "datatype": "xsd:string",
+                "name": "str_typ2",
+                "titles": "str_typ2",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "Essential facility designation",
+                "datatype": "xsd:string",
+                "name": "efacility",
+                "titles": "efacility",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "Parcel identifier",
+                "datatype": "xsd:string",
+                "name": "parid",
+                "titles": "parid",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "Improvement identifier",
+                "datatype": "xsd:string",
+                "name": "parid_card",
+                "titles": "parid_card",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "Year of building construction",
+                "datatype": "xsd:integer",
+                "name": "year_built",
+                "titles": "year_built",
+                "qudt:unit": "unit:YR",
+                "required": "true"
+            },
+            {
+                "dc:description": "Total number of above-ground stories for the building",
+                "datatype": "xsd:integer",
+                "name": "a_stories",
+                "titles": "a_stories",
+                "qudt:unit": "qudt:CountingUnit",
+                "required": "true"
+            },
+            {
+                "dc:description": "Total number of below-ground stories for the building",
+                "datatype": "xsd:integer",
+                "name": "b_stories",
+                "titles": "b_stories",
+                "qudt:unit": "qudt:CountingUnit",
+                "required": "true"
+            },
+            {
+                "dc:description": "Basement type",
+                "datatype": "xsd:string",
+                "name": "bsmt_type",
+                "titles": "bsmt_type",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "Total ground floor area for the building in square feet (computed)",
+                "datatype": "xsd:integer",
+                "name": "gsq_foot",
+                "titles": "gsq_foot",
+                "qudt:unit": "unit:FT2",
+                "required": "true"
+            },
+            {
+                "dc:description": "Specific Occupancy Category, describing the detailed use of the building",
+                "datatype": "xsd:string",
+                "name": "occ_detail",
+                "titles": "occ_detail",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "Major Occupancy category for the parcel in which the building is sited",
+                "datatype": "xsd:string",
+                "name": "major_occ",
+                "titles": "major_occ",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "General occupancy category",
+                "datatype": "xsd:string",
+                "name": "broad_occ",
+                "titles": "broad_occ",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "Replacement cost in dollars for the building",
+                "datatype": "xsd:double",
+                "name": "repl_cst",
+                "titles": "repl_cst",
+                "qudt:unit": "unit:USDollar",
+                "required": "true"
+            },
+            {
+                "dc:description": "Structural component of the replacement cost in dollars",
+                "datatype": "xsd:double",
+                "name": "str_cst",
+                "titles": "str_cst",
+                "qudt:unit": "unit:USDollar",
+                "required": "true"
+            },
+            {
+                "dc:description": "Acceleration-sensitive component of the replacement cost in dollars",
+                "datatype": "xsd:double",
+                "name": "nstra_cst",
+                "titles": "nstra_cst",
+                "qudt:unit": "unit:USDollar",
+                "required": "true"
+            },
+            {
+                "dc:description": "Drift-sensitive component of the replacement cost in dollars",
+                "datatype": "xsd:double",
+                "name": "nstrd_cst",
+                "titles": "nstrd_cst",
+                "qudt:unit": "unit:USDollar",
+                "required": "true"
+            },
+            {
+                "dc:description": "Design-level for the building as per HAZUS MR-3 specifications",
+                "datatype": "xsd:string",
+                "name": "dgn_lvl",
+                "titles": "dgn_lvl",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "Detailed HAZUS Occupancy Category for the building",
+                "datatype": "xsd:string",
+                "name": "occ_typ2",
+                "titles": "occ_typ2",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "Census tract identifier in which the building is located",
+                "datatype": "xsd:string",
+                "name": "tract_id",
+                "titles": "tract_id",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "Archetype of the building",
+                "datatype": "xsd:integer",
+                "name": "archetype",
+                "titles": "archetype",
+                "qudt:unit": "unit:UNITLESS",
+                "required": "true"
+            },
+            {
+                "dc:description": "Appraised value for the land in dollars",
+                "datatype": "xsd:double",
+                "name": "appr_land",
+                "titles": "appr_land",
+                "qudt:unit": "unit:USDollar",
+                "required": "true"
+            },
+            {
+                "dc:description": "Total appraised value in dollars",
+                "datatype": "xsd:double",
+                "name": "appr_tot",
+                "titles": "appr_tot",
+                "qudt:unit": "unit:USDollar",
+                "required": "true"
+            }
+        ]
+    }
+}

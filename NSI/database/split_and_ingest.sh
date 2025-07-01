@@ -1,5 +1,39 @@
 #!/bin/bash
 
+# ------------------------------------------------------------------------------
+# Script: split_and_ingest.sh
+#
+# Description:
+#   This script splits a large GeoJSON file into smaller chunks (default 10,000
+#   features per file) and ingests each chunk into a PostgreSQL/PostGIS database
+#   running inside a Kubernetes cluster.
+#
+#   - It uses `ogrinfo` to determine the total number of features.
+#   - It uses `ogr2ogr` with a `WHERE` clause to split the input file based on
+#     feature IDs (`fid`).
+#   - The first chunk is imported using the "overwrite" mode to create the table,
+#     and the rest are appended.
+#
+# Usage:
+#   ./split_and_ingest.sh <geojson-file> <layer-name>
+#
+#   <geojson-file>  Path to the input GeoJSON file.
+#   <layer-name>    Name of the layer inside the GeoJSON to split and import.
+#
+# Requirements:
+#   - `ogrinfo` and `ogr2ogr` from GDAL must be installed.
+#   - Kubernetes access via `kubectl` to port-forward the PostgreSQL service.
+#
+# Configuration:
+#   - Database credentials, namespace, service name, and table name can be
+#     configured in the script under the "CONFIGURATION" section.
+#
+# Notes:
+#   - Temporary output files are saved in a `chunks/` directory, which will be
+#     cleared and recreated each run.
+#   - Ensure the `fid` field exists and is suitable for range-based filtering.
+# ------------------------------------------------------------------------------
+
 # === CHECK ARGUMENTS ===
 if [ -z "$1" ] || [ -z "$2" ]; then
   echo "Usage: $0 <geojson-file> <layer-name>"

@@ -4,22 +4,20 @@
 
 set -e
 
-# Load environment variables (e.g., POSTGRES_PASSWORD)
+# Load environment variables
 source .env
 
 INPUT_ZIP="$1"
-UNZIPPED_GPKG=""
 SQL_FILE="nsi.sql"
-CHUNK_PREFIX="nsi_part_"
-CHUNK_SIZE=250m
-COPY_LOG="copy_chunks.log"
 POD_NAME="incore-postgresql-0"
 CONTAINER_PATH="/bitnami/postgresql"
 DB_NAME="nsi"
 DB_USER="postgres"
+CHUNK_PREFIX="nsi_part_"
+CHUNK_LINES=200000
 MAX_RETRIES=3
+COPY_LOG="copy_chunks.log"
 
-# Check input zip
 if [[ -z "$INPUT_ZIP" ]]; then
   echo "Usage: $0 <input_file.zip>"
   exit 1
@@ -30,9 +28,10 @@ if [[ ! -f "$INPUT_ZIP" ]]; then
   exit 1
 fi
 
-# Cleanup any old local chunks
+# Clean up old chunk files
 echo "Cleaning up old local chunks..."
 rm -f ${CHUNK_PREFIX}*
+rm -f "$SQL_FILE"
 
 # Unzip the GeoPackage file
 echo "Unzipping $INPUT_ZIP..."
@@ -52,7 +51,6 @@ ogr2ogr -f "PGDump" "$SQL_FILE" "$UNZIPPED_GPKG" \
   -lco GEOMETRY_NAME=geom \
   -skipfailures \
   -gt 65536
-#  -nlt PROMOTE_TO_MULTI
 
 # Strip destructive SQL
 sed -i '/DROP TABLE IF EXISTS/,/);/d' "$SQL_FILE"
@@ -64,26 +62,24 @@ rm -f "$UNZIPPED_GPKG"
 echo "3 second pause..."
 sleep 3
 
-# Split SQL into smaller chunks
-echo "Splitting $SQL_FILE into $CHUNK_SIZE chunks..."
-split -b "$CHUNK_SIZE" -d -a 2 "$SQL_FILE" "$CHUNK_PREFIX"
+# Split SQL into chunks by lines
+echo "Splitting $SQL_FILE into $CHUNK_LINES-line chunks..."
+split -l "$CHUNK_LINES" -d -a 2 "$SQL_FILE" "$CHUNK_PREFIX"
 
-# Clean up old chunk files in pod
+echo "3 second pause..."
+sleep 3
+
+# Clean up chunk files in pod
 echo "Cleaning up old chunk files in pod..."
-kubectl exec -it "$POD_NAME" -- bash -c "rm -f $CONTAINER_PATH/${CHUNK_PREFIX}* || true"
+kubectl exec -it "$POD_NAME" -- bash -c "rm -f $CONTAINER_PATH/${CHUNK_PREFIX}*" || true
 
-echo "2 second pause..."
-sleep 2
-
-# Initialize or clear log
-echo "Starting chunk copy log: $(date)" > "$COPY_LOG"
-
-# Copy chunks to pod with retry and log
+# Copy chunks to pod with retry, log progress
+rm -f "$COPY_LOG"
+touch "$COPY_LOG"
 for f in ${CHUNK_PREFIX}*; do
   echo "Copying $f to pod..." | tee -a "$COPY_LOG"
   success=false
   for ((i=1; i<=MAX_RETRIES; i++)); do
-    echo "Attempt $i: kubectl cp $f to pod..." >> "$COPY_LOG"
     if kubectl cp "$f" "$POD_NAME:$CONTAINER_PATH/$f" >> "$COPY_LOG" 2>&1; then
       echo "Successfully copied $f (attempt $i)" | tee -a "$COPY_LOG"
       success=true
@@ -97,29 +93,25 @@ for f in ${CHUNK_PREFIX}*; do
     echo "ERROR: Failed to copy $f after $MAX_RETRIES attempts." | tee -a "$COPY_LOG"
     exit 1
   fi
-done
+  sleep 2
 
-echo "5 second pause before executing SQL in pod..."
-sleep 5
+done
 
 # Execute SQL chunks in order
 for f in ${CHUNK_PREFIX}*; do
   echo "Executing $f inside pod..."
-  kubectl exec -i "$POD_NAME" -- bash -c \
+  kubectl exec -it "$POD_NAME" -- bash -c \
     "PGPASSWORD=$POSTGRES_PASSWORD psql -U $DB_USER -d $DB_NAME -f $CONTAINER_PATH/$f"
   sleep 2
 done
 
-# Remove SQL chunks from pod
-echo "Removing SQL chunks from pod..."
+# Remove chunk files from pod
+echo "Cleaning up chunk files in pod..."
 kubectl exec -it "$POD_NAME" -- bash -c "rm -f $CONTAINER_PATH/${CHUNK_PREFIX}*"
 
-# Remove SQL chunks locally
-echo "Removing local SQL chunks..."
+# Remove local chunk files and SQL
+echo "Cleaning up local chunk files and SQL..."
 rm -f ${CHUNK_PREFIX}*
-
-# Remove main SQL file
-echo "Removing $SQL_FILE..."
 rm -f "$SQL_FILE"
 
-echo "Done."
+echo "Done. File copy log saved to $COPY_LOG"

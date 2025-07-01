@@ -4,20 +4,21 @@
 
 set -e
 
-# Load environment variables (e.g., POSTGRES_PASSWORD)
+# Load environment variables
 source .env
 
 INPUT_ZIP="$1"
 UNZIPPED_GPKG=""
 SQL_FILE="nsi.sql"
-CHUNK_PREFIX="nsi_part_"
-CHUNK_SIZE="250m"
 POD_NAME="incore-postgresql-0"
 CONTAINER_PATH="/bitnami/postgresql"
 DB_NAME="nsi"
 DB_USER="postgres"
+CHUNK_PREFIX="nsi_part_"
+CHUNK_SIZE=250m
 MAX_RETRIES=5
 
+# Validate input
 if [[ -z "$INPUT_ZIP" ]]; then
   echo "Usage: $0 <input_file.zip>"
   exit 1
@@ -28,7 +29,6 @@ if [[ ! -f "$INPUT_ZIP" ]]; then
   exit 1
 fi
 
-# Cleanup old chunks locally
 echo "Cleaning up old local chunks..."
 rm -f ${CHUNK_PREFIX}*
 
@@ -50,6 +50,7 @@ ogr2ogr -f "PGDump" "$SQL_FILE" "$UNZIPPED_GPKG" \
   -lco GEOMETRY_NAME=geom \
   -skipfailures \
   -gt 65536
+#  -nlt PROMOTE_TO_MULTI
 
 # Strip destructive SQL
 sed -i '/DROP TABLE IF EXISTS/,/);/d' "$SQL_FILE"
@@ -61,18 +62,18 @@ rm -f "$UNZIPPED_GPKG"
 echo "3 second pause..."
 sleep 3
 
-# Split SQL file into chunks
+# Split SQL into chunks
 echo "Splitting $SQL_FILE into $CHUNK_SIZE chunks..."
 split -b $CHUNK_SIZE "$SQL_FILE" "$CHUNK_PREFIX"
 
-# Remove original SQL file
-rm -f "$SQL_FILE"
+# Create logs directory
+mkdir -p logs
 
-# Clean up old chunks in pod
+# Clean up any leftover chunks in pod
 echo "Cleaning up old chunk files in pod..."
 kubectl exec -it "$POD_NAME" -- bash -c "rm -f $CONTAINER_PATH/${CHUNK_PREFIX}* || true"
 
-# Copy chunks to pod with retry
+# Copy chunks to pod with retry logic
 for f in ${CHUNK_PREFIX}*; do
   echo "Copying $f to pod..."
   success=false
@@ -92,20 +93,23 @@ for f in ${CHUNK_PREFIX}*; do
   fi
 done
 
-# Execute SQL chunks in order
+# Execute SQL chunks in order and log output
 for f in ${CHUNK_PREFIX}*; do
   echo "Executing $f inside pod..."
-  kubectl exec -it "$POD_NAME" -- bash -c \
-    "PGPASSWORD=$POSTGRES_PASSWORD psql -U $DB_USER -d $DB_NAME -f $CONTAINER_PATH/$f"
+  kubectl exec -i "$POD_NAME" -- bash -c \
+    "PGPASSWORD=$POSTGRES_PASSWORD psql -U $DB_USER -d $DB_NAME -f $CONTAINER_PATH/$f" \
+    > "logs/${f}.log" 2>&1
   sleep 2
 done
 
-# Remove chunk files from pod
-echo "Removing chunk files from pod..."
+# Cleanup: remove chunks from pod and locally
+echo "Cleaning up chunk files from pod..."
 kubectl exec -it "$POD_NAME" -- bash -c "rm -f $CONTAINER_PATH/${CHUNK_PREFIX}*"
 
-# Remove local chunk files
 echo "Removing local chunk files..."
 rm -f ${CHUNK_PREFIX}*
+
+echo "Removing $SQL_FILE locally..."
+rm -f "$SQL_FILE"
 
 echo "Done."

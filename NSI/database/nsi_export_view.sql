@@ -31,5 +31,9 @@ SELECT
     tract_id,
     archetype,
     appr_land,
-    appr_tot
+    appr_tot,
+    archetype,
+    arch_flood,
+    arch_wind,
+    arch_sw
 FROM nsi;

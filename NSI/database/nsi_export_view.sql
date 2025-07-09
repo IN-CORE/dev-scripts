@@ -29,7 +29,7 @@ SELECT
     dgn_lvl,
     occ_typ2,
     tract_id,
-    archetype,
+    ff_elev,
     appr_land,
     appr_tot,
     archetype,

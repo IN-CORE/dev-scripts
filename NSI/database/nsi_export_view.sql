@@ -7,7 +7,6 @@ SELECT
     occtype AS occ_type,
     val_struct AS appr_bldg,
     sqft AS sq_foot,
-    ground_e_1 AS g_elev,
     dwell_unit,
     LEAST(no_stories, 999) AS no_stories,
     val_cont AS cont_val,

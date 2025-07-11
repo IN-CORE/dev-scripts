@@ -30,6 +30,7 @@ SELECT
     occ_typ2,
     tract_id,
     ffe_elev,
+    g_elev,
     appr_land,
     appr_tot,
     archetype,

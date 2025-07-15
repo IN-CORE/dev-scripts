@@ -1,3 +1,34 @@
+"""
+Script: query.py
+
+Description:
+    This script provides example functions to test and perform queries on the
+    `nsi_raw` table stored in a PostgreSQL/PostGIS database. It includes:
+
+    - A simple connection test to validate database connectivity.
+    - A FIPS-based spatial query to extract NSI data for a specific county.
+    - A bounding box (BBOX) query (example shown, but currently uses an invalid SQL condition).
+
+Usage:
+    python query.py
+
+Functions:
+    - connection_test_raw(): Checks if the database connection is successful by selecting one row.
+    - query_test_fips(): Fetches features by a specific FIPS code and writes the result to a GeoPackage.
+    - query_test_bbox(): Placeholder for bounding-box-based spatial query (SQL statement needs correction).
+
+Requirements:
+    - Python packages: geopandas, sqlalchemy
+    - Local module: NsiUtils with `df_to_geopkg()` method
+    - Config file: config.Config with database credentials and host info
+
+Notes:
+    - The current BBOX query is not valid SQL. Consider replacing:
+        WHERE bbox=%s
+      with:
+        WHERE ST_Within(geometry, ST_MakeEnvelope(..., 4326))
+"""
+
 import geopandas as gp
 
 from sqlalchemy import create_engine

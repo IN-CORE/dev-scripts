@@ -55,6 +55,9 @@
                 <li><a href="https://tools.in-core.org/doc/incore/introduction.html">Review the IN-CORE manual</a> that’ll walk you through the basics of IN-CORE step-by-step.</li>
                 <li><a href="https://tools.in-core.org/doc/incore/tutorials.html">Explore the tutorials and tips</a> for a more in-depth look into IN-CORE.</li>
             </ol>
+            {% if list_subscribed %}
+            <p>We have also subscribed you to the IN-CORE announcements mailing list ({{ list_name }}) so that you hear about new releases and planned downtime. You can unsubscribe at any time from <a href="https://lists.illinois.edu/lists/info/{{ list_name }}">the list page</a>.</p>
+            {% endif %}
             <hr />
             <p><b>Need assistance?</b></p>
             <p>As questions arise, there are three ways to get assistance:</p>

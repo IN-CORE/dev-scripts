@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>IN-CORE Mailing list subscription failed</title>
+
+</head>
+<body style="font-family: Helvetica, sans-serif; font-size: 16px; line-height: 1.5; background-color: #f4f5f6; margin: 0; padding: 0; color: #333;">
+    <div class="container" style="max-width: 600px; margin: 24px auto; padding: 20px; background-color: #ffffff; border: 1px solid #eaebed; border-radius: 8px;">
+        <div class="content">
+            <img src="https://tools.in-core.org/doc/incore/_static/resilience-logo.png" alt="IN-CORE" style="width: 50%; height: auto; display: block; margin: 0 auto 16px;">
+            <p style="margin: 0 0 16px;">Hi, IN-CORE Admin,</p>
+            <p style="margin: 0 0 16px;">A new user was approved, but could <b>not</b> be added to the mailing list automatically. The user's account is active and the welcome email was sent, so only the mailing list subscription is missing.</p>
+            <table style="width: 100%; border: 1px solid black; border-collapse: collapse;" width="100%">
+                <tr>
+                    <th style="border: 1px solid black; border-collapse: collapse; padding: 8px; text-align: left;">Name</th>
+                    <td style="border: 1px solid black; border-collapse: collapse; padding: 8px;">{{ name }}</td>
+                </tr>
+                <tr>
+                    <th style="border: 1px solid black; border-collapse: collapse; padding: 8px; text-align: left;">Username</th>
+                    <td style="border: 1px solid black; border-collapse: collapse; padding: 8px;">{{ username }}</td>
+                </tr>
+                <tr>
+                    <th style="border: 1px solid black; border-collapse: collapse; padding: 8px; text-align: left;">Email</th>
+                    <td style="border: 1px solid black; border-collapse: collapse; padding: 8px;">{{ email }}</td>
+                </tr>
+                <tr>
+                    <th style="border: 1px solid black; border-collapse: collapse; padding: 8px; text-align: left;">Mailing list</th>
+                    <td style="border: 1px solid black; border-collapse: collapse; padding: 8px;">{{ list_name }}</td>
+                </tr>
+                <tr>
+                    <th style="border: 1px solid black; border-collapse: collapse; padding: 8px; text-align: left;">Error</th>
+                    <td style="border: 1px solid black; border-collapse: collapse; padding: 8px;">{{ error_message }}</td>
+                </tr>
+            </table>
+            <br>
+            <p style="margin: 0 0 16px;">Please add <b>{{ email }}</b> to the <b>{{ list_name }}</b> mailing list by hand at <a href="https://lists.illinois.edu/lists/info/{{ list_name }}" style="color: #0867ec; text-decoration: underline;">lists.illinois.edu</a>.</p>
+
+            <p style="margin: 0 0 16px;">- IN-CORE System Bot</p>
+
+        </div>
+    </div>
+</body>
+</html>

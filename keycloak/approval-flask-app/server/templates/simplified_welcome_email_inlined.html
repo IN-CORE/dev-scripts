@@ -20,6 +20,9 @@
                 <li><a href="https://tools.in-core.org/doc/incore/introduction.html" style="color: #0867ec; text-decoration: underline;">Review the IN-CORE manual</a> that’ll walk you through the basics of IN-CORE step-by-step.</li>
                 <li><a href="https://tools.in-core.org/doc/incore/tutorials.html" style="color: #0867ec; text-decoration: underline;">Explore the tutorials and tips</a> for a more in-depth look into IN-CORE.</li>
             </ol>
+            {% if list_subscribed %}
+            <p style="margin: 0 0 16px;">We have also subscribed you to the IN-CORE announcements mailing list ({{ list_name }}) so that you hear about new releases and planned downtime. You can unsubscribe at any time from <a href="https://lists.illinois.edu/lists/info/{{ list_name }}" style="color: #0867ec; text-decoration: underline;">the list page</a>.</p>
+            {% endif %}
             <hr>
             <p style="margin: 0 0 16px;"><b>Need assistance?</b></p>
             <p style="margin: 0 0 16px;">As questions arise, there are three ways to get assistance:</p>

@@ -7,7 +7,10 @@ from jinja2 import Template
 def get_email_template(filename):        
     with open(filename, "r") as file:
         template_str = file.read()
-    jinja_template = Template(template_str)
+    # autoescape is off by default in Template(), and these templates render names
+    # that users pick themselves at signup, which would otherwise let them inject
+    # markup into an email sent from an IN-CORE address.
+    jinja_template = Template(template_str, autoescape=True)
     return jinja_template
 
 def send_email(subject, body, to_email, from_email, smtp_server, smtp_port):

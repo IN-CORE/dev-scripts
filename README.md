@@ -27,3 +27,8 @@ Utilities for the INCORE V2 geoserver
 
 ### webdav_utils ###
 Dataset obejct and utitlies to import webdav data and store in data repository
+# secret-scan
+Sweeps the full git history of every IN-CORE repository for committed secrets, using
+gitleaks and trufflehog, and compiles a redacted report. Covers the gaps GitHub's own
+secret scanning leaves: private repos (not available on the free plan) and credentials
+that do not match GitHub's partner patterns. See [secret-scan/README.md](secret-scan/README.md).

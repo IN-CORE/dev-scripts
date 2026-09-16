@@ -70,3 +70,7 @@ keycloak/.env
 utils/geoserver_utils/data/
 utils/gis_utils/data/
 *env*
+
+# secret-scan working data — mirrors and raw scan output contain unredacted secrets
+secret-scan/sweep/
+secret-scan/reports/

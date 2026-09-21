@@ -27,3 +27,7 @@ Utilities for the INCORE V2 geoserver
 
 ### webdav_utils ###
 Dataset obejct and utitlies to import webdav data and store in data repository
+
+## License
+
+This project is licensed under the [Mozilla Public License 2.0](https://www.mozilla.org/MPL/2.0/). See [LICENSE](LICENSE).

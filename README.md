@@ -26,7 +26,7 @@ Parses existings fragility and mapping xml files and converts them to a POJO and
 Utilities for the INCORE V2 geoserver
 
 ### webdav_utils ###
-Dataset obejct and utitlies to import webdav data and store in data repository
+Dataset object and utilities to import webdav data and store in data repository
 
 ## License
 

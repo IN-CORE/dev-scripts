@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IN-CORE Community Pulse</title>
+<!-- Standalone copy of the IN-CORE Community Pulse dashboard (snapshot Nov 5, 2026).
+     Data is embedded below; regenerate it with community_pulse_queries.sh. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<style>
+  :root {
+    --font-anthropic-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-anthropic-serif: Georgia, "Times New Roman", serif;
+    --color-bg: #f7f8fa; --color-fg: #1c2230; --color-fg-muted: #5d6677;
+    --color-panel: #ffffff; --color-border-line: #e1e5ec;
+    --color-ok: #1f7a4d; --color-warn: #a16207; --color-bad: #b42318;
+    --cds-chart-muted: #b9c0cc; --cds-chart-grid: #eceff4; --cds-chart-axis: #c5cbd5;
+    --cds-surface-popover: #ffffff; --cds-border: #d9dee6; --cds-text-secondary: #5d6677;
+    --cds-shadow-popover: 0 4px 14px rgba(20,30,50,.12);
+    --cds-radius: 6px; --cds-dur-slow: .3s;
+    --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 16px; --cds-gap-lg: 24px; --cds-gap-xl: 32px;
+    --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 12px; --cds-pad-lg: 18px;
+    --cds-font-size-caption: 12px; --cds-font-size-body: 15px; --cds-font-size-heading: 16px; --cds-font-size-title: 30px;
+    --cds-font-weight-medium: 550;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bg: #12161e; --color-fg: #e6e9ef; --color-fg-muted: #9aa3b2;
+      --color-panel: #1a1f29; --color-border-line: #2b3240;
+      --color-ok: #4ade80; --color-warn: #fbbf24; --color-bad: #f87171;
+      --cds-chart-muted: #4b5466; --cds-chart-grid: #252b37; --cds-chart-axis: #3a4252;
+      --cds-surface-popover: #222835; --cds-border: #333b4b; --cds-text-secondary: #9aa3b2;
+      --cds-shadow-popover: 0 4px 14px rgba(0,0,0,.4);
+      color-scheme: dark;
+    }
+  }
+  body { margin: 0; background: var(--color-bg); color: var(--color-fg); font-family: var(--font-anthropic-sans); }
+  #dash-root { max-width: 1200px; margin: 0 auto; padding: 32px max(16px, 4vw); }
+  .dash-skeleton:empty { background: var(--color-border-line); border-radius: var(--cds-radius); }
+</style>
+<script>
+  window.CP_DATA = {"summary": [{"metric": "Signed-in users", "current": 117, "previous": 77}, {"metric": "First-time users", "current": 54, "previous": null}, {"metric": "Community requests", "current": 389212, "previous": 402408}, {"metric": "Countries reached", "current": 130, "previous": null}, {"metric": "Dataset views", "current": 3207, "previous": null}, {"metric": "Distinct datasets viewed", "current": 1264, "previous": null}], "weekly_users": [{"week": "2026-08-13", "users": 23}, {"week": "2026-08-20", "users": 12}, {"week": "2026-08-27", "users": 20}, {"week": "2026-09-03", "users": 24}, {"week": "2026-09-10", "users": 29}, {"week": "2026-09-17", "users": 25}, {"week": "2026-09-24", "users": 21}, {"week": "2026-10-01", "users": 26}, {"week": "2026-10-08", "users": 18}, {"week": "2026-10-15", "users": 19}, {"week": "2026-10-22", "users": 21}, {"week": "2026-10-29", "users": 23}], "weekly_requests": [{"week": "2026-08-13", "group": "CoE", "requests": 0}, {"week": "2026-08-20", "group": "CoE", "requests": 0}, {"week": "2026-08-27", "group": "CoE", "requests": 0}, {"week": "2026-09-03", "group": "CoE", "requests": 0}, {"week": "2026-09-10", "group": "CoE", "requests": 2}, {"week": "2026-09-17", "group": "CoE", "requests": 12019}, {"week": "2026-09-24", "group": "CoE", "requests": 1972}, {"week": "2026-10-01", "group": "CoE", "requests": 1540}, {"week": "2026-10-08", "group": "CoE", "requests": 33}, {"week": "2026-10-15", "group": "CoE", "requests": 21}, {"week": "2026-10-22", "group": "CoE", "requests": 65}, {"week": "2026-10-29", "group": "CoE", "requests": 3}, {"week": "2026-08-13", "group": "NCSA", "requests": 82656}, {"week": "2026-08-20", "group": "NCSA", "requests": 82655}, {"week": "2026-08-27", "group": "NCSA", "requests": 82655}, {"week": "2026-09-03", "group": "NCSA", "requests": 86938}, {"week": "2026-09-10", "group": "NCSA", "requests": 81456}, {"week": "2026-09-17", "group": "NCSA", "requests": 1774}, {"week": "2026-09-24", "group": "NCSA", "requests": 8038}, {"week": "2026-10-01", "group": "NCSA", "requests": 4852}, {"week": "2026-10-08", "group": "NCSA", "requests": 3921}, {"week": "2026-10-15", "group": "NCSA", "requests": 1111}, {"week": "2026-10-22", "group": "NCSA", "requests": 92}, {"week": "2026-10-29", "group": "NCSA", "requests": 9}, {"week": "2026-08-13", "group": "public", "requests": 39852}, {"week": "2026-08-20", "group": "public", "requests": 29620}, {"week": "2026-08-27", "group": "public", "requests": 60627}, {"week": "2026-09-03", "group": "public", "requests": 35494}, {"week": "2026-09-10", "group": "public", "requests": 36392}, {"week": "2026-09-17", "group": "public", "requests": 27943}, {"week": "2026-09-24", "group": "public", "requests": 20685}, {"week": "2026-10-01", "group": "public", "requests": 20896}, {"week": "2026-10-08", "group": "public", "requests": 18105}, {"week": "2026-10-15", "group": "public", "requests": 20616}, {"week": "2026-10-22", "group": "public", "requests": 17453}, {"week": "2026-10-29", "group": "public", "requests": 25086}], "tools": [{"tool": "Spaces (checked at every sign-in)", "resource": "space", "users": 110, "requests": 3563}, {"tool": "Data service", "resource": "data", "users": 79, "requests": 11738}, {"tool": "DFR3 service (fragility & repair curves)", "resource": "dfr3", "users": 74, "requests": 124458}, {"tool": "Documentation", "resource": "doc", "users": 70, "requests": 41206}, {"tool": "Hazard service", "resource": "hazard", "users": 69, "requests": 25901}, {"tool": "Website front page", "resource": "frontpage", "users": 64, "requests": 162210}, {"tool": "Data Viewer", "resource": "DataViewer", "users": 62, "requests": 378}, {"tool": "IN-CORE Lab (JupyterHub)", "resource": "jupyterhub", "users": 62, "requests": 355}, {"tool": "Semantic types service", "resource": "semantics", "users": 49, "requests": 12308}, {"tool": "DFR3 Viewer", "resource": "DFR3Viewer", "users": 47, "requests": 474}, {"tool": "Hazard Viewer", "resource": "HazardViewer", "users": 46, "requests": 322}, {"tool": "Projects", "resource": "project", "users": 43, "requests": 498}, {"tool": "Plotting service", "resource": "plotting", "users": 39, "requests": 2944}, {"tool": "Map layers (GeoServer)", "resource": "geoserver", "users": 35, "requests": 280}, {"tool": "Playbooks", "resource": "playbook", "users": 27, "requests": 2341}, {"tool": "Maestro (playbook progress)", "resource": "maestro", "users": 13, "requests": 128}], "countries": [{"country": "United States", "users": 53}, {"country": "Taiwan (Province of China)", "users": 8}, {"country": "Iran (Islamic Republic of)", "users": 5}, {"country": "United Kingdom", "users": 3}, {"country": "France", "users": 2}, {"country": "Korea (Republic of)", "users": 2}, {"country": "Romania", "users": 2}, {"country": "4 other countries", "users": 4}], "playbooks": [{"playbook": "Joplin", "opens": 645}, {"playbook": "Galveston", "opens": 523}, {"playbook": "Salt Lake City", "opens": 489}], "docs": [{"page": "incore/notebooks/MMSA_testbed/MMSA_Seismic_Functionality_Analysis_for_Interdependent_Buildings-Water-Power_using_Fragility_and_Repair_Rate_Curves.html", "views": 1628}, {"page": "incore/introduction.html", "views": 1012}, {"page": "incore/", "views": 866}, {"page": "incore/getting_started.html", "views": 707}, {"page": "incore/notebooks/Joplin_testbed/Joplin_testbed.html", "views": 587}, {"page": "incore/notebooks/Lumberton_testbed/Lumberton_testbed.html", "views": 564}, {"page": "incore/webtools.html", "views": 546}, {"page": "incore/notebooks/MMSA_testbed/MMSA_Seismic_Functionality_and_Restoration_Analysis_for_Interdependent_Buildings-Water-Power_using_Restoration_Curves.html", "views": 511}, {"page": "pyincore/refs.html", "views": 505}, {"page": "incore/account.html", "views": 504}, {"page": "incore/analyses/ml_slc_cge.html", "views": 490}, {"page": "incore/tutorials.html", "views": 467}, {"page": "incore/notebooks/Galveston_testbed/Galveston_testbed.html", "views": 454}, {"page": "incore/incore_lab.html", "views": 446}, {"page": "incore/pyincore.html", "views": 417}]};
+  // Minimal stand-in for the dashboard runtime: every source is embedded and always "ok".
+  window.dash = (() => {
+    const calcs = {}, draws = [];
+    const light = ['#2f6fdf', '#d9822b', '#2a9d8f', '#8e5bd6', '#c2417a', '#6b8e23', '#b8860b', '#4682b4'];
+    const dark = ['#6c9cff', '#f0a35e', '#4fc3b4', '#b08cf0', '#e46fa0', '#9ccc65', '#e0b84a', '#7fb3e0'];
+    const api = {
+      colors: matchMedia('(prefers-color-scheme: dark)').matches ? dark : light,
+      data: (id) => ({ status: 'ok', data: calcs[id] ? calcs[id]() : window.CP_DATA[id] || [] }),
+      calc: (id, o) => { calcs[id] = () => o.fn(...o.inputs.map((i) => api.data(i).data)); },
+      draw: (name, fn) => draws.push([name, fn]),
+      run: () => draws.forEach(([n, fn]) => document.querySelectorAll(`[data-draw="${n}"]`).forEach((el) => fn(el))),
+    };
+    let t; addEventListener('resize', () => { clearTimeout(t); t = setTimeout(api.run, 150); });
+    return api;
+  })();
+</script>
+</head>
+<body>
+<div id="dash-root">
+<style>
+  .cp { font-family: var(--font-anthropic-sans); display: grid; gap: var(--cds-gap-xl); min-width: 0; }
+  .cp-head { display: grid; gap: var(--cds-gap-sm); }
+  .cp-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+  .cp-window { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0; }
+  .cp-take { margin: 0; max-width: 62ch; font-size: var(--cds-font-size-body); }
+  .cp .cp-take b { font-weight: 600; }
+  .cp-tiles { display: grid; gap: var(--cds-gap-md); grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); }
+  .cp-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: grid; gap: var(--cds-gap-xs); align-content: start; min-width: 0; }
+  .cp-tile-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .cp-tile-val { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; line-height: 1.15; }
+  .cp-tile-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .cp-up { color: var(--color-ok); }
+  .cp-down { color: var(--color-bad); }
+  .cp-section { display: grid; gap: var(--cds-gap-md); }
+  .cp-section > h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+  .cp-grid { display: grid; gap: var(--cds-gap-md); grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+  .cp-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: grid; gap: var(--cds-gap-sm); align-content: start; min-width: 0; }
+  .cp-card h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+  .cp-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; max-width: 70ch; }
+  .cp-chart { position: relative; min-height: 240px; min-width: 0; }
+  .cp-chart svg { display: block; overflow: visible; }
+  .cp-chart text { fill: var(--color-fg-muted); font-size: var(--cds-font-size-caption); font-family: var(--font-anthropic-sans); }
+  .cp-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .cp-legend span { display: inline-flex; align-items: center; gap: var(--cds-gap-xs); }
+  .cp-sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  .cp-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; }
+  .cp-tip-date { color: var(--cds-text-secondary); }
+  .cp-tip-row { display: flex; align-items: center; gap: var(--cds-gap-xs); font-variant-numeric: tabular-nums; }
+  .cp-bars { display: grid; gap: var(--cds-gap-sm); min-height: 120px; }
+  .cp-bar-row { display: grid; grid-template-columns: minmax(6rem, 11rem) 1fr auto; gap: var(--cds-gap-sm); align-items: center; font-size: var(--cds-font-size-caption); }
+  .cp-bar-label { overflow-wrap: anywhere; }
+  .cp-bar-track { height: 12px; min-width: 0; }
+  .cp-bar-fill { height: 100%; border-radius: var(--cds-radius); background: var(--cds-chart-muted); }
+  .cp-bar-fill.cp-lead { background: var(--cp-accent, var(--cds-chart-muted)); }
+  .cp-bar-num { font-variant-numeric: tabular-nums; text-align: right; min-width: 3ch; }
+  .cp-table-wrap { overflow-x: auto; max-height: 28rem; overflow-y: auto; }
+  .cp-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+  .cp-table th { text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); position: sticky; top: 0; background: var(--color-panel); }
+  .cp-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: middle; }
+  .cp-table .cp-num { text-align: right; white-space: nowrap; }
+  .cp-table td.cp-path { overflow-wrap: anywhere; }
+  .cp-incell { display: flex; align-items: center; gap: var(--cds-gap-sm); justify-content: flex-end; }
+  .cp-incell i { display: block; height: 8px; border-radius: 2px; background: var(--cp-accent, var(--cds-chart-muted)); }
+  .cp-fail { display: flex; align-items: center; justify-content: center; gap: var(--cds-gap-xs); color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); min-height: inherit; }
+  .cp-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+  .cp-defs { margin: 0; padding-left: 1.1rem; display: grid; gap: var(--cds-gap-xs); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); max-width: 75ch; }
+  [data-dash-source-state=empty] { color: transparent; }
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+</style>
+
+<div class="cp">
+  <header class="cp-head" id="top">
+    <h1>IN-CORE community pulse</h1>
+    <p class="cp-window">Last 90 days: Aug 7 – Nov 5, 2026, compared with the 90 days before (May 9 – Aug 7)</p>
+    <p class="cp-take">Signed-in users are <b data-draw="users-dir" data-source="summary_change" data-where="metric=Signed-in users" data-field="change">—</b> <b data-draw="users-change" data-source="summary_change" data-where="metric=Signed-in users" data-field="change">—</b> on the previous 90 days, and <b data-draw="tile-val" data-source="summary" data-where="metric=First-time users" data-field="current">—</b> people used IN-CORE for the first time.</p>
+  </header>
+
+  <section class="cp-tiles" aria-label="Headline figures" id="headline">
+    <div class="cp-tile">
+      <span class="cp-tile-label">Signed-in users</span>
+      <span class="cp-tile-val dash-skeleton" data-draw="tile-val" data-source="summary" data-where="metric=Signed-in users" data-field="current">—</span>
+      <span class="cp-tile-note"><span data-draw="tile-delta" data-source="summary_change" data-where="metric=Signed-in users" data-field="change">—</span> vs previous 90 days</span>
+    </div>
+    <div class="cp-tile">
+      <span class="cp-tile-label">First-time users</span>
+      <span class="cp-tile-val dash-skeleton" data-draw="tile-val" data-source="summary" data-where="metric=First-time users" data-field="current">—</span>
+      <span class="cp-tile-note">Never seen in the logs before (since Feb 2021)</span>
+    </div>
+    <div class="cp-tile">
+      <span class="cp-tile-label">Community requests</span>
+      <span class="cp-tile-val dash-skeleton" data-draw="tile-val" data-source="summary" data-where="metric=Community requests" data-field="current">—</span>
+      <span class="cp-tile-note"><span data-draw="tile-delta" data-source="summary_change" data-where="metric=Community requests" data-field="change">—</span> vs previous 90 days</span>
+    </div>
+    <div class="cp-tile">
+      <span class="cp-tile-label">Countries reached</span>
+      <span class="cp-tile-val dash-skeleton" data-draw="tile-val" data-source="summary" data-where="metric=Countries reached" data-field="current">—</span>
+      <span class="cp-tile-note">Includes visitors who didn't sign in</span>
+    </div>
+    <div class="cp-tile">
+      <span class="cp-tile-label">Dataset views</span>
+      <span class="cp-tile-val dash-skeleton" data-draw="tile-val" data-source="summary" data-where="metric=Dataset views" data-field="current">—</span>
+      <span class="cp-tile-note">Across <span data-draw="tile-val" data-source="summary" data-where="metric=Distinct datasets viewed" data-field="current">—</span> distinct datasets</span>
+    </div>
+  </section>
+
+  <section class="cp-section" id="engagement">
+    <h2>Engagement over time</h2>
+    <div class="cp-grid">
+      <div class="cp-card">
+        <h3>Weekly active users</h3>
+        <p class="cp-note">Distinct signed-in accounts each week, Thursday to Wednesday. Full weeks only.</p>
+        <div class="cp-chart dash-skeleton" data-draw="weekly-users" data-source="weekly_users"></div>
+      </div>
+      <div class="cp-card">
+        <h3>Weekly requests by audience</h3>
+        <p class="cp-note">NCSA staff accounts were running heavy automated traffic until mid-September. Public traffic was higher in late summer than in October.</p>
+        <div class="cp-legend" aria-hidden="true">
+          <span><i class="cp-sw" data-sw="0"></i>Public users</span>
+          <span><i class="cp-sw" data-sw="1"></i>Center of Excellence (CoE)</span>
+          <span><i class="cp-sw" data-sw="muted"></i>NCSA staff accounts</span>
+        </div>
+        <div class="cp-chart dash-skeleton" data-draw="weekly-requests" data-source="weekly_requests"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cp-section" id="tools">
+    <h2>What people use</h2>
+    <div class="cp-grid">
+      <div class="cp-card">
+        <h3>Tools and services</h3>
+        <p class="cp-note">Users: distinct signed-in accounts that touched each tool. Requests leave out NCSA staff accounts.</p>
+        <div class="cp-table-wrap">
+          <table class="cp-table" data-source="tools" data-row-key="tool">
+            <thead><tr><th data-field="tool" scope="col">Tool</th><th data-field="users" scope="col" class="cp-num">Users</th><th data-field="requests" scope="col" class="cp-num">Requests</th></tr></thead>
+            <tbody data-draw="tools-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="cp-card">
+        <h3>Playbook opens</h3>
+        <p class="cp-note">Times each community playbook was opened.</p>
+        <div class="cp-bars dash-skeleton" data-draw="playbooks" data-source="playbooks"></div>
+        <h3>Where signed-in users are</h3>
+        <p class="cp-note">Distinct signed-in accounts by country, from IP location. Countries with one user are grouped.</p>
+        <div class="cp-bars dash-skeleton" data-draw="countries" data-source="countries"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cp-section" id="docs">
+    <h2>Most-read documentation</h2>
+    <div class="cp-card">
+      <p class="cp-note">Top 15 pages under /doc/, by views. Leaves out NCSA staff accounts.</p>
+      <div class="cp-table-wrap">
+        <table class="cp-table" data-source="docs" data-row-key="page">
+          <thead><tr><th data-field="page" scope="col">Page</th><th data-field="views" scope="col" class="cp-num">Views</th></tr></thead>
+          <tbody data-draw="docs-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="cp-section" id="method">
+    <h2>How these are counted</h2>
+    <ul class="cp-defs">
+      <li>Source: the IN-CORE production request log (InfluxDB, measurement "auth"), one row per page or API request, snapshot taken Nov 5, 2026.</li>
+      <li>Signed-in users are distinct account names. Anonymous visits count toward requests and countries, not users.</li>
+      <li>Community requests are all requests except those from the three NCSA staff accounts, whose traffic is mostly automated.</li>
+      <li>Countries come from IP location. Most requests in the log carry no location, so country figures describe only the requests that do. Placeholder values ("-", "INVALID IP ADDRESS") are left out.</li>
+      <li>First-time users are accounts in this window with no request anywhere in the log before Aug 7, 2026.</li>
+      <li>JupyterHub's own usage gauges stopped reporting on Jan 16, 2025, so IN-CORE Lab use here comes from page requests only.</li>
+      <li>Scanner and bot probes (for example requests for wp-login.php) are in the raw log; none reached the tools listed here in this window.</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+  dash.calc('summary_change', {
+    inputs: ['summary'],
+    title: 'Change vs previous 90 days',
+    description: 'Each headline metric compared with the 90 days before, where the earlier figure exists.',
+    fn: (summary) => summary
+      .filter((r) => r.previous != null)
+      .map((r) => ({ metric: r.metric, change: (Number(r.current) - Number(r.previous)) / Number(r.previous) })),
+  });
+
+  const fmt = d3.format(',');
+  const compact = new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 });
+  const big = (v) => (v >= 10000 ? compact.format(v) : fmt(v));
+  const signed = d3.format('+.1%');
+  const weekFmt = d3.utcFormat('%b %-d');
+  const parseDay = (s) => new Date(String(s).slice(0, 10) + 'T00:00:00Z');
+  const whereOf = (el) => decodeURIComponent((el.getAttribute('data-where') || '').split('=').slice(1).join('='));
+
+  // Returns true while the source isn't ready; leaves the element in its waiting or failed state.
+  function pending(el, id, isBox) {
+    const s = dash.data(id).status;
+    if (s === 'ok') { el.classList.remove('dash-skeleton'); return false; }
+    el.replaceChildren();
+    if (s === 'error' || s === 'connect' || s === 'declined' || s === 'missing') {
+      el.classList.remove('dash-skeleton');
+      const f = document.createElement('span');
+      f.className = 'cp-fail';
+      f.textContent = 'Failed to load';
+      el.append(f);
+    } else {
+      el.classList.add('dash-skeleton');
+      if (!isBox) el.textContent = '—';
+    }
+    return true;
+  }
+
+  document.querySelectorAll('[data-sw]').forEach((sw) => {
+    const k = sw.getAttribute('data-sw');
+    sw.style.background = k === 'muted' ? 'var(--cds-chart-muted)' : dash.colors[Number(k)];
+  });
+  document.querySelectorAll('.cp').forEach((el) => el.style.setProperty('--cp-accent', dash.colors[0]));
+
+  dash.draw('tile-val', (el) => {
+    const id = el.getAttribute('data-source');
+    if (pending(el, id)) return;
+    const row = dash.data(id).data.find((r) => r.metric === whereOf(el));
+    el.textContent = row ? big(Number(row.current)) : '—';
+  });
+
+  const changeRow = (el) => {
+    if (pending(el, 'summary_change')) return null;
+    return dash.data('summary_change').data.find((r) => r.metric === whereOf(el)) || null;
+  };
+
+  dash.draw('tile-delta', (el) => {
+    el.classList.remove('cp-up', 'cp-down');
+    const row = changeRow(el);
+    if (!row) { if (dash.data('summary_change').status === 'ok') el.textContent = '—'; return; }
+    el.textContent = signed(row.change);
+    el.classList.add(row.change >= 0 ? 'cp-up' : 'cp-down');
+  });
+
+  dash.draw('users-change', (el) => {
+    const row = changeRow(el);
+    if (!row) return;
+    el.textContent = d3.format('.0%')(Math.abs(row.change));
+  });
+
+  dash.draw('users-dir', (el) => {
+    const row = changeRow(el);
+    if (!row) return;
+    el.textContent = row.change >= 0 ? 'up' : 'down';
+  });
+
+  // Vertical bars, stacked when there is more than one series.
+  function weekBars(el, rows, series) {
+    const W = Math.max(280, el.clientWidth || 600);
+    const H = 240, mt = 10, mr = 8, mb = 26;
+    const max = d3.max(rows, (r) => d3.sum(series, (s) => r[s.key])) || 1;
+    const y0 = d3.scaleLinear([0, max], [H - mb, mt]).nice();
+    const tickFmt = (v) => (max >= 10000 ? compact.format(v) : fmt(v));
+
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const probe = svg.append('g').call(d3.axisLeft(y0).ticks(4).tickFormat(tickFmt));
+    let ml = 0;
+    probe.selectAll('text').each(function () { ml = Math.max(ml, this.getComputedTextLength()); });
+    probe.remove();
+    ml = Math.ceil(ml) + 12;
+
+    const x = d3.scaleBand(rows.map((r) => r.week), [ml, W - mr]).padding(0.25);
+    const step = Math.max(1, Math.ceil((rows.length * 48) / (W - ml - mr)));
+
+    svg.append('g').attr('transform', `translate(0,0)`)
+      .selectAll('line').data(y0.ticks(4)).join('line')
+      .attr('x1', ml).attr('x2', W - mr).attr('y1', (d) => y0(d)).attr('y2', (d) => y0(d))
+      .style('stroke', 'var(--cds-chart-grid)').attr('stroke-width', 1);
+
+    svg.append('g').attr('transform', `translate(${ml - 4},0)`)
+      .call(d3.axisLeft(y0).ticks(4).tickFormat(tickFmt).tickSize(0))
+      .attr('font-size', null).attr('font-family', null)
+      .call((g) => g.select('.domain').remove());
+
+    svg.append('g').attr('transform', `translate(0,${H - mb + 6})`)
+      .call(d3.axisBottom(x).tickValues(rows.map((r) => r.week).filter((_, i) => i % step === 0)).tickFormat((w) => weekFmt(parseDay(w))).tickSize(0))
+      .attr('font-size', null).attr('font-family', null)
+      .call((g) => g.select('.domain').remove());
+
+    svg.append('line').attr('x1', ml).attr('x2', W - mr).attr('y1', H - mb).attr('y2', H - mb)
+      .style('stroke', 'var(--cds-chart-axis)').attr('stroke-width', 1);
+
+    const stacked = d3.stack().keys(series.map((s) => s.key))(rows);
+    const layers = svg.append('g').selectAll('g').data(stacked).join('g')
+      .style('fill', (_, i) => series[i].color);
+    layers.selectAll('rect').data((d) => d).join('rect')
+      .attr('x', (d) => x(d.data.week)).attr('width', x.bandwidth())
+      .attr('y', (d) => y0(d[1])).attr('height', (d) => Math.max(0, y0(d[0]) - y0(d[1])))
+      .attr('rx', series.length === 1 ? 3 : 0);
+
+    const tip = document.createElement('div');
+    tip.className = 'cp-tip';
+    tip.hidden = true;
+    el.append(tip);
+
+    svg.append('g').selectAll('rect').data(rows).join('rect')
+      .attr('x', (r) => x(r.week) - (x.step() * x.paddingInner()) / 2).attr('width', x.step())
+      .attr('y', mt).attr('height', H - mb - mt).style('fill', 'transparent')
+      .on('pointerenter pointermove', function (ev, r) {
+        layers.selectAll('rect').style('opacity', (d) => (d.data.week === r.week ? 1 : 0.45));
+        const d = document.createElement('div');
+        d.className = 'cp-tip-date';
+        d.textContent = 'Week of ' + weekFmt(parseDay(r.week));
+        const lines = series.slice().reverse().map((s) => {
+          const row = document.createElement('div');
+          row.className = 'cp-tip-row';
+          if (series.length > 1) {
+            const sw = document.createElement('i');
+            sw.className = 'cp-sw';
+            sw.style.background = s.color;
+            row.append(sw);
+          }
+          row.append(`${s.label}: ${fmt(r[s.key])}`);
+          return row;
+        });
+        tip.replaceChildren(d, ...lines);
+        tip.hidden = false;
+        const box = el.getBoundingClientRect();
+        const px = ev.clientX - box.left, py = ev.clientY - box.top;
+        const tw = tip.offsetWidth;
+        tip.style.left = Math.min(Math.max(0, px + 12), box.width - tw) + 'px';
+        if (px + 12 + tw > box.width) tip.style.left = Math.max(0, px - tw - 12) + 'px';
+        tip.style.top = Math.max(0, py - 40) + 'px';
+      })
+      .on('pointerleave', () => { tip.hidden = true; layers.selectAll('rect').style('opacity', 1); });
+  }
+
+  dash.draw('weekly-users', (el) => {
+    if (pending(el, 'weekly_users', true)) return;
+    el.replaceChildren();
+    const rows = dash.data('weekly_users').data.map((r) => ({ week: String(r.week), users: Number(r.users) }));
+    weekBars(el, rows, [{ key: 'users', label: 'Active users', color: dash.colors[0] }]);
+  });
+
+  dash.draw('weekly-requests', (el) => {
+    if (pending(el, 'weekly_requests', true)) return;
+    el.replaceChildren();
+    const byWeek = d3.rollup(dash.data('weekly_requests').data, (v) => {
+      const o = { public: 0, CoE: 0, NCSA: 0 };
+      v.forEach((r) => { o[r.group] = Number(r.requests); });
+      return o;
+    }, (r) => String(r.week));
+    const rows = Array.from(byWeek, ([week, o]) => ({ week, ...o })).sort((a, b) => d3.ascending(a.week, b.week));
+    weekBars(el, rows, [
+      { key: 'public', label: 'Public users', color: dash.colors[0] },
+      { key: 'CoE', label: 'CoE', color: dash.colors[1] },
+      { key: 'NCSA', label: 'NCSA staff', color: 'var(--cds-chart-muted)' },
+    ]);
+  });
+
+  function hbars(el, id, labelKey, valueKey) {
+    if (pending(el, id, true)) return;
+    el.replaceChildren();
+    const rows = dash.data(id).data;
+    const max = d3.max(rows, (r) => Number(r[valueKey])) || 1;
+    rows.forEach((r, i) => {
+      const row = document.createElement('div');
+      row.className = 'cp-bar-row';
+      const lab = document.createElement('span');
+      lab.className = 'cp-bar-label';
+      lab.textContent = r[labelKey];
+      const track = document.createElement('div');
+      track.className = 'cp-bar-track';
+      const fill = document.createElement('div');
+      fill.className = 'cp-bar-fill' + (i === 0 ? ' cp-lead' : '');
+      fill.style.width = (100 * Number(r[valueKey])) / max + '%';
+      track.append(fill);
+      const num = document.createElement('span');
+      num.className = 'cp-bar-num';
+      num.textContent = fmt(Number(r[valueKey]));
+      row.append(lab, track, num);
+      el.append(row);
+    });
+  }
+
+  dash.draw('playbooks', (el) => hbars(el, 'playbooks', 'playbook', 'opens'));
+  dash.draw('countries', (el) => hbars(el, 'countries', 'country', 'users'));
+
+  dash.draw('tools-body', (tb) => {
+    tb.replaceChildren();
+    if (dash.data('tools').status !== 'ok') return;
+    const rows = dash.data('tools').data;
+    const max = d3.max(rows, (r) => Number(r.users)) || 1;
+    rows.forEach((r) => {
+      const tr = document.createElement('tr');
+      const t = document.createElement('td');
+      t.textContent = r.tool;
+      const u = document.createElement('td');
+      u.className = 'cp-num';
+      const cell = document.createElement('span');
+      cell.className = 'cp-incell';
+      const bar = document.createElement('i');
+      bar.style.width = (48 * Number(r.users)) / max + 'px';
+      cell.append(bar, fmt(Number(r.users)));
+      u.append(cell);
+      const q = document.createElement('td');
+      q.className = 'cp-num';
+      q.textContent = fmt(Number(r.requests));
+      tr.append(t, u, q);
+      tb.append(tr);
+    });
+  });
+
+  dash.draw('docs-body', (tb) => {
+    tb.replaceChildren();
+    if (dash.data('docs').status !== 'ok') return;
+    dash.data('docs').data.forEach((r) => {
+      const tr = document.createElement('tr');
+      const p = document.createElement('td');
+      p.className = 'cp-path';
+      p.textContent = r.page;
+      const v = document.createElement('td');
+      v.className = 'cp-num';
+      v.textContent = fmt(Number(r.views));
+      tr.append(p, v);
+      tb.append(tr);
+    });
+  });
+</script>
+
+</div>
+<script>dash.run();</script>
+</body>
+</html>

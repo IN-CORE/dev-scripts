@@ -21,6 +21,9 @@ Eclipse project with Maven for testing/explore geotools library
 # mapping-converter
 Parses existings fragility and mapping xml files and converts them to a POJO and stores them in a mongodb.
 
+# telemetry
+Read-only Flux queries for IN-CORE community usage from the production InfluxDB, and a standalone Community Pulse HTML snapshot.
+
 # utils
 ### geoserver_utils ###
 Utilities for the INCORE V2 geoserver

@@ -1,0 +1,35 @@
+# Per-notebook rules for run_docs_notebooks.py (incore-docs notebooks).
+#
+# Keys are globs on notebook ids. A plain notebook's id is its file name
+# ("building_dmg.ipynb"); a zipped one is "<zip name>/<path inside the zip>"
+# ("Joplin_testbed.zip/Joplin_testbed/Joplin_testbed.ipynb").
+# When several globs match, their settings are merged and later entries win.
+#
+#   skip: <reason>   not run unless --run-skipped is passed
+#   timeout: <secs>  per-cell timeout for this notebook (default --timeout)
+
+notebooks:
+  # How-tos that create datasets, DFR3 curves or hazards on the IN-CORE services.
+  # Running them on every release would litter the service with copies.
+  "create_dataset.zip/*":
+    skip: creates datasets on the IN-CORE services
+  "create_dfr3_object.zip/*":
+    skip: creates DFR3 curves/mappings on the IN-CORE services
+  "create_earthquake.zip/*":
+    skip: creates an earthquake hazard on the IN-CORE services
+  "create_tornado.zip/*":
+    skip: creates a tornado hazard on the IN-CORE services
+  "create_network_dataset.zip/*":
+    skip: creates a network dataset on the IN-CORE services
+  "create_building_inventory_from_nsi.zip/*":
+    skip: creates a building inventory dataset on the IN-CORE services
+
+  # Long-running notebooks: more time per cell.
+  "*cge*.ipynb":
+    timeout: 3600
+  "indp.ipynb":
+    timeout: 3600
+  "*community_app*.ipynb":
+    timeout: 3600
+  "*_testbed*.zip/*":
+    timeout: 3600

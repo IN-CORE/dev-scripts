@@ -36,9 +36,13 @@ jobs:
           OWNER=${{ github.repository_owner }}
           OWNER_LC=${OWNER,,}
 
-          if [ "$BRANCH" == "master" || "$BRANCH" == "main" ]; then
-            VERSION="$(awk '/^# \[/ { print $2; exit }' CHANGELOG.md | sed -e 's/\[//' -e 's/\]//')"
-            tags="latest"
+          if [[ "$BRANCH" == "master" || "$BRANCH" == "main" ]]; then
+            VERSION=""
+            if [ -f CHANGELOG.md ]; then
+              VERSION="$(awk '/^# \[/ { print $2; exit }' CHANGELOG.md | sed -e 's/\[//' -e 's/\]//')"
+            fi
+            # keep the branch tag: the helm chart deploys approval-app:master
+            tags="latest ${BRANCH}"
             tmpversion="${VERSION}"
             while [ "${tmpversion}" != "" ]; do
               tags="${tags} ${tmpversion}"

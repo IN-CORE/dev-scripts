@@ -1,1 +1,10 @@
-*env*
+# Never send local secrets into the image. Patterns without **/ only match the
+# build-context root, so `*env*` alone did not exclude server/.env.
+**/.env
+**/.env.*
+**/*.env
+**/.venv
+**/venv
+**/__pycache__
+**/*.pyc
+.git

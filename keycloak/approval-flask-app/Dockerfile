@@ -10,8 +10,10 @@ COPY server/requirements.txt .
 # Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code into the container
-COPY server/. .
+# Copy only the application files (never the whole directory, which may hold
+# a local .env or other secrets). Config comes from env vars at runtime.
+COPY server/app.py server/incoreuser.py server/newemail.py ./
+COPY server/templates/*.html ./templates/
 
 # Set environment variables
 ENV FLASK_APP=app.py

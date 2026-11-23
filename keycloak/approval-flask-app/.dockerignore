@@ -1,1 +1,10 @@
-*env*
+# Allowlist: exclude everything, then re-include only what the image needs.
+# Anything else in the build context (.env, .my_env_prod, keys, venvs) is
+# never sent to the Docker daemon.
+*
+!Dockerfile
+!server/app.py
+!server/incoreuser.py
+!server/newemail.py
+!server/requirements.txt
+!server/templates/*.html

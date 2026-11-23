@@ -1,0 +1,31 @@
+# Keep local secrets out of the Docker build context, so a manual
+# `docker build` on a laptop can't bake them into a published image.
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.sample
+!**/.env.template
+**/*.env
+**/.my_env*
+**/.incorepw
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+**/id_rsa*
+**/id_ed25519*
+**/.npmrc
+**/.pypirc
+**/.netrc
+**/.pgpass
+**/credentials.json
+**/*secret*.json
+**/*secret*.yaml
+**/*secret*.yml
+**/*secrets*.zip
+
+# Local tooling that never belongs in an image
+.git
+**/__pycache__
+**/.venv
+**/venv
